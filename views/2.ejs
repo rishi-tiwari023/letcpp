@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        <%= title || 'LeetCode 2 - Add Two Numbers' %>
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2: Add Two Numbers (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong> You are given two non-empty linked lists representing two non-negative
+                integers. Add the two numbers and
+                return the sum as a linked list.</p>
+            <p><strong>Example:</strong> <code>l1 = [2,4,3]</code>, <code>l2 = [5,6,4]</code> → <code>[7,0,8]</code>
+                (342 + 465 = 807)</p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">// Time: O(max(m, n)), Space: O(1) extra (excluding output list)
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(nullptr) {}
+};
+
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode dummy(0);
+        ListNode* tail = &dummy;
+        int carry = 0;
+        while (l1 != nullptr || l2 != nullptr || carry != 0) {
+            int sum = carry;
+            if (l1) { sum += l1->val; l1 = l1->next; }
+            if (l2) { sum += l2->val; l2 = l2->next; }
+            carry = sum / 10;
+            tail->next = new ListNode(sum % 10);
+            tail = tail->next;
+        }
+        return dummy.next;
+    }
+};
+
+int main() {
+    // 342 + 465 = 807
+    ListNode a1(2); ListNode a2(4); ListNode a3(3); a1.next = &a2; a2.next = &a3;
+    ListNode b1(5); ListNode b2(6); ListNode b3(4); b1.next = &b2; b2.next = &b3;
+    Solution s;
+    ListNode* ans = s.addTwoNumbers(&a1, &b1);
+    for (ListNode* p = ans; p; p = p->next) cout << p->val; // prints 708 reversed order nodes -> 807 as list
+    cout << "\n";
+    return 0;
+}
+</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>

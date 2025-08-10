@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        <%= title || 'LeetCode 1 - Two Sum' %>
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1: Two Sum (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong> Given an array of integers <code>nums</code> and an integer
+                <code>target</code>, return indices of the two
+                numbers such that they add up to <code>target</code>.
+            </p>
+            <p><strong>Example:</strong> <code>nums = [2,7,11,15]</code>, <code>target = 9</code> → <code>[0,1]</code>
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">// Time: O(n), Space: O(n)
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+class Solution {
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;& nums, int target) {
+        unordered_map&lt;int, int&gt; valueToIndex; // value -&gt; latest index
+        for (int i = 0; i &lt; static_cast&lt;int&gt;(nums.size()); ++i) {
+            int complement = target - nums[i];
+            auto it = valueToIndex.find(complement);
+            if (it != valueToIndex.end()) {
+                return { it-&gt;second, i };
+            }
+            valueToIndex[nums[i]] = i;
+        }
+        return {}; // per problem there is exactly one solution; this is fallback
+    }
+};
+
+int main() {
+    vector&lt;int&gt; nums = {2,7,11,15};
+    int target = 9;
+    Solution s;
+    vector&lt;int&gt; ans = s.twoSum(nums, target);
+    cout &lt;&lt; ans[0] &lt;&lt; ", " &lt;&lt; ans[1] &lt;&lt; "\n";
+    return 0;
+}
+</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>

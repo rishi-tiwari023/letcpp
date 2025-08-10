@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for LetCpp */
+@layer base {
+  html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900 transition-colors;
+  }
+  
+  .btn-linkedin {
+    @apply bg-blue-600 text-white px-4 py-4 rounded-lg hover:bg-blue-700 transition-colors;
+  }
+  
+  .btn-leetcode {
+    @apply bg-black text-white px-4 py-4 rounded-lg hover:bg-gray-800 transition-colors;
+  }
+  
+  .btn-github {
+    @apply bg-gray-800 text-white px-4 py-4 rounded-lg hover:bg-gray-900 transition-colors;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+  }
+  
+  .card-large {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-8;
+  }
+  
+  .step-circle {
+    @apply bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4;
+  }
+  
+  .step-number {
+    @apply text-2xl font-bold text-blue-600;
+  }
+  
+  .feature-item {
+    @apply flex items-center;
+  }
+  
+  .feature-check {
+    @apply text-green-500 mr-2;
+  }
+  
+  .tech-item {
+    @apply flex items-center;
+  }
+  
+  .tech-icon {
+    @apply text-blue-500 mr-2;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
