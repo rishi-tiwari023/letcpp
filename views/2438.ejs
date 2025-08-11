@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeetCode Solution 2438</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2438: Range Product Queries of Powers (C++)</h1>
+
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a positive integer <code>n</code> and a 2D integer array <code>queries</code> where
+                <code>queries[i] = [left<sub>i</sub>, right<sub>i</sub>]</code>. The <code>i</code>-th query asks what
+                is the product of <code>2<sup>left<sub>i</sub></sup></code> to
+                <code>2<sup>right<sub>i</sub></sup></code> modulo <code>10<sup>9</sup> + 7</code>.
+                Return an array <code>answer</code> where <code>answer[i]</code> is the answer to the <code>i</code>-th
+                query.
+            </p>
+            <p><strong>Example:</strong>
+                <br>
+                <strong>Input:</strong> n = 15, queries = [[0,1],[2,2],[0,3]]<br>
+                <strong>Output:</strong> [2,4,16]<br>
+                <strong>Explanation:</strong>
+            <ul>
+                <li>Query 1: 2^0 * 2^1 = 2</li>
+                <li>Query 2: 2^2 = 4</li>
+                <li>Query 3: 2^0 * 2^1 * 2^2 * 2^3 = 16</li>
+            </ul>
+            </p>
+        </div>
+
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; productQueries(int n, vector&lt;vector&lt;int&gt;&gt;&amp; queries) {
+        const int MOD = 1e9 + 7;
+        vector&lt;int&gt; powers;
+        for (int i = 0; i &lt; 32; ++i) {
+            if (n &amp; (1 &lt;&lt; i)) powers.push_back(i);
+        }
+        vector&lt;int&gt; res;
+        for (auto&amp; q : queries) {
+            long long prod = 1;
+            for (int i = q[0]; i &lt;= q[1]; ++i) {
+                prod = (prod * (1LL &lt;&lt; powers[i])) % MOD;
+            }
+            res.push_back(prod);
+        }
+        return res;
+    }
+};
+</code></pre>
+        </div>
+
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
