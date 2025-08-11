@@ -17,12 +17,20 @@ app.get("/", (req, res) => {
   res.render("home", { title: "Home", message: "Welcome to the homepage!" });
 });
 
-app.get("/1", (req, res) => {
-  res.render("1", { title: "LeetCode 1 - Two Sum" });
-});
+const fs = require("fs");
 
-app.get("/2", (req, res) => {
-  res.render("2", { title: "LeetCode 2 - Add Two Numbers" });
+// Generic route for any EJS file in views
+app.get("/:page", (req, res, next) => {
+  const page = req.params.page;
+  if (page === "home") {
+    return res.redirect("/");
+  }
+  const viewPath = path.join(__dirname, "views", `${page}.ejs`);
+  if (fs.existsSync(viewPath)) {
+    res.render(page, { title: `LeetCode ${page}` });
+  } else {
+    next();
+  }
 });
 
 // Fallback 404
@@ -32,7 +40,8 @@ app.use((req, res) => {
 
 // Start server
 const port = process.env.PORT || 3000;
-const host = process.env.HOST || '0.0.0.0';
+const host = process.env.HOST || "0.0.0.0";
+
 app.listen(port, host, () => {
   // eslint-disable-next-line no-console
   console.log(`Server listening on http://${host}:${port}`);
