@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeetCode 2787: Ways to Express an Integer as Sum of Powers (C++)</title>
+    <link rel="stylesheet" href="/styles.min.css" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2787: Ways to Express an Integer as Sum of Powers (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong> Given two positive integers n and x, return the number of ways n can be
+                expressed as the sum of the x-th powers of unique positive integers, modulo 10<sup>9</sup>+7.</p>
+            <p><strong>Example:</strong> <br>
+                Input: n = 10, x = 2 <br>
+                Output: 1 <br>
+                Explanation: 10 = 1^2 + 3^2
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+ public:
+  int numberOfWays(int n, int x) {
+    constexpr int kMod = 1'000'000'007;
+    // dp[i] := the number of ways to express i
+    vector<int> dp(n + 1);
+    int ax;  // a^x
+
+    dp[0] = 1;
+
+    for (int a = 1; (ax = pow(a, x)) <= n; ++a)
+      for (int i = n; i >= ax; --i) {
+        dp[i] += dp[i - ax];
+        dp[i] %= kMod;
+      }
+
+    return dp[n];
+  }
+};
+</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
