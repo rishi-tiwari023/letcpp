@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeetCode 869: Reordered Power of 2 (C++)</title>
+    <link rel="stylesheet" href="/styles.min.css" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 869: Reordered Power of 2 (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong> Given an integer n, return true if and only if n can be reordered to form a
+                power of two.</p>
+            <p><strong>Example:</strong> <br>
+                Input: n = 46 <br>
+                Output: true <br>
+                Explanation: 46 can be reordered to 64, which is 2^6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+ public:
+  bool reorderedPowerOf2(int n) {
+    int count = counter(n);
+
+    for (int i = 0; i < 30; ++i)
+      if (counter(1 << i) == count)
+        return true;
+
+    return false;
+  }
+
+ private:
+  int counter(int n) {
+    int count = 0;
+
+    for (; n > 0; n /= 10)
+      count += pow(10, n % 10);
+
+    return count;
+  }
+};
+</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
