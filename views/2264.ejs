@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeetCode 2264: Largest 3-Same-Digit Number in String (C++)</title>
+    <link rel="stylesheet" href="/styles.min.css" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2264: Largest 3-Same-Digit Number in String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong> You are given a string num representing a large integer. Return the largest
+                good integer as a string, which is a substring of num consisting of three identical digits. If no such
+                substring exists, return an empty string.</p>
+            <p><strong>Example:</strong> <br>
+                Input: num = "6777133339" <br>
+                Output: "777" <br>
+                Explanation: There are two distinct good integers: "777" and "333". The largest among them is "777".
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string largestGoodInteger(string num) {
+        string res = "";
+        for (int i = 0; i + 2 < num.size(); ++i) {
+            if (num[i] == num[i+1] && num[i] == num[i+2]) {
+                string curr = num.substr(i, 3);
+                if (curr > res) res = curr;
+            }
+        }
+        return res;
+    }
+};
+</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
