@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeetCode 1323: Maximum 69 Number (C++)</title>
+    <link rel="stylesheet" href="/styles.min.css" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1323: Maximum 69 Number (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong> Given a positive integer num consisting only of digits 6 and 9, return the
+                maximum number you can get by changing at most one digit (6 becomes 9, and 9 becomes 6).</p>
+            <p><strong>Example:</strong> <br>
+                Input: num = 9669 <br>
+                Output: 9969 <br>
+                Explanation: Changing the first digit results in 9969, which is the maximum possible number.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maximum69Number (int num) {
+        string s = to_string(num);
+        for (char &c : s) {
+            if (c == '6') {
+                c = '9';
+                break;
+            }
+        }
+        return stoi(s);
+    }
+};
+</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
