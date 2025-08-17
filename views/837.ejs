@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeetCode 837: New 21 Game (C++)</title>
+    <link rel="stylesheet" href="/styles.min.css" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 837: New 21 Game (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong> Alice plays a game with the following rules: She starts with 0 points and draws
+                numbers from 1 to maxPts with equal probability, stopping when she reaches at least k points. What is
+                the probability that she has n or fewer points?</p>
+            <p><strong>Example:</strong> <br>
+                Input: n = 21, k = 17, maxPts = 10 <br>
+                Output: 0.73278 <br>
+                Explanation: Alice stops drawing numbers when her points reach 17 or more. The probability that she has
+                21 or fewer points is approximately 0.73278.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    double new21Game(int n, int k, int maxPts) {
+        if (k == 0 || n >= k + maxPts - 1) return 1.0;
+        vector<double> dp(n + 1);
+        dp[0] = 1.0;
+        double windowSum = 1.0, result = 0.0;
+        for (int i = 1; i <= n; ++i) {
+            dp[i] = windowSum / maxPts;
+            if (i < k) windowSum += dp[i];
+            else result += dp[i];
+            if (i - maxPts >= 0) windowSum -= dp[i - maxPts];
+        }
+        return result;
+    }
+};
+</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
