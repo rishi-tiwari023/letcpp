@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeetCode 679: 24 Game (C++)</title>
+    <link rel="stylesheet" href="/styles.min.css" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 679: 24 Game (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong> You are given four integers. Return true if you can get 24 by using each number
+                exactly once and only the operations +, -, *, / and parentheses. Otherwise, return false.</p>
+            <p><strong>Example:</strong> <br>
+                Input: nums = [4, 1, 8, 7] <br>
+                Output: true <br>
+                Explanation: (8-4) * (7-1) = 24
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool judgePoint24(vector<int>& nums) {
+        vector<double> arr(nums.begin(), nums.end());
+        return solve(arr);
+    }
+private:
+    bool solve(vector<double>& arr) {
+        if (arr.size() == 1) return abs(arr[0] - 24) < 1e-6;
+        for (int i = 0; i < arr.size(); ++i) {
+            for (int j = 0; j < arr.size(); ++j) {
+                if (i == j) continue;
+                vector<double> next;
+                for (int k = 0; k < arr.size(); ++k) {
+                    if (k != i && k != j) next.push_back(arr[k]);
+                }
+                for (int op = 0; op < 4; ++op) {
+                    if (op < 2 && j > i) continue; // avoid duplicate for + and *
+                    double val = 0;
+                    if (op == 0) val = arr[i] + arr[j];
+                    if (op == 1) val = arr[i] * arr[j];
+                    if (op == 2) val = arr[i] - arr[j];
+                    if (op == 3) {
+                        if (abs(arr[j]) < 1e-6) continue;
+                        val = arr[i] / arr[j];
+                    }
+                    next.push_back(val);
+                    if (solve(next)) return true;
+                    next.pop_back();
+                }
+            }
+        }
+        return false;
+    }
+};
+</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
