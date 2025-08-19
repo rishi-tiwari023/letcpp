@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2348: Number of Zero-Filled Subarrays
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2348: Number of Zero-Filled Subarrays (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an integer array nums, return the number of subarrays filled with 0. A subarray is a contiguous
+                non-empty sequence of elements within an array.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,3,0,0,2,0,0,4]<br>
+                Output: 6<br>
+                Explanation: There are 4 occurrences of [0] as a subarray. There are 2 occurrences of [0,0] as a
+                subarray. No three or more consecutive zeros, so that's all of them.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long zeroFilledSubarray(vector<int>& nums) {
+        long long result = 0;
+        long long count = 0;
+        
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == 0) {
+                count++;
+                result += count;
+            } else {
+                count = 0;
+            }
+        }
+        
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
