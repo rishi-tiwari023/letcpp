@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1504: Count Submatrices With All Ones
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1504: Count Submatrices With All Ones (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an m x n binary matrix mat, return the number of submatrices that have all ones.
+            </p>
+            <p><strong>Example:</strong>
+                Input: mat = [[1,0,1],[1,1,0],[1,1,0]]<br>
+                Output: 13<br>
+                Explanation: There are 6 rectangles of side 1x1. There are 2 rectangles of side 1x2. There are 3
+                rectangles of side 2x1. There is 1 rectangle of side 2x2. There is 1 rectangle of side 3x1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int numSubmat(vector<vector<int>>& mat) {
+        int m = mat.size();
+        int n = mat[0].size();
+        int result = 0;
+        vector<int> heights(n, 0);
+        
+        for (int i = 0; i < m; i++) {
+            // Update heights array for current row
+            for (int j = 0; j < n; j++) {
+                if (mat[i][j] == 0) {
+                    heights[j] = 0;
+                } else {
+                    heights[j]++;
+                }
+            }
+            
+            // Count submatrices ending at current row
+            result += countSubmatrices(heights);
+        }
+        
+        return result;
+    }
+    
+private:
+    int countSubmatrices(vector<int>& heights) {
+        int n = heights.size();
+        vector<int> count(n, 0);
+        stack<int> st;
+        
+        for (int i = 0; i < n; i++) {
+            // Remove elements from stack that have height >= current height
+            while (!st.empty() && heights[st.top()] >= heights[i]) {
+                st.pop();
+            }
+            
+            if (st.empty()) {
+                // No smaller element to the left
+                count[i] = heights[i] * (i + 1);
+            } else {
+                // There's a smaller element at stack top
+                int prevIndex = st.top();
+                count[i] = count[prevIndex] + heights[i] * (i - prevIndex);
+            }
+            
+            st.push(i);
+        }
+        
+        int total = 0;
+        for (int c : count) {
+            total += c;
+        }
+        return total;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
