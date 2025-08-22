@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3195: Find the Minimum Area to Cover All Ones I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3195: Find the Minimum Area to Cover All Ones I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D binary array grid. Find a rectangle with horizontal and vertical sides with the
+                smallest area, such that all the 1's in grid lie inside this rectangle. Return the minimum possible area
+                of the rectangle.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[0,1,0],[1,0,1]]<br>
+                Output: 6<br>
+                Explanation: The smallest rectangle has a top-left corner at (0,0) and bottom-right corner at (1,2). The
+                area is (1-0+1) * (2-0+1) = 2 * 3 = 6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minimumArea(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        
+        // Initialize boundaries
+        int minRow = m, maxRow = -1;
+        int minCol = n, maxCol = -1;
+        
+        // Find the boundaries of all 1's
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    minRow = min(minRow, i);
+                    maxRow = max(maxRow, i);
+                    minCol = min(minCol, j);
+                    maxCol = max(maxCol, j);
+                }
+            }
+        }
+        
+        // Calculate the area of the bounding rectangle
+        // Height = (maxRow - minRow + 1)
+        // Width = (maxCol - minCol + 1)
+        int height = maxRow - minRow + 1;
+        int width = maxCol - minCol + 1;
+        
+        return height * width;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
