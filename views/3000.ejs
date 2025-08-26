@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3000: Maximum Area of Longest Diagonal Rectangle
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3000: Maximum Area of Longest Diagonal Rectangle (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D 0-indexed integer array dimensions. For all indices i, 0 <= i < dimensions.length,
+                    dimensions[i][0] represents the length and dimensions[i][1] represents the width of the rectangle i.
+                    Return the area of the rectangle having the longest diagonal. If there are multiple rectangles with
+                    the longest diagonal, return the area of the rectangle having the maximum area. </p>
+                    <p><strong>Example:</strong>
+                        Input: dimensions = [[9,3],[8,6]]<br>
+                        Output: 48<br>
+                        Explanation: For index = 0, length = 9 and width = 3. Diagonal length = sqrt(9 * 9 + 3 * 3) =
+                        sqrt(90) ≈ 9.487. For index = 1, length = 8 and width = 6. Diagonal length = sqrt(8 * 8 + 6 * 6)
+                        = sqrt(100) = 10. So, the rectangle with index 1 has a greater diagonal length therefore we
+                        return its area which is 8 * 6 = 48.
+                    </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int areaOfMaxDiagonal(vector<vector<int>>& dimensions) {
+        int maxDiagonalSquared = 0;
+        int maxArea = 0;
+        
+        for (const auto& dim : dimensions) {
+            int length = dim[0];
+            int width = dim[1];
+            
+            // Calculate diagonal squared (avoid floating point arithmetic)
+            int diagonalSquared = length * length + width * width;
+            int area = length * width;
+            
+            // If this diagonal is longer, update both maxDiagonalSquared and maxArea
+            if (diagonalSquared > maxDiagonalSquared) {
+                maxDiagonalSquared = diagonalSquared;
+                maxArea = area;
+            } 
+            // If diagonal is same but area is larger, update maxArea
+            else if (diagonalSquared == maxDiagonalSquared && area > maxArea) {
+                maxArea = area;
+            }
+        }
+        
+        return maxArea;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
