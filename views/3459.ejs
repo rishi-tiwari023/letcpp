@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3459: Length of Longest V-Shaped Diagonal Segment
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3459: Length of Longest V-Shaped Diagonal Segment (Java)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D binary array grid. Find the length of the longest V-shaped diagonal segment in the
+                grid. A V-shaped diagonal segment is a sequence that starts moving diagonally in one direction, then at
+                some point changes to move diagonally in a perpendicular direction, forming a V shape. The sequence must
+                alternate between 1s and 0s.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[1,0,1],[0,1,0],[1,0,1]]<br>
+                Output: 3<br>
+                Explanation: We can form a V-shaped diagonal segment of length 3 by following the pattern 1→0→1
+                diagonally.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-java">class Solution {
+    private static final int[][] DIRS = { { 1, 1 }, { 1, -1 }, { -1, -1 }, { -1, 1 } };
+    
+    public int lenOfVDiagonal(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][][] memo = new int[m][n][1 << 3];
+        int ans = 0;
+        
+        // Try starting from every cell with value 1
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] != 1) {
+                    continue;
+                }
+                
+                // Calculate maximum possible length in each direction
+                int[] maxs = { m - i, j + 1, i + 1, n - j };
+                
+                // Try all 4 diagonal directions: SE, SW, NW, NE
+                for (int k = 0; k < 4; k++) {
+                    if (maxs[k] > ans) {
+                        ans = Math.max(ans, dfs(i, j, k, 1, 2, grid, memo) + 1);
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+    
+    private int dfs(int i, int j, int k, int canTurn, int target, int[][] grid, int[][][] memo) {
+        // Move to next cell in current direction
+        i += DIRS[k][0];
+        j += DIRS[k][1];
+        
+        // Check bounds and if current cell matches target value
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[i].length || grid[i][j] != target) {
+            return 0;
+        }
+        
+        // Create mask for memoization (direction + canTurn flag)
+        int mask = k << 1 | canTurn;
+        if (memo[i][j][mask] > 0) {
+            return memo[i][j][mask];
+        }
+        
+        // Continue in same direction with alternating target
+        int res = dfs(i, j, k, canTurn, 2 - target, grid, memo);
+        
+        // If we can still turn, try turning to perpendicular direction
+        if (canTurn == 1) {
+            int[] maxs = { grid.length - i - 1, j, i, grid[i].length - j - 1 };
+            k = (k + 1) % 4;  // Turn to next perpendicular direction
+            if (maxs[k] > res) {
+                res = Math.max(res, dfs(i, j, k, 0, 2 - target, grid, memo));
+            }
+        }
+        
+        return memo[i][j][mask] = res + 1;
+    }
+}</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
