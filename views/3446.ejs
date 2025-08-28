@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3446: Sort Matrix by Diagonals
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3446: Sort Matrix by Diagonals (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an n x n square matrix of integers grid. Return the matrix such that: The diagonals in the
+                bottom-left triangle (including the middle diagonal) are sorted in non-increasing order. The diagonals
+                in the top-right triangle are sorted in non-decreasing order.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[1,7,3],[9,8,2],[4,5,6]]<br>
+                Output: [[8,2,3],[9,6,7],[4,5,1]]<br>
+                Explanation: Bottom-left diagonals are sorted in descending order, top-right diagonals in ascending
+                order.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector<vector<int>> sortMatrix(vector<vector<int>>& grid) {
+        int n = grid.size();
+        
+        // Sort bottom-left triangle diagonals (including main diagonal) in non-increasing order
+        for (int startRow = n - 2; startRow >= 0; --startRow) {
+            int i = startRow, j = 0;
+            vector<int> diagonalElements;
+            
+            // Collect elements along diagonal from (startRow, 0)
+            while (i < n && j < n) {
+                diagonalElements.push_back(grid[i][j]);
+                i++;
+                j++;
+            }
+            
+            // Sort in non-increasing order (descending)
+            sort(diagonalElements.rbegin(), diagonalElements.rend());
+            
+            // Place sorted elements back into grid
+            i = startRow;
+            j = 0;
+            for (int element : diagonalElements) {
+                grid[i][j] = element;
+                i++;
+                j++;
+            }
+        }
+        
+        // Sort main diagonal in non-increasing order
+        vector<int> mainDiagonal;
+        for (int i = 0; i < n; i++) {
+            mainDiagonal.push_back(grid[i][i]);
+        }
+        sort(mainDiagonal.rbegin(), mainDiagonal.rend());
+        for (int i = 0; i < n; i++) {
+            grid[i][i] = mainDiagonal[i];
+        }
+        
+        // Sort top-right triangle diagonals in non-decreasing order
+        for (int startCol = 1; startCol < n; ++startCol) {
+            int i = 0, j = startCol;
+            vector<int> diagonalElements;
+            
+            // Collect elements along diagonal from (0, startCol)
+            while (i < n && j < n) {
+                diagonalElements.push_back(grid[i][j]);
+                i++;
+                j++;
+            }
+            
+            // Sort in non-decreasing order (ascending)
+            sort(diagonalElements.begin(), diagonalElements.end());
+            
+            // Place sorted elements back into grid
+            i = 0;
+            j = startCol;
+            for (int element : diagonalElements) {
+                grid[i][j] = element;
+                i++;
+                j++;
+            }
+        }
+        
+        return grid;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
