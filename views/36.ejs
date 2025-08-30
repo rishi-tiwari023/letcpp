@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 36: Valid Sudoku
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 36: Valid Sudoku (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the
+                following rules: 1. Each row must contain the digits 1-9 without repetition. 2. Each column must contain
+                the digits 1-9 without repetition. 3. Each of the nine 3 x 3 sub-boxes of the grid must contain the
+                digits 1-9 without repetition.
+            </p>
+            <p><strong>Example:</strong>
+                Input: board =
+                [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]<br>
+                Output: true<br>
+                Explanation: The board is valid as no rules are violated.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        // Use sets to track seen numbers in rows, columns, and boxes
+        unordered_set<char> rows[9];
+        unordered_set<char> cols[9];
+        unordered_set<char> boxes[9];
+        
+        // Iterate through each cell in the 9x9 board
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                char current = board[i][j];
+                
+                // Skip empty cells (represented by '.')
+                if (current == '.') {
+                    continue;
+                }
+                
+                // Calculate box index using math: (row/3)*3 + (col/3)
+                int boxIndex = (i / 3) * 3 + (j / 3);
+                
+                // Check if current number already exists in row, column, or box
+                if (rows[i].count(current) || 
+                    cols[j].count(current) || 
+                    boxes[boxIndex].count(current)) {
+                    return false;
+                }
+                
+                // Add current number to respective sets
+                rows[i].insert(current);
+                cols[j].insert(current);
+                boxes[boxIndex].insert(current);
+            }
+        }
+        
+        // If we've checked all cells without conflicts, the board is valid
+        return true;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
