@@ -158,6 +158,14 @@ You can modify the server to use dynamic templates with data.
 - Proper font families for code
 - Inline code styling for problem descriptions
 
+### HTML Entity Encoding for C++ Template Syntax
+When displaying C++ code with template syntax in HTML, use HTML entities to prevent browser interpretation:
+- `<` → `&lt;` (less than)
+- `>` → `&gt;` (greater than)  
+- `&` → `&amp;` (ampersand)
+
+**Example**: `vector<vector<char>>&` should be written as `vector&lt;vector&lt;char&gt;&gt;&amp;` in HTML source to display correctly.
+
 ## 🔧 Customization
 
 ### Styling
