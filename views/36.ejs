@@ -32,15 +32,15 @@
             <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
             <pre><code class="language-cpp">class Solution {
 public:
-    bool isValidSudoku(vector<vector<char>>& board) {
+    bool isValidSudoku(vector&lt;vector&lt;char&gt;&gt;&amp; board) {
         // Use sets to track seen numbers in rows, columns, and boxes
-        unordered_set<char> rows[9];
-        unordered_set<char> cols[9];
-        unordered_set<char> boxes[9];
+        unordered_set&lt;char&gt; rows[9];
+        unordered_set&lt;char&gt; cols[9];
+        unordered_set&lt;char&gt; boxes[9];
         
         // Iterate through each cell in the 9x9 board
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
+        for (int i = 0; i &lt; 9; i++) {
+            for (int j = 0; j &lt; 9; j++) {
                 char current = board[i][j];
                 
                 // Skip empty cells (represented by '.')
