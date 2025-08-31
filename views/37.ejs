@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,15 +10,20 @@
     <link rel="stylesheet" href="/styles.css" />
     <script src="/solution.js"></script>
 </head>
+
 <body>
     <main>
         <h1>LeetCode 37: Sudoku Solver (C++)</h1>
         <div class="problem-description">
             <p><strong>Problem:</strong>
-                Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku solution must satisfy all of the following rules: 1. Each of the digits 1-9 must occur exactly once in each row. 2. Each of the digits 1-9 must occur exactly once in each column. 3. Each of the digits 1-9 must occur exactly once in each of the nine 3 x 3 sub-boxes of the grid.
+                Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku solution must satisfy all
+                of the following rules: 1. Each of the digits 1-9 must occur exactly once in each row. 2. Each of the
+                digits 1-9 must occur exactly once in each column. 3. Each of the digits 1-9 must occur exactly once in
+                each of the nine 3 x 3 sub-boxes of the grid.
             </p>
             <p><strong>Example:</strong>
-                Input: board = [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]<br>
+                Input: board =
+                [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]<br>
                 Output: Solved Sudoku board with all empty cells filled<br>
                 Explanation: The board is solved in-place using backtracking algorithm.
             </p>
@@ -26,18 +32,18 @@
             <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
             <pre><code class="language-cpp">class Solution {
 public:
-    void solveSudoku(vector<vector<char>>& board) {
+    void solveSudoku(vector&lt;vector&lt;char&gt;&gt;&amp; board) {
         solve(board);
     }
     
 private:
-    bool solve(vector<vector<char>>& board) {
+    bool solve(vector&lt;vector&lt;char&gt;&gt;&amp; board) {
         // Find the first empty cell
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
+        for (int i = 0; i &lt; 9; i++) {
+            for (int j = 0; j &lt; 9; j++) {
                 if (board[i][j] == '.') {
                     // Try digits 1-9
-                    for (char digit = '1'; digit <= '9'; digit++) {
+                    for (char digit = '1'; digit &lt;= '9'; digit++) {
                         if (isValid(board, i, j, digit)) {
                             // Place the digit
                             board[i][j] = digit;
@@ -60,16 +66,16 @@ private:
         return true;
     }
     
-    bool isValid(vector<vector<char>>& board, int row, int col, char digit) {
+    bool isValid(vector&lt;vector&lt;char&gt;&gt;&amp; board, int row, int col, char digit) {
         // Check row constraint
-        for (int j = 0; j < 9; j++) {
+        for (int j = 0; j &lt; 9; j++) {
             if (board[row][j] == digit) {
                 return false;
             }
         }
         
         // Check column constraint
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i &lt; 9; i++) {
             if (board[i][col] == digit) {
                 return false;
             }
@@ -78,8 +84,8 @@ private:
         // Check 3x3 box constraint
         int boxRow = (row / 3) * 3;
         int boxCol = (col / 3) * 3;
-        for (int i = boxRow; i < boxRow + 3; i++) {
-            for (int j = boxCol; j < boxCol + 3; j++) {
+        for (int i = boxRow; i &lt; boxRow + 3; i++) {
+            for (int j = boxCol; j &lt; boxCol + 3; j++) {
                 if (board[i][j] == digit) {
                     return false;
                 }
@@ -93,4 +99,5 @@ private:
         <a href="/" class="back-link">← Back to Home</a>
     </main>
 </body>
+
 </html>
