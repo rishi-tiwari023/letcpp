@@ -25,14 +25,12 @@
         <div class="code-container">
             <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
             <pre><code class="language-cpp">class Solution {
-public:
-    bool isPowerOfThree(int n) {
-        if (n < 1) return false;
-        while (n % 3 == 0) {
-            n /= 3;
-        }
-        return n == 1;
-    }
+ public:
+  bool isPowerOfThree(int n) {
+    if (n &lt; 1) return false;
+    while (n % 3 == 0) n /= 3;
+    return n == 1;
+  }
 };
 </code></pre>
         </div>

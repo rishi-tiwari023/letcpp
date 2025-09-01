@@ -26,28 +26,28 @@
             <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
             <pre><code class="language-cpp">class Solution {
 public:
-    bool judgePoint24(vector<int>& nums) {
-        vector<double> arr(nums.begin(), nums.end());
+    bool judgePoint24(vector&lt;int&gt;&amp; nums) {
+        vector&lt;double&gt; arr(nums.begin(), nums.end());
         return solve(arr);
     }
 private:
-    bool solve(vector<double>& arr) {
-        if (arr.size() == 1) return abs(arr[0] - 24) < 1e-6;
-        for (int i = 0; i < arr.size(); ++i) {
-            for (int j = 0; j < arr.size(); ++j) {
+    bool solve(vector&lt;double&gt;&amp; arr) {
+        if (arr.size() == 1) return abs(arr[0] - 24) &lt; 1e-6;
+        for (int i = 0; i &lt; arr.size(); ++i) {
+            for (int j = 0; j &lt; arr.size(); ++j) {
                 if (i == j) continue;
-                vector<double> next;
-                for (int k = 0; k < arr.size(); ++k) {
-                    if (k != i && k != j) next.push_back(arr[k]);
+                vector&lt;double&gt; next;
+                for (int k = 0; k &lt; arr.size(); ++k) {
+                    if (k != i &amp;&amp; k != j) next.push_back(arr[k]);
                 }
-                for (int op = 0; op < 4; ++op) {
-                    if (op < 2 && j > i) continue; // avoid duplicate for + and *
+                for (int op = 0; op &lt; 4; ++op) {
+                    if (op &lt; 2 &amp;&amp; j &gt; i) continue; // avoid duplicate for + and *
                     double val = 0;
                     if (op == 0) val = arr[i] + arr[j];
                     if (op == 1) val = arr[i] * arr[j];
                     if (op == 2) val = arr[i] - arr[j];
                     if (op == 3) {
-                        if (abs(arr[j]) < 1e-6) continue;
+                        if (abs(arr[j]) &lt; 1e-6) continue;
                         val = arr[i] / arr[j];
                     }
                     next.push_back(val);
@@ -58,8 +58,7 @@ private:
         }
         return false;
     }
-};
-</code></pre>
+};</code></pre>
         </div>
         <a href="/" class="back-link">← Back to Home</a>
     </main>

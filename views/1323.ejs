@@ -28,7 +28,7 @@
 public:
     int maximum69Number (int num) {
         string s = to_string(num);
-        for (char &c : s) {
+        for (char &amp;c : s) {
             if (c == '6') {
                 c = '9';
                 break;
@@ -36,8 +36,7 @@ public:
         }
         return stoi(s);
     }
-};
-</code></pre>
+};</code></pre>
         </div>
         <a href="/" class="back-link">← Back to Home</a>
     </main>

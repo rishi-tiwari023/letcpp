@@ -29,15 +29,15 @@
             <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
             <pre><code class="language-cpp">class Solution {
 public:
-    int countSquares(vector<vector<int>>& matrix) {
+    int countSquares(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
         int m = matrix.size();
         int n = matrix[0].size();
         int result = 0;
         
         // Use the matrix itself as DP table
         // dp[i][j] represents the side length of largest square ending at (i,j)
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i &lt; m; i++) {
+            for (int j = 0; j &lt; n; j++) {
                 if (matrix[i][j] == 1) {
                     if (i == 0 || j == 0) {
                         // First row or first column, can only form 1x1 squares

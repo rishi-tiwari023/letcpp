@@ -29,21 +29,21 @@
             <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
             <pre><code class="language-cpp">class Solution {
 public:
-    int longestSubarray(vector<int>& nums) {
+    int longestSubarray(vector&lt;int&gt;&amp; nums) {
         int n = nums.size();
         int left = 0;
         int zerosCount = 0;
         int maxLength = 0;
         
         // Sliding window approach
-        for (int right = 0; right < n; right++) {
+        for (int right = 0; right &lt; n; right++) {
             // Expand window by including current element
             if (nums[right] == 0) {
                 zerosCount++;
             }
             
             // Shrink window if we have more than 1 zero
-            while (zerosCount > 1) {
+            while (zerosCount &gt; 1) {
                 if (nums[left] == 0) {
                     zerosCount--;
                 }

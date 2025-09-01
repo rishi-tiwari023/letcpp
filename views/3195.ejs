@@ -31,7 +31,7 @@
             <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
             <pre><code class="language-cpp">class Solution {
 public:
-    int minimumArea(vector<vector<int>>& grid) {
+    int minimumArea(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
         int m = grid.size();
         int n = grid[0].size();
         
@@ -40,8 +40,8 @@ public:
         int minCol = n, maxCol = -1;
         
         // Find the boundaries of all 1's
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i &lt; m; i++) {
+            for (int j = 0; j &lt; n; j++) {
                 if (grid[i][j] == 1) {
                     minRow = min(minRow, i);
                     maxRow = max(maxRow, i);

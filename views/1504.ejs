@@ -29,15 +29,15 @@
             <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
             <pre><code class="language-cpp">class Solution {
 public:
-    int numSubmat(vector<vector<int>>& mat) {
+    int numSubmat(vector&lt;vector&lt;int&gt;&gt;&amp; mat) {
         int m = mat.size();
         int n = mat[0].size();
         int result = 0;
-        vector<int> heights(n, 0);
+        vector&lt;int&gt; heights(n, 0);
         
-        for (int i = 0; i < m; i++) {
+        for (int i = 0; i &lt; m; i++) {
             // Update heights array for current row
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j &lt; n; j++) {
                 if (mat[i][j] == 0) {
                     heights[j] = 0;
                 } else {
@@ -53,14 +53,14 @@ public:
     }
     
 private:
-    int countSubmatrices(vector<int>& heights) {
+    int countSubmatrices(vector&lt;int&gt;&amp; heights) {
         int n = heights.size();
-        vector<int> count(n, 0);
-        stack<int> st;
+        vector&lt;int&gt; count(n, 0);
+        stack&lt;int&gt; st;
         
-        for (int i = 0; i < n; i++) {
-            // Remove elements from stack that have height >= current height
-            while (!st.empty() && heights[st.top()] >= heights[i]) {
+        for (int i = 0; i &lt; n; i++) {
+            // Remove elements from stack that have height &gt;= current height
+            while (!st.empty() &amp;&amp; heights[st.top()] &gt;= heights[i]) {
                 st.pop();
             }
             

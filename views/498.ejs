@@ -28,15 +28,15 @@
             <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
             <pre><code class="language-cpp">class Solution {
 public:
-    vector<int> findDiagonalOrder(vector<vector<int>>& mat) {
+    vector&lt;int&gt; findDiagonalOrder(vector&lt;vector&lt;int&gt;&gt;&amp; mat) {
         int m = mat.size();
         int n = mat[0].size();
-        vector<int> result;
+        vector&lt;int&gt; result;
         
         int row = 0, col = 0;
         bool goingUp = true; // Direction flag
         
-        for (int i = 0; i < m * n; i++) {
+        for (int i = 0; i &lt; m * n; i++) {
             result.push_back(mat[row][col]);
             
             if (goingUp) {
