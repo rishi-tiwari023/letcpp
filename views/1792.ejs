@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1792: Maximum Average Pass Ratio
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1792: Maximum Average Pass Ratio (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                There is a school that has classes of students and each class will be having a final exam. You are given
+                a 2D integer array classes, where classes[i] = [passi, totali]. You know beforehand that in the ith
+                class, there are totali total students, but only passi number of students will pass the exam. You are
+                also given an integer extraStudents. There are another extraStudents brilliant students that are
+                guaranteed to pass the exam of any class they are assigned to. You want to assign each of the
+                extraStudents students to a class in a way that maximizes the average pass ratio across all the classes.
+            </p>
+            <p><strong>Example:</strong>
+                Input: classes = [[1,2],[3,5],[2,2]], extraStudents = 2<br>
+                Output: 0.78333<br>
+                Explanation: You can assign the two extra students to the first class. The average pass ratio will be
+                equal to (3/4 + 3/5 + 2/2) / 3 = 0.78333.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    double maxAverageRatio(vector&lt;vector&lt;int&gt;&gt;&amp; classes, int extraStudents) {
+        // Priority queue to store the potential improvement in pass ratio
+        // We use max heap based on the gain from adding one student to each class
+        priority_queue&lt;pair&lt;double, pair&lt;int, int&gt;&gt;&gt; maxHeap;
+        
+        // Helper function to calculate the gain from adding one student
+        auto calculateGain = [](int pass, int total) -&gt; double {
+            return (double)(pass + 1) / (total + 1) - (double)pass / total;
+        };
+        
+        // Initialize the heap with all classes and their potential gains
+        for (auto&amp; cls : classes) {
+            int pass = cls[0];
+            int total = cls[1];
+            double gain = calculateGain(pass, total);
+            maxHeap.push({gain, {pass, total}});
+        }
+        
+        // Distribute extra students greedily
+        for (int i = 0; i &lt; extraStudents; i++) {
+            // Get the class with maximum potential gain
+            auto [currentGain, classInfo] = maxHeap.top();
+            maxHeap.pop();
+            
+            int pass = classInfo.first;
+            int total = classInfo.second;
+            
+            // Add one student to this class
+            pass++;
+            total++;
+            
+            // Recalculate the gain and push back to heap
+            double newGain = calculateGain(pass, total);
+            maxHeap.push({newGain, {pass, total}});
+        }
+        
+        // Calculate the final average pass ratio
+        double totalRatio = 0.0;
+        while (!maxHeap.empty()) {
+            auto [gain, classInfo] = maxHeap.top();
+            maxHeap.pop();
+            
+            int pass = classInfo.first;
+            int total = classInfo.second;
+            
+            totalRatio += (double)pass / total;
+        }
+        
+        return totalRatio / classes.size();
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
