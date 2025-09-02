@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3025: Find the Number of Ways to Place People I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 3025: Find the Number of Ways to Place People I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D array points of size n x 2 representing integer coordinates of some points on a 2D plane, where points[i] = [xi, yi]. Count the number of pairs of points (A, B), where: A is on the upper left side of B, and there are no other points in the rectangle (or line) they make (including the border).
+            </p>
+            <p><strong>Example:</strong>
+                Input: points = [[1,1],[2,2],[3,3]]<br>
+                Output: 0<br>
+                Explanation: There is no way to place Alice and Bob such that Alice is in the upper left of Bob and no other points in the rectangle they form. All points are on the same diagonal line.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int numberOfPairs(vector&lt;vector&lt;int&gt;&gt;&amp; points) {
+        // Sort points by x-coordinate in ascending order
+        // If x-coordinates are equal, sort by y-coordinate in descending order
+        sort(points.begin(), points.end(), [](const vector&lt;int&gt;&amp; a, const vector&lt;int&gt;&amp; b) {
+            if (a[0] == b[0]) {
+                return a[1] &gt; b[1]; // Descending y if x is same
+            }
+            return a[0] &lt; b[0]; // Ascending x
+        });
+        
+        int n = points.size();
+        int pairCount = 0;
+        
+        // For each point as potential Alice position (upper left)
+        for (int i = 0; i &lt; n; i++) {
+            int aliceX = points[i][0];
+            int aliceY = points[i][1];
+            int maxY = INT_MIN; // Track highest y-coordinate found so far
+            
+            // Check all points that come after Alice as potential Bob positions
+            for (int j = i + 1; j &lt; n; j++) {
+                int bobX = points[j][0];
+                int bobY = points[j][1];
+                
+                // Bob must be to the lower right of Alice
+                // Since points are sorted by x, bobX &gt;= aliceX is guaranteed
+                // We need bobY &lt;= aliceY for Bob to be lower or at same level
+                if (bobY &lt;= aliceY) {
+                    // Check if this Bob position is valid (no points in between)
+                    // If bobY &gt; maxY, then no previous point blocks this rectangle
+                    if (bobY &gt; maxY) {
+                        maxY = bobY; // Update the highest y found
+                        pairCount++; // Valid pair found
+                    }
+                }
+            }
+        }
+        
+        return pairCount;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
