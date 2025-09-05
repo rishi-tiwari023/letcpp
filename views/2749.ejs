@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2749: Minimum Operations to Make the Integer Zero (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 2749: Minimum Operations to Make the Integer Zero (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two integers num1 and num2. In one operation, you can choose integer i in the range [0, 60] and subtract 2^i + num2 from num1. Return the minimum number of operations to make num1 equal to 0. If it's impossible, return -1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: num1 = 3, num2 = -2 → Output: 3. After 3 operations, we need num1 - 3*num2 = 3 - 3*(-2) = 9 to be expressible as sum of exactly 3 powers of 2. Since 9 = 8 + 1 (2 powers) and we can use 2^0=1 multiple times: 9 = 4 + 2 + 2 + 1, this works with 3 operations.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int makeTheIntegerZero(int num1, int num2) {
+        // Try different numbers of operations k starting from 1
+        for (long long k = 1; k &lt;= 60; k++) {
+            // After k operations: num1 - k*num2 - sum_of_k_powers_of_2 = 0
+            // So we need: sum_of_k_powers_of_2 = num1 - k*num2
+            long long target = (long long)num1 - k * (long long)num2;
+            
+            // If target is negative, impossible to form with positive powers of 2
+            if (target &lt; 0) {
+                break;  // No point checking larger k values
+            }
+            
+            // Count number of 1-bits in target (minimum powers of 2 needed)
+            int minPowers = __builtin_popcountll(target);
+            
+            // Check if we can express target as exactly k powers of 2:
+            // - Need at least minPowers distinct powers (from bit representation)
+            // - Can use at most target powers (using 2^0 = 1 repeatedly)
+            // - Must use exactly k powers for our operation count
+            if (minPowers &lt;= k &amp;&amp; k &lt;= target) {
+                return (int)k;
+            }
+        }
+        
+        return -1;  // No valid number of operations found
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
