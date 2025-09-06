@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3495: Minimum Operations to Make Array Elements Zero (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3495: Minimum Operations to Make Array Elements Zero (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D array queries where each query represents an array. In one operation, you can select
+                two integers a and b from the array and replace them with floor(a / 4) and floor(b / 4). Your task is to
+                determine the minimum number of operations required to reduce all elements of the array to zero for each
+                query. Return the sum of the results for all queries.
+            </p>
+            <p><strong>Example:</strong>
+                Input: queries = [[1, 2], [3, 4]] → Output: 1. For query [1, 2]: In one operation, select 1 and 2,
+                replace with floor(1/4)=0 and floor(2/4)=0. Result: 1 operation. For query [3, 4]: In one operation,
+                select 3 and 4, replace with floor(3/4)=0 and floor(4/4)=1. Need another operation on remaining [1].
+                Total: 2 operations. Sum = 1 + 2 = 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minOperations(vector&lt;vector&lt;int&gt;&gt;&amp; queries) {
+        int totalOperations = 0;
+        
+        // Process each query separately
+        for (auto&amp; query : queries) {
+            totalOperations += solveForSingleArray(query);
+        }
+        
+        return totalOperations;
+    }
+    
+private:
+    int solveForSingleArray(vector&lt;int&gt;&amp; nums) {
+        int operations = 0;
+        
+        // Continue until all elements are zero
+        while (!allZero(nums)) {
+            // Remove zeros to optimize processing
+            removeZeros(nums);
+            
+            // If array is empty after removing zeros, we're done
+            if (nums.empty()) break;
+            
+            // If only one element remains, we need special handling
+            if (nums.size() == 1) {
+                // Single element: keep dividing by 4 until it becomes 0
+                while (nums[0] &gt; 0) {
+                    nums[0] /= 4;
+                    operations++;
+                }
+                break;
+            }
+            
+            // Process pairs: take two largest elements for efficiency
+            sort(nums.rbegin(), nums.rend()); // Sort in descending order
+            
+            // Take first two elements and apply operation
+            int a = nums[0];
+            int b = nums[1];
+            
+            nums[0] = a / 4;
+            nums[1] = b / 4;
+            
+            operations++;
+        }
+        
+        return operations;
+    }
+    
+    bool allZero(const vector&lt;int&gt;&amp; nums) {
+        for (int num : nums) {
+            if (num &gt; 0) return false;
+        }
+        return true;
+    }
+    
+    void removeZeros(vector&lt;int&gt;&amp; nums) {
+        nums.erase(remove(nums.begin(), nums.end(), 0), nums.end());
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
