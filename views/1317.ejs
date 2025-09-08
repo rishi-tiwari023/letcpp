@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1317: Convert Integer to the Sum of Two No-Zero Integers (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1317: Convert Integer to the Sum of Two No-Zero Integers (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an integer n, return a list of two integers [a, b] where a and b are No-Zero integers and a + b =
+                n. A No-Zero integer is a positive integer that doesn't contain any 0 in its decimal representation. The
+                test cases guarantee at least one valid solution exists.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 11 → Output: [2, 9]. Both 2 and 9 are No-Zero integers (contain no digit 0), and 2 + 9 = 11.
+                Other valid answers include [3, 8], [4, 7], [5, 6], etc.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; getNoZeroIntegers(int n) {
+        // Iterate through possible values of first number starting from 1
+        for (int firstNum = 1; firstNum &lt; n; firstNum++) {
+            // Calculate second number to ensure sum equals n
+            int secondNum = n - firstNum;
+            
+            // Check if both numbers are No-Zero integers
+            // (don't contain digit '0' in their decimal representation)
+            if (isNoZeroInteger(firstNum) &amp;&amp; isNoZeroInteger(secondNum)) {
+                return {firstNum, secondNum};
+            }
+        }
+        
+        // This should never be reached given problem constraints
+        return {1, n - 1};
+    }
+    
+private:
+    // Helper function to check if a number contains no zero digits
+    bool isNoZeroInteger(int num) {
+        // Check each digit of the number
+        while (num &gt; 0) {
+            // If any digit is 0, it's not a No-Zero integer
+            if (num % 10 == 0) {
+                return false;
+            }
+            // Move to next digit by removing last digit
+            num /= 10;
+        }
+        // If we've checked all digits and found no zeros
+        return true;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
