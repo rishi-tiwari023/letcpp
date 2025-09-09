@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2327: Number of People Aware of a Secret (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 2327: Number of People Aware of a Secret (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                On day 1, one person discovers a secret. Each person will share the secret with a new person every day, starting from delay days after discovering the secret. Each person will forget the secret exactly forget days after discovering it. A person cannot share the secret on the same day they forget it. Return the number of people who know the secret at the end of day n. Since the answer may be very large, return it modulo 10^9 + 7.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 6, delay = 2, forget = 4 → Output: 5. Day 1: Person A discovers secret. Day 3: A shares with B (delay=2). Day 4: A shares with C. Day 5: A forgets, B shares with D. Day 6: B shares with E, C shares with F. People who know secret: B, C, D, E, F = 5 people.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+private:
+    static const int MOD = 1e9 + 7;
+    
+public:
+    int peopleAwareOfSecret(int n, int delay, int forget) {
+        // Use dynamic programming to track people learning secret each day
+        vector&lt;long long&gt; dp(n + 1, 0);
+        
+        // Day 1: one person initially discovers the secret
+        dp[1] = 1;
+        
+        // Process each day from 2 to n
+        for (int currentDay = 2; currentDay &lt;= n; currentDay++) {
+            long long newDiscoveries = 0;
+            
+            // Calculate how many people can share today
+            // They must have learned the secret at least 'delay' days ago
+            // but not more than 'forget-1' days ago (still remember it)
+            for (int learningDay = max(1, currentDay - forget + 1); 
+                 learningDay &lt;= currentDay - delay; 
+                 learningDay++) {
+                
+                // Add people who learned on this day and can share today
+                newDiscoveries = (newDiscoveries + dp[learningDay]) % MOD;
+            }
+            
+            dp[currentDay] = newDiscoveries;
+        }
+        
+        // Count people who still know the secret on day n
+        // These are people who learned within the last 'forget-1' days
+        long long totalAware = 0;
+        for (int learningDay = max(1, n - forget + 1); learningDay &lt;= n; learningDay++) {
+            totalAware = (totalAware + dp[learningDay]) % MOD;
+        }
+        
+        return (int)totalAware;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
