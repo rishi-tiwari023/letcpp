@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1733: Minimum Number of People to Teach (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 1733: Minimum Number of People to Teach (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                On a social network with m users, two users can communicate if they know a common language. You are given n languages, an array languages where languages[i] is the languages user i+1 knows, and friendships array. You can choose one language and teach it to some users so that all friends can communicate. Return the minimum number of users you need to teach.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 2, languages = [[1],[2],[1,2]], friendships = [[1,2],[1,3],[2,3]] → Output: 1. Users 1&2 can't communicate (no common language), but users 1&3 and 2&3 can communicate via language 1 and 2 respectively. Teaching language 1 to user 2 allows all pairs to communicate.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minimumTeachings(int n, vector&lt;vector&lt;int&gt;&gt;&amp; languages, vector&lt;vector&lt;int&gt;&gt;&amp; friendships) {
+        // Set to store users who are in friendships that cannot communicate
+        unordered_set&lt;int&gt; problematicUsers;
+        
+        // Step 1: Identify all friendships where users cannot communicate
+        for (const auto&amp; friendship : friendships) {
+            int user1 = friendship[0];
+            int user2 = friendship[1];
+            
+            // If these two friends don't share a common language
+            if (!canCommunicate(user1, user2, languages)) {
+                // Add both users to our problematic set
+                problematicUsers.insert(user1);
+                problematicUsers.insert(user2);
+            }
+        }
+        
+        // If no problematic users, everyone can already communicate
+        if (problematicUsers.empty()) {
+            return 0;
+        }
+        
+        // Step 2: Count how many problematic users already know each language
+        vector&lt;int&gt; languageCount(n + 1, 0);  // languageCount[i] = count of users who know language i
+        
+        for (int user : problematicUsers) {
+            // For each user in problematic set, count their known languages
+            for (int language : languages[user - 1]) {  // user-1 for 0-indexed array
+                languageCount[language]++;
+            }
+        }
+        
+        // Step 3: Find the language known by most problematic users
+        int maxUsersKnowingLanguage = *max_element(languageCount.begin(), languageCount.end());
+        
+        // Step 4: Calculate minimum teachings needed
+        // Total problematic users - users who already know the best language
+        return problematicUsers.size() - maxUsersKnowingLanguage;
+    }
+    
+private:
+    // Helper function to check if two users can communicate
+    bool canCommunicate(int user1, int user2, const vector&lt;vector&lt;int&gt;&gt;&amp; languages) {
+        // Get languages for both users (convert to 0-indexed)
+        const vector&lt;int&gt;&amp; user1Languages = languages[user1 - 1];
+        const vector&lt;int&gt;&amp; user2Languages = languages[user2 - 1];
+        
+        // Check if any language is shared between the two users
+        for (int lang1 : user1Languages) {
+            for (int lang2 : user2Languages) {
+                if (lang1 == lang2) {
+                    return true;  // Found common language
+                }
+            }
+        }
+        
+        return false;  // No common language found
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
