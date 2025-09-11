@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2785: Sort Vowels in a String (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 2785: Sort Vowels in a String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a 0-indexed string s, permute s to get a new string t such that: All consonants remain in their original places. All vowels must be sorted in nondecreasing order of their ASCII values. Return the resulting string. The vowels are 'a', 'e', 'i', 'o', 'u' in both uppercase and lowercase.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "lEetcOde" → Output: "lEOtcede". Original vowels: ['E', 'e', 'O', 'e']. Sorted: ['E', 'O', 'e', 'e']. Replace vowels in their original positions: l[E]e[O]tc[e]d[e] = "lEOtcede".
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string sortVowels(string s) {
+        // Step 1: Extract all vowels from the string
+        string vowels;
+        for (char c : s) {
+            if (isVowel(c)) {
+                vowels.push_back(c);
+            }
+        }
+        
+        // Step 2: Sort vowels by ASCII values (uppercase before lowercase)
+        sort(vowels.begin(), vowels.end());
+        
+        // Step 3: Replace vowels in original string with sorted vowels
+        int vowelIndex = 0;
+        for (int i = 0; i &lt; s.length(); i++) {
+            if (isVowel(s[i])) {
+                s[i] = vowels[vowelIndex++];
+            }
+            // Consonants remain unchanged in their original positions
+        }
+        
+        return s;
+    }
+    
+private:
+    // Helper function to check if a character is a vowel (both cases)
+    bool isVowel(char c) {
+        // Convert to lowercase and check against vowel set
+        char lowerC = tolower(c);
+        return lowerC == 'a' || lowerC == 'e' || lowerC == 'i' || 
+               lowerC == 'o' || lowerC == 'u';
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
