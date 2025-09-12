@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3227: Vowels Game in a String (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 3227: Vowels Game in a String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Alice and Bob play a turn-based game on string s. Alice goes first. On Alice's turn, she removes any non-empty substring with odd number of vowels. On Bob's turn, he removes any non-empty substring with even number of vowels. The player who cannot make a move loses. Both play optimally. Return true if Alice wins.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "leetcode" → Output: true. The string has 4 vowels (even). Alice can remove substring with 3 vowels, leaving 1 vowel. Bob needs even vowels but only 1 remains (odd), so Bob cannot move. Alice wins.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool doesAliceWin(string s) {
+        // Key insight: Alice wins if and only if there's at least one vowel
+        
+        // The strategy is based on the total vowel count:
+        // - If 0 vowels: Alice can't move (needs odd), Bob wins
+        // - If odd vowels: Alice takes all vowels in one move, wins instantly  
+        // - If even vowels: Alice takes (total-1) vowels, leaves 1 vowel
+        //   Bob needs even vowels but only 1 remains (odd), Bob can't move
+        
+        const string VOWELS = "aeiou";
+        
+        // Check if any character in the string is a vowel
+        for (char c : s) {
+            if (VOWELS.find(c) != string::npos) {
+                return true;  // Alice wins - at least one vowel exists
+            }
+        }
+        
+        return false;  // No vowels found - Alice cannot make any move, Bob wins
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
