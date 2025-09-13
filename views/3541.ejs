@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3541: Find Most Frequent Vowel and Consonant (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 3541: Find Most Frequent Vowel and Consonant (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string s consisting of lowercase English letters ('a' to 'z'). Find the vowel ('a', 'e', 'i', 'o', 'u') with the maximum frequency and the consonant (any letter that is not a vowel) with the maximum frequency. Return the sum of their frequencies. If there are no vowels, treat vowel frequency as 0. If there are no consonants, treat consonant frequency as 0.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "aabbbccde" → Output: 5. Vowel frequencies: 'a'=2, 'e'=1. Max vowel frequency = 2. Consonant frequencies: 'b'=3, 'c'=2, 'd'=1. Max consonant frequency = 3. Result: 2 + 3 = 5.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxFreqSum(string s) {
+        // Array to store frequency of each letter (a-z)
+        int frequency[26] = {0};
+        
+        // Step 1: Count frequency of each character in the string
+        for (char c : s) {
+            frequency[c - 'a']++;
+        }
+        
+        // Step 2: Find maximum frequencies for vowels and consonants
+        int maxVowelFreq = 0;
+        int maxConsonantFreq = 0;
+        
+        // Iterate through all 26 possible letters
+        for (int i = 0; i &lt; 26; i++) {
+            // Skip letters that don't appear in the string
+            if (frequency[i] == 0) continue;
+            
+            char currentChar = 'a' + i;
+            
+            // Check if current character is a vowel
+            if (isVowel(currentChar)) {
+                // Update maximum vowel frequency
+                maxVowelFreq = max(maxVowelFreq, frequency[i]);
+            } else {
+                // Update maximum consonant frequency  
+                maxConsonantFreq = max(maxConsonantFreq, frequency[i]);
+            }
+        }
+        
+        // Step 3: Return sum of maximum vowel and consonant frequencies
+        return maxVowelFreq + maxConsonantFreq;
+    }
+    
+private:
+    // Helper function to check if a character is a vowel
+    bool isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
