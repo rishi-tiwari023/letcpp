@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 966: Vowel Spellchecker (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 966: Vowel Spellchecker (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Implement a spellchecker that converts query words into correct words from a wordlist. Handle two types
+                of errors with priority: (1) Capitalization: case-insensitive match returns wordlist version, (2) Vowel
+                errors: vowels can be substituted with any other vowel. Return exact match → case match → vowel match →
+                empty string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: wordlist = ["KiTe","kite","hare","Hare"], queries =
+                ["kite","Kite","KiTe","Hare","HARE","Hear","hear","keti","keet","keto"] → Output:
+                ["kite","KiTe","KiTe","Hare","Hare","","","KiTe","","KiTe"]. Different priority rules applied to each
+                query.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;string&gt; spellchecker(vector&lt;string&gt;&amp; wordlist, vector&lt;string&gt;&amp; queries) {
+        // Step 1: Create data structures for different matching types
+        unordered_set&lt;string&gt; exactWords(wordlist.begin(), wordlist.end());
+        unordered_map&lt;string, string&gt; caseMap;      // lowercase -&gt; first original word
+        unordered_map&lt;string, string&gt; vowelMap;    // vowel pattern -&gt; first original word
+        
+        // Step 2: Preprocess wordlist to populate hash maps
+        for (const string&amp; word : wordlist) {
+            string lowerWord = toLower(word);
+            
+            // Store first occurrence for case-insensitive matching
+            if (caseMap.find(lowerWord) == caseMap.end()) {
+                caseMap[lowerWord] = word;
+            }
+            
+            // Store first occurrence for vowel pattern matching
+            string pattern = createVowelPattern(lowerWord);
+            if (vowelMap.find(pattern) == vowelMap.end()) {
+                vowelMap[pattern] = word;
+            }
+        }
+        
+        // Step 3: Process each query with priority order
+        vector&lt;string&gt; result;
+        for (const string&amp; query : queries) {
+            // Priority 1: Exact match (case-sensitive)
+            if (exactWords.find(query) != exactWords.end()) {
+                result.push_back(query);
+                continue;
+            }
+            
+            string lowerQuery = toLower(query);
+            
+            // Priority 2: Case-insensitive match
+            if (caseMap.find(lowerQuery) != caseMap.end()) {
+                result.push_back(caseMap[lowerQuery]);
+                continue;
+            }
+            
+            // Priority 3: Vowel error match
+            string queryPattern = createVowelPattern(lowerQuery);
+            if (vowelMap.find(queryPattern) != vowelMap.end()) {
+                result.push_back(vowelMap[queryPattern]);
+                continue;
+            }
+            
+            // Priority 4: No match found
+            result.push_back("");
+        }
+        
+        return result;
+    }
+    
+private:
+    // Helper function to convert string to lowercase
+    string toLower(const string&amp; str) {
+        string result = str;
+        transform(result.begin(), result.end(), result.begin(), ::tolower);
+        return result;
+    }
+    
+    // Helper function to create vowel pattern (replace vowels with *)
+    string createVowelPattern(const string&amp; word) {
+        string pattern;
+        for (char c : word) {
+            if (isVowel(c)) {
+                pattern += '*';
+            } else {
+                pattern += c;
+            }
+        }
+        return pattern;
+    }
+    
+    // Helper function to check if character is a vowel
+    bool isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
