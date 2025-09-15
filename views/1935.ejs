@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1935: Maximum Number of Words You Can Type (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 1935: Maximum Number of Words You Can Type (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                There is a malfunctioning keyboard where some letter keys do not work. All other keys work properly. Given a string text of words separated by single spaces (no leading/trailing spaces) and a string brokenLetters containing all distinct broken letters, return the number of words in text you can fully type using this keyboard.
+            </p>
+            <p><strong>Example:</strong>
+                Input: text = "hello world", brokenLetters = "ad" → Output: 1. "hello" can be typed (no 'a' or 'd'), but "world" cannot be typed (contains 'd'). So only 1 word can be fully typed.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int canBeTypedWords(string text, string brokenLetters) {
+        // Step 1: Create a boolean array to mark broken letters for O(1) lookup
+        bool isBroken[26] = {false};
+        
+        // Mark all broken letters in the array
+        for (char letter : brokenLetters) {
+            isBroken[letter - 'a'] = true;
+        }
+        
+        // Step 2: Split text into words and count typeable words
+        int typeableCount = 0;
+        vector&lt;string&gt; words = splitWords(text);
+        
+        // Step 3: Check each word to see if it can be fully typed
+        for (const string&amp; word : words) {
+            bool canTypeWord = true;
+            
+            // Check if any character in the word is broken
+            for (char c : word) {
+                if (isBroken[c - 'a']) {
+                    canTypeWord = false;
+                    break;  // Early termination once broken letter found
+                }
+            }
+            
+            // Increment count if word can be completely typed
+            if (canTypeWord) {
+                typeableCount++;
+            }
+        }
+        
+        return typeableCount;
+    }
+    
+private:
+    // Helper function to split text into words by spaces
+    vector&lt;string&gt; splitWords(const string&amp; text) {
+        vector&lt;string&gt; words;
+        string currentWord;
+        
+        // Iterate through each character in the text
+        for (char c : text) {
+            if (c == ' ') {
+                // Found space, add current word to result
+                if (!currentWord.empty()) {
+                    words.push_back(currentWord);
+                    currentWord.clear();
+                }
+            } else {
+                // Build the current word
+                currentWord += c;
+            }
+        }
+        
+        // Add the last word (no space after it)
+        if (!currentWord.empty()) {
+            words.push_back(currentWord);
+        }
+        
+        return words;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
