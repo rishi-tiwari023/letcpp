@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3408: Design Task Manager (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 3408: Design Task Manager (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Design a task management system supporting multiple users. Each task has a priority and unique taskId. Implement TaskManager class with methods: add(userId, taskId, priority) to add tasks, edit(taskId, newPriority) to update priorities, rmv(taskId) to remove tasks, and execTop() to execute the highest priority task (highest taskId for ties), returning the userId or -1 if no tasks exist.
+            </p>
+            <p><strong>Example:</strong>
+                Input: tasks = [[1,101,3],[2,102,5],[1,103,3]]. Operations: execTop() returns 2 (task 102 has highest priority 5). After removal: execTop() returns 1 (task 103 has higher taskId than 101 for same priority 3).
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class TaskManager {
+private:
+    // Map: taskId -&gt; (userId, priority) for O(1) task information lookup
+    unordered_map&lt;int, pair&lt;int, int&gt;&gt; taskInfo;
+    
+    // Set to maintain tasks sorted by priority (descending) and taskId (descending)
+    // Using negative values to achieve descending order: (-priority, -taskId)
+    set&lt;pair&lt;int, int&gt;&gt; prioritySet;
+
+public:
+    /**
+     * Initialize the task manager with initial tasks
+     * @param tasks: Vector of tasks where each task is [userId, taskId, priority]
+     */
+    TaskManager(vector&lt;vector&lt;int&gt;&gt;&amp; tasks) {
+        for (const auto&amp; task : tasks) {
+            add(task[0], task[1], task[2]);
+        }
+    }
+    
+    /**
+     * Add a new task to the system
+     * @param userId: The user who owns the task
+     * @param taskId: Unique identifier for the task (guaranteed unique)
+     * @param priority: Priority level of the task
+     */
+    void add(int userId, int taskId, int priority) {
+        // Store task information in the map for quick lookup
+        taskInfo[taskId] = {userId, priority};
+        
+        // Insert into set with negative values for descending order
+        // Higher priority and higher taskId will come first due to negation
+        prioritySet.insert({-priority, -taskId});
+    }
+    
+    /**
+     * Edit the priority of an existing task
+     * @param taskId: The task to edit (guaranteed to exist)
+     * @param newPriority: The new priority value
+     */
+    void edit(int taskId, int newPriority) {
+        // Get current task information
+        auto [userId, oldPriority] = taskInfo[taskId];
+        
+        // Remove old entry from the priority set
+        prioritySet.erase({-oldPriority, -taskId});
+        
+        // Update the task map with new priority
+        taskInfo[taskId] = {userId, newPriority};
+        
+        // Insert new entry with updated priority
+        prioritySet.insert({-newPriority, -taskId});
+    }
+    
+    /**
+     * Remove a task from the system
+     * @param taskId: The task to remove (guaranteed to exist)
+     */
+    void rmv(int taskId) {
+        // Get task information before removal
+        auto [userId, priority] = taskInfo[taskId];
+        
+        // Remove from priority set
+        prioritySet.erase({-priority, -taskId});
+        
+        // Remove from task map
+        taskInfo.erase(taskId);
+    }
+    
+    /**
+     * Execute the highest priority task
+     * Priority: higher priority first, then higher taskId for ties
+     * @return: The userId of the executed task, or -1 if no tasks exist
+     */
+    int execTop() {
+        // Check if there are any tasks to execute
+        if (prioritySet.empty()) {
+            return -1;
+        }
+        
+        // Get the highest priority task (first element in set)
+        auto topTask = *prioritySet.begin();
+        prioritySet.erase(prioritySet.begin());
+        
+        // Extract taskId (negate to get original positive value)
+        int taskId = -topTask.second;
+        
+        // Get userId from the task map
+        int userId = taskInfo[taskId].first;
+        
+        // Remove task from map
+        taskInfo.erase(taskId);
+        
+        return userId;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
