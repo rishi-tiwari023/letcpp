@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3484: Design Spreadsheet (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3484: Design Spreadsheet (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Design a spreadsheet with 26 columns (A-Z) and specified rows. Each cell holds integers 0-10^5.
+                Implement: Spreadsheet(rows) constructor, setCell(cell, value) to set values, resetCell(cell) to reset
+                to 0, and getValue(formula) to evaluate "=X+Y" formulas where X,Y are cell references or integers. Unset
+                cells default to 0.
+            </p>
+            <p><strong>Example:</strong>
+                Input: Spreadsheet(3), setCell("A1", 10), getValue("=A1+6") → Output: 16. The formula evaluates A1(10) +
+                6 = 16. Cell references use format like "A1", "B2" with 1-indexed rows.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Spreadsheet {
+private:
+    // Hash map to store cell values: cell reference -&gt; value
+    // Only store non-zero values to save space (unset cells default to 0)
+    unordered_map&lt;string, int&gt; cellData;
+
+public:
+    /**
+     * Initialize spreadsheet with specified rows and 26 columns (A-Z)
+     * @param rows: Number of rows in the spreadsheet
+     */
+    Spreadsheet(int rows) {
+        // No need to initialize anything - using hash map for sparse storage
+        // Unset cells will automatically return 0 when accessed
+    }
+    
+    /**
+     * Set the value of a specific cell
+     * @param cell: Cell reference in format "AX" (e.g., "A1", "B10")
+     * @param value: Integer value to set (0 to 10^5)
+     */
+    void setCell(string cell, int value) {
+        if (value == 0) {
+            // If setting to 0, remove from map to save space
+            cellData.erase(cell);
+        } else {
+            // Store the non-zero value
+            cellData[cell] = value;
+        }
+    }
+    
+    /**
+     * Reset a cell to 0 (effectively removing it from storage)
+     * @param cell: Cell reference to reset
+     */
+    void resetCell(string cell) {
+        // Remove the cell from our storage (defaults to 0)
+        cellData.erase(cell);
+    }
+    
+    /**
+     * Evaluate a formula and return the computed result
+     * @param formula: Formula in format "=X+Y" where X,Y are cell refs or integers
+     * @return: The computed sum
+     */
+    int getValue(string formula) {
+        // Remove the '=' sign from the beginning
+        string expression = formula.substr(1);
+        
+        // Parse the formula by splitting on '+'
+        int result = 0;
+        size_t pos = 0;
+        string delimiter = "+";
+        
+        // Process each term in the addition
+        while ((pos = expression.find(delimiter)) != string::npos) {
+            string term = expression.substr(0, pos);
+            result += evaluateTerm(term);
+            expression.erase(0, pos + delimiter.length());
+        }
+        // Don't forget the last term after the final '+'
+        result += evaluateTerm(expression);
+        
+        return result;
+    }
+    
+private:
+    /**
+     * Helper function to evaluate a single term (cell reference or integer)
+     * @param term: Either a cell reference (e.g., "A1") or an integer string
+     * @return: The value of the term
+     */
+    int evaluateTerm(const string&amp; term) {
+        // Check if the term is a number (starts with digit)
+        if (isdigit(term[0])) {
+            return stoi(term);
+        } else {
+            // It's a cell reference - look up in our hash map
+            // Return 0 if cell is not found (default value)
+            auto it = cellData.find(term);
+            return (it != cellData.end()) ? it-&gt;second : 0;
+        }
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
