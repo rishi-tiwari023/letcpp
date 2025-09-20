@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3508: Implement Router (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 3508: Implement Router (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Design a router data structure to manage network packets with source, destination, and timestamp. Implement Router(memoryLimit) constructor, addPacket(source, dest, timestamp) returning true if added (false if duplicate), forwardPacket() returning oldest packet in FIFO order, and getCount(dest, startTime, endTime) returning packet count for destination in time range.
+            </p>
+            <p><strong>Example:</strong>
+                Input: Router(3), addPacket(1,4,90), addPacket(2,5,90), addPacket(1,4,90) → Output: true, true, false. The third packet is a duplicate. When memory limit exceeded, oldest packet is removed automatically.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Router {
+private:
+    int memoryLimit;
+    
+    // Structure to represent a packet
+    struct Packet {
+        int source;
+        int destination;
+        int timestamp;
+        
+        Packet(int s, int d, int t) : source(s), destination(d), timestamp(t) {}
+        
+        // For duplicate checking - packets are equal if all fields match
+        bool operator==(const Packet&amp; other) const {
+            return source == other.source &amp;&amp; 
+                   destination == other.destination &amp;&amp; 
+                   timestamp == other.timestamp;
+        }
+    };
+    
+    // FIFO queue to maintain packet order for forwarding
+    queue&lt;Packet&gt; packetQueue;
+    
+    // Set to track existing packets for duplicate detection
+    set&lt;tuple&lt;int, int, int&gt;&gt; packetSet;
+
+public:
+    Router(int memoryLimit) : memoryLimit(memoryLimit) {
+    }
+    bool addPacket(int source, int destination, int timestamp) {
+        // Create packet identifier tuple for duplicate checking
+        tuple&lt;int, int, int&gt; packetId = make_tuple(source, destination, timestamp);
+        
+        // Check if packet already exists (duplicate detection)
+        if (packetSet.find(packetId) != packetSet.end()) {
+            return false;  // Duplicate packet, reject
+        }
+        
+        // If adding this packet exceeds memory limit, remove oldest packet
+        while (packetQueue.size() &gt;= memoryLimit) {
+            // Remove oldest packet from both queue and set
+            Packet oldestPacket = packetQueue.front();
+            packetQueue.pop();
+            
+            tuple&lt;int, int, int&gt; oldPacketId = make_tuple(
+                oldestPacket.source, 
+                oldestPacket.destination, 
+                oldestPacket.timestamp
+            );
+            packetSet.erase(oldPacketId);
+        }
+        
+        // Add new packet to both queue and set
+        Packet newPacket(source, destination, timestamp);
+        packetQueue.push(newPacket);
+        packetSet.insert(packetId);
+        
+        return true;  // Successfully added
+    }
+    
+    vector&lt;int&gt; forwardPacket() {
+        // Check if there are packets to forward
+        if (packetQueue.empty()) {
+            return {};  // Return empty array if no packets
+        }
+        
+        // Get the oldest packet (FIFO)
+        Packet packetToForward = packetQueue.front();
+        packetQueue.pop();
+        
+        // Remove from duplicate tracking set
+        tuple&lt;int, int, int&gt; packetId = make_tuple(
+            packetToForward.source,
+            packetToForward.destination, 
+            packetToForward.timestamp
+        );
+        packetSet.erase(packetId);
+        
+        // Return packet information as array
+        return {packetToForward.source, packetToForward.destination, packetToForward.timestamp};
+    }
+    
+    int getCount(int destination, int startTime, int endTime) {
+        int count = 0;
+        
+        // Create temporary copy of queue to iterate without modifying original
+        queue&lt;Packet&gt; tempQueue = packetQueue;
+        
+        // Check each packet in the queue
+        while (!tempQueue.empty()) {
+            Packet currentPacket = tempQueue.front();
+            tempQueue.pop();
+            
+            // Check if packet matches destination and time range criteria
+            if (currentPacket.destination == destination &amp;&amp;
+                currentPacket.timestamp &gt;= startTime &amp;&amp;
+                currentPacket.timestamp &lt;= endTime) {
+                count++;
+            }
+        }
+        
+        return count;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
