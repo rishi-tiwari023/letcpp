@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1912: Design Movie Rental System (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 1912: Design Movie Rental System (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Design a movie rental system with n shops. Each shop has at most one copy of any movie at a specific price. Implement: search(movie) returns 5 cheapest shops with unrented copies, rent(shop, movie) marks movie as rented, drop(shop, movie) returns movie to available, and report() returns 5 cheapest currently rented movies. Results sorted by price, then shop ID, then movie ID for ties.
+            </p>
+            <p><strong>Example:</strong>
+                Input: entries = [[0,1,5],[0,2,3],[1,1,4]], search(1) → Output: [1,0]. Shop 1 has movie 1 at price 4, shop 0 has it at price 5. Return shops sorted by cheapest price first.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class MovieRentingSystem {
+private:
+    unordered_map&lt;int, set&lt;pair&lt;int, int&gt;&gt;&gt; unrented;
+    map&lt;pair&lt;int, int&gt;, int&gt; shopAndMovieToPrice;
+    set&lt;tuple&lt;int, int, int&gt;&gt; rented;
+
+public:
+    MovieRentingSystem(int n, vector&lt;vector&lt;int&gt;&gt;&amp; entries) {
+        for (const auto&amp; entry : entries) {
+            int shop = entry[0];
+            int movie = entry[1];
+            int price = entry[2];
+            
+            unrented[movie].insert({price, shop});
+            shopAndMovieToPrice[{shop, movie}] = price;
+        }
+    }
+    
+    vector&lt;int&gt; search(int movie) {
+        vector&lt;int&gt; result;
+        
+        if (unrented.find(movie) != unrented.end()) {
+            int count = 0;
+            for (const auto&amp; [price, shop] : unrented[movie]) {
+                if (count &gt;= 5) break;
+                result.push_back(shop);
+                count++;
+            }
+        }
+        
+        return result;
+    }
+    
+    void rent(int shop, int movie) {
+        int price = shopAndMovieToPrice[{shop, movie}];
+        unrented[movie].erase({price, shop});
+        rented.insert({price, shop, movie});
+    }
+    
+    void drop(int shop, int movie) {
+        int price = shopAndMovieToPrice[{shop, movie}];
+        unrented[movie].insert({price, shop});
+        rented.erase({price, shop, movie});
+    }
+    
+    vector&lt;vector&lt;int&gt;&gt; report() {
+        vector&lt;vector&lt;int&gt;&gt; result;
+        
+        int count = 0;
+        for (const auto&amp; [price, shop, movie] : rented) {
+            if (count &gt;= 5) break;
+            result.push_back({shop, movie});
+            count++;
+        }
+        
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
