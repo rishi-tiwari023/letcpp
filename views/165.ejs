@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 165: Compare Version Numbers (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 165: Compare Version Numbers (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Compare two version strings and determine their relative ordering. Version strings consist of revisions separated by dots, treated as integers ignoring leading zeros. Return -1 if version1 &lt; version2, 1 if version1 &gt; version2, or 0 if equal. Missing revisions are treated as 0.
+            </p>
+            <p><strong>Example:</strong>
+                Input: version1 = "1.01", version2 = "1.001" → Output: 0. Both versions are equal since leading zeros are ignored (01 = 1, 001 = 1). Input: version1 = "1.0", version2 = "1.0.1" → Output: -1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int compareVersion(string version1, string version2) {
+        int len1 = version1.length();
+        int len2 = version2.length();
+        int i = 0, j = 0;
+        
+        while (i &lt; len1 || j &lt; len2) {
+            int revision1 = 0;
+            int revision2 = 0;
+            
+            while (i &lt; len1 &amp;&amp; version1[i] != '.') {
+                revision1 = revision1 * 10 + (version1[i] - '0');
+                i++;
+            }
+            
+            while (j &lt; len2 &amp;&amp; version2[j] != '.') {
+                revision2 = revision2 * 10 + (version2[j] - '0');
+                j++;
+            }
+            
+            if (revision1 &lt; revision2) {
+                return -1;
+            } else if (revision1 &gt; revision2) {
+                return 1;
+            }
+            
+            if (i &lt; len1) i++;
+            if (j &lt; len2) j++;
+        }
+        
+        return 0;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
