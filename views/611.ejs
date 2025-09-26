@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 611: Valid Triangle Number (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 611: Valid Triangle Number (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an integer array nums, return the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle. For three sides to form a valid triangle, they must satisfy the triangle inequality: the sum of any two sides must be greater than the third side.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [2,2,3,4] → Output: 3. Valid combinations are: (2,3,4) using first 2, (2,3,4) using second 2, and (2,2,3).
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int triangleNumber(vector&lt;int&gt;&amp; nums) {
+        sort(nums.begin(), nums.end());
+        int n = nums.size();
+        int count = 0;
+        
+        for (int k = n - 1; k &gt;= 2; k--) {
+            int i = 0;
+            int j = k - 1;
+            
+            while (i &lt; j) {
+                if (nums[i] + nums[j] &gt; nums[k]) {
+                    count += j - i;
+                    j--;
+                } else {
+                    i++;
+                }
+            }
+        }
+        
+        return count;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
