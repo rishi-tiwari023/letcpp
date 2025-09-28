@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 976: Largest Perimeter Triangle (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 976: Largest Perimeter Triangle (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an integer array nums, return the largest perimeter of a triangle with a non-zero area, formed
+                from three of these lengths. If it is impossible to form any triangle of a non-zero area, return 0.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [2,1,2] → Output: 5. You can form a triangle with sides of length 2, 1, and 2. Input: nums
+                = [1,2,1,10] → Output: 0. You cannot use the side of length 10 with any other two sides to form a
+                triangle.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int largestPerimeter(vector&lt;int&gt;&amp; nums) {
+        // Sort the array in descending order to try largest elements first
+        sort(nums.begin(), nums.end(), greater&lt;int&gt;());
+        
+        // Check each possible triplet starting from largest elements
+        for (int i = 0; i &lt; nums.size() - 2; i++) {
+            int a = nums[i];     // largest side
+            int b = nums[i + 1]; // second largest side  
+            int c = nums[i + 2]; // third largest side
+            
+            // Triangle inequality: sum of any two sides &gt; third side
+            // Since a &gt;= b &gt;= c, we only need to check if b + c &gt; a
+            if (b + c &gt; a) {
+                return a + b + c;
+            }
+        }
+        
+        // No valid triangle found
+        return 0;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
