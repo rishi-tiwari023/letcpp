@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1039: Minimum Score Triangulation of Polygon (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1039: Minimum Score Triangulation of Polygon (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You have a convex n-sided polygon where each vertex has an integer value. You are given an integer array
+                values where values[i] is the value of the ith vertex in clockwise order. You will triangulate the
+                polygon into n - 2 triangles. For each triangle, the value of that triangle is the product of the values
+                of its vertices, and the total score of the triangulation is the sum of these values over all n - 2
+                triangles. Return the smallest possible total score that you can achieve with some triangulation of the
+                polygon.
+            </p>
+            <p><strong>Example:</strong>
+                Input: values = [1,2,3] → Output: 6. The polygon is already triangulated, and the score of the only
+                triangle is 6. Input: values = [3,7,4,5] → Output: 144. There are two triangulations with scores: 3*7*5
+                + 3*4*5 = 144 or 3*7*4 + 4*7*5 = 152. The minimum score is 144.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minScoreTriangulation(vector&lt;int&gt;&amp; values) {
+        int n = values.size();
+        vector&lt;vector&lt;int&gt;&gt; dp(n, vector&lt;int&gt;(n, 0));
+        
+        // len represents the number of vertices in the sub-polygon
+        for (int len = 3; len &lt;= n; len++) {
+            for (int i = 0; i + len - 1 &lt; n; i++) {
+                int j = i + len - 1;
+                dp[i][j] = INT_MAX;
+                
+                // Try all possible vertices k between i and j
+                // to form triangle (i, k, j)
+                for (int k = i + 1; k &lt; j; k++) {
+                    int score = dp[i][k] + dp[k][j] + values[i] * values[k] * values[j];
+                    dp[i][j] = min(dp[i][j], score);
+                }
+            }
+        }
+        
+        return dp[0][n - 1];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
