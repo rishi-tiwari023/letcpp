@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2221: Find Triangular Sum of an Array (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2221: Find Triangular Sum of an Array (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed integer array nums, where nums[i] is a digit between 0 and 9 (inclusive). The
+                triangular sum of nums is the value of the only element present in nums after the following process
+                terminates: Let nums comprise of n elements. If n == 1, end the process. Otherwise, create a new
+                0-indexed integer array newNums of length n - 1. For each index i, where 0 &lt;= i &lt; n - 1, assign
+                the value of newNums[i] as (nums[i] + nums[i+1]) % 10. Replace the array nums with newNums. Repeat the
+                entire process starting from step 1. Return the triangular sum of nums.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,4,5] → Output: 8. The array transforms as follows: [1,2,3,4,5] → [3,5,7,9] →
+                [8,2,6] → [0,8] → [8]. Input: nums = [5] → Output: 5. The triangular sum is simply 5 since there is only
+                one element.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int triangularSum(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        
+        // Process the array layer by layer, reducing size by 1 each iteration
+        for (int len = n - 1; len &gt; 0; len--) {
+            // For each position, calculate sum of adjacent elements modulo 10
+            for (int i = 0; i &lt; len; i++) {
+                nums[i] = (nums[i] + nums[i + 1]) % 10;
+            }
+        }
+        
+        // After all iterations, the first element contains the triangular sum
+        return nums[0];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
