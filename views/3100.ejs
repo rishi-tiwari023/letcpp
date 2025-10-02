@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3100: Water Bottles II (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3100: Water Bottles II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two integers numBottles and numExchange. numBottles represents the number of full water
+                bottles that you initially have. In one operation, you can perform one of the following operations:
+                Drink any number of full water bottles turning them into empty bottles. Exchange numExchange empty
+                bottles with one full water bottle. Then, increase numExchange by one. Note that you cannot exchange
+                multiple batches of empty bottles for the same value of numExchange. Return the maximum number of water
+                bottles you can drink.
+            </p>
+            <p><strong>Example:</strong>
+                Input: numBottles = 13, numExchange = 6 → Output: 15. Initially you have 13 full bottles. Exchange 6
+                empty bottles for 1 full bottle. Now numExchange = 7. Drink the full bottle. Now you have 8 empty
+                bottles. Exchange 7 empty bottles for 1 full bottle. Now numExchange = 8. Drink the full bottle. Now you
+                have 2 empty bottles. You cannot exchange these 2 empty bottles. So, the maximum number of bottles you
+                can drink is 13 + 2 = 15.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxBottlesDrunk(int numBottles, int numExchange) {
+        // Initialize total bottles drunk with initial full bottles
+        int totalBottlesDrunk = numBottles;
+        
+        // Keep exchanging empty bottles for full ones while possible
+        while (numBottles &gt;= numExchange) {
+            // Exchange empty bottles for one full bottle
+            numBottles -= numExchange;
+            
+            // Exchange rate increases by 1 after each exchange
+            ++numExchange;
+            
+            // Drink the newly obtained full bottle
+            ++totalBottlesDrunk;
+            
+            // Add the empty bottle from drinking back to count
+            ++numBottles;
+        }
+        
+        return totalBottlesDrunk;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
