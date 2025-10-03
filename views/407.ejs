@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 407: Trapping Rain Water II (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 407: Trapping Rain Water II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an m x n integer matrix heightMap representing the height of each unit cell in a 2D elevation map,
+                return the volume of water it can trap after raining. You may assume that water can only be trapped if
+                it is surrounded by higher terrain on all sides.
+            </p>
+            <p><strong>Example:</strong>
+                Input: heightMap = [[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]] → Output: 4. The water can be trapped
+                between the elevated cells. Input: heightMap =
+                [[3,3,3,3,3],[3,2,2,2,3],[3,2,1,2,3],[3,2,2,2,3],[3,3,3,3,3]] → Output: 10. Water is trapped in the
+                center of the elevation map.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">struct Cell {
+    int r;
+    int c;
+    int h;  // current boundary height
+};
+
+class Solution {
+public:
+    int trapRainWater(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+        if (rows &lt; 3 || cols &lt; 3) return 0;  // quick check for small cases
+        
+        // directions for moving in 4-neighborhood
+        int dir[4][2] = {{1,0}, {-1,0}, {0,1}, {0,-1}};
+       
+        auto cmp = [](const Cell&amp; a, const Cell&amp; b) {
+            return a.h &gt; b.h;
+        };
+        priority_queue&lt;Cell, vector&lt;Cell&gt;, decltype(cmp)&gt; pq(cmp);
+        
+        vector&lt;vector&lt;bool&gt;&gt; used(rows, vector&lt;bool&gt;(cols, false));
+        int water = 0;
+        
+        // push all border cells into pq
+        for (int i = 0; i &lt; rows; i++) {
+            pq.push({i, 0, grid[i][0]});
+            pq.push({i, cols - 1, grid[i][cols - 1]});
+            used[i][0] = used[i][cols - 1] = true;
+        }
+        for (int j = 1; j &lt; cols - 1; j++) {
+            pq.push({0, j, grid[0][j]});
+            pq.push({rows - 1, j, grid[rows - 1][j]});
+            used[0][j] = used[rows - 1][j] = true;
+        }
+        
+        // process heap
+        while (!pq.empty()) {
+            Cell cur = pq.top();
+            pq.pop();
+            for (auto&amp; d : dir) {
+                int nr = cur.r + d[0];
+                int nc = cur.c + d[1];
+                if (nr &lt; 0 || nr &gt;= rows || nc &lt; 0 || nc &gt;= cols || used[nr][nc])
+                    continue;
+                used[nr][nc] = true;
+                if (grid[nr][nc] &lt; cur.h) {
+                    water += cur.h - grid[nr][nc];
+                    pq.push({nr, nc, cur.h}); // fill water up to boundary
+                } else {
+                    pq.push({nr, nc, grid[nr][nc]});
+                }
+            }
+        }
+        
+        return water;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
