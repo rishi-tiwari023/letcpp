@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 11: Container With Most Water (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 11: Container With Most Water (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]). Find two lines that together with the x-axis form a container, such that the container contains the most water. Return the maximum amount of water a container can store. Notice that you may not slant the container.
+            </p>
+            <p><strong>Example:</strong>
+                Input: height = [1,8,6,2,5,4,8,3,7] → Output: 49. The vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. The max area is between index 1 and 8 which is 49. Input: height = [1,1] → Output: 1. The container formed by the two lines has width 1 and height min(1,1) = 1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxArea(vector&lt;int&gt;&amp; walls) {
+        int left = 0, right = walls.size() - 1;
+        int best = 0;
+        
+        while (left &lt; right) {
+            int h = min(walls[left], walls[right]);
+            best = max(best, h * (right - left));
+            
+            // move the shorter side pointer forward
+            if (walls[left] &lt; walls[right]) {
+                int prev = walls[left];
+                // skip smaller/equal heights to optimize
+                while (left &lt; right &amp;&amp; walls[left] &lt;= prev) left++;
+            } else {
+                int prev = walls[right];
+                // skip smaller/equal heights to optimize
+                while (left &lt; right &amp;&amp; walls[right] &lt;= prev) right--;
+            }
+        }
+        
+        return best;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
