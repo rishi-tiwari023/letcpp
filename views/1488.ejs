@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1488: Avoid Flood in The City (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1488: Avoid Flood in The City (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Your country has an infinite number of lakes. Initially, all the lakes are empty, but when it rains over
+                the nth lake, the nth lake becomes full of water. If it rains over a lake which is full of water, there
+                will be a flood. Your goal is to avoid the flood in any lake. Given an integer array rains where:
+                rains[i] &gt; 0 means there will be rains over the rains[i] lake. rains[i] == 0 means there are no rains
+                this day and you can choose one lake this day and dry it. Return an array ans where: ans.length ==
+                rains.length, ans[i] == -1 if rains[i] &gt; 0, ans[i] is the lake you choose to dry if rains[i] == 0. If
+                there are multiple valid answers return any of them. If it is impossible to avoid flood return an empty
+                array.
+            </p>
+            <p><strong>Example:</strong>
+                Input: rains = [1,2,0,0,2,1] → Output: [-1,-1,2,1,-1,-1]. After raining on lake 1 and 2, we dry lake 2
+                on day 2, then dry lake 1 on day 3 before they rain again. Input: rains = [1,2,0,1,2] → Output: []. We
+                cannot avoid the flood because lake 1 rains again on day 3 without a sunny day to dry it between day 0
+                and 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; avoidFlood(vector&lt;int&gt;&amp; weather) {
+        int n = weather.size();
+        vector&lt;int&gt; result(n, -1);   // Final output array
+        unordered_map&lt;int, int&gt; fullLakeDay; // Tracks the last day a lake got filled
+        set&lt;int&gt; dryDays;             // Stores indices where we can dry a lake (weather[i] == 0)
+        
+        for (int day = 0; day &lt; n; ++day) {
+            int lake = weather[day];
+            
+            if (lake == 0) {
+                // This is a dry day, we can choose which lake to dry later
+                dryDays.insert(day);
+                continue;
+            }
+            
+            // If this lake was already filled before, we must dry it before it rains again
+            if (fullLakeDay.find(lake) != fullLakeDay.end()) {
+                // Find the earliest available dry day *after* the last time this lake was filled
+                auto dryIt = dryDays.upper_bound(fullLakeDay[lake]);
+                
+                if (dryIt == dryDays.end()) {
+                    // No dry day available before this rain — flooding occurs
+                    return {};
+                }
+                
+                // Assign the drying operation to that day
+                result[*dryIt] = lake;
+                dryDays.erase(dryIt);
+            }
+            
+            // Mark this lake as filled on the current day
+            fullLakeDay[lake] = day;
+        }
+        
+        // For leftover dry days, we can dry any lake (1 is arbitrary)
+        for (int dry : dryDays)
+            result[dry] = 1;
+        
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
