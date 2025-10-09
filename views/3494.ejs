@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3494: Find the Minimum Amount of Time to Brew Potions (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3494: Find the Minimum Amount of Time to Brew Potions (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two integer arrays, skill and mana, of length n and m, respectively. In a laboratory, n
+                wizards must brew m potions in order. Each potion has a mana capacity mana[j] and must pass through all
+                the wizards sequentially to be brewed properly. The time taken by the ith wizard on the jth potion is
+                timeij = skill[i] * mana[j]. Since the brewing process is delicate, a potion must be passed to the next
+                wizard immediately after the current wizard completes their work. This means the timing must be
+                synchronized so that each wizard begins working on a potion exactly when it arrives. Return the minimum
+                amount of time required for the potions to be brewed properly.
+            </p>
+            <p><strong>Example:</strong>
+                Input: skill = [1,5,2,4], mana = [5,1,4,2] → Output: 110. The potions must be processed sequentially
+                through all wizards with proper synchronization. Input: skill = [1,1,1], mana = [1,1,1] → Output: 5.
+                Potion 0 starts at time 0 and completes at time 3, potion 1 starts at time 1 and completes at time 4,
+                potion 2 starts at time 2 and completes at time 5.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long minBrewTime(vector&lt;int&gt;&amp; skill, vector&lt;int&gt;&amp; mana) {
+        int n = skill.size();  // number of wizards
+        int m = mana.size();   // number of potions
+        
+        // dp[i][j] = time when wizard i finishes processing potion j
+        vector&lt;vector&lt;long long&gt;&gt; dp(n, vector&lt;long long&gt;(m, 0));
+        
+        // Base case: First wizard processes all potions sequentially
+        dp[0][0] = (long long)skill[0] * mana[0];
+        for (int j = 1; j &lt; m; j++) {
+            dp[0][j] = dp[0][j - 1] + (long long)skill[0] * mana[j];
+        }
+        
+        // For each subsequent wizard
+        for (int i = 1; i &lt; n; i++) {
+            // First potion for this wizard
+            // Must wait for previous wizard to finish
+            dp[i][0] = dp[i - 1][0] + (long long)skill[i] * mana[0];
+            
+            // For each subsequent potion
+            for (int j = 1; j &lt; m; j++) {
+                long long processTime = (long long)skill[i] * mana[j];
+                
+                // Wizard i can start potion j at the maximum of:
+                // 1. When previous wizard finished potion j: dp[i-1][j]
+                // 2. When current wizard finished previous potion: dp[i][j-1]
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + processTime;
+            }
+        }
+        
+        // Return when last wizard finishes last potion
+        return dp[n - 1][m - 1];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
