@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3147: Taking Maximum Energy From the Mystic Dungeon (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+<body>
+    <main>
+        <h1>LeetCode 3147: Taking Maximum Energy From the Mystic Dungeon (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are in a mystic dungeon with n magicians standing in a line. Each magician has an energy value that can be positive (giving you energy) or negative (taking energy from you). You have been cursed with a teleportation spell: after absorbing energy from magician at position i, you automatically teleport to magician at position (i + k). This continues until you reach a position where (i + k) doesn't exist (goes beyond the array). Given an array energy representing each magician's energy value and an integer k representing the teleport distance, find the maximum total energy you can gain by choosing the optimal starting position.
+            </p>
+            <p><strong>Example:</strong>
+                Input: energy = [5,-3,2,-1,4], k = 2 → Output: 11. Starting at index 0, you visit positions 0 → 2 → 4, gaining 5 + 2 + 4 = 11 energy. Input: energy = [3,-2,5,-1,4,-3,2], k = 3 → Output: 4. Starting at index 0, you visit positions 0 → 3 → 6, gaining 3 + (-1) + 2 = 4, or starting at index 4 gives 4 directly.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maximumEnergy(vector&lt;int&gt;&amp; energy, int k) {
+        // Initialize the maximum energy to a very small value
+        int maxEnergy = -(1 &lt;&lt; 30);
+        int n = energy.size();
+        
+        // Iterate through all possible ending positions (last k positions)
+        // These are the potential starting points for our backward traversal
+        for (int endPos = n - k; endPos &lt; n; ++endPos) {
+            // For each ending position, traverse backwards with step k
+            // and calculate the cumulative sum
+            int currentSum = 0;
+            for (int currentPos = endPos; currentPos &gt;= 0; currentPos -= k) {
+                // Add the energy at current position to the running sum
+                currentSum += energy[currentPos];
+                // Update the maximum energy if current sum is greater
+                maxEnergy = max(maxEnergy, currentSum);
+            }
+        }
+        
+        return maxEnergy;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+</html>
