@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3186: Maximum Total Damage With Spell Casting (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3186: Maximum Total Damage With Spell Casting (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array power where each element represents the damage value of a spell that a magician
+                can cast. Multiple spells can have the same damage value. The key constraint is: if the magician casts a
+                spell with damage power[i], they cannot cast any spell with damage values of power[i] - 2, power[i] - 1,
+                power[i] + 1, or power[i] + 2. In other words, casting a spell blocks out a range of 5 consecutive
+                damage values (the spell itself and 2 values on each side). Each spell can only be cast once. Your task
+                is to find the maximum total damage the magician can achieve by selecting spells to cast while
+                respecting the blocking constraint.
+            </p>
+            <p><strong>Example:</strong>
+                Input: power = [1,1,3,4] → Output: 6. The magician casts both spells with damage 1 (total 2) and the
+                spell with damage 4 (total 4), for a total of 6. Input: power = [7,1,6,6] → Output: 13. Cast spells with
+                damage 1, 6, 6 for total 1 + 6 + 6 = 13. The spell with damage 7 is blocked by choosing 6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long maximumTotalDamage(vector&lt;int&gt;&amp; power) {
+        // Sort powers in ascending order for easier processing
+        sort(power.begin(), power.end());
+        
+        arraySize = power.size();
+        this-&gt;powers = power;
+        
+        // Initialize memoization array and next valid index array
+        memo.resize(arraySize, 0);
+        nextValidIndex.resize(arraySize);
+        
+        // Count frequency of each power value and precompute next valid indices
+        for (int i = 0; i &lt; arraySize; ++i) {
+            // Count occurrences of each power value
+            powerFrequency[powers[i]]++;
+            
+            // Find the next index where power[j] &gt; power[i] + 2
+            // This is the next index we can consider if we take power[i]
+            nextValidIndex[i] = upper_bound(powers.begin() + i + 1,
+                                           powers.end(),
+                                           powers[i] + 2) - powers.begin();
+        }
+        
+        // Start dynamic programming from index 0
+        return calculateMaxDamage(0);
+    }
+    
+private:
+    // Map to store frequency of each power value
+    unordered_map&lt;int, int&gt; powerFrequency;
+    
+    // Memoization array for dynamic programming
+    vector&lt;long long&gt; memo;
+    
+    // Array to store sorted power values
+    vector&lt;int&gt; powers;
+    
+    // Array to store next valid index for each position
+    vector&lt;int&gt; nextValidIndex;
+    
+    // Size of the power array
+    int arraySize;
+    
+    long long calculateMaxDamage(int index) {
+        // Base case: if index is out of bounds, return 0
+        if (index &gt;= arraySize) {
+            return 0;
+        }
+        
+        // Return memoized result if already calculated
+        if (memo[index] != 0) {
+            return memo[index];
+        }
+        
+        // Option 1: Skip the current power value entirely
+        // Move to the next distinct power value
+        long long skipCurrentPower = calculateMaxDamage(index + powerFrequency[powers[index]]);
+        
+        // Option 2: Take all occurrences of the current power value
+        // Calculate damage from current power and continue from next valid index
+        long long takeCurrentPower = static_cast&lt;long long&gt;(powers[index]) * powerFrequency[powers[index]]
+                                    + calculateMaxDamage(nextValidIndex[index]);
+        
+        // Store and return the maximum of both options
+        memo[index] = max(skipCurrentPower, takeCurrentPower);
+        return memo[index];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
