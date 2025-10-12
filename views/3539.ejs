@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3539: Find Sum of Array Product of Magical Sequences (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3539: Find Sum of Array Product of Magical Sequences (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two integers, m and k, and an integer array nums. A sequence of integers seq is called
+                magical if: seq has a size of m, 0 &lt;= seq[i] &lt; nums.length, and the binary representation of
+                2^seq[0] + 2^seq[1] + ... + 2^seq[m-1] has k set bits. The array product of this sequence is defined as
+                prod(seq) = nums[seq[0]] * nums[seq[1]] * ... * nums[seq[m-1]]. Return the sum of the array products for
+                all valid magical sequences modulo 10^9 + 7. A set bit refers to a bit in the binary representation of a
+                number that has a value of 1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: m = 2, k = 2, nums = [5,4,3,2,1] → Output: 170. The magical sequences include [0,1], [0,2],
+                [0,3], [0,4], [1,0], [1,2], etc. Input: m = 1, k = 1, nums = [28] → Output: 28. The only magical
+                sequence is [0].
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define ll long long
+const int MOD = 1e9 + 7;
+
+class Solution {
+public:
+    int magicalSum(int m, int k, vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        
+        // Step 1: Precompute all powers of nums[i] up to m
+        vector&lt;vector&lt;ll&gt;&gt; powerTable(n, vector&lt;ll&gt;(m + 1, 1));
+        for (int i = 0; i &lt; n; i++)
+            for (int exp = 1; exp &lt;= m; exp++)
+                powerTable[i][exp] = (powerTable[i][exp - 1] * nums[i]) % MOD;
+        
+        // Step 2: Compute all combinations C(n, r) using Pascal's Triangle
+        vector&lt;vector&lt;ll&gt;&gt; comb(m + 1, vector&lt;ll&gt;(m + 1, 0));
+        for (int i = 0; i &lt;= m; i++) {
+            comb[i][0] = comb[i][i] = 1;
+            for (int j = 1; j &lt; i; j++)
+                comb[i][j] = (comb[i - 1][j - 1] + comb[i - 1][j]) % MOD;
+        }
+        
+        // Step 3: DP memoization arrays
+        static ll dp[55][35][35][35];
+        static bool visited[55][35][35][35];
+        memset(visited, 0, sizeof(visited));
+        
+        // Recursive DFS function with memoization
+        function&lt;ll(int,int,int,int)&gt; solve = [&amp;](int index, int carry, int usedCount, int bitCount) -&gt; ll {
+            // Base case: processed all elements
+            if (index == n) {
+                // Count remaining 1-bits from carry
+                int remainingOnes = bitCount;
+                int tempCarry = carry;
+                while (tempCarry) {
+                    if (tempCarry &amp; 1) remainingOnes++;
+                    tempCarry &gt;&gt;= 1;
+                }
+                // Valid if exactly m numbers used and total 1-bits == k
+                return (usedCount == m &amp;&amp; remainingOnes == k) ? 1 : 0;
+            }
+            
+            // Return cached result if already computed
+            if (visited[index][carry][usedCount][bitCount])
+                return dp[index][carry][usedCount][bitCount];
+            visited[index][carry][usedCount][bitCount] = true;
+            
+            ll result = 0;
+            // Try assigning cnt times the current number nums[index]
+            for (int cnt = 0; cnt + usedCount &lt;= m; cnt++) {
+                int total = carry + cnt;
+                int bit = total &amp; 1;              // Extract least significant bit
+                int newCarry = total &gt;&gt; 1;        // Carry for next position
+                int newBitCount = bitCount + bit; // Add this bit to count
+                
+                ll nextWays = solve(index + 1, newCarry, usedCount + cnt, newBitCount);
+                if (!nextWays) continue;
+                
+                // Number of ways to choose cnt items from remaining (m - usedCount)
+                ll waysToChoose = comb[m - usedCount][cnt];
+                ll product = powerTable[index][cnt];
+                
+                // Multiply all components: ways * product * sub-results
+                result = (result + nextWays * waysToChoose % MOD * product) % MOD;
+            }
+            
+            return dp[index][carry][usedCount][bitCount] = result;
+        };
+        
+        return (int)solve(0, 0, 0, 0);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
