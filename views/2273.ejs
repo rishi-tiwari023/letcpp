@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2273: Find Resultant Array After Removing Anagrams (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2273: Find Resultant Array After Removing Anagrams (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed string array words, where words[i] consists of lowercase English letters. In
+                one operation, select any index i such that 0 &lt; i &lt; words.length and words[i - 1] and words[i] are
+                anagrams, and delete words[i] from words. Keep performing this operation as long as you can select an
+                index that satisfies the conditions. Return words after performing all operations. It can be shown that
+                selecting the indices for each operation in any arbitrary order will lead to the same result. An anagram
+                is a word or phrase formed by rearranging the letters of a different word or phrase using all the
+                original letters exactly once. For example, "dacb" and "abdc" are anagrams of each other.
+            </p>
+            <p><strong>Example:</strong>
+                Input: words = ["abba","baba","bbaa","cd","cd"] → Output: ["abba","cd"]. Remove "baba" (anagram of
+                "abba"), then "bbaa" (anagram of "abba"), then second "cd" (anagram of first "cd"). Input: words =
+                ["a","b","c","d","e"] → Output: ["a","b","c","d","e"]. No two consecutive words are anagrams.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;string&gt; removeAnagrams(vector&lt;string&gt;&amp; words) {
+        vector&lt;string&gt; res;
+        
+        for (int i = 0; i &lt; words.size();) {
+            int nxt = i + 1;
+            // Skip consecutive anagrams of the same word
+            while (nxt &lt; words.size() &amp;&amp; isAna(words[i], words[nxt]))
+                ++nxt;
+            res.push_back(words[i]);
+            i = nxt;  // move to the next non-anagram word
+        }
+        
+        return res;
+    }
+    
+private:
+    bool isAna(const string&amp; a, const string&amp; b) {
+        if (a.size() != b.size()) return false;
+        
+        vector&lt;int&gt; cnt(26, 0);
+        
+        // Count chars in a
+        for (char ch : a) cnt[ch - 'a']++;
+        
+        // Subtract chars in b
+        for (char ch : b) cnt[ch - 'a']--;
+        
+        // If all counts are 0, they're anagrams
+        return ranges::all_of(cnt, [](int x) { return x == 0; });
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
