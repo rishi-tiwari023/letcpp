@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3349: Adjacent Increasing Subarrays Detection I (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3349: Adjacent Increasing Subarrays Detection I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array <code>nums</code> and an integer <code>k</code>.
+                A subarray of length <code>k</code> is called <em>increasing</em> if each element is strictly greater
+                than the previous one.
+                Return <code>true</code> if there exist two <em>adjacent</em> subarrays of length <code>k</code> that
+                are both strictly increasing.
+                Otherwise, return <code>false</code>.
+            </p>
+            <p><strong>Example:</strong><br />
+                <em>Input:</em> nums = [1,2,3,4,5,6], k = 2 → <em>Output:</em> true
+                (Explanation: Subarrays [1,2] and [3,4] are both increasing and adjacent.)<br />
+                <em>Input:</em> nums = [1,2,3,1,2,3,4], k = 3 → <em>Output:</em> true
+                (Explanation: Subarrays [1,2,3] and [1,2,3] overlap but both are increasing.)<br />
+                <em>Input:</em> nums = [1,1,1,1], k = 2 → <em>Output:</em> false
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+ public:
+  bool hasIncreasingSubarrays(vector&lt;int&gt;&amp; nums, int k) {
+    int increasing = 1;
+    int prevIncreasing = 0;
+
+    for (int i = 1; i &lt; nums.size(); ++i) {
+      if (nums[i] &gt; nums[i - 1]) {
+        ++increasing;
+      } else {
+        prevIncreasing = increasing;
+        increasing = 1;
+      }
+      if (increasing / 2 &gt;= k || min(prevIncreasing, increasing) &gt;= k)
+        return true;
+    }
+
+    return false;
+  }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
