@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3350: Adjacent Increasing Subarrays Detection II (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3350: Adjacent Increasing Subarrays Detection II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an array nums of n integers, your task is to find the maximum value of k for which there exist two
+                adjacent subarrays of length k each, such that both subarrays are strictly increasing. Specifically,
+                check if there are two subarrays of length k starting at indices a and b (a &lt; b), where: Both
+                subarrays nums[a..a+k-1] and nums[b..b+k-1] are strictly increasing (each element is strictly greater
+                than the previous), b = a + k (the two subarrays are adjacent, with no gap). Return the maximum integer
+                k for which such a pair of subarrays exists. If no such subarrays exist, return 1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [2,5,7,8,9,2,3,4,3,1] → Output: 3. The subarrays starting at indices 0 and 3 are
+                [2,5,7,8,9] and [2,3,4], so k=3 works. Input: nums = [1,2,3,4,4,4,4,5,6,7] → Output: 2. The subarrays
+                [1,2,3,4] and [4,5,6,7] are not adjacent.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxIncreasingSubarrays(vector&lt;int&gt;&amp; nums) {
+        int result = 0;             // Stores the maximum possible adjacent increasing subarray length
+        int currLen = 1;            // Length of the current increasing subarray
+        int prevLen = 0;            // Length of the previous increasing subarray
+        
+        for (int i = 1; i &lt; nums.size(); ++i) {
+            // If current number continues the increasing trend
+            if (nums[i] &gt; nums[i - 1]) {
+                ++currLen;
+            } else {
+                // Reset when the increasing sequence breaks
+                prevLen = currLen;
+                currLen = 1;
+            }
+            
+            // Case 1: Take half of the current sequence length (for overlapping parts)
+            result = max(result, currLen / 2);
+            
+            // Case 2: Adjacent sequences — choose the smaller of the two lengths
+            result = max(result, min(prevLen, currLen));
+        }
+        
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
