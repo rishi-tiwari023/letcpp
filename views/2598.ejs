@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2598: Smallest Missing Non-negative Integer After Operations (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2598: Smallest Missing Non-negative Integer After Operations (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array <code>nums</code> and an integer <code>value</code>.
+                In one operation, you can add or subtract <code>value</code> from any element of <code>nums</code>.
+                After performing any number of operations, return the smallest non-negative integer that cannot be
+                formed as an element of <code>nums</code>.
+            </p>
+            <p><strong>Example:</strong><br />
+                <em>Input:</em> nums = [1,-10,7,13,6,8], value = 5 → <em>Output:</em> 4
+                <br />Explanation: After adjusting each element by ±5 repeatedly, all numbers 0,1,2,3 can be formed, but
+                not 4.<br /><br />
+                <em>Input:</em> nums = [1,-10,7,13,6,8], value = 7 → <em>Output:</em> 2<br />
+                <em>Input:</em> nums = [0,1,2], value = 1 → <em>Output:</em> 3
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution { 
+public:
+    int findSmallestInteger(vector&lt;int&gt;&amp; nums, int value) {
+        unordered_map&lt;int, int&gt; freq; // Stores frequency of each remainder
+
+        // Step 1: Count how many numbers fall into each remainder group
+        for (int num : nums)
+            ++freq[(num % value + value) % value]; // Handles negative numbers too
+
+        // Step 2: Try to find the smallest non-negative integer that can't be formed
+        for (int i = 0; i &lt; nums.size(); ++i) {
+            int rem = i % value; // Remainder group to check
+            if (--freq[rem] &lt; 0) // If this group is empty, we can’t form i
+                return i;
+        }
+
+        // If all remainders are available, answer is nums.size()
+        return nums.size();
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
