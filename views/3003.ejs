@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3003: Maximize the Number of Partitions After Operations (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3003: Maximize the Number of Partitions After Operations (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string s and an integer k. First, you are allowed to change at most one index in s to
+                another lowercase English letter. After that, do the following partitioning operation until s is empty:
+                Choose the longest prefix of s containing at most k distinct characters, delete the prefix from s and
+                increase the number of partitions by one. The remaining characters (if any) in s maintain their initial
+                order. Return an integer denoting the maximum number of resulting partitions after the operations by
+                optimally choosing at most one index to change.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "accca", k = 2 → Output: 3. Change s[2] to 'b' to get "acbca". Then partition: "ac" (2
+                distinct), "bc" (2 distinct), "a" (1 distinct) = 3 partitions. Input: s = "aabaab", k = 3 → Output: 1.
+                Initially s contains 2 distinct characters, so the longest prefix with at most 3 distinct characters is
+                the whole string = 1 partition.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+class Solution {
+public:
+    int maxPartitionsAfterOperations(string s, int k) {
+        unordered_map&lt;long, int&gt; dp;
+        // Start recursive exploration from index 0, with change available, and no letters seen yet
+        return helper(s, 0, true, 0, k, dp) + 1;  // +1 because we count partitions, not cuts
+    }
+    
+private:
+    // Recursive helper: returns max partitions from index idx onwards
+    // canChange = true if we can still change one letter
+    // mask = bitmask representing distinct letters in current partition
+    int helper(const string&amp; s, int idx, bool canChange, int mask, int k,
+               unordered_map&lt;long, int&gt;&amp; dp) {
+        if (idx == s.size()) return 0;
+        
+        // Compress current state into a single key for memoization
+        long key = ((long)idx &lt;&lt; 27) | ((canChange ? 1 : 0) &lt;&lt; 26) | mask;
+        if (dp.count(key)) return dp[key];
+        
+        // Case 1: Keep current character as is
+        int best = tryNext(s, idx, canChange, mask, 1 &lt;&lt; (s[idx] - 'a'), k, dp);
+        
+        // Case 2: If we can change, try replacing current char with any other letter
+        if (canChange) {
+            for (int ch = 0; ch &lt; 26; ++ch) {
+                best = max(best, tryNext(s, idx, false, mask, 1 &lt;&lt; ch, k, dp));
+            }
+        }
+        
+        return dp[key] = best;
+    }
+    
+    // Helper to decide next step after adding a new character (possibly changed)
+    int tryNext(const string&amp; s, int idx, bool nextCanChange, unsigned mask,
+                int newBit, int k, unordered_map&lt;long, int&gt;&amp; dp) {
+        unsigned updatedMask = mask | newBit;
+        
+        // If distinct characters exceed limit k, start a new partition
+        if (__builtin_popcount(updatedMask) &gt; k)
+            return 1 + helper(s, idx + 1, nextCanChange, newBit, k, dp);
+        
+        // Otherwise, continue current partition
+        return helper(s, idx + 1, nextCanChange, updatedMask, k, dp);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
