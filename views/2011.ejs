@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2011: Final Value of Variable After Performing Operations (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2011: Final Value of Variable After Performing Operations (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                There is a programming language with only four operations and one variable X: ++X and X++ increments the
+                value of the variable X by 1. --X and X-- decrements the value of the variable X by 1. Initially, the
+                value of X is 0. Given an array of strings operations containing a list of operations, return the final
+                value of X after performing all the operations.
+            </p>
+            <p><strong>Example:</strong>
+                Input: operations = ["--X","X++","X++"] → Output: 1. Initially X = 0. --X: X becomes -1. X++: X becomes
+                0. X++: X becomes 1. Input: operations = ["++X","++X","X++"] → Output: 3. Initially X = 0. ++X: X
+                becomes 1. ++X: X becomes 2. X++: X becomes 3. Input: operations = ["X++","++X","--X","X--"] → Output:
+                0. X increments twice and decrements twice, resulting in 0.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int finalValueAfterOperations(vector&lt;string&gt;&amp; operations) {
+        int value = 0;  // Initialize the variable X with 0
+        
+        // Loop through each operation in the list
+        for (const string&amp; operation : operations) {
+            // Check the middle character to determine if it's an increment or decrement
+            // If the second character is '+', increase value by 1; otherwise, decrease by 1
+            value += (operation[1] == '+') ? 1 : -1;
+        }
+        
+        // Return the final result after performing all operations
+        return value;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
