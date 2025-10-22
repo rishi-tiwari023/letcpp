@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3347: Maximum Frequency of an Element After Performing Operations II (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3347: Maximum Frequency of an Element After Performing Operations II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums and two integers k and numOperations. You must perform an operation
+                numOperations times on nums, where in each operation you: Select an index i that was not selected in any
+                previous operations, and add an integer in the range [-k, k] to nums[i]. Return the maximum possible
+                frequency of any element in nums after performing the operations.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,4,5], k = 1, numOperations = 2 → Output: 2. We can achieve a maximum frequency of two
+                by adding 0 to nums[1] and -1 to nums[2], making nums = [1,4,4]. Input: nums = [5,11,20,20], k = 5,
+                numOperations = 1 → Output: 2. We can achieve a maximum frequency of two by adding 0 to nums[1].
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxFrequency(vector&lt;int&gt;&amp; nums, int k, int ops) {
+        int res = 1;                // To store the maximum frequency found
+        int currAdj = 0;            // Current number of elements adjustable to 'num'
+        unordered_map&lt;int, int&gt; freq;  // Frequency count of each element
+        map&lt;int, int&gt; range;           // Tracks where ranges start and end
+        set&lt;int&gt; allVals;              // All possible candidate numbers to check
+
+        // Build frequency map and mark adjustable ranges
+        for (int x : nums) {
+            ++freq[x];              // Count the occurrence of x
+            ++range[x - k];         // Range starts at x - k
+            --range[x + k + 1];     // Range ends after x + k
+            allVals.insert(x);
+            allVals.insert(x - k);
+            allVals.insert(x + k + 1);
+        }
+
+        // Sweep through all candidate values in sorted order
+        for (int x : allVals) {
+            // Update running adjustable count using prefix sum logic
+            currAdj += range.contains(x) ? range[x] : 0;
+
+            int cnt = freq.contains(x) ? freq[x] : 0;  // Frequency of exact value x
+            int adjOthers = currAdj - cnt;             // Others that can become x
+            res = max(res, cnt + min(ops, adjOthers)); // Best possible frequency
+        }
+
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
