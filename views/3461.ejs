@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3461: Check If Digits Are Equal in String After Operations I (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3461: Check If Digits Are Equal in String After Operations I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string s consisting of digits. You can perform operations on the string where you select
+                two adjacent digits and replace them with their sum modulo 10. Return true if after performing
+                operations
+                any number of times, all digits in the string can become equal, otherwise return false.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "1234" → Output: false. No matter what operations we perform, we cannot make all digits
+                equal.
+                Input: s = "100" → Output: true. We can perform operations to make all digits equal.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool hasSameDigits(const string&amp; s) {
+        int n = s.size();
+        int a = 0, b = 0;
+        // Compare every adjacent digit using binomial coefficients mod 10
+        for (int i = 0; i + 1 &lt; n; ++i) {
+            int c = nCkMod10(n - 2, i);  // Coefficient for each digit
+            a = (a + c * (s[i] - '0')) % 10;
+            b = (b + c * (s[i + 1] - '0')) % 10;
+        }
+        return a == b;  // Equal after all operations
+    }
+private:
+    // Compute nCk % 10 using Chinese Remainder Theorem (mod 2 and mod 5)
+    int nCkMod10(int n, int k) {
+        int mod2 = lucas(n, k, 2);
+        int mod5 = lucas(n, k, 5);
+        // Lookup table to combine (mod2, mod5) into mod10 result
+        static constexpr int table[2][5] = {
+            {0, 6, 2, 8, 4},  // mod2 = 0
+            {5, 1, 7, 3, 9}   // mod2 = 1
+        };
+        return table[mod2][mod5];
+    }
+    // Lucas' theorem for computing nCk % prime
+    int lucas(int n, int k, int p) {
+        int res = 1;
+        while (n &gt; 0 || k &gt; 0) {
+            int nMod = n % p;
+            int kMod = k % p;
+            res = (res * smallC(nMod, kMod)) % p;
+            n /= p;
+            k /= p;
+        }
+        return res;
+    }
+    // Directly compute small nCk (n &lt; prime)
+    int smallC(int n, int k) {
+        if (k &gt; n) return 0;
+        int r = 1;
+        for (int i = 0; i &lt; k; ++i)
+            r = r * (n - i) / (i + 1);
+        return r;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
