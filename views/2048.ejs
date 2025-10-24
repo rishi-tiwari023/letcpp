@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2048: Next Greater Numerically Balanced Number (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2048: Next Greater Numerically Balanced Number (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                An integer x is numerically balanced if for every digit d in x, d occurs exactly d times in x. Given an
+                integer n, return the smallest numerically balanced number strictly greater than n.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 1 → Output: 22. 22 is numerically balanced since the digit 2 occurs exactly 2 times.
+                Input: n = 1000 → Output: 1333. 1333 is numerically balanced since digit 1 occurs 1 time and digit 3
+                occurs 3 times.
+                Input: n = 3000 → Output: 3133. 3133 is the smallest numerically balanced number greater than 3000.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int nextBeautifulNumber(int n) {
+        // Keep checking the next number until we find one that's balanced
+        while (!isBal(++n));
+        return n;
+    }
+private:
+    bool isBal(int x) {
+        vector&lt;int&gt; cnt(10);  // Count of each digit (1–9)
+        while (x &gt; 0) {
+            int d = x % 10;  // Get the last digit
+            if (d == 0) return false;  // 0s are not allowed
+            ++cnt[d];  // Count this digit
+            x /= 10;   // Remove last digit
+        }
+        // A number is balanced if each digit appears 'digit' times
+        for (int i = 1; i &lt;= 9; ++i)
+            if (cnt[i] &amp;&amp; cnt[i] != i)
+                return false;
+        return true;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
