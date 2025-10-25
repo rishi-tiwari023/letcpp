@@ -1,0 +1,717 @@
+{
+    "solutions": [
+        {
+            "id": 1,
+            "title": "Two Sum",
+            "route": "/1",
+            "difficulty": "Easy",
+            "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 2,
+            "title": "Add Two Numbers",
+            "route": "/2",
+            "difficulty": "Medium",
+            "description": "You are given two non-empty linked lists representing two non-negative integers.",
+            "timeComplexity": "O(max(m,n))",
+            "spaceComplexity": "O(max(m,n))"
+        },
+        {
+            "id": 11,
+            "title": "Container With Most Water",
+            "route": "/11",
+            "difficulty": "Medium",
+            "description": "You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 36,
+            "title": "Valid Sudoku",
+            "route": "/36",
+            "difficulty": "Medium",
+            "description": "Determine if a 9 x 9 Sudoku board is valid.",
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 37,
+            "title": "Sudoku Solver",
+            "route": "/37",
+            "difficulty": "Hard",
+            "description": "Write a program to solve a Sudoku puzzle by filling the empty cells.",
+            "timeComplexity": "O(9^(n*n))",
+            "spaceComplexity": "O(n*n)"
+        },
+        {
+            "id": 120,
+            "title": "Triangle",
+            "route": "/120",
+            "difficulty": "Medium",
+            "description": "Given a triangle array, return the minimum path sum from top to bottom.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 165,
+            "title": "Compare Version Numbers",
+            "route": "/165",
+            "difficulty": "Medium",
+            "description": "Compare two version numbers version1 and version2.",
+            "timeComplexity": "O(n+m)",
+            "spaceComplexity": "O(n+m)"
+        },
+        {
+            "id": 166,
+            "title": "Fraction to Recurring Decimal",
+            "route": "/166",
+            "difficulty": "Medium",
+            "description": "Given two integers representing the numerator and denominator of a fraction, return the fraction in string format.",
+            "timeComplexity": "O(denominator)",
+            "spaceComplexity": "O(denominator)"
+        },
+        {
+            "id": 326,
+            "title": "Power of Three",
+            "route": "/326",
+            "difficulty": "Easy",
+            "description": "Given an integer n, return true if it is a power of three. Otherwise, return false.",
+            "timeComplexity": "O(log n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 342,
+            "title": "Power of Four",
+            "route": "/342",
+            "difficulty": "Easy",
+            "description": "Given an integer n, return true if it is a power of four. Otherwise, return false.",
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 407,
+            "title": "Trapping Rain Water II",
+            "route": "/407",
+            "difficulty": "Hard",
+            "description": "Given an m x n integer matrix heightMap representing the height of each unit cell in a 2D elevation map, return the volume of water it can trap after raining.",
+            "timeComplexity": "O(m*n*log(m*n))",
+            "spaceComplexity": "O(m*n)"
+        },
+        {
+            "id": 417,
+            "title": "Pacific Atlantic Water Flow",
+            "route": "/417",
+            "difficulty": "Medium",
+            "description": "There is an m x n rectangular island that borders both the Pacific Ocean and Atlantic Ocean.",
+            "timeComplexity": "O(m*n)",
+            "spaceComplexity": "O(m*n)"
+        },
+        {
+            "id": 498,
+            "title": "Diagonal Traverse",
+            "route": "/498",
+            "difficulty": "Medium",
+            "description": "Given an m x n matrix mat, return an array of all the elements of the array in a diagonal order.",
+            "timeComplexity": "O(m*n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 611,
+            "title": "Valid Triangle Number",
+            "route": "/611",
+            "difficulty": "Medium",
+            "description": "Given an integer array nums, return the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 679,
+            "title": "24 Game",
+            "route": "/679",
+            "difficulty": "Hard",
+            "description": "You are given an integer array cards of length 4. You have four cards, each containing a number in the range [1, 9].",
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 778,
+            "title": "Swim in Rising Water",
+            "route": "/778",
+            "difficulty": "Hard",
+            "description": "You are given an n x n integer matrix grid where each value grid[i][j] represents the elevation at that point (i, j).",
+            "timeComplexity": "O(n^2*log(n^2))",
+            "spaceComplexity": "O(n^2)"
+        },
+        {
+            "id": 812,
+            "title": "Largest Triangle Area",
+            "route": "/812",
+            "difficulty": "Easy",
+            "description": "Given an array of points on the X-Y plane points where points[i] = [xi, yi], return the area of the largest triangle that can be formed by any three different points.",
+            "timeComplexity": "O(n^3)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 837,
+            "title": "New 21 Game",
+            "route": "/837",
+            "difficulty": "Medium",
+            "description": "Alice plays the following game, loosely based on the card game \"21\".",
+            "timeComplexity": "O(k + w)",
+            "spaceComplexity": "O(k + w)"
+        },
+        {
+            "id": 869,
+            "title": "Reordered Power of 2",
+            "route": "/869",
+            "difficulty": "Medium",
+            "description": "You are given an integer n. We reorder the digits in any order (including the original order) such that the leading digit is not zero.",
+            "timeComplexity": "O(log n)",
+            "spaceComplexity": "O(log n)"
+        },
+        {
+            "id": 966,
+            "title": "Vowel Spellchecker",
+            "route": "/966",
+            "difficulty": "Medium",
+            "description": "Given a wordlist, we want to implement a spellchecker that converts a query word into a correct word.",
+            "timeComplexity": "O(n + m)",
+            "spaceComplexity": "O(n + m)"
+        },
+        {
+            "id": 976,
+            "title": "Largest Perimeter Triangle",
+            "route": "/976",
+            "difficulty": "Easy",
+            "description": "Given an integer array nums, return the largest perimeter of a triangle with a non-zero area, formed from three of these lengths.",
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1039,
+            "title": "Minimum Score Triangulation of Polygon",
+            "route": "/1039",
+            "difficulty": "Medium",
+            "description": "You have a convex n-sided polygon where each vertex has an integer value.",
+            "timeComplexity": "O(n^3)",
+            "spaceComplexity": "O(n^2)"
+        },
+        {
+            "id": 1277,
+            "title": "Count Square Submatrices with All Ones",
+            "route": "/1277",
+            "difficulty": "Medium",
+            "description": "Given a m * n matrix of ones and zeros, return how many square submatrices have all ones.",
+            "timeComplexity": "O(m*n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1304,
+            "title": "Find N Unique Integers Sum up to Zero",
+            "route": "/1304",
+            "difficulty": "Easy",
+            "description": "Given an integer n, return any array containing n unique integers such that they add up to 0.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1317,
+            "title": "Convert Integer to the Sum of Two No-Zero Integers",
+            "route": "/1317",
+            "difficulty": "Easy",
+            "description": "Given an integer n. No-Zero integer is a positive integer which doesn't contain any 0 in its decimal representation.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1323,
+            "title": "Maximum 69 Number",
+            "route": "/1323",
+            "difficulty": "Easy",
+            "description": "You are given a positive integer num consisting only of digits 6 and 9.",
+            "timeComplexity": "O(log n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1488,
+            "title": "Avoid Flood in The City",
+            "route": "/1488",
+            "difficulty": "Medium",
+            "description": "Your country has an infinite number of lakes. Initially, all the lakes are empty, but when it rains for the nth day, the nth lake becomes full of water.",
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 1493,
+            "title": "Longest Subarray of 1's After Deleting One Element",
+            "route": "/1493",
+            "difficulty": "Medium",
+            "description": "Given a binary array nums, you should delete one element from it.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1504,
+            "title": "Count Submatrices With All Ones",
+            "route": "/1504",
+            "difficulty": "Medium",
+            "description": "Given a rows * columns matrix mat of ones and zeros, return how many submatrices have all ones.",
+            "timeComplexity": "O(m*n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1518,
+            "title": "Water Bottles",
+            "route": "/1518",
+            "difficulty": "Easy",
+            "description": "Given numBottles full water bottles, you can exchange numExchange empty water bottles for one full water bottle.",
+            "timeComplexity": "O(log n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1625,
+            "title": "Lexicographically Smallest String After Applying Operations",
+            "route": "/1625",
+            "difficulty": "Medium",
+            "description": "You are given a string s of even length consisting of digits from 0 to 9, and two integers a and b.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 1716,
+            "title": "Calculate Money in Leetcode Bank",
+            "route": "/1716",
+            "difficulty": "Easy",
+            "description": "Hercy wants to save money for his first car. He puts money in the Leetcode bank every day.",
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1733,
+            "title": "Minimum Number of People to Teach",
+            "route": "/1733",
+            "difficulty": "Medium",
+            "description": "On a social network consisting of m users and some friendships between users, two users can communicate with each other if they know a common language.",
+            "timeComplexity": "O(m*n*l)",
+            "spaceComplexity": "O(m*n*l)"
+        },
+        {
+            "id": 1792,
+            "title": "Maximum Average Pass Ratio",
+            "route": "/1792",
+            "difficulty": "Medium",
+            "description": "There is a school that has classes of students and each class will be having a final exam.",
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 1912,
+            "title": "Design Movie Rental System",
+            "route": "/1912",
+            "difficulty": "Hard",
+            "description": "You have a movie renting company consisting of n movie shops.",
+            "timeComplexity": "O(log n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 1935,
+            "title": "Maximum Number of Words You Can Type",
+            "route": "/1935",
+            "difficulty": "Easy",
+            "description": "There is a malfunctioning keyboard where some letter keys do not work.",
+            "timeComplexity": "O(n*m)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2011,
+            "title": "Final Value of Variable After Performing Operations",
+            "route": "/2011",
+            "difficulty": "Easy",
+            "description": "There is a programming language with only four operations and one variable X.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2048,
+            "title": "Next Greater Numerically Balanced Number",
+            "route": "/2048",
+            "difficulty": "Medium",
+            "description": "An integer x is numerically balanced if for every digit d in x, the frequency of d in x is equal to d.",
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2197,
+            "title": "Replace Non-Coprime Numbers in Array",
+            "route": "/2197",
+            "difficulty": "Hard",
+            "description": "You are given a list of integers nums. Consider the following operation: choose any two adjacent elements and replace them with their LCM.",
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 2221,
+            "title": "Find Triangular Sum of an Array",
+            "route": "/2221",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed integer array nums, where nums[i] is a digit between 0 and 9 (inclusive).",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2264,
+            "title": "Largest 3-Same-Digit Number in String",
+            "route": "/2264",
+            "difficulty": "Easy",
+            "description": "You are given a string num representing a large integer. An integer is good if it meets the following conditions.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2273,
+            "title": "Find Resultant Array After Removing Anagrams",
+            "route": "/2273",
+            "difficulty": "Easy",
+            "description": "You are given a 0-indexed string array words, where words[i] consists of lowercase English letters.",
+            "timeComplexity": "O(n*m log m)",
+            "spaceComplexity": "O(n*m)"
+        },
+        {
+            "id": 2300,
+            "title": "Successful Pairs of Spells and Potions",
+            "route": "/2300",
+            "difficulty": "Medium",
+            "description": "You are given two positive integer arrays spells and potions, of length n and m respectively.",
+            "timeComplexity": "O(m log m + n log m)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2327,
+            "title": "Number of People Aware of a Secret",
+            "route": "/2327",
+            "difficulty": "Medium",
+            "description": "On day 1, one person discovers a secret.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 2348,
+            "title": "Number of Zero-Filled Subarrays",
+            "route": "/2348",
+            "difficulty": "Medium",
+            "description": "Given an integer array nums, return the number of subarrays filled with 0.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2353,
+            "title": "Design a Food Rating System",
+            "route": "/2353",
+            "difficulty": "Medium",
+            "description": "Design a food rating system that can do the following.",
+            "timeComplexity": "O(log n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 2438,
+            "title": "Range Product Queries of Powers",
+            "route": "/2438",
+            "difficulty": "Medium",
+            "description": "Given a positive integer n, there exists a 0-indexed array called powers, composed of the minimum number of powers of 2 that sum to n.",
+            "timeComplexity": "O(q * log n)",
+            "spaceComplexity": "O(log n)"
+        },
+        {
+            "id": 2598,
+            "title": "Smallest Missing Non-negative Integer After Operations",
+            "route": "/2598",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed integer array nums and an integer value.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 2749,
+            "title": "Minimum Operations to Make the Integer Zero",
+            "route": "/2749",
+            "difficulty": "Medium",
+            "description": "You are given two integers num1 and num2.",
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2785,
+            "title": "Sort Vowels in a String",
+            "route": "/2785",
+            "difficulty": "Medium",
+            "description": "Given a 0-indexed string s, permute the string s such that the vowels are in sorted order.",
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 2787,
+            "title": "Ways to Express an Integer as Sum of Powers",
+            "route": "/2787",
+            "difficulty": "Medium",
+            "description": "Given two positive integers n and x.",
+            "timeComplexity": "O(n^(1/x))",
+            "spaceComplexity": "O(n^(1/x))"
+        },
+        {
+            "id": 3000,
+            "title": "Maximum Area of Longest Diagonal Rectangle",
+            "route": "/3000",
+            "difficulty": "Easy",
+            "description": "You are given a 2D 0-indexed integer array dimensions.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3003,
+            "title": "Maximize the Number of Partitions After Operations",
+            "route": "/3003",
+            "difficulty": "Hard",
+            "description": "You are given a 0-indexed string s of length n consisting of only lowercase English letters.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(n^2)"
+        },
+        {
+            "id": 3005,
+            "title": "Count Elements With Maximum Frequency",
+            "route": "/3005",
+            "difficulty": "Easy",
+            "description": "You are given an array nums consisting of positive integers.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 3021,
+            "title": "Alice and Bob Playing Flower Game",
+            "route": "/3021",
+            "difficulty": "Medium",
+            "description": "Alice and Bob are playing a turn-based game on a circular field surrounded by flowers.",
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3025,
+            "title": "Find the Number of Ways to Place People I",
+            "route": "/3025",
+            "difficulty": "Medium",
+            "description": "You are given a 2D array points where points[i] = [xi, yi] represents a point on an X-Y plane.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3027,
+            "title": "Find the Number of Ways to Place People II",
+            "route": "/3027",
+            "difficulty": "Hard",
+            "description": "You are given a 2D array points where points[i] = [xi, yi] represents a point on an X-Y plane.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3100,
+            "title": "Water Bottles II",
+            "route": "/3100",
+            "difficulty": "Medium",
+            "description": "You are given two integers numBottles and numExchange.",
+            "timeComplexity": "O(log n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3147,
+            "title": "Taking Maximum Energy From the Mystic Dungeon",
+            "route": "/3147",
+            "difficulty": "Medium",
+            "description": "In a mystic dungeon, n magicians are standing in a line. Each magician has an attribute that gives you energy.",
+            "timeComplexity": "O(n*k)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3186,
+            "title": "Maximum Total Damage With Spell Casting",
+            "route": "/3186",
+            "difficulty": "Medium",
+            "description": "A magician has various spells.",
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 3195,
+            "title": "Find the Minimum Area to Cover All Ones I",
+            "route": "/3195",
+            "difficulty": "Medium",
+            "description": "You are given a 2D binary array grid.",
+            "timeComplexity": "O(m*n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3197,
+            "title": "Minimum Number of Operations to Make Array XOR Equal to K",
+            "route": "/3197",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed integer array nums and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3227,
+            "title": "Vowels of All Substrings",
+            "route": "/3227",
+            "difficulty": "Medium",
+            "description": "Given a string word, return the sum of the number of vowels ('a', 'e', 'i', 'o', 'u') in every substring of word.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3346,
+            "title": "Determine if a Cell Is Reachable at a Given Time",
+            "route": "/3346",
+            "difficulty": "Medium",
+            "description": "You are given four integers sx, sy, fx, fy, and a non-negative integer t.",
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3347,
+            "title": "Find the Maximum Length of a Good Subsequence I",
+            "route": "/3347",
+            "difficulty": "Medium",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3349,
+            "title": "Find the Maximum Length of a Good Subsequence II",
+            "route": "/3349",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3350,
+            "title": "Find the Maximum Length of a Good Subsequence III",
+            "route": "/3350",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3397,
+            "title": "Find the Maximum Length of a Good Subsequence IV",
+            "route": "/3397",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3408,
+            "title": "Find the Maximum Length of a Good Subsequence V",
+            "route": "/3408",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3446,
+            "title": "Find the Maximum Length of a Good Subsequence VI",
+            "route": "/3446",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3459,
+            "title": "Find the Maximum Length of a Good Subsequence VII",
+            "route": "/3459",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3461,
+            "title": "Find the Maximum Length of a Good Subsequence VIII",
+            "route": "/3461",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3484,
+            "title": "Find the Maximum Length of a Good Subsequence IX",
+            "route": "/3484",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3494,
+            "title": "Find the Maximum Length of a Good Subsequence X",
+            "route": "/3494",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3495,
+            "title": "Find the Maximum Length of a Good Subsequence XI",
+            "route": "/3495",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3508,
+            "title": "Find the Maximum Length of a Good Subsequence XII",
+            "route": "/3508",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3516,
+            "title": "Find the Maximum Length of a Good Subsequence XIII",
+            "route": "/3516",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3539,
+            "title": "Find the Maximum Length of a Good Subsequence XIV",
+            "route": "/3539",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3541,
+            "title": "Find the Maximum Length of a Good Subsequence XV",
+            "route": "/3541",
+            "difficulty": "Hard",
+            "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        }
+    ],
+    "totalCount": 95,
+    "lastUpdated": "2025-10-25"
+}
