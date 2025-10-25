@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
+const fs = require("fs");
 
 const app = express();
 
@@ -17,7 +18,32 @@ app.get("/", (req, res) => {
   res.render("home", { title: "Home", message: "Welcome to the homepage!" });
 });
 
-const fs = require("fs");
+// API route to serve solutions list
+app.get("/api/solutions", (req, res) => {
+  const solutionsPath = path.join(__dirname, "solutions.json");
+  if (fs.existsSync(solutionsPath)) {
+    const solutionsData = JSON.parse(fs.readFileSync(solutionsPath, "utf8"));
+    res.json(solutionsData);
+  } else {
+    res.status(404).json({ error: "Solutions list not found" });
+  }
+});
+
+// Route to serve solutions list page
+app.get("/solutions", (req, res) => {
+  const solutionsPath = path.join(__dirname, "solutions.json");
+  if (fs.existsSync(solutionsPath)) {
+    const solutionsData = JSON.parse(fs.readFileSync(solutionsPath, "utf8"));
+    res.render("solutions", { 
+      title: "Solutions List", 
+      solutions: solutionsData.solutions,
+      totalCount: solutionsData.totalCount,
+      lastUpdated: solutionsData.lastUpdated
+    });
+  } else {
+    res.status(404).render("404", { title: "Solutions Not Found" });
+  }
+});
 
 // Generic route for any EJS file in views
 app.get("/:page", (req, res, next) => {
