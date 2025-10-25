@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1716: Calculate Money in Leetcode Bank (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1716: Calculate Money in Leetcode Bank (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Hercy wants to save money for his first car. He puts money in the Leetcode bank every day. On the first
+                day (Monday), he puts in $1. Every day from Tuesday to Sunday, he puts in $1 more than the day before.
+                On every subsequent Monday, he puts in $1 more than the previous Monday. Given n, return the total
+                amount
+                of money he will have in the Leetcode bank at the end of the nth day.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 4 → Output: 10. After the 4th day, the total is 1 + 2 + 3 + 4 = 10.
+                Input: n = 10 → Output: 37. After the 10th day, the total is (1+2+3+4+5+6+7) + (2+3+4) = 37.
+                Input: n = 20 → Output: 96. After the 20th day, the total is 96.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int totalMoney(int n) {
+        int w = n / 7;                        // number of full weeks
+        int base = sum(1, 7);                 // money in first week (1+2+...+7)
+        int end = sum(w, w + 6);              // money in last full week
+        int left = sum(w + 1, w + n % 7);     // money in remaining days
+        return (base + end) * w / 2 + left;   // total = full weeks + leftover days
+    }
+private:
+    // returns sum of numbers from a to b
+    int sum(int a, int b) {
+        return (a + b) * (b - a + 1) / 2;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
