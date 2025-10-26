@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2043: Simple Bank System (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2043: Simple Bank System (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You have been tasked with writing a program for a popular bank that will automate all its incoming
+                transactions (transfer, deposit, and withdraw). The bank has n accounts numbered from 1 to n. The
+                initial
+                balance of each account is stored in a 0-indexed integer array balance, with the (i + 1)th account
+                having
+                an initial balance of balance[i]. Execute all the valid transactions.
+            </p>
+            <p><strong>Example:</strong>
+                Input: ["Bank", "withdraw", "transfer", "deposit", "transfer", "withdraw"] [[[10, 100, 20, 50, 30]], [3,
+                10],
+                [5, 1, 20], [5, 20], [3, 4, 15], [10, 50]] → Output: [null, true, true, true, false, false].
+                Bank bank = new Bank([10, 100, 20, 50, 30]); bank.withdraw(3, 10) returns true (balance = [10, 100, 10,
+                50, 30]);
+                bank.transfer(5, 1, 20) returns true (balance = [30, 100, 10, 50, 10]);
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Bank {
+public:
+    // Constructor: initialize account balances
+    Bank(vector&lt;long long&gt;&amp; bal) : bal(std::move(bal)) {}
+    // Transfer money from one account to another
+    bool transfer(int acc1, int acc2, long long amt) {
+        if (!isValid(acc2))
+            return false;
+        return withdraw(acc1, amt) &amp;&amp; deposit(acc2, amt);
+    }
+    // Add money to a specific account
+    bool deposit(int acc, long long amt) {
+        if (!isValid(acc))
+            return false;
+        bal[acc - 1] += amt;
+        return true;
+    }
+    // Withdraw money from a specific account
+    bool withdraw(int acc, long long amt) {
+        if (!isValid(acc))
+            return false;
+        if (bal[acc - 1] &lt; amt)
+            return false;
+        bal[acc - 1] -= amt;
+        return true;
+    }
+private:
+    vector&lt;long long&gt; bal; // Stores balances for all accounts
+    // Check if an account number is valid
+    bool isValid(int acc) {
+        return 1 &lt;= acc &amp;&amp; acc &lt;= bal.size();
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
