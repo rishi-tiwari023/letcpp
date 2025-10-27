@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2125: Number of Laser Beams in a Bank (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2125: Number of Laser Beams in a Bank (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Anti-theft security devices are activated inside a bank. You are given a 0-indexed binary string array
+                bank representing the floor plan of the bank, which is an m x n 2D matrix. bank[i] represents the ith
+                row, consisting of '0's and '1's. '0' means the cell is empty, while '1' means the cell has a security
+                device. There is one laser beam between any two security devices if both devices are in different rows
+                and there are no security devices in the rows between them. Return the total number of laser beams in
+                the bank.
+            </p>
+            <p><strong>Example:</strong>
+                Input: bank = ["011001","000000","010100","001000"] → Output: 8. Between each of the following device
+                pairs, there is one beam: devices at (0,1) and (2,1), (0,1) and (2,3), (0,2) and (2,1), (0,2) and (2,3),
+                (0,5) and (2,1), (0,5) and (2,3), (2,1) and (3,2), (2,3) and (3,2). Total = 8 beams.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int numberOfBeams(vector&lt;string&gt;&amp; bank) {
+        int res = 0;     // total number of laser beams
+        int prev = 0;    // number of devices ('1's) in the previous non-empty row
+        for (const string&amp; row : bank) {
+            int cnt = ranges::count(row, '1');  // count devices in current row
+            if (cnt &gt; 0) {                      // only consider non-empty rows
+                res += prev * cnt;                // beams = devices in prev × devices in current
+                prev = cnt;                       // update previous count
+            }
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
