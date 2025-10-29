@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3370: Smallest Number With All Set Bits (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3370: Smallest Number With All Set Bits (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a positive integer n. Return the smallest number x greater than or equal to n, such that
+                the binary representation of x contains only set bits (all bits are 1). In other words, return the
+                smallest
+                number that is greater than or equal to n and is of the form 2^k - 1 for some positive integer k.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 5 → Output: 7. The binary representation of 5 is "101" and the next number with all set bits
+                is 7, which is "111" in binary.
+                Input: n = 10 → Output: 15. The binary representation of 10 is "1010" and the next number with all set
+                bits is 15, which is "1111" in binary.
+                Input: n = 3 → Output: 3. The binary representation of 3 is "11", which already has all bits set.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int smallestNumber(int n) {
+        // Find how many bits are needed to represent 'n'
+        int bitCount = getBitLength(n);
+        // Create a number with all those bits set to 1 (e.g., for 5 -&gt; 111 in binary)
+        return (1 &lt;&lt; bitCount) - 1;
+    }
+private:
+    // Helper function to calculate the number of bits required to represent 'n'
+    int getBitLength(int n) {
+        // __builtin_clz(n) counts leading zeros in 32-bit integer
+        // Subtracting gives the actual number of bits used by 'n'
+        return 32 - __builtin_clz(n);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
