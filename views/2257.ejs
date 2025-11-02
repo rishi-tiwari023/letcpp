@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2257: Count Unguarded Cells in the Grid (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2257: Count Unguarded Cells in the Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two integers m and n representing a 0-indexed m x n grid. You are also given two 2D
+                integer
+                arrays guards and walls where guards[i] = [row_i, col_i] and walls[j] = [row_j, col_j] represent the
+                positions of the ith guard and jth wall respectively. A guard can see every cell in the four cardinal
+                directions (north, east, south, or west) starting from their position unless obstructed by a wall or
+                another guard. A cell is guarded if there is at least one guard that can see it. Return the number of
+                unoccupied cells that are not guarded.
+            </p>
+            <p><strong>Example:</strong>
+                Input: m = 4, n = 6, guards = [[0,0],[1,1],[2,3]], walls = [[0,1],[2,2],[1,4]] → Output: 7. The guarded
+                and unguarded cells are shown in the grid. There are 7 unguarded cells.
+                Input: m = 3, n = 3, guards = [[1,1]], walls = [[0,1],[1,0],[2,1],[1,2]] → Output: 4. The guard at
+                position [1,1] can see all cells except the 4 corner cells which are blocked by walls.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countUnguarded(int m, int n, vector&lt;vector&lt;int&gt;&gt;&amp; g, vector&lt;vector&lt;int&gt;&gt;&amp; w) {
+        int cnt = 0;
+        vector&lt;vector&lt;char&gt;&gt; grid(m, vector&lt;char&gt;(n)); // grid to mark guards and walls
+        vector&lt;vector&lt;char&gt;&gt; L(m, vector&lt;char&gt;(n));    // visibility from left
+        vector&lt;vector&lt;char&gt;&gt; R(m, vector&lt;char&gt;(n));    // visibility from right
+        vector&lt;vector&lt;char&gt;&gt; U(m, vector&lt;char&gt;(n));    // visibility from up
+        vector&lt;vector&lt;char&gt;&gt; D(m, vector&lt;char&gt;(n));    // visibility from down
+        // Mark guard and wall positions
+        for (auto&amp; x : g) grid[x[0]][x[1]] = 'G';
+        for (auto&amp; x : w) grid[x[0]][x[1]] = 'W';
+        // Scan each row left→right and right→left
+        for (int i = 0; i &lt; m; ++i) {
+            char seen = 0;
+            for (int j = 0; j &lt; n; ++j) 
+                update(grid[i][j], seen, L[i][j]);
+            seen = 0;
+            for (int j = n - 1; j &gt;= 0; --j) 
+                update(grid[i][j], seen, R[i][j]);
+        }
+        // Scan each column top→bottom and bottom→top
+        for (int j = 0; j &lt; n; ++j) {
+            char seen = 0;
+            for (int i = 0; i &lt; m; ++i) 
+                update(grid[i][j], seen, U[i][j]);
+            seen = 0;
+            for (int i = m - 1; i &gt;= 0; --i) 
+                update(grid[i][j], seen, D[i][j]);
+        }
+        // Count cells not guarded from any direction
+        for (int i = 0; i &lt; m; ++i)
+            for (int j = 0; j &lt; n; ++j)
+                if (grid[i][j] == 0 &amp;&amp; L[i][j] != 'G' &amp;&amp; R[i][j] != 'G' &amp;&amp;
+                    U[i][j] != 'G' &amp;&amp; D[i][j] != 'G')
+                    ++cnt;
+        return cnt;
+    }
+private:
+    // Helper to record what was last seen in the scan
+    void update(char cell, char&amp; last, char&amp; mark) {
+        if (cell == 'G' || cell == 'W')
+            last = cell;     // stop line of sight at guard/wall
+        else
+            mark = last;     // mark cell as visible by the last guard (if any)
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
