@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1578: Minimum Time to Make Rope Colorful (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1578: Minimum Time to Make Rope Colorful (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Alice has n balloons arranged on a rope. You are given a 0-indexed string colors where colors[i] is the
+                color of the ith balloon. Alice wants the rope to be colorful, meaning that no two consecutive balloons
+                are of the same color. You are given a 0-indexed integer array neededTime where neededTime[i] is the
+                time
+                (in seconds) that Alice needs to remove the ith balloon from the rope. Return the minimum time Alice
+                needs
+                to make the rope colorful.
+            </p>
+            <p><strong>Example:</strong>
+                Input: colors = "abaac", neededTime = [1,2,3,4,5] → Output: 3. Remove the balloon at index 2 (time = 3)
+                and the balloon at index 4 (time = 5). After removal, colors = "abac" which is colorful.
+                Input: colors = "abc", neededTime = [1,2,3] → Output: 0. The rope is already colorful, no balloons need
+                to be removed.
+                Input: colors = "aabaa", neededTime = [1,2,3,4,1] → Output: 2. Remove balloons at indices 1 and 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minCost(string s, vector&lt;int&gt;&amp; time) {
+        int total = 0;          // Total time to remove balloons
+        int maxTime = time[0];  // Max time in the current same-color group
+        for (int i = 1; i &lt; s.size(); ++i) {
+            if (s[i] == s[i - 1]) {
+                // If two adjacent balloons have the same color,
+                // remove the one with smaller time (keep the costliest one).
+                total += min(maxTime, time[i]);
+                // Update the current group's max removal time
+                maxTime = max(maxTime, time[i]);
+            } else {
+                // New color starts → reset maxTime
+                maxTime = time[i];
+            }
+        }
+        return total; // Minimum total time to make all colors alternate
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
