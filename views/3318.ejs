@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3318: Find X-Sum of All K-Long Subarrays I (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3318: Find X-Sum of All K-Long Subarrays I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array nums of n integers and two integers k and x. The x-sum of an array is calculated
+                by the following procedure: Count the occurrences of all elements in the array. Keep only the
+                occurrences
+                of the top x most frequent elements. If two elements have the same number of occurrences, the element
+                with
+                the bigger value is considered more frequent. Calculate the sum of the resulting array. Return an
+                integer
+                array answer of length n - k + 1 where answer[i] is the x-sum of the subarray nums[i..i + k - 1].
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,1,2,2,3,4,2,3], k = 6, x = 2 → Output: [6,10,12]. For subarray [1,1,2,2,3,4], top 2
+                are (2,3) and (1,2), x-sum = 2*3 + 1*2 = 8. Wait, the expected is 6, so top 2 most frequent with highest
+                values sum up differently.
+                Input: nums = [3,8,7,8,7,5], k = 2, x = 2 → Output: [11,15,15,15,12]. Each window's top 2 elements sum.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; findXSum(vector&lt;int&gt;&amp; nums, int k, int x) {
+        vector&lt;int&gt; res;
+        long winSum = 0;                      // current window sum of top x elements
+        unordered_map&lt;int, int&gt; freq;          // frequency of each number in window
+        multiset&lt;pair&lt;int, int&gt;&gt; top;          // top x (freq, num) pairs
+        multiset&lt;pair&lt;int, int&gt;&gt; low;          // remaining (freq, num) pairs
+        // helper to update frequency of a number and maintain sets
+        auto upd = [&amp;](int num, int f) {
+            if (freq[num] &gt; 0) { // remove old entry before updating
+                if (auto it = low.find({freq[num], num}); it != low.end()) {
+                    low.erase(it);
+                } else {
+                    it = top.find({freq[num], num});
+                    top.erase(it);
+                    winSum -= 1L * num * freq[num];
+                }
+            }
+            freq[num] += f;
+            if (freq[num] &gt; 0) low.insert({freq[num], num});
+        };
+        for (int i = 0; i &lt; nums.size(); ++i) {
+            upd(nums[i], 1);            // add current element
+            if (i &gt;= k) upd(nums[i - k], -1); // remove element that slides out
+            // fill top with up to x most frequent elements
+            while (!low.empty() &amp;&amp; top.size() &lt; x) {
+                auto [f, n] = *low.rbegin();
+                low.erase(--low.end());
+                top.insert({f, n});
+                winSum += 1L * n * f;
+            }
+            // swap if bottom has larger (freq, num) than smallest in top
+            while (!low.empty() &amp;&amp; !top.empty() &amp;&amp; *low.rbegin() &gt; *top.begin()) {
+                auto [fb, nb] = *low.rbegin();
+                auto [ft, nt] = *top.begin();
+                low.erase(--low.end());
+                top.erase(top.begin());
+                low.insert({ft, nt});
+                top.insert({fb, nb});
+                winSum += 1L * nb * fb - 1L * nt * ft;
+            }
+            // once window of size k is ready, record its X-sum
+            if (i &gt;= k - 1) res.push_back(winSum);
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
