@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3321: Find X-Sum of All K-Long Subarrays II (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3321: Find X-Sum of All K-Long Subarrays II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array nums of n integers and two integers k and x. The x-sum of an array is calculated
+                by the following procedure: Count the occurrences of all elements in the array. Keep only the
+                occurrences
+                of the top x most frequent elements. If two elements have the same number of occurrences, the element
+                with
+                the bigger value is considered more frequent. Calculate the sum of the resulting array. Return an
+                integer
+                array answer of length n - k + 1 where answer[i] is the x-sum of the subarray nums[i..i + k - 1]. This
+                is
+                the harder version with larger constraints.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,1,2,2,3,4,2,3], k = 6, x = 2 → Output: [6,10,12]. For each subarray of length 6,
+                compute
+                the sum of top 2 most frequent elements (ties broken by value).
+                Input: nums = [3,8,7,8,7,5], k = 2, x = 2 → Output: [11,15,15,15,12]. Each sliding window's top 2
+                elements
+                contribute to the x-sum.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+class Solution {
+public:
+    vector&lt;long long&gt; findXSum(vector&lt;int&gt;&amp; nums, int k, int x) {
+        vector&lt;long long&gt; res;
+        unordered_map&lt;int, int&gt; freq;
+        multiset&lt;pair&lt;int, int&gt;&gt; hi, lo; // hi = top x by count/value, lo = rest
+        long long curSum = 0;
+        auto add = [&amp;](int val) {
+            int f = freq[val]++;
+            // remove old pair if exists
+            if (f) {
+                if (hi.count({f, val})) { hi.erase(hi.find({f, val})); curSum -= 1LL * f * val; }
+                else lo.erase(lo.find({f, val}));
+            }
+            lo.insert({f + 1, val}); // add with updated freq
+        };
+        auto remove = [&amp;](int val) {
+            int f = freq[val]--;
+            if (!f) return; // was already 0
+            if (hi.count({f, val})) { hi.erase(hi.find({f, val})); curSum -= 1LL * f * val; }
+            else lo.erase(lo.find({f, val}));
+            if (freq[val] &gt; 0) lo.insert({f - 1, val});
+        };
+        auto balance = [&amp;]() {
+            // move from lo → hi if hi has &lt; x elements
+            while (!lo.empty() &amp;&amp; hi.size() &lt; x) {
+                auto it = prev(lo.end());
+                hi.insert(*it);
+                curSum += 1LL * it-&gt;first * it-&gt;second;
+                lo.erase(it);
+            }
+            // ensure ordering (top x largest by freq then value)
+            while (!hi.empty() &amp;&amp; !lo.empty() &amp;&amp; *lo.rbegin() &gt; *hi.begin()) {
+                auto big = prev(lo.end());
+                auto small = hi.begin();
+                curSum += 1LL * big-&gt;first * big-&gt;second;
+                curSum -= 1LL * small-&gt;first * small-&gt;second;
+                lo.insert(*small);
+                hi.insert(*big);
+                hi.erase(small);
+                lo.erase(big);
+            }
+        };
+        for (int i = 0; i &lt; nums.size(); ++i) {
+            add(nums[i]);
+            if (i &gt;= k) remove(nums[i - k]);
+            balance();
+            if (i &gt;= k - 1) res.push_back(curSum);
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
