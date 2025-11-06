@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3607: Power Grid Maintenance (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3607: Power Grid Maintenance (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are managing a power grid with n power stations numbered from 1 to n. Some stations are connected by
+                power lines given in the connections array where connections[i] = [a, b] means stations a and b are
+                connected. You need to process queries of two types: Type 1 [1, x] - maintenance check: if station x is
+                online, return x; otherwise return the smallest numbered online station connected to x, or -1 if none
+                exist.
+                Type 2 [2, x] - turn off station x for maintenance. Return an array containing answers to all type 1
+                queries.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 5, connections = [[1,2],[2,3],[4,5]], queries = [[1,1],[2,2],[1,2],[1,3]] → Output: [1,1,3].
+                Query [1,1]: station 1 is online, return 1. Query [2,2]: turn off station 2. Query [1,2]: station 2 is
+                offline, smallest online connected is 1. Query [1,3]: station 3 is online, return 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+class Solution {
+public:
+    vector&lt;int&gt; processQueries(int n, vector&lt;vector&lt;int&gt;&gt;&amp; connections, vector&lt;vector&lt;int&gt;&gt;&amp; queries) {
+        vector&lt;int&gt; parent(n + 1);
+        iota(parent.begin(), parent.end(), 0);  // parent[i] = i
+        // Find with path compression
+        function&lt;int(int)&gt; find = [&amp;](int x) -&gt; int {
+            while (parent[x] != x) {
+                parent[x] = parent[parent[x]];  // path compression
+                x = parent[x];
+            }
+            return x;
+        };
+        // Union connected stations
+        for (auto&amp; e : connections) {
+            int a = e[0], b = e[1];
+            int ra = find(a), rb = find(b);
+            if (ra != rb)
+                parent[rb] = ra;
+        }
+        // For linking stations in sorted order within each component
+        vector&lt;int&gt; nextStation(n + 1, 0);  // next node in the same component
+        vector&lt;int&gt; compMin(n + 1, 0);      // smallest active station per component
+        unordered_map&lt;int, int&gt; last;       // last station added per component
+        for (int i = 1; i &lt;= n; ++i) {
+            int root = find(i);
+            if (compMin[root] == 0) {
+                compMin[root] = i;  // first (smallest) node in this component
+            } else {
+                nextStation[last[root]] = i;  // link previous to this
+            }
+            last[root] = i;  // update last node seen in this component
+        }
+        vector&lt;bool&gt; offline(n + 1, false);
+        vector&lt;int&gt; result;
+        // Process each query
+        for (auto&amp; q : queries) {
+            int type = q[0], x = q[1];
+            if (type == 1) {
+                // Maintenance check
+                if (!offline[x]) {
+                    result.push_back(x);  // itself is online
+                } else {
+                    int root = find(x);
+                    // Return smallest online station in component, or -1
+                    result.push_back(compMin[root] ? compMin[root] : -1);
+                }
+            } else {
+                // Turn off station
+                if (!offline[x]) {
+                    offline[x] = true;
+                    int root = find(x);
+                    // If x was the minimum in its component, move to next online
+                    if (compMin[root] == x) {
+                        int next = nextStation[x];
+                        while (next &amp;&amp; offline[next])
+                            next = nextStation[next];
+                        compMin[root] = next ? next : 0;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
