@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2528: Maximize the Minimum Powered City (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2528: Maximize the Minimum Powered City (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed integer array stations of length n, where stations[i] represents the number of
+                power stations in the ith city. Each power station can supply power to every city in a range [i - r, i +
+                r]
+                (inclusive). You are also given an integer r that represents the range of each power station, and an
+                integer
+                k representing the number of additional power stations you can place. Return the maximum possible
+                minimum
+                power supply of all cities after placing at most k additional power stations optimally.
+            </p>
+            <p><strong>Example:</strong>
+                Input: stations = [1,2,4,5,0], r = 1, k = 2 → Output: 5. Place 2 additional stations to maximize the
+                minimum
+                power. After optimal placement, the minimum power supply across all cities can be 5.
+                Input: stations = [4,4,4,4], r = 0, k = 3 → Output: 4. Since r = 0, each station only powers its own
+                city.
+                The minimum is already 4 and cannot be improved.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long maxPower(vector&lt;int&gt;&amp; st, int r, int k) {
+        long lo = ranges::min(st);  // lowest possible min power
+        long hi = accumulate(st.begin(), st.end(), 0L) + k + 1;  // upper bound
+        // Binary search for the highest achievable min power
+        while (lo &lt; hi) {
+            long mid = (lo + hi) / 2;
+            if (ok(st, r, k, mid))
+                lo = mid + 1;  // try for more power
+            else
+                hi = mid;      // reduce target
+        }
+        return lo - 1;     // max possible minimum power
+    }
+private:
+    // Checks if all cities can reach at least `need` power
+    bool ok(vector&lt;int&gt; st, int r, int extra, long need) {
+        int n = st.size();
+        long sum = accumulate(st.begin(), st.begin() + r, 0L);  // initial window sum
+        for (int i = 0; i &lt; n; ++i) {
+            if (i + r &lt; n)
+                sum += st[i + r];  // add right boundary
+            // If this city has less than required power
+            if (sum &lt; need) {
+                long req = need - sum;  // extra power needed
+                if (req &gt; extra)        // not enough stations left
+                    return false;
+                // Greedily add new stations at the farthest right point in range
+                st[min(n - 1, i + r)] += req;
+                extra -= req;
+                sum += req;
+            }
+            // Slide the window: remove the leftmost station contribution
+            if (i - r &gt;= 0)
+                sum -= st[i - r];
+        }
+        return true;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
