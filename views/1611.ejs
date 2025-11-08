@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1611: Minimum One Bit Operations to Make Integers Zero (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1611: Minimum One Bit Operations to Make Integers Zero (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an integer n, you must transform it into 0 using the minimum number of operations. In each
+                operation,
+                you can change the rightmost (0th) bit in the binary representation of n, or change the ith bit in the
+                binary representation of n if the (i-1)th bit is set to 1 and the (i-2)th through 0th bits are set to 0.
+                Return the minimum number of operations to make n equal to 0.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 3 → Output: 2. The binary representation of 3 is "11". Apply operation on the 0th bit: "11" →
+                "10".
+                Apply operation on the 1st bit: "10" → "00". Total operations = 2.
+                Input: n = 6 → Output: 4. Binary "110" requires 4 operations to reach "000".
+                Input: n = 9 → Output: 14. Binary "1001" requires 14 operations.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minimumOneBitOperations(int n) {
+        // Base: 0 already needs no operations
+        if (n == 0)
+            return 0;
+        // Find highest power of 2 ≤ n
+        int p = 1;
+        while (p &lt;&lt; 1 &lt;= n)
+            p &lt;&lt;= 1;
+        // Flip the highest bit (1XXX → 1100 pattern)
+        // Recursively solve for remaining bits using XOR
+        // Formula: total = steps to flip + remaining ops + lower group cost
+        return minimumOneBitOperations(n ^ (p | (p &gt;&gt; 1))) + p;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
