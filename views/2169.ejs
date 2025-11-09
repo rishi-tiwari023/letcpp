@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2169: Count Operations to Obtain Zero (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2169: Count Operations to Obtain Zero (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two non-negative integers num1 and num2. In one operation, if num1 >= num2, you must
+                subtract
+                num2 from num1, otherwise subtract num1 from num2. Return the number of operations required to make
+                either
+                num1 = 0 or num2 = 0.
+            </p>
+            <p><strong>Example:</strong>
+                Input: num1 = 2, num2 = 3 → Output: 3. Operation 1: num1 = 2, num2 = 3. Since num2 > num1, subtract num1
+                from num2: num2 = 1. Operation 2: num1 = 2, num2 = 1. Since num1 > num2, subtract num2 from num1: num1 =
+                1.
+                Operation 3: num1 = 1, num2 = 1. Since num1 = num2, subtract num2 from num1: num1 = 0. Total = 3
+                operations.
+                Input: num1 = 10, num2 = 10 → Output: 1. Subtract num2 from num1 to get num1 = 0. Total = 1 operation.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countOperations(int num1, int num2) {
+        int cnt = 0;
+        while (num1 != 0 &amp;&amp; num2 != 0)
+        {
+            if (num1 &gt;= num2)
+            {
+                cnt += num1 / num2;
+                num1 %= num2;
+            }
+            else if (num2 &gt; num1)
+            {
+                cnt += num2 / num1;
+                num2 %= num1;
+            }
+        }
+        return cnt;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
