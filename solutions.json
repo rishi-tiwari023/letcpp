@@ -271,6 +271,33 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1526,
+            "title": "Minimum Number of Increments on Subarrays to Form a Target Array",
+            "route": "/1526",
+            "difficulty": "Medium",
+            "description": "You are given an integer array target. You have an integer array initial of the same size as target with all elements initially zeros. In one operation you can choose any subarray from initial and increment each value by one. Return the minimum number of operations to form a target array from initial.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1578,
+            "title": "Minimum Time to Make Rope Colorful",
+            "route": "/1578",
+            "difficulty": "Medium",
+            "description": "Alice has n balloons arranged on a rope. You are given a 0-indexed string colors where colors[i] is the color of the ith balloon. Alice wants the rope to be colorful, meaning that no two consecutive balloons are of the same color. You are given a 0-indexed integer array neededTime where neededTime[i] is the time (in seconds) that Alice needs to remove the ith balloon from the rope. Return the minimum time Alice needs to make the rope colorful.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1611,
+            "title": "Minimum One Bit Operations to Make Integers Zero",
+            "route": "/1611",
+            "difficulty": "Hard",
+            "description": "Given an integer n, you must transform it into 0 using the minimum number of operations. In each operation, you can change the rightmost (0th) bit in the binary representation of n, or change the ith bit in the binary representation of n if the (i-1)th bit is set to 1 and the (i-2)th through 0th bits are set to 0. Return the minimum number of operations to make n equal to 0.",
+            "timeComplexity": "O(log n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1625,
             "title": "Lexicographically Smallest String After Applying Operations",
             "route": "/1625",
@@ -334,12 +361,30 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2043,
+            "title": "Simple Bank System",
+            "route": "/2043",
+            "difficulty": "Medium",
+            "description": "You have been tasked with writing a program for a popular bank that will automate all its incoming transactions (transfer, deposit, and withdraw). The bank has n accounts numbered from 1 to n. The initial balance of each account is stored in a 0-indexed integer array balance, with the (i + 1)th account having an initial balance of balance[i]. Execute all the valid transactions.",
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(n)"
+        },
+        {
             "id": 2048,
             "title": "Next Greater Numerically Balanced Number",
             "route": "/2048",
             "difficulty": "Medium",
             "description": "An integer x is numerically balanced if for every digit d in x, the frequency of d in x is equal to d.",
             "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2125,
+            "title": "Number of Laser Beams in a Bank",
+            "route": "/2125",
+            "difficulty": "Medium",
+            "description": "Anti-theft security devices are activated inside a bank. You are given a 0-indexed binary string array bank representing the floor plan of the bank, which is an m x n 2D matrix. bank[i] represents the ith row, consisting of '0's and '1's. '0' means the cell is empty, while '1' means the cell has a security device. There is one laser beam between any two security devices if both devices are in different rows and there are no security devices in the rows between them. Return the total number of laser beams in the bank.",
+            "timeComplexity": "O(m*n)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -712,6 +757,6 @@
             "spaceComplexity": "O(1)"
         }
     ],
-    "totalCount": 95,
+    "totalCount": 100,
     "lastUpdated": "2025-10-25"
 }
