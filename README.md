@@ -231,6 +231,45 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
+## 🔍 Finding Missing Solutions
+
+Use this script to find which solution EJS files exist but are not yet added to `solutions.json`:
+
+```javascript
+// search.js - Find missing solutions
+const fs = require('fs');
+const path = require('path');
+
+// Read solutions.json
+const solutions = JSON.parse(fs.readFileSync('solutions.json', 'utf8'));
+const existingIds = new Set(solutions.solutions.map(s => s.id));
+
+// Get all numeric EJS files from views directory
+const viewsDir = 'views';
+const files = fs.readdirSync(viewsDir).filter(f => /^\d+\.ejs$/.test(f));
+const fileIds = files.map(f => parseInt(f.replace('.ejs', '')));
+
+// Find missing solution IDs
+const missing = fileIds.filter(id => !existingIds.has(id)).sort((a, b) => a - b);
+
+console.log('TotalCount field in JSON:', solutions.totalCount);
+console.log('Actual solutions array length:', solutions.solutions.length);
+console.log('EJS files found:', files.length);
+console.log('Missing solution IDs:', JSON.stringify(missing));
+console.log('Total missing:', missing.length);
+
+// Also show which IDs are in solutions.json but don't have EJS files
+const solutionIds = new Set(solutions.solutions.map(s => s.id));
+const missingFiles = Array.from(solutionIds).filter(id => !fileIds.includes(id)).sort((a, b) => a - b);
+if (missingFiles.length > 0) {
+    console.log('\nSolutions in JSON but missing EJS files:', JSON.stringify(missingFiles));
+}
+```
+
+Run with: `node search.js`
+
+---
+
 **LetCpp** - Making LeetCode solutions accessible and beautiful! 🚀
 
 
