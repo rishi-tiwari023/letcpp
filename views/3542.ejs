@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3542: Minimum Operations to Convert All Elements to Zero (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3542: Minimum Operations to Convert All Elements to Zero (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums. In one operation, you can select a subarray and decrement all its
+                elements by 1. Return the minimum number of operations needed to make all elements in nums equal to 0.
+                You need to efficiently track when segments of the array decrease and count the total operations
+                required.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,2,1] → Output: 3. You need 3 operations to reduce the entire array to zeros by
+                decrementing subarrays optimally.
+                Input: nums = [3,3,3,3] → Output: 3. All elements are the same, so 3 operations decrement them all to
+                zero.
+                Input: nums = [5,4,3,2,1] → Output: 5. A strictly decreasing array requires operations equal to the
+                maximum
+                element.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minOperations(vector&lt;int&gt;&amp; nums) {
+        nums.push_back(0);  // Sentinel to process remaining stack elements at end
+        vector&lt;int&gt; st;     // Stack to track increasing segments
+        int count = 0;      // Operation counter
+        for (int i = 0; i &lt; nums.size(); ++i) {
+            // Process while current element is smaller than stack top
+            while (!st.empty() &amp;&amp; nums[i] &lt; st.back()) {
+                st.pop_back();  // Remove higher level (segment ended)
+                count++;        // One operation done for that level
+            }
+            // If current element is larger, start a new segment
+            if (st.empty() || nums[i] &gt; st.back()) {
+                if (nums[i] != 0)  // Ignore zeros
+                    st.push_back(nums[i]);
+            }
+            // If equal, continue (no change)
+        }
+        return count;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
