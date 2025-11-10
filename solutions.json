@@ -845,8 +845,17 @@
             "description": "You are given an integer array nums. In one operation, you can select a subarray and decrement all its elements by 1. Return the minimum number of operations needed to make all elements in nums equal to 0. You need to efficiently track when segments of the array decrease and count the total operations required.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 3607,
+            "title": "Power Grid Maintenance",
+            "route": "/3607",
+            "difficulty": "Hard",
+            "description": "You are managing a power grid with n power stations numbered from 1 to n. Some stations are connected by power lines given in the connections array where connections[i] = [a, b] means stations a and b are connected. You need to process queries of two types: Type 1 [1, x] - maintenance check: if station x is online, return x; otherwise return the smallest numbered online station connected to x, or -1 if none exist. Type 2 [2, x] - turn off station x for maintenance. Return an array containing answers to all type 1 queries.",
+            "timeComplexity": "O(n + m + q)",
+            "spaceComplexity": "O(n + m)"
         }
     ],
-    "totalCount": 110,
-    "lastUpdated": "2025-10-25"
+    "totalCount": 111,
+    "lastUpdated": "2025-11-10"
 }
