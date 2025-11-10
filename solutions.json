@@ -388,6 +388,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2169,
+            "title": "Count Operations to Obtain Zero",
+            "route": "/2169",
+            "difficulty": "Easy",
+            "description": "You are given two non-negative integers num1 and num2. In one operation, if num1 >= num2, you must subtract num2 from num1, otherwise subtract num1 from num2. Return the number of operations required to make either num1 = 0 or num2 = 0.",
+            "timeComplexity": "O(log(min(num1, num2)))",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2197,
             "title": "Replace Non-Coprime Numbers in Array",
             "route": "/2197",
@@ -404,6 +413,15 @@
             "description": "You are given a 0-indexed integer array nums, where nums[i] is a digit between 0 and 9 (inclusive).",
             "timeComplexity": "O(n^2)",
             "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2257,
+            "title": "Count Unguarded Cells in the Grid",
+            "route": "/2257",
+            "difficulty": "Medium",
+            "description": "You are given two integers m and n representing a 0-indexed m x n grid. You are also given two 2D integer arrays guards and walls where guards[i] = [row_i, col_i] and walls[j] = [row_j, col_j] represent the positions of the ith guard and jth wall respectively. A guard can see every cell in the four cardinal directions (north, east, south, or west) starting from their position unless obstructed by a wall or another guard. A cell is guarded if there is at least one guard that can see it. Return the number of unoccupied cells that are not guarded.",
+            "timeComplexity": "O(m*n)",
+            "spaceComplexity": "O(m*n)"
         },
         {
             "id": 2264,
@@ -467,6 +485,15 @@
             "description": "Given a positive integer n, there exists a 0-indexed array called powers, composed of the minimum number of powers of 2 that sum to n.",
             "timeComplexity": "O(q * log n)",
             "spaceComplexity": "O(log n)"
+        },
+        {
+            "id": 2528,
+            "title": "Maximize the Minimum Powered City",
+            "route": "/2528",
+            "difficulty": "Hard",
+            "description": "You are given a 0-indexed integer array stations of length n, where stations[i] represents the number of power stations in the ith city. Each power station can supply power to every city in a range [i - r, i + r] (inclusive). You are also given an integer r that represents the range of each power station, and an integer k representing the number of additional power stations you can place. Return the maximum possible minimum power supply of all cities after placing at most k additional power stations optimally.",
+            "timeComplexity": "O(n log(sum(stations) + k))",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 2598,
@@ -604,12 +631,30 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3217,
+            "title": "Delete Nodes From Linked List Present in Array",
+            "route": "/3217",
+            "difficulty": "Medium",
+            "description": "You are given an array of integers nums and the head of a linked list. Return the head of the modified linked list after removing all nodes from the linked list that have a value that exists in nums. The order of the nodes should remain the same.",
+            "timeComplexity": "O(n + m)",
+            "spaceComplexity": "O(m)"
+        },
+        {
             "id": 3227,
             "title": "Vowels of All Substrings",
             "route": "/3227",
             "difficulty": "Medium",
             "description": "Given a string word, return the sum of the number of vowels ('a', 'e', 'i', 'o', 'u') in every substring of word.",
             "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3289,
+            "title": "The Two Sneaky Numbers of Digitville",
+            "route": "/3289",
+            "difficulty": "Easy",
+            "description": "In the town of Digitville, there was a list of numbers called nums containing integers from 0 to n - 1. Each number was supposed to appear exactly once in the list, however, two mischievous numbers sneaked in an additional time, making the list longer than usual. As the town detective, your task is to find these two sneaky numbers. Return an array of size two containing the two numbers (in any order), so peace can return to Digitville.",
+            "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -757,6 +802,6 @@
             "spaceComplexity": "O(1)"
         }
     ],
-    "totalCount": 100,
+    "totalCount": 105,
     "lastUpdated": "2025-10-25"
 }
