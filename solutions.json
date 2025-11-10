@@ -658,6 +658,24 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3318,
+            "title": "Find X-Sum of All K-Long Subarrays I",
+            "route": "/3318",
+            "difficulty": "Medium",
+            "description": "You are given an array nums of n integers and two integers k and x. The x-sum of an array is calculated by the following procedure: Count the occurrences of all elements in the array. Keep only the occurrences of the top x most frequent elements. If two elements have the same number of occurrences, the element with the bigger value is considered more frequent. Calculate the sum of the resulting array. Return an integer array answer of length n - k + 1 where answer[i] is the x-sum of the subarray nums[i..i + k - 1].",
+            "timeComplexity": "O(n*k)",
+            "spaceComplexity": "O(k)"
+        },
+        {
+            "id": 3321,
+            "title": "Find X-Sum of All K-Long Subarrays II",
+            "route": "/3321",
+            "difficulty": "Medium",
+            "description": "You are given an array nums of n integers and two integers k and x. The x-sum of an array is calculated by the following procedure: Count the occurrences of all elements in the array. Keep only the occurrences of the top x most frequent elements. If two elements have the same number of occurrences, the element with the bigger value is considered more frequent. Calculate the sum of the resulting array. Return an integer array answer of length n - k + 1 where answer[i] is the x-sum of the subarray nums[i..i + k - 1]. This is the harder version with larger constraints.",
+            "timeComplexity": "O(n*k)",
+            "spaceComplexity": "O(k)"
+        },
+        {
             "id": 3346,
             "title": "Determine if a Cell Is Reachable at a Given Time",
             "route": "/3346",
@@ -691,6 +709,24 @@
             "difficulty": "Hard",
             "description": "You are given a binary string s and a positive integer k.",
             "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3354,
+            "title": "Make Array Elements Equal to Zero",
+            "route": "/3354",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums. Start by selecting a starting position curr such that nums[curr] == 0, and choose a movement direction of either left or right. After that, you repeat the following process: If curr is out of the range [0, n - 1], this process ends. If nums[curr] == 0, move in the current direction by incrementing curr if you are moving right, or decrementing curr if you are moving left. Else if nums[curr] > 0, decrement nums[curr] by 1, and reverse your movement direction (left becomes right and vice versa). Continue the process until you can no longer move. Return the number of possible starting positions and directions that make every element in nums equal to 0.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 3370,
+            "title": "Smallest Number With All Set Bits",
+            "route": "/3370",
+            "difficulty": "Easy",
+            "description": "You are given a positive integer n. Return the smallest number x greater than or equal to n, such that the binary representation of x contains only set bits (all bits are 1). In other words, return the smallest number that is greater than or equal to n and is of the form 2^k - 1 for some positive integer k.",
+            "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -800,8 +836,17 @@
             "description": "You are given a binary string s and a positive integer k.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3542,
+            "title": "Minimum Operations to Convert All Elements to Zero",
+            "route": "/3542",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums. In one operation, you can select a subarray and decrement all its elements by 1. Return the minimum number of operations needed to make all elements in nums equal to 0. You need to efficiently track when segments of the array decrease and count the total operations required.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
         }
     ],
-    "totalCount": 105,
+    "totalCount": 110,
     "lastUpdated": "2025-10-25"
 }
