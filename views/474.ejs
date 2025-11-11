@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 474: Ones and Zeroes (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 474: Ones and Zeroes (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array of binary strings strs and two integers m and n. Return the size of the largest
+                subset of strs such that there are at most m 0's and n 1's in the subset. A set x is a subset of a set y
+                if all elements of x are also elements of y.
+            </p>
+            <p><strong>Example:</strong>
+                Input: strs = ["10","0001","111001","1","0"], m = 5, n = 3 → Output: 4. The largest subset with at most
+                5 zeros and 3 ones is {"10", "0001", "1", "0"}, so the answer is 4.
+                Input: strs = ["10","0","1"], m = 1, n = 1 → Output: 2. The largest subset is {"0", "1"}, so the answer
+                is 2.
+                Input: strs = ["10","0001","111001"], m = 4, n = 3 → Output: 2. The largest subset is {"0001", "10"}.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int findMaxForm(vector&lt;string&gt;&amp; strs, int maxZeros, int maxOnes) {
+        // dp[i][j] = maximum number of strings that can be formed 
+        // using at most i zeros and j ones
+        vector&lt;vector&lt;int&gt;&gt; dp(maxZeros + 1, vector&lt;int&gt;(maxOnes + 1, 0));
+        // Iterate through each binary string
+        for (const string&amp; str : strs) {
+            // Count zeros and ones in the current string
+            int zeroCount = count(str.begin(), str.end(), '0');
+            int oneCount = str.size() - zeroCount;
+            // Traverse dp array in reverse to avoid recomputing based on current string
+            for (int i = maxZeros; i &gt;= zeroCount; --i) {
+                for (int j = maxOnes; j &gt;= oneCount; --j) {
+                    // Either take this string or skip it, choose whichever gives a larger subset
+                    dp[i][j] = max(dp[i][j], dp[i - zeroCount][j - oneCount] + 1);
+                }
+            }
+        }
+        // The bottom-right cell contains the maximum subset size
+        return dp[maxZeros][maxOnes];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
