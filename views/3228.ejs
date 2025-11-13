@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3228: Maximum Number of Operations to Move Ones to the End (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3228: Maximum Number of Operations to Move Ones to the End (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a binary string s. You can perform the following operation on the string any number of
+                times:
+                Choose any index i from the string where i + 1 < s.length such that s[i]=='1' and s[i + 1]=='0' . Move
+                    the character s[i] to the right until it reaches the end of the string or another '1' . Return the
+                    maximum number of operations that you can perform. </p>
+                    <p><strong>Example:</strong>
+                        Input: s = "1001101" → Output: 4. We can perform 4 operations by moving '1's past '0's to reach
+                        the end.
+                        Input: s = "00111" → Output: 0. All '1's are already at the end, so no operations are needed.
+                        Input: s = "1100" → Output: 2. The two '1's can each be moved past the '0's, giving 2 operations
+                        total.
+                    </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxOperations(string s) {
+        int operations = 0;      // Total valid operations we can perform
+        int countOnes = 0;       // Number of '1's seen so far while scanning
+        for (int i = 0; i &lt; s.length(); ++i) {
+            if (s[i] == '1') {
+                // Count how many '1's we have encountered so far
+                countOnes++;
+            } 
+            else {
+                // We are at a '0'. It can contribute to operations **only if**:
+                // 1) It is the last character, OR
+                // 2) The next character is '1'
+                //
+                // This means this '0' acts like a boundary or closing point
+                // where existing '1's can be moved past it.
+                if (i + 1 == s.length() || s[i + 1] == '1') {
+                    operations += countOnes;
+                }
+            }
+        }
+        return operations;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
