@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2536: Increment Submatrices by One (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2536: Increment Submatrices by One (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a positive integer n, indicating that we initially have an n x n 0-indexed integer matrix
+                mat filled with zeroes. You are also given a 2D integer array query. For each query[i] = [row1_i,
+                col1_i,
+                row2_i, col2_i], you should do the following operation: Add 1 to every element in the submatrix with the
+                top left corner (row1_i, col1_i) and the bottom right corner (row2_i, col2_i). Return the matrix mat
+                after
+                performing every query.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 3, queries = [[1,1,2,2],[0,0,1,1]] → Output: [[1,1,0],[1,2,1],[0,1,1]]. After the first
+                query,
+                the submatrix from (1,1) to (2,2) is incremented. After the second query, the submatrix from (0,0) to
+                (1,1)
+                is incremented.
+                Input: n = 2, queries = [[0,0,1,1]] → Output: [[1,1],[1,1]]. The entire 2x2 matrix is incremented by 1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; rangeAddQueries(int n, vector&lt;vector&lt;int&gt;&gt;&amp; q) {
+        // diff[r][c] tracks how much to add at column 'c' for row 'r'
+        vector&lt;vector&lt;int&gt;&gt; diff(n, vector&lt;int&gt;(n + 1, 0));
+        // Mark increments using row-wise difference array
+        for (auto&amp; v : q) {
+            int r1 = v[0], c1 = v[1], r2 = v[2], c2 = v[3];
+            // For each affected row, mark start and end of increments
+            for (int r = r1; r &lt;= r2; r++) {
+                diff[r][c1]++;      // start increment
+                diff[r][c2 + 1]--;  // end increment
+            }
+        }
+        vector&lt;vector&lt;int&gt;&gt; res(n, vector&lt;int&gt;(n, 0));
+        // Convert difference rows into actual values using prefix sum
+        for (int r = 0; r &lt; n; r++) {
+            int run = 0;  // running sum for current row
+            for (int c = 0; c &lt; n; c++) {
+                run += diff[r][c];
+                res[r][c] = run;    // final cell value
+            }
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
