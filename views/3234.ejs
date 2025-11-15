@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3234: Count the Number of Substrings With Dominant Ones (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3234: Count the Number of Substrings With Dominant Ones (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a binary string s. Return the number of substrings with dominant ones. A string has
+                dominant
+                ones if the number of ones in the string is greater than or equal to the square of the number of zeros
+                in
+                the string. In other words, for a substring to have dominant ones, if it contains z zeros, it must
+                contain
+                at least z² ones.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "00011" → Output: 5. Substrings "1", "1", "11", "1", "11" have dominant ones.
+                Input: s = "101101" → Output: 16. Multiple substrings satisfy the dominant ones condition where ones >=
+                zeros².
+                Input: s = "00000" → Output: 0. No substring can have dominant ones since there are no '1's.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int numberOfSubstrings(string s) {
+        int n = s.size(), res = 0;
+        // iterate possible zero count
+        for (int z = 0; z + z * z &lt;= n; ++z) {
+            int bad = -1;
+            vector&lt;int&gt; cnt(2, 0);
+            for (int L = 0, R = 0; R &lt; n; ++R) {
+                cnt[s[R]-'0']++;
+                // shrink window to keep zeros == z and ones &gt;= z*z
+                while (L &lt; R) {
+                    if (s[L] == '0' &amp;&amp; cnt[0] &gt; z) {
+                        cnt[0]--;
+                        bad = L;
+                        L++;
+                    } 
+                    else if (s[L] == '1' &amp;&amp; cnt[1] - 1 &gt;= z*z) {
+                        cnt[1]--;
+                        L++;
+                    }
+                    else break;
+                }
+                // window meets condition
+                if (cnt[0] == z &amp;&amp; cnt[1] &gt;= z*z)
+                    res += L - bad;  // all valid substrings ending at R
+            }
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
