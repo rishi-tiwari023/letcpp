@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1513: Number of Substrings With Only 1s (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1513: Number of Substrings With Only 1s (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a binary string s, return the number of substrings with all characters equal to 1. Since the
+                answer
+                may be too large, return it modulo 10^9 + 7. A substring is a contiguous sequence of characters within a
+                string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "0110111" → Output: 9. There are 9 substrings with only 1's: "1" (at index 1), "1" (at index
+                2),
+                "11" (indices 1-2), "1" (at index 4), "1" (at index 5), "1" (at index 6), "11" (indices 4-5), "111"
+                (indices 4-6),
+                "11" (indices 5-6).
+                Input: s = "101" → Output: 2. The substrings are "1" at index 0 and "1" at index 2.
+                Input: s = "111111" → Output: 21. For a streak of 6 ones, the count is 6 + 5 + 4 + 3 + 2 + 1 = 21.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int numSub(string s) {
+        const int mod = 1'000'000'007;
+        long long res = 0;
+        
+        // cnt = length of current continuous '1' streak
+        long long cnt = 0;
+        for(char c : s) {
+            if (c == '1') {
+                ++cnt;                // extend streak
+                res = (res + cnt) % mod; // add all substrings ending here
+            } else {
+                cnt = 0;             // streak breaks
+            }
+        }
+        
+        return (int)res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
