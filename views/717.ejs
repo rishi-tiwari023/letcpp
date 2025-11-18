@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 717: 1-bit and 2-bit Characters (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 717: 1-bit and 2-bit Characters (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                We have two special characters: The first character can be represented by one bit 0. The second
+                character
+                can be represented by two bits (10 or 11). Given a binary array bits that ends with 0, return true if
+                the
+                last character must be a one-bit character. In other words, determine if the last 0 in the array
+                represents
+                a standalone 1-bit character rather than being part of a 2-bit character.
+            </p>
+            <p><strong>Example:</strong>
+                Input: bits = [1,0,0] → Output: true. The parsing is "10" (2-bit) + "0" (1-bit), so last character is
+                1-bit.
+                Input: bits = [1,1,1,0] → Output: false. The parsing is "11" (2-bit) + "10" (2-bit), so last 0 is part
+                of
+                a 2-bit character.
+                Input: bits = [1,0,1,0] → Output: true. Parsing: "10" + "10", but we stop before the last 0, which
+                stands alone.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">// Approach Greedy scanning using the exact original logic
+class Solution {
+public:
+    bool isOneBitCharacter(vector&lt;int&gt;&amp; bits) {
+        int n = bits.size();
+        int i = 0; // pointer walking through bits
+        // Stop before last position because the last bit should be validated separately
+        while (i &lt; n - 1) {
+            // If current bit is 0 → it's a 1-bit char, move 1 step
+            if (bits[i] == 0)
+                i += 1;
+            else
+                // If current bit is 1 → it's a 2-bit char, skip 2 bits
+                i += 2;
+        }
+        // If our pointer stopped exactly at the last index,
+        // then last bit is a valid 1-bit character.
+        return i == n - 1;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
