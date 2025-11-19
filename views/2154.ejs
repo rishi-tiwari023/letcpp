@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2154: Keep Multiplying Found Values by Two (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2154: Keep Multiplying Found Values by Two (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array of integers nums. You are also given an integer original which is the first
+                number
+                that needs to be searched for in nums. You then do the following steps: If original is found in nums,
+                multiply it by two (i.e., set original = 2 * original). Otherwise, stop the process. Repeat this process
+                with the new number as long as you keep finding the number. Return the final value of original.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [5,3,6,1,12], original = 3 → Output: 24. 3 is found, becomes 6. 6 is found, becomes 12.
+                12 is found, becomes 24. 24 is not found, so return 24.
+                Input: nums = [2,7,9], original = 4 → Output: 4. 4 is not found in nums, so return 4 immediately.
+                Input: nums = [1,2,4,8], original = 1 → Output: 16. 1→2→4→8→16 (16 not found).
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int findFinalValue(vector&lt;int&gt;&amp; a, int k) {
+        unordered_set&lt;int&gt; st(a.begin(), a.end()); // quick lookup
+        while (st.count(k)) 
+            k *= 2;  // keep doubling while seen
+        return k;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
