@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 757: Set Intersection Size At Least Two (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 757: Set Intersection Size At Least Two (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D integer array intervals where intervals[i] = [start_i, end_i] represents all the
+                integers
+                from start_i to end_i inclusively. A containing set is an array nums where each interval from intervals
+                has
+                at least two integers in nums. Return the minimum possible size of a containing set.
+            </p>
+            <p><strong>Example:</strong>
+                Input: intervals = [[1,3],[1,4],[2,5],[3,5]] → Output: 3. The smallest set that intersects each interval
+                with at least 2 elements is {2,3,4}.
+                Input: intervals = [[1,2],[2,3],[2,4],[4,5]] → Output: 5. We need at least 5 elements: {1,2,3,4,5} to
+                satisfy all intervals with at least 2 common elements.
+                Input: intervals = [[1,10],[2,3],[4,5],[6,7]] → Output: 5. Use elements strategically to cover all
+                intervals.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int intersectionSizeTwo(vector&lt;vector&lt;int&gt;&gt;&amp; arr) {
+        int res = 0;
+        int a = -1, b = -1; // top two selected values (a = max, b = second max)
+        // Sort by interval end asc, start desc
+        ranges::sort(arr, ranges::less{}, [](const vector&lt;int&gt;&amp; t) {
+            return pair&lt;int,int&gt;{t[1], -t[0]};
+        });
+        for (auto &amp;it : arr) {
+            int s = it[0], e = it[1];
+            // If both chosen numbers already lie inside interval → nothing needed
+            if (a &gt;= s &amp;&amp; b &gt;= s) continue;
+            // If only 'a' fits → add one more number
+            if (a &gt;= s) {
+                b = a;
+                a = e;
+                res++;
+            }
+            // If none fit → add two numbers
+            else {
+                a = e;
+                b = e - 1;
+                res += 2;
+            }
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
