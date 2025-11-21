@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1930: Unique Length-3 Palindromic Subsequences (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1930: Unique Length-3 Palindromic Subsequences (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a string s, return the number of unique palindromes of length three that are a subsequence of s.
+                Note that even if there are multiple ways to obtain the same subsequence, it is still only counted once.
+                A palindrome is a string that reads the same forwards and backwards. A subsequence of a string is a new
+                string generated from the original string with some characters (can be none) deleted without changing
+                the
+                relative order of the remaining characters.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "aabca" → Output: 3. The 3 palindromic subsequences of length 3 are: "aba" (using indices
+                0,2,4),
+                "aba" (using indices 0,1,4), "aca" (using indices 0,2,4). Note "aba" appears twice but is counted once.
+                Input: s = "adc" → Output: 0. There are no palindromic subsequences of length 3.
+                Input: s = "bbcbaba" → Output: 4. The palindromic subsequences are "bbb", "bcb", "bab", "aba".
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countPalindromicSubsequence(string s) {
+        int res = 0;
+        int n = s.length();
+        // first[c] = first position where character c appears
+        // last[c]  = last position where character c appears
+        vector&lt;int&gt; first(26, n);
+        vector&lt;int&gt; last(26, -1);
+        // track first and last occurrences of each character
+        for (int i = 0; i &lt; n; i++) {
+            int c = s[i] - 'a';
+            first[c] = min(first[c], i);
+            last[c] = i;
+        }
+        // now check each character as the 'a _ a' pattern's outer character
+        for (int c = 0; c &lt; 26; c++) {
+            // valid only if the char appears at least twice
+            if (first[c] &lt; last[c]) {
+                // take all characters between first[c]+1 and last[c]-1
+                // this set stores all possible middle characters (unique)
+                unordered_set&lt;char&gt; mid(s.begin() + first[c] + 1,
+                                        s.begin() + last[c]);
+                
+                // number of unique middle chars = number of palindromes
+                res += mid.size();
+            }
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
