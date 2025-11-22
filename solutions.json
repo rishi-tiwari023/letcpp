@@ -109,6 +109,15 @@
             "spaceComplexity": "O(m*n)"
         },
         {
+            "id": 474,
+            "title": "Ones and Zeroes",
+            "route": "/474",
+            "difficulty": "Medium",
+            "description": "You are given an array of binary strings strs and two integers m and n. Return the size of the largest subset of strs such that there are at most m 0's and n 1's in the subset.",
+            "timeComplexity": "O(len(strs) * m * n)",
+            "spaceComplexity": "O(m * n)"
+        },
+        {
             "id": 498,
             "title": "Diagonal Traverse",
             "route": "/498",
@@ -133,6 +142,24 @@
             "difficulty": "Hard",
             "description": "You are given an integer array cards of length 4. You have four cards, each containing a number in the range [1, 9].",
             "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 717,
+            "title": "1-bit and 2-bit Characters",
+            "route": "/717",
+            "difficulty": "Easy",
+            "description": "We have two special characters: The first character can be represented by one bit 0. The second character can be represented by two bits (10 or 11). Given a binary array bits that ends with 0, return true if the last character must be a one-bit character.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 757,
+            "title": "Set Intersection Size At Least Two",
+            "route": "/757",
+            "difficulty": "Hard",
+            "description": "You are given a 2D integer array intervals where intervals[i] = [start_i, end_i] represents all the integers from start_i to end_i inclusively. A containing set is an array nums where each interval from intervals has at least two integers in nums. Return the minimum possible size of a containing set.",
+            "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -235,6 +262,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1437,
+            "title": "Check If All 1's Are at Least Length K Places Away",
+            "route": "/1437",
+            "difficulty": "Easy",
+            "description": "Given an binary array nums and an integer k, return true if all 1's are at least k places away from each other, otherwise return false.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1488,
             "title": "Avoid Flood in The City",
             "route": "/1488",
@@ -259,6 +295,15 @@
             "difficulty": "Medium",
             "description": "Given a rows * columns matrix mat of ones and zeros, return how many submatrices have all ones.",
             "timeComplexity": "O(m*n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1513,
+            "title": "Number of Substrings With Only 1s",
+            "route": "/1513",
+            "difficulty": "Medium",
+            "description": "Given a binary string s, return the number of substrings with all characters equal to 1. Since the answer may be too large, return it modulo 10^9 + 7.",
+            "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
         },
         {
