@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
+    "build": "npm run build:css:prod",
     "build:css": "tailwindcss -i ./public/tailwind.css -o ./public/styles.min.css --watch",
     "build:css:prod": "tailwindcss -i ./public/tailwind.css -o ./public/styles.min.css --minify"
   },

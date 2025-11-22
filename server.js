@@ -64,11 +64,16 @@ app.use((req, res) => {
   res.status(404).render("404", { title: "Not Found" });
 });
 
-// Start server
-const port = process.env.PORT || 3000;
-const host = process.env.HOST || "0.0.0.0";
+// Export app for Vercel serverless functions
+module.exports = app;
 
-app.listen(port, host, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server listening on http://${host}:${port}`);
-});
+// Start server only if not running on Vercel
+if (require.main === module) {
+  const port = process.env.PORT || 3000;
+  const host = process.env.HOST || "0.0.0.0";
+  
+  app.listen(port, host, () => {
+    // eslint-disable-next-line no-console
+    console.log(`Server listening on http://${host}:${port}`);
+  });
+}
