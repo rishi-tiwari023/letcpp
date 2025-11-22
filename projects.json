@@ -1,0 +1,22 @@
+{
+    "projects": [
+        {
+            "title": "LetCpp - LeetCode C++ Solutions",
+            "techStack": [
+                "Node.js",
+                "Express",
+                "EJS",
+                "Tailwind CSS",
+                "PostCSS",
+                "Autoprefixer",
+                "JavaScript"
+            ],
+            "description": "A comprehensive web application displaying LeetCode C++ solutions with a modern, responsive interface featuring copy-to-clipboard functionality and clean code presentation.",
+            "highlights": [
+                "Modern responsive web interface with Tailwind CSS styling and mobile-first design",
+                "Copy-to-clipboard functionality for easy code sharing with visual feedback",
+                "Comprehensive collection of C++ solutions with detailed complexity analysis "
+            ]
+        }
+    ]
+}
