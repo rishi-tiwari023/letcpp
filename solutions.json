@@ -739,6 +739,24 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3228,
+            "title": "Maximum Number of Operations to Move Ones to the End",
+            "route": "/3228",
+            "difficulty": "Medium",
+            "description": "You are given a binary string s. You can perform the following operation on the string any number of times: Choose any index i from the string where i + 1 < s.length such that s[i]=='1' and s[i + 1]=='0'. Move the character s[i] to the right until it reaches the end of the string or another '1'. Return the maximum number of operations that you can perform.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3234,
+            "title": "Count the Number of Substrings With Dominant Ones",
+            "route": "/3234",
+            "difficulty": "Medium",
+            "description": "You are given a binary string s. Return the number of substrings with dominant ones. A string has dominant ones if the number of ones in the string is greater than or equal to the square of the number of zeros in the string.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3289,
             "title": "The Two Sneaky Numbers of Digitville",
             "route": "/3289",
@@ -946,6 +964,6 @@
             "spaceComplexity": "O(n + m)"
         }
     ],
-    "totalCount": 111,
-    "lastUpdated": "2025-11-10"
+    "totalCount": 123,
+    "lastUpdated": "2025-11-22"
 }
