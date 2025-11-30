@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1590: Make Sum Divisible by P (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1590: Make Sum Divisible by P (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an array of positive integers nums, remove the smallest subarray (possibly empty) such that the
+                sum
+                of the remaining elements is divisible by p. It is not allowed to remove the whole array. Return the
+                length
+                of the smallest subarray that you need to remove, or -1 if it's impossible. A subarray is defined as a
+                contiguous block of elements in the array.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [3,1,4,2], p = 6 → Output: 1. The sum of elements is 10, which is not divisible by 6. We
+                can
+                remove the subarray [4], making the remaining sum 6, which is divisible by 6.
+                Input: nums = [6,3,5,2], p = 9 → Output: 2. Remove subarray [5,2] to make the remaining sum 9.
+                Input: nums = [1,2,3], p = 3 → Output: 0. The sum is already divisible by 3, so no removal is needed.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minSubarray(vector&lt;int&gt;&amp; a, int p) {
+        long total = 0;
+        for (int x : a) total += x;
+        int need = total % p;
+        if (need == 0) return 0;  // already divisible
+        unordered_map&lt;int, int&gt; mp;
+        mp[0] = -1;               // prefix % p → earliest index
+        int pref = 0, n = a.size(), ans = n;
+        for (int i = 0; i &lt; n; i++) {
+            pref = (pref + a[i]) % p;
+            // we want a previous prefix 'x' such that:
+            // (pref - x) % p == need  →  x == (pref - need + p) % p
+            int want = (pref - need + p) % p;
+            if (mp.count(want))
+                ans = min(ans, i - mp[want]);
+            // store/update this prefix's latest index
+            mp[pref] = i;
+        }
+        return ans == n ? -1 : ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
