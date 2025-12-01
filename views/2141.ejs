@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2141: Maximum Running Time of N Computers (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2141: Maximum Running Time of N Computers (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You have n computers. You are given the integer n and a 0-indexed integer array batteries where the ith
+                battery can run a computer for batteries[i] minutes. You may use each battery to power any computer, and
+                you can move batteries between computers. Return the maximum number of minutes you can run all n
+                computers
+                simultaneously. Note that you can use batteries multiple times by swapping them between computers, but
+                each
+                battery can only power one computer at a time.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 2, batteries = [3,3,3] → Output: 4. Initially, insert battery 0 in computer 0 and battery 1
+                in
+                computer 1. After 2 minutes, remove both batteries and insert battery 2 in computer 0 and battery 0 in
+                computer 1. After 2 more minutes, both computers run for a total of 4 minutes.
+                Input: n = 2, batteries = [1,1,1,1] → Output: 2. Total power is 4, so we can run 2 computers for 2
+                minutes.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long maxRunTime(int n, vector&lt;int&gt;&amp; b) {
+        long long sum = 0;
+        for (long long x : b) sum += x;
+        long long l = 0, r = sum / n;  // max possible time
+        while (l &lt; r) {
+            long long mid = (l + r + 1) / 2;
+            long long need = mid * n;
+            long long have = 0;
+            // total contribution cannot exceed mid per battery
+            for (long long x : b)
+                have += min(x, mid);
+            if (have &gt;= need)
+                l = mid;  // feasible → increase time
+            else
+                r = mid - 1;
+        }
+        return l;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
