@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3623: Count Number of Trapezoids I (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3623: Count Number of Trapezoids I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D integer array points where points[i] = [x_i, y_i] represents a point on the
+                coordinate
+                plane. A trapezoid is formed by selecting four points where two pairs of points share the same
+                y-coordinate,
+                forming the two parallel sides of the trapezoid. Return the number of different trapezoids that can be
+                formed. Since the answer may be large, return it modulo 10^9 + 7. The solution uses combinatorial
+                counting:
+                for each horizontal line with multiple points, we count pairs, then combine pairs from different lines.
+            </p>
+            <p><strong>Example:</strong>
+                Input: points = [[0,1],[1,1],[2,2],[3,2]] → Output: 1. One trapezoid can be formed using the two points
+                at y=1 and the two points at y=2.
+                Input: points = [[0,0],[1,0],[2,0],[0,1],[1,1],[2,1]] → Output: 9. Multiple trapezoids can be formed by
+                selecting pairs from y=0 and y=1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countTrapezoids(vector&lt;vector&lt;int&gt;&gt;&amp; pts) {
+        const long long MOD = 1e9 + 7;
+        const long long INV2 = (MOD + 1) / 2;   // modular inverse of 2
+        unordered_map&lt;long long, long long&gt; mp;
+        // Count how many points share the same y-coordinate
+        for (auto &amp;v : pts) mp[v[1]]++;
+        long long sum = 0;    // sum of C(cnt,2)
+        long long sqs = 0;    // sum of (C(cnt,2))^2
+        for (auto &amp;e : mp) {
+            long long c = e.second;
+            if (c &gt;= 2) {
+                long long pairs = c * (c - 1) / 2 % MOD;  // choose any 2 on this horizontal line
+                sum = (sum + pairs) % MOD;
+                sqs = (sqs + pairs * pairs % MOD) % MOD;
+            }
+        }
+        // total = (sum^2 - sum of squares) / 2
+        long long res = ( (sum * sum % MOD - sqs + MOD) % MOD ) * INV2 % MOD;
+        return (int)res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
