@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3625: Count Number of Trapezoids II (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3625: Count Number of Trapezoids II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D integer array points where points[i] = [x_i, y_i] represents a point on the
+                coordinate
+                plane. A trapezoid is formed by selecting four points where two pairs of points lie on parallel lines,
+                forming the two parallel sides of the trapezoid. Return the number of different trapezoids that can be
+                formed. This is a harder version that requires handling general slopes and avoiding counting degenerate
+                cases where segments share midpoints on the same line.
+            </p>
+            <p><strong>Example:</strong>
+                Input: points = [[0,0],[1,1],[2,0],[3,1]] → Output: varies based on parallel line detection.
+                Input: points = [[0,0],[1,0],[0,1],[1,1]] → Output: varies. The solution groups segments by slope and
+                intercept, then subtracts overcounted cases where segments share midpoints on the same line.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    pair&lt;int,int&gt; slope(int x1,int y1,int x2,int y2){
+        int dx=x1-x2, dy=y1-y2;
+        if(dx&lt;0) dx=-dx, dy=-dy;
+        if(dx==0) return {1,0};
+        if(dy==0) return {0,1};
+        int g=gcd(abs(dx),abs(dy));
+        return {dy/g,dx/g};
+    }
+    int countTrapezoids(vector&lt;vector&lt;int&gt;&gt;&amp; p){
+        int n=p.size();
+        map&lt;pair&lt;int,int&gt;, map&lt;int,int&gt;&gt; cnt;           // slope→intercept→count
+        map&lt;pair&lt;int,int&gt;, int&gt; midCnt;                  // midpoint → count
+        map&lt;pair&lt;int,int&gt;, map&lt;pair&lt;int,int&gt;,int&gt;&gt; midSl;// midpoint→slope→count
+        long long sub = 0;
+        for(int i=0;i&lt;n;i++){
+            for(int j=i+1;j&lt;n;j++){
+                auto s = slope(p[i][0],p[i][1],p[j][0],p[j][1]);
+                int c = p[i][1]*s.second - p[i][0]*s.first;
+                cnt[s][c]++;
+                int mx = p[i][0] + p[j][0];
+                int my = p[i][1] + p[j][1];
+                sub += midCnt[{mx,my}] - midSl[{mx,my}][s];
+                midCnt[{mx,my}]++;
+                midSl[{mx,my}][s]++;
+            }
+        }
+        long long ans = 0;
+        for(auto &amp;sl:cnt){
+            long long seen=0;
+            for(auto &amp;ln:sl.second){
+                ans += seen * ln.second;
+                seen += ln.second;
+            }
+        }
+        return ans - sub;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
