@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2211: Count Collisions on a Road (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2211: Count Collisions on a Road (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                There are n cars on an infinitely long road. The cars are numbered from 0 to n - 1 from left to right
+                and
+                each car is present at a unique point. You are given a 0-indexed string directions of length n.
+                directions[i]
+                can be either 'L', 'R', or 'S' denoting whether the ith car is moving left, right, or staying at its
+                current
+                point respectively. Each car moves at the same speed. The number of collisions can be determined by
+                observing that cars on the leftmost edge moving left will never collide, and cars on the rightmost edge
+                moving right will never collide. All other moving cars will eventually collide with something.
+            </p>
+            <p><strong>Example:</strong>
+                Input: directions = "RLRSLL" → Output: 5. Cars moving R or L in the middle section will collide.
+                Input: directions = "LLRR" → Output: 0. Left cars move left, right cars move right, no collisions.
+                Input: directions = "SSRSSRLLRSLLRSRSSRLRRRRLLRRLSSRR" → Output: 20.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countCollisions(string directions) {
+        string &amp;d = directions;
+        int n = d.size(), i = 0, j = n - 1;
+        // cars on left going L are safe
+        while (i &lt; n &amp;&amp; d[i] == 'L') i++;
+        // cars on right going R are safe
+        while (j &gt;= 0 &amp;&amp; d[j] == 'R') j--;
+        int ans = 0;
+        for (int k = i; k &lt;= j; k++) {
+            // R or L inside active region will collide
+            if (d[k] != 'S') ans++;
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
