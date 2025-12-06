@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3578: Count Partitions With Max-Min Difference at Most K (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3578: Count Partitions With Max-Min Difference at Most K (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums and an integer k. A partition of nums is valid if for every
+                contiguous
+                subarray in the partition, the difference between the maximum and minimum element in that subarray is at
+                most k. Return the number of valid ways to partition nums. Since the answer may be large, return it
+                modulo
+                10^9 + 7. The solution uses dynamic programming where dp[i] represents the number of ways to partition
+                the
+                first i elements, combined with a sliding window technique using monotonic deques to efficiently track
+                the
+                max-min difference.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3], k = 1 → Output: varies. Valid partitions must ensure each segment has max-min ≤
+                k.
+                Input: nums = [1,1,1,1], k = 0 → Output: 8. Since all elements are equal, any partition is valid.
+                Input: nums = [5,1,4,2], k = 3 → Output: varies based on which segments satisfy the constraint.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countPartitions(vector&lt;int&gt;&amp; a, int k) {
+        const int MOD = 1e9+7;
+        int n = a.size();
+        vector&lt;long long&gt; dp(n+1), pref(n+1);
+        dp[0] = pref[0] = 1;
+        deque&lt;int&gt; mx, mn;       // keep max &amp; min in the window
+        int L = 0;
+        for (int i = 1; i &lt;= n; i++) {
+            int x = a[i-1];
+            // push into max-q
+            while (!mx.empty() &amp;&amp; a[mx.back()] &lt;= x) mx.pop_back();
+            mx.push_back(i-1);
+            // push into min-q
+            while (!mn.empty() &amp;&amp; a[mn.back()] &gt;= x) mn.pop_back();
+            mn.push_back(i-1);
+            // shrink window until diff ≤ k
+            while (!mx.empty() &amp;&amp; !mn.empty() &amp;&amp;
+                   a[mx.front()] - a[mn.front()] &gt; k) {
+                if (mx.front() == L) mx.pop_front();
+                if (mn.front() == L) mn.pop_front();
+                L++;
+            }
+            // dp[i] = sum(dp[L..i-1])
+            dp[i] = (pref[i-1] - (L ? pref[L-1] : 0) + MOD) % MOD;
+            pref[i] = (pref[i-1] + dp[i]) % MOD;
+        }
+        return dp[n];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
