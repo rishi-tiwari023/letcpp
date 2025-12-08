@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1925: Count Square Sum Triples (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1925: Count Square Sum Triples (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                A square triple (a, b, c) is a triple where a, b, and c are integers and a² + b² = c². Given an integer
+                n,
+                return the number of square triples such that 1 <= a, b, c <=n. The solution uses a two-pointer approach
+                    for each possible value of c, searching for pairs (a, b) where a² + b²=c². We count both (a, b, c)
+                    and (b, a, c) as distinct triples unless a=b. </p>
+                    <p><strong>Example:</strong>
+                        Input: n = 5 → Output: 2. The square triples are (3,4,5) and (4,3,5), so count is 2.
+                        Input: n = 10 → Output: 4. Valid triples include (3,4,5), (4,3,5), (6,8,10), (8,6,10).
+                        Input: n = 2 → Output: 0. No valid square triples exist with all values ≤ 2.
+                    </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countTriples(int n) {
+        int ans = 0;
+        for (int c = 1; c &lt;= n; ++c) {
+            long long target = 1LL * c * c;
+            int a = 1, b = c - 1;
+            while (a &lt;= b) {
+                long long s = 1LL * a * a + 1LL * b * b;
+                if (s == target) {
+                    if (a == b)
+                        ans += 1;      // (a,a,c) only one order
+                    else
+                        ans += 2;      // (a,b,c) and (b,a,c)
+                    ++a;
+                    --b;
+                }
+                else if (s &lt; target) {
+                    ++a;
+                }
+                else {
+                    --b;
+                }
+            }
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
