@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3583: Count Special Triplets (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3583: Count Special Triplets (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed integer array nums. A triplet of indices (i, j, k) is special if i < j < k and
+                    nums[i] + nums[k]=2 * nums[j]. Return the number of special triplets modulo 10^9 + 7. The solution
+                    uses two frequency maps: one for elements to the left of the current middle element, and one for
+                    elements to the right. For each middle element nums[j], we count how many pairs (i, k) satisfy the
+                    condition by looking for elements equal to 2 * nums[j] in both maps. </p>
+                    <p><strong>Example:</strong>
+                        Input: nums = [0,1,2,3,4] → Output: 2. Special triplets are (0,1,2) where 0+2=2*1, and (0,2,4)
+                        where 0+4=2*2.
+                        Input: nums = [1,1,1,1] → Output: 4. Multiple triplets satisfy 1+1=2*1.
+                        Input: nums = [5,10,15,20] → Output: 1. Only (5,10,15) works where 5+15=2*10.
+                    </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int specialTriplets(vector&lt;int&gt;&amp; nums) {
+        const int MOD = 1e9 + 7;
+        int n = nums.size();
+        unordered_map&lt;int, int&gt; rightFreq, leftFreq;
+        // Initially, all numbers are on the right side
+        for (int x : nums) 
+            rightFreq[x]++;
+        long long totalAns = 0;
+        // Now scan each element as middle element
+        for (int mid = 0; mid &lt; n; mid++) {
+            int midVal = nums[mid];
+            int target = 2 * midVal;
+            // Move nums[mid] from right side to left side
+            rightFreq[midVal]--;
+            // Count valid (j, mid, k):
+            // j &lt; mid from leftFreq
+            // k &gt; mid from rightFreq
+            if (leftFreq.count(target) &amp;&amp; rightFreq.count(target)) {
+                long long left = leftFreq[target];
+                long long right = rightFreq[target];
+                totalAns = (totalAns + (left * right) % MOD) % MOD;
+            }
+            // Add nums[mid] to leftFreq
+            leftFreq[midVal]++;
+        }
+        return totalAns;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
