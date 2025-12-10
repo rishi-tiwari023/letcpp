@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3577: Count the Number of Computer Unlocking Permutations (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3577: Count the Number of Computer Unlocking Permutations (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array complexity where complexity[i] represents the complexity of unlocking the ith
+                computer.
+                A valid unlocking permutation must start with computer 0 (the first computer), and computer 0 must have
+                strictly lower complexity than all other computers. If this condition is not met, return 0. Otherwise,
+                return
+                the number of valid permutations modulo 10^9 + 7. Since computer 0 must be first, we only permute the
+                remaining n-1 computers, giving us (n-1)! valid permutations.
+            </p>
+            <p><strong>Example:</strong>
+                Input: complexity = [1,2,3,4] → Output: 6. Computer 0 has complexity 1, which is less than all others.
+                The remaining 3 computers can be arranged in 3! = 6 ways.
+                Input: complexity = [5,3,4,2] → Output: 0. Computer 0 has complexity 5, but computer 3 has complexity 2,
+                which violates the condition.
+                Input: complexity = [1,5,10] → Output: 2. Valid permutations: [0,1,2] and [0,2,1], giving 2! = 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countPermutations(vector&lt;int&gt;&amp; complexity) {
+        const long long MOD = 1e9 + 7;
+        int n = complexity.size();
+
+        // Check if 0 is strictly simpler than all others
+        for (int i = 1; i &lt; n; i++) {
+            if (complexity[i] &lt;= complexity[0])
+                return 0;
+        }
+
+        // Compute (n-1)!
+        long long ans = 1;
+        for (int i = 1; i &lt; n; i++) {
+            ans = (ans * i) % MOD;
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
