@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3531: Count Covered Buildings (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3531: Count Covered Buildings (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer n and a 2D integer array buildings where buildings[i] = [x_i, y_i] represents a
+                building at position (x_i, y_i) on an n x n grid. A building at position (x, y) is considered covered if
+                there exists at least one building in all four directions: left (same row, smaller column), right (same
+                row,
+                larger column), up (same column, smaller row), and down (same column, larger row). Return the number of
+                covered buildings.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 5, buildings = [[1,1],[1,3],[2,2],[3,1],[3,3]] → Output: 1. Only building at (2,2) has
+                buildings
+                in all four directions.
+                Input: n = 3, buildings = [[1,1],[1,2],[2,1],[2,2]] → Output: 0. No building is surrounded in all
+                directions.
+                Input: n = 10, buildings = [[5,5],[3,5],[7,5],[5,3],[5,7]] → Output: 1. Building at (5,5) is covered.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countCoveredBuildings(int n, vector&lt;vector&lt;int&gt;&gt;&amp; buildings) {
+        unordered_map&lt;int, int&gt; rowMin, rowMax, colMin, colMax;
+        // Initialize min/max
+        for (auto &amp;b : buildings) {
+            int x = b[0], y = b[1];
+            if (!rowMin.count(x)) rowMin[x] = rowMax[x] = y;
+            else {
+                rowMin[x] = min(rowMin[x], y);
+                rowMax[x] = max(rowMax[x], y);
+            }
+            if (!colMin.count(y)) colMin[y] = colMax[y] = x;
+            else {
+                colMin[y] = min(colMin[y], x);
+                colMax[y] = max(colMax[y], x);
+            }
+        }
+        int covered = 0;
+        for (auto &amp;b : buildings) {
+            int x = b[0], y = b[1];
+            bool left  = rowMin[x] &lt; y;
+            bool right = rowMax[x] &gt; y;
+            bool up    = colMin[y] &lt; x;
+            bool down  = colMax[y] &gt; x;
+            if (left &amp;&amp; right &amp;&amp; up &amp;&amp; down)
+                covered++;
+        }
+        return covered;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
