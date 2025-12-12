@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3433: Count Mentions Per User (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3433: Count Mentions Per User (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer n representing the number of users in a system (numbered from 0 to n-1), and a
+                2D string array events. Each event is either ["MESSAGE", timestamp, message] or ["LOGOUT", timestamp,
+                userId].
+                Messages can mention users with "@id", or use "ALL" to mention everyone, or "HERE" to mention all online
+                users. When a user logs out, they are offline for 60 seconds. Return an array where the ith element is
+                the
+                total number of times user i was mentioned across all messages.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 3, events = [["MESSAGE","10","ALL"],["LOGOUT","20","1"],["MESSAGE","30","HERE"]] → Output:
+                [2,1,2].
+                At time 10, all 3 users mentioned. At time 20, user 1 logs out. At time 30, "HERE" mentions users 0 and
+                2
+                (user 1 is offline).
+                Input: n = 2, events = [["MESSAGE","5","id0"],["MESSAGE","10","id1"],["MESSAGE","15","ALL"]] → Output:
+                [2,2].
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; countMentions(int n, vector&lt;vector&lt;string&gt;&gt;&amp; ev) {
+        // sort by timestamp, tie-break: LOGOUT before MESSAGE
+        sort(ev.begin(), ev.end(), [&amp;](auto &amp;a, auto &amp;b){
+            int t1 = stoi(a[1]), t2 = stoi(b[1]);
+            if (t1 == t2) return a[0] &gt; b[0];
+            return t1 &lt; t2;
+        });
+        vector&lt;int&gt; ans(n, 0), on(n, 1); 
+        set&lt;pair&lt;int,int&gt;&gt; exp; // {expireTime, user}
+        for (auto &amp;e : ev) {
+            string type = e[0];
+            int t = stoi(e[1]);
+            // make users online again if their 60-sec absence expired
+            while (!exp.empty() &amp;&amp; exp.begin()-&gt;first &lt;= t) {
+                on[exp.begin()-&gt;second] = 1;
+                exp.erase(exp.begin());
+            }
+            if (type == "MESSAGE") {
+                string msg = e[2];
+                if (msg == "ALL") {
+                    for (int i = 0; i &lt; n; i++) ans[i]++;
+                }
+                else if (msg == "HERE") {
+                    for (int i = 0; i &lt; n; i++) if (on[i]) ans[i]++;
+                }
+                else {
+                    for (auto &amp;x : split(msg)) {
+                        ans[stoi(x.substr(2))]++;
+                    }
+                }
+            } 
+            else { // LOGOUT
+                int id = stoi(e[2]);
+                on[id] = 0;
+                // remove old entry if any
+                for (auto it = exp.begin(); it != exp.end(); it++) {
+                    if (it-&gt;second == id) {
+                        exp.erase(it);
+                        break;
+                    }
+                }
+                exp.insert({t + 60, id});
+            }
+        }
+        return ans;
+    }
+private:
+    vector&lt;string&gt; split(const string &amp;s) {
+        stringstream ss(s);
+        string w; vector&lt;string&gt; v;
+        while (ss &gt;&gt; w) v.push_back(w);
+        return v;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
