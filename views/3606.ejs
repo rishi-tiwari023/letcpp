@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3606: Coupon Code Validator (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3606: Coupon Code Validator (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given three arrays: code (coupon codes), line (business lines), and active (whether each coupon
+                is
+                active). Return a list of valid coupon codes sorted by their business line priority (electronics,
+                grocery,
+                pharmacy, restaurant) and then alphabetically within each category. A coupon is valid if: it is active,
+                belongs to one of the four business lines, and contains only alphanumeric characters and underscores.
+            </p>
+            <p><strong>Example:</strong>
+                Input: code = ["TECH20","FOOD10","MED5"], line = ["electronics","grocery","pharmacy"], active =
+                [true,true,true]
+                → Output: ["TECH20","FOOD10","MED5"]. All are valid and sorted by business priority.
+                Input: code = ["ABC","XYZ@","123"], line = ["electronics","pharmacy","grocery"], active =
+                [true,true,false]
+                → Output: ["ABC"]. "XYZ@" has invalid character, "123" is inactive.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;string&gt; validateCoupons(vector&lt;string&gt;&amp; code,
+                                   vector&lt;string&gt;&amp; line,
+                                   vector&lt;bool&gt;&amp; act) {
+        // fixed business order
+        vector&lt;string&gt; order = {
+            "electronics", "grocery", "pharmacy", "restaurant"
+        };
+        unordered_map&lt;string, int&gt; rank;
+        for (int i = 0; i &lt; 4; i++) rank[order[i]] = i;
+        vector&lt;pair&lt;int, string&gt;&gt; good; // {category rank, code}
+        for (int i = 0; i &lt; code.size(); i++) {
+            // must be active
+            if (!act[i]) continue;
+            // check business line
+            if (!rank.count(line[i])) continue;
+            // check code validity
+            if (code[i].empty()) continue;
+            bool ok = true;
+            for (char c : code[i]) {
+                if (!isalnum(c) &amp;&amp; c != '_') {
+                    ok = false;
+                    break;
+                }
+            }
+            if (!ok) continue;
+            good.push_back({rank[line[i]], code[i]});
+        }
+        // sort by business rank, then code
+        sort(good.begin(), good.end());
+        vector&lt;string&gt; ans;
+        for (auto &amp;p : good) ans.push_back(p.second);
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
