@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2147: Number of Ways to Divide a Long Corridor (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2147: Number of Ways to Divide a Long Corridor (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Along a long corridor, there are seats and plants. You are given a string corridor where corridor[i] is
+                either 'S' representing a seat or 'P' representing a plant. One room divider has already been installed
+                to
+                the left of index 0, and another to the right of index corridor.length - 1. You may install additional
+                room
+                dividers between any two adjacent positions where there is a plant or seat. Return the number of ways
+                you
+                can divide the corridor such that each section contains exactly two seats. Since the answer may be
+                large,
+                return it modulo 10^9 + 7. If it's impossible, return 0.
+            </p>
+            <p><strong>Example:</strong>
+                Input: corridor = "SSPPSPS" → Output: 3. We need to divide into sections with exactly 2 seats each.
+                Valid
+                divisions can be made at different plant positions.
+                Input: corridor = "PPSPSP" → Output: 1. Only one valid way to divide with exactly 2 seats per section.
+                Input: corridor = "S" → Output: 0. Cannot form sections with exactly 2 seats.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int numberOfWays(string s) {
+        const int MOD = 1e9 + 7;
+        int totalS = 0;
+        for (char c : s)
+            if (c == 'S') totalS++;
+        // Must have even, non-zero seats
+        if (totalS == 0 || totalS % 2) return 0;
+        long long ways = 1;
+        int seats = 0, plants = 0;
+        bool gap = false;
+        for (char c : s) {
+            if (c == 'S') {
+                seats++;
+                // Finished one seat pair → start counting gap
+                if (seats % 2 == 0) {
+                    gap = true;
+                    plants = 0;
+                }
+                // New pair starts → multiply choices
+                else if (gap) {
+                    ways = (ways * (plants + 1)) % MOD;
+                    gap = false;
+                }
+            }
+            // Count plants only between seat pairs
+            else if (gap) {
+                plants++;
+            }
+        }
+        return ways;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
