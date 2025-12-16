@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3562: Maximum Profit from Trading Stocks with Discounts (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3562: Maximum Profit from Trading Stocks with Discounts (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given n stocks organized in a tree structure where each stock has a current price and a future
+                price.
+                You have a budget B and can buy stocks at their current price and sell at their future price.
+                Additionally,
+                you can use a discount once in the entire tree, allowing you to buy one stock at half its current price
+                (rounded down). Each stock can be bought only if all its ancestor stocks in the tree have been
+                considered.
+                Return the maximum profit you can achieve.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 3, current = [10,20,30], future = [15,25,35], hierarchy = [[1,2],[1,3]], budget = 40
+                → Output: varies based on optimal stock selection with or without discount.
+                The solution uses tree DP where dp0[u][b] represents max profit at node u with budget b and no discount
+                used,
+                and dp1[u][b] represents max profit with discount already used in the subtree.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxProfit(int n, vector&lt;int&gt;&amp; cur, vector&lt;int&gt;&amp; fut,
+                  vector&lt;vector&lt;int&gt;&gt;&amp; h, int B) {
+
+        vector&lt;vector&lt;int&gt;&gt; g(n);
+        for (auto &amp;e : h) g[e[0]-1].push_back(e[1]-1);
+
+        vector dp0(n, vector&lt;int&gt;(B+1, -1)); // no discount
+        vector dp1(n, vector&lt;int&gt;(B+1, -1)); // discount used
+
+        function&lt;void(int)&gt; dfs = [&amp;](int u){
+            vector&lt;int&gt; c0(B+1, 0), c1(B+1, 0);
+
+            for (int v : g[u]) {
+                dfs(v);
+                vector&lt;int&gt; n0(B+1, 0), n1(B+1, 0);
+
+                for (int i=0;i&lt;=B;i++)
+                    for (int j=0;j+i&lt;=B;j++) {
+                        n0[i+j] = max(n0[i+j], c0[i] + dp0[v][j]);
+                        n1[i+j] = max(n1[i+j], c1[i] + dp1[v][j]);
+                    }
+
+                c0 = n0; c1 = n1;
+            }
+
+            // skip buy
+            for (int b=0;b&lt;=B;b++) dp0[u][b] = dp1[u][b] = c0[b];
+
+            // buy normally
+            for (int b=cur[u]; b&lt;=B; b++)
+                dp0[u][b] = max(dp0[u][b],
+                                fut[u]-cur[u] + c1[b-cur[u]]);
+
+            // buy with discount
+            int d = cur[u]/2;
+            for (int b=d; b&lt;=B; b++)
+                dp1[u][b] = max(dp1[u][b],
+                                fut[u]-d + c1[b-d]);
+        };
+
+        dfs(0);
+        return dp0[0][B];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
