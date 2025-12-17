@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3573: Best Time to Buy and Sell Stock V (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3573: Best Time to Buy and Sell Stock V (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array prices where prices[i] is the price of a given stock on the ith day, and
+                an
+                integer K. You may complete at most K transactions. A transaction consists of buying one share of stock
+                and
+                selling that share at a later time. You cannot engage in multiple transactions simultaneously (you must
+                sell
+                the stock before you buy again). Return the maximum profit you can achieve. The solution uses dynamic
+                programming with states: dp[k][0] = no stock held after k transactions, dp[k][1] = stock held after
+                selling,
+                dp[k][2] = stock held after buying.
+            </p>
+            <p><strong>Example:</strong>
+                Input: prices = [3,2,6,5,0,3], K = 2 → Output: 7. Buy at 2, sell at 6 (profit = 4). Buy at 0, sell at 3
+                (profit = 3). Total = 7.
+                Input: prices = [3,3,5,0,0,3,1,4], K = 2 → Output: 6. Buy at 0, sell at 3 (profit = 3). Buy at 1, sell
+                at 4
+                (profit = 3). Total = 6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    using ll = long long;
+
+    ll maximumProfit(vector&lt;int&gt;&amp; p, int K) {
+        const ll NEG = -1e18;
+        vector&lt;vector&lt;ll&gt;&gt; dp(K + 1, vector&lt;ll&gt;(3, NEG));
+        dp[0][0] = 0; // no transaction, no stock
+
+        for (int x : p) {
+            for (int k = K; k &gt;= 0; k--) {
+                // buy without increasing transactions
+                dp[k][2] = max(dp[k][2], dp[k][0] - x);
+
+                // sell without increasing transactions
+                dp[k][1] = max(dp[k][1], dp[k][0] + x);
+
+                // finish a transaction from sell
+                if (k + 1 &lt;= K)
+                    dp[k + 1][0] = max(dp[k + 1][0], dp[k][1] - x);
+
+                // finish a transaction from buy
+                if (k + 1 &lt;= K)
+                    dp[k + 1][0] = max(dp[k + 1][0], dp[k][2] + x);
+            }
+        }
+
+        ll ans = 0;
+        for (int k = 0; k &lt;= K; k++)
+            ans = max(ans, dp[k][0]);
+
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
