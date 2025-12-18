@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3652: Best Time to Buy and Sell Stock using Strategy (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3652: Best Time to Buy and Sell Stock using Strategy (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array price representing stock prices on different days, an integer array
+                strategy
+                representing your trading strategy for each day (positive for sell, negative for buy, 0 for hold), and
+                an
+                integer k (even). You can choose a contiguous subarray of length k and override the first k/2 days to
+                buy
+                and the last k/2 days to sell. Return the maximum profit you can achieve. The solution computes the base
+                profit using the original strategy, then uses a sliding window to try all possible k-length overrides,
+                calculating the profit difference using prefix sums.
+            </p>
+            <p><strong>Example:</strong>
+                Input: price = [1,2,3,4,5], strategy = [0,0,0,0,0], k = 4 → Output: varies. Override first 2 days to
+                buy,
+                last 2 days to sell for maximum profit.
+                Input: price = [10,5,8,12], strategy = [-1,0,0,1], k = 2 → Output: depends on optimal window selection.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long maxProfit(vector&lt;int&gt;&amp; price, vector&lt;int&gt;&amp; strat, int k) {
+        int n = price.size();
+        int half = k / 2;
+        // base profit
+        long long base = 0;
+        for (int i = 0; i &lt; n; i++)
+            base += 1LL * price[i] * strat[i];
+        // prefix sums
+        vector&lt;long long&gt; prefPrice(n + 1, 0), prefGain(n + 1, 0);
+        for (int i = 0; i &lt; n; i++) {
+            prefPrice[i + 1] = prefPrice[i] + price[i];
+            prefGain[i + 1]  = prefGain[i] + 1LL * price[i] * strat[i];
+        }
+        long long ans = base;
+        // try every k-length window
+        for (int l = 0; l + k &lt;= n; l++) {
+            int mid = l + half;
+            int r = l + k;
+            // remove old strategy contribution
+            long long oldPart = prefGain[r] - prefGain[l];
+            // add new forced strategy contribution
+            long long newPart =
+                (prefPrice[r] - prefPrice[mid]); // only sell-half contributes
+            long long curr = base - oldPart + newPart;
+            ans = max(ans, curr);
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
