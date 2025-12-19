@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2092: Find All People With Secret (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2092: Find All People With Secret (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer n indicating there are n people numbered from 0 to n - 1. You are also given a
+                0-indexed 2D integer array meetings where meetings[i] = [x_i, y_i, time_i] indicates that person x_i and
+                person y_i have a meeting at time_i. Person 0 has a secret and initially shares it with person
+                firstPerson
+                at time 0. This secret is then shared every time a meeting takes place with a person that has the
+                secret.
+                Return a list of all the people that have the secret after all the meetings have taken place, in any
+                order.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 6, meetings = [[1,2,5],[2,3,8],[1,5,10]], firstPerson = 1 → Output: [0,1,2,3,5]. Person 0
+                shares
+                with 1 at time 0. At time 5, persons 1 and 2 meet (2 learns). At time 8, persons 2 and 3 meet (3
+                learns).
+                At time 10, persons 1 and 5 meet (5 learns).
+                Input: n = 4, meetings = [[3,1,3],[1,2,2],[0,3,3]], firstPerson = 3 → Output: [0,1,3]. Person 0 shares
+                with 3
+                at time 0. At time 2, persons 1 and 2 meet (1 learns). At time 3, persons 3 and 1 meet, and 0 and 3
+                meet.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; findAllPeople(int total, vector&lt;vector&lt;int&gt;&gt;&amp; meetings, int first) {
+        // adjacency list: person → {time, neighbor}
+        unordered_map&lt;int, vector&lt;pair&lt;int,int&gt;&gt;&gt; graph;
+        for (auto &amp;m : meetings) {
+            graph[m[0]].push_back({m[2], m[1]});
+            graph[m[1]].push_back({m[2], m[0]});
+        }
+        // earliest time each person learns the secret
+        vector&lt;int&gt; earliest(total, INT_MAX);
+        earliest[0] = 0;
+        earliest[first] = 0;
+        // queue holds {person, time_secret_known}
+        queue&lt;pair&lt;int,int&gt;&gt; bfs;
+        bfs.push({0, 0});
+        bfs.push({first, 0});
+        while (!bfs.empty()) {
+            auto [person, currTime] = bfs.front();
+            bfs.pop();
+            // ignore outdated states
+            if (currTime &gt; earliest[person]) continue;
+            for (auto [meetTime, nextPerson] : graph[person]) {
+                // can only share if meeting is not in the past
+                if (meetTime &gt;= currTime &amp;&amp; earliest[nextPerson] &gt; meetTime) {
+                    earliest[nextPerson] = meetTime;
+                    bfs.push({nextPerson, meetTime});
+                }
+            }
+        }
+        // everyone who got a valid time knows the secret
+        vector&lt;int&gt; ans;
+        for (int i = 0; i &lt; total; i++)
+            if (earliest[i] != INT_MAX) ans.push_back(i);
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
