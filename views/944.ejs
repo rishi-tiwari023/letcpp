@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 944: Delete Columns to Make Sorted (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 944: Delete Columns to Make Sorted (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array of n strings strs, all of the same length. The strings can be arranged such that
+                there is one on each line, making a grid. You want to delete the columns that are not sorted
+                lexicographically.
+                Return the number of columns that you will delete. A column is considered sorted if for every row index
+                i
+                where 1 <= i < n, strs[i-1][col] <=strs[i][col]. </p>
+                    <p><strong>Example:</strong>
+                        Input: strs = ["cba","daf","ghi"] → Output: 1. The grid is: c b a, d a f, g h i. Columns 0 and 2
+                        are sorted,
+                        but column 1 is not (b > a), so we delete 1 column.
+                        Input: strs = ["a","b"] → Output: 0. The grid is: a, b. Column 0 is sorted, so no deletions
+                        needed.
+                        Input: strs = ["zyx","wvu","tsr"] → Output: 3. All columns are unsorted (decreasing order), so
+                        delete all 3.
+                    </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minDeletionSize(vector&lt;string&gt;&amp; strs) {
+        int n = strs.size();
+        int m = strs[0].size();
+        int del = 0;
+        // Traverse column-wise
+        for (int c = 0; c &lt; m; c++) {
+            for (int r = 1; r &lt; n; r++) {
+                // If sorting condition fails
+                if (strs[r][c] &lt; strs[r - 1][c]) {
+                    del++;
+                    break; // no need to check further rows
+                }
+            }
+        }
+        return del;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
