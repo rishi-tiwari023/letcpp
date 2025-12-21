@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 955: Delete Columns to Make Sorted II (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 955: Delete Columns to Make Sorted II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array of n strings strs, all of the same length. We may choose any set of deletion
+                indices,
+                and for each string, we delete all the characters in those indices. Return the minimum possible number
+                of
+                deletion indices such that the final strings are in lexicographic order. The key difference from problem
+                944
+                is that once a pair of adjacent rows is determined to be sorted (earlier character differs), we don't
+                need
+                to check that pair for subsequent columns. We track "fixed pairs" where the ordering is already
+                established.
+            </p>
+            <p><strong>Example:</strong>
+                Input: strs = ["ca","bb","ac"] → Output: 1. Delete column 0: ["a","b","c"], which is sorted.
+                Input: strs = ["xc","yb","za"] → Output: 0. Already sorted without deletions.
+                Input: strs = ["zyx","wvu","tsr"] → Output: 3. Must delete all columns to achieve sorted order.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minDeletionSize(vector&lt;string&gt;&amp; words) {
+        int totalRows = words.size();
+        int totalCols = words[0].size();
+        // fixedPairs → indices where order is already decided
+        unordered_set&lt;int&gt; fixedPairs, newFixed;
+        int removed = 0;
+        for (int col = 0; col &lt; totalCols; col++) {
+            newFixed.clear();
+            // Compare adjacent rows
+            for (int row = 1; row &lt; totalRows; row++) {
+                // Skip pairs already sorted
+                if (fixedPairs.count(row)) continue;
+                if (words[row - 1][col] &lt; words[row][col]) {
+                    newFixed.insert(row);
+                }
+                else if (words[row - 1][col] &gt; words[row][col]) {
+                    // Order broken → delete column
+                    removed++;
+                    newFixed.clear();
+                    break;
+                }
+            }
+            // Merge newly sorted pairs
+            fixedPairs.insert(newFixed.begin(), newFixed.end());
+            // Optimization: all pairs sorted
+            if (fixedPairs.size() == totalRows - 1) break;
+        }
+        return removed;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
