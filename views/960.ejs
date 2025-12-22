@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 960: Delete Columns to Make Sorted III (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 960: Delete Columns to Make Sorted III (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array of n strings strs, all of the same length. We may choose any set of deletion
+                indices,
+                and for each string, we delete all the characters in those indices. Suppose we chose a set of deletion
+                indices answer such that after deletions, the final array has every string (from top to bottom) in
+                lexicographic order. Return the minimum possible value of answer.length. This is the hardest variant
+                where
+                we need to find the minimum number of columns to delete such that the remaining columns form a
+                non-decreasing sequence when read from top to bottom across all rows.
+            </p>
+            <p><strong>Example:</strong>
+                Input: strs = ["babca","bbazb"] → Output: 3. We can delete columns 0, 1, and 4 to get ["bc","az"], but
+                we need to keep checking. The optimal is to keep columns that maintain sorted order across all rows.
+                Input: strs = ["edcba"] → Output: 4. We can only keep one column since no two columns maintain sorted
+                order.
+                Input: strs = ["ghi","def","abc"] → Output: 0. All columns are already in sorted order.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int dfs(int i, int prev, vector&lt;string&gt;&amp; s, vector&lt;vector&lt;int&gt;&gt;&amp; dp) {
+        if (i == s[0].size()) return 0;
+        if (dp[i][prev + 1] != -1) return dp[i][prev + 1];
+        // Option 1: delete this column
+        int best = dfs(i + 1, prev, s, dp);
+        // Option 2: keep this column if valid
+        bool ok = true;
+        if (prev != -1) {
+            for (int r = 0; r &lt; s.size(); r++) {
+                if (s[r][i] &lt; s[r][prev]) {
+                    ok = false;
+                    break;
+                }
+            }
+        }
+        if (ok) {
+            best = max(best, 1 + dfs(i + 1, i, s, dp));
+        }
+        return dp[i][prev + 1] = best;
+    }
+    int minDeletionSize(vector&lt;string&gt;&amp; strs) {
+        int n = strs[0].size();
+        vector&lt;vector&lt;int&gt;&gt; dp(n, vector&lt;int&gt;(n + 1, -1));
+        int keep = dfs(0, -1, strs, dp);
+        return n - keep; // delete = total - kept
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
