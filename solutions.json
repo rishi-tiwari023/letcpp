@@ -523,12 +523,39 @@
             "spaceComplexity": "O(n + m)"
         },
         {
+            "id": 2110,
+            "title": "Number of Smooth Descent Periods of a Stock",
+            "route": "/2110",
+            "difficulty": "Medium",
+            "description": "You are given an integer array prices representing the daily price history of a stock. Return the number of smooth descent periods.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2125,
             "title": "Number of Laser Beams in a Bank",
             "route": "/2125",
             "difficulty": "Medium",
             "description": "Anti-theft security devices are activated inside a bank. You are given a 0-indexed binary string array bank representing the floor plan of the bank, which is an m x n 2D matrix. bank[i] represents the ith row, consisting of '0's and '1's. '0' means the cell is empty, while '1' means the cell has a security device. There is one laser beam between any two security devices if both devices are in different rows and there are no security devices in the rows between them. Return the total number of laser beams in the bank.",
             "timeComplexity": "O(m*n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2141,
+            "title": "Maximum Running Time of N Computers",
+            "route": "/2141",
+            "difficulty": "Medium",
+            "description": "You have n computers and a battery array. Return the maximum number of minutes you can run all n computers simultaneously.",
+            "timeComplexity": "O(m log S)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2147,
+            "title": "Number of Ways to Divide a Long Corridor",
+            "route": "/2147",
+            "difficulty": "Hard",
+            "description": "Return the number of ways you can divide the corridor such that each section contains exactly two seats.",
+            "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -557,6 +584,15 @@
             "description": "You are given a list of integers nums. Consider the following operation: choose any two adjacent elements and replace them with their LCM.",
             "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 2211,
+            "title": "Count Collisions on a Road",
+            "route": "/2211",
+            "difficulty": "Medium",
+            "description": "You are given a string directions. Return the number of collisions.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
         },
         {
             "id": 2221,
@@ -629,6 +665,15 @@
             "description": "Design a food rating system that can do the following.",
             "timeComplexity": "O(log n)",
             "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 2435,
+            "title": "Paths in Matrix Whose Sum Is Divisible by K",
+            "route": "/2435",
+            "difficulty": "Hard",
+            "description": "Return the number of good paths in the matrix where the sum of elements is divisible by k.",
+            "timeComplexity": "O(m*n*k)",
+            "spaceComplexity": "O(m*n*k)"
         },
         {
             "id": 2438,
