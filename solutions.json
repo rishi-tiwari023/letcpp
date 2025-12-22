@@ -748,6 +748,15 @@
             "spaceComplexity": "O(n^(1/x))"
         },
         {
+            "id": 2872,
+            "title": "Maximum Number of K-Divisible Components",
+            "route": "/2872",
+            "difficulty": "Hard",
+            "description": "A valid split of the tree is obtained by removing any set of edges from the tree such that the resulting components all have values that are divisible by k. Return the maximum number of components in any valid split.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
             "id": 3000,
             "title": "Maximum Area of Longest Diagonal Rectangle",
             "route": "/3000",
@@ -973,6 +982,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3381,
+            "title": "Maximum Subarray Sum With Length Divisible by K",
+            "route": "/3381",
+            "difficulty": "Medium",
+            "description": "Return the maximum sum of a non-empty subarray of nums, such that the size of the subarray is divisible by k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(k)"
+        },
+        {
             "id": 3397,
             "title": "Find the Maximum Length of a Good Subsequence IV",
             "route": "/3397",
@@ -989,6 +1007,24 @@
             "description": "You are given a binary string s and a positive integer k.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3432,
+            "title": "Count Partitions with Even Sum Difference",
+            "route": "/3432",
+            "difficulty": "Easy",
+            "description": "Return the number of ways to partition nums such that the absolute difference between the sum of the first i + 1 elements and the sum of the remaining elements is even.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3433,
+            "title": "Count Mentions Per User",
+            "route": "/3433",
+            "difficulty": "Medium",
+            "description": "Return an array where the ith element is the total number of times user i was mentioned across all messages.",
+            "timeComplexity": "O(N log N)",
+            "spaceComplexity": "O(N)"
         },
         {
             "id": 3446,
@@ -1050,6 +1086,15 @@
             "route": "/3508",
             "difficulty": "Hard",
             "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3512,
+            "title": "Minimum Operations to Make Array Sum Divisible by K",
+            "route": "/3512",
+            "difficulty": "Easy",
+            "description": "In one operation, you can decrease any element of nums by 1. Return the minimum number of operations required to make the sum of all elements in nums divisible by k.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
         },
