@@ -199,6 +199,33 @@
             "spaceComplexity": "O(log n)"
         },
         {
+            "id": 944,
+            "title": "Delete Columns to Make Sorted",
+            "route": "/944",
+            "difficulty": "Easy",
+            "description": "You are given an array of n strings strs, all of the same length. Return the number of columns that you will delete.",
+            "timeComplexity": "O(n*m)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 955,
+            "title": "Delete Columns to Make Sorted II",
+            "route": "/955",
+            "difficulty": "Medium",
+            "description": "Return the minimum possible number of deletion indices such that the final strings are in lexicographic order.",
+            "timeComplexity": "O(n*m)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 960,
+            "title": "Delete Columns to Make Sorted III",
+            "route": "/960",
+            "difficulty": "Hard",
+            "description": "Return the minimum possible number of columns to delete such that the remaining columns form a non-decreasing sequence.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(n^2)"
+        },
+        {
             "id": 966,
             "title": "Vowel Spellchecker",
             "route": "/966",
@@ -214,6 +241,24 @@
             "difficulty": "Easy",
             "description": "Given an integer array nums, return the largest perimeter of a triangle with a non-zero area, formed from three of these lengths.",
             "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1015,
+            "title": "Smallest Integer Divisible by K",
+            "route": "/1015",
+            "difficulty": "Medium",
+            "description": "Given a positive integer k, you need to find the length of the smallest positive integer n such that n is divisible by k.",
+            "timeComplexity": "O(k)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1018,
+            "title": "Binary Prefix Divisible By 5",
+            "route": "/1018",
+            "difficulty": "Easy",
+            "description": "Return an array of booleans answer where answer[i] is true if the i-th binary prefix is divisible by 5.",
+            "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
         },
         {
