@@ -271,6 +271,15 @@
             "spaceComplexity": "O(n^2)"
         },
         {
+            "id": 1262,
+            "title": "Greatest Sum Divisible by Three",
+            "route": "/1262",
+            "difficulty": "Medium",
+            "description": "Given an integer array nums, return the maximum possible sum of elements of the array such that it is divisible by three.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1277,
             "title": "Count Square Submatrices with All Ones",
             "route": "/1277",
@@ -361,6 +370,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1523,
+            "title": "Count Odd Numbers in an Interval Range",
+            "route": "/1523",
+            "difficulty": "Easy",
+            "description": "Given two non-negative integers low and high, return the count of odd numbers between low and high (inclusive).",
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1526,
             "title": "Minimum Number of Increments on Subarrays to Form a Target Array",
             "route": "/1526",
@@ -377,6 +395,15 @@
             "description": "Alice has n balloons arranged on a rope. You are given a 0-indexed string colors where colors[i] is the color of the ith balloon. Alice wants the rope to be colorful, meaning that no two consecutive balloons are of the same color. You are given a 0-indexed integer array neededTime where neededTime[i] is the time (in seconds) that Alice needs to remove the ith balloon from the rope. Return the minimum time Alice needs to make the rope colorful.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1590,
+            "title": "Make Sum Divisible by P",
+            "route": "/1590",
+            "difficulty": "Medium",
+            "description": "Given an array of positive integers nums, remove the smallest subarray such that the sum of the remaining elements is divisible by p.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 1611,
@@ -433,6 +460,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 1925,
+            "title": "Count Square Sum Triples",
+            "route": "/1925",
+            "difficulty": "Easy",
+            "description": "A square triple (a, b, c) is a triple where a, b, and c are integers and a^2 + b^2 = c^2. Return the number of square triples such that 1 <= a, b, c <= n.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1930,
             "title": "Unique Length-3 Palindromic Subsequences",
             "route": "/1930",
@@ -476,6 +512,15 @@
             "description": "An integer x is numerically balanced if for every digit d in x, the frequency of d in x is equal to d.",
             "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2092,
+            "title": "Find All People With Secret",
+            "route": "/2092",
+            "difficulty": "Hard",
+            "description": "You are given an integer n indicating there are n people. You are also given a meetings array. Return a list of all the people that have the secret after all the meetings have taken place.",
+            "timeComplexity": "O(m log m)",
+            "spaceComplexity": "O(n + m)"
         },
         {
             "id": 2125,
