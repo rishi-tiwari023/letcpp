@@ -1108,6 +1108,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3531,
+            "title": "Count Covered Buildings",
+            "route": "/3531",
+            "difficulty": "Medium",
+            "description": "Return the number of covered buildings on a grid.",
+            "timeComplexity": "O(N log N)",
+            "spaceComplexity": "O(N)"
+        },
+        {
             "id": 3539,
             "title": "Find the Maximum Length of a Good Subsequence XIV",
             "route": "/3539",
@@ -1135,6 +1144,60 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3562,
+            "title": "Maximum Profit from Trading Stocks with Discounts",
+            "route": "/3562",
+            "difficulty": "Hard",
+            "description": "Return the maximum profit you can achieve by trading stocks with a discount.",
+            "timeComplexity": "O(N * Budget^2)",
+            "spaceComplexity": "O(N * Budget)"
+        },
+        {
+            "id": 3573,
+            "title": "Best Time to Buy and Sell Stock V",
+            "route": "/3573",
+            "difficulty": "Medium",
+            "description": "Return the maximum profit you can achieve with at most K transactions.",
+            "timeComplexity": "O(N * K)",
+            "spaceComplexity": "O(K)"
+        },
+        {
+            "id": 3577,
+            "title": "Count the Number of Computer Unlocking Permutations",
+            "route": "/3577",
+            "difficulty": "Medium",
+            "description": "Return the number of valid unlocking permutations modulo 10^9 + 7.",
+            "timeComplexity": "O(N)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3578,
+            "title": "Count Partitions With Max-Min Difference at Most K",
+            "route": "/3578",
+            "difficulty": "Medium",
+            "description": "Return the number of valid ways to partition nums such that max-min difference is at most k.",
+            "timeComplexity": "O(N log N)",
+            "spaceComplexity": "O(N)"
+        },
+        {
+            "id": 3583,
+            "title": "Count Special Triplets",
+            "route": "/3583",
+            "difficulty": "Medium",
+            "description": "Return the number of special triplets modulo 10^9 + 7.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 3606,
+            "title": "Coupon Code Validator",
+            "route": "/3606",
+            "difficulty": "Medium",
+            "description": "Return a list of valid coupon codes sorted by priority.",
+            "timeComplexity": "O(N log N)",
+            "spaceComplexity": "O(N)"
+        },
+        {
             "id": 3607,
             "title": "Power Grid Maintenance",
             "route": "/3607",
@@ -1142,8 +1205,35 @@
             "description": "You are managing a power grid with n power stations numbered from 1 to n. Some stations are connected by power lines given in the connections array where connections[i] = [a, b] means stations a and b are connected. You need to process queries of two types: Type 1 [1, x] - maintenance check: if station x is online, return x; otherwise return the smallest numbered online station connected to x, or -1 if none exist. Type 2 [2, x] - turn off station x for maintenance. Return an array containing answers to all type 1 queries.",
             "timeComplexity": "O(n + m + q)",
             "spaceComplexity": "O(n + m)"
+        },
+        {
+            "id": 3623,
+            "title": "Count Number of Trapezoids I",
+            "route": "/3623",
+            "difficulty": "Medium",
+            "description": "Return the number of different trapezoids that can be formed.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 3625,
+            "title": "Count Number of Trapezoids II",
+            "route": "/3625",
+            "difficulty": "Hard",
+            "description": "Return the number of different trapezoids that can be formed with general slopes.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(n^2)"
+        },
+        {
+            "id": 3652,
+            "title": "Best Time to Buy and Sell Stock using Strategy",
+            "route": "/3652",
+            "difficulty": "Hard",
+            "description": "Return the maximum profit you can achieve with a trading strategy and overrides.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
         }
     ],
     "totalCount": 123,
-    "lastUpdated": "2025-11-22"
+    "lastUpdated": "2025-12-22"
 }
