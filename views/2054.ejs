@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2054: Two Best Non-Overlapping Events (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2054: Two Best Non-Overlapping Events (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed 2D integer array events where events[i] = [startTime_i, endTime_i, value_i].
+                You
+                can attend at most two events such that they do not overlap (i.e., the start time of one is greater than
+                the end time of the other). Return the maximum sum of values that you can receive by attending events.
+                The
+                solution sorts events by start time, uses a min-heap to track events that have ended, and maintains the
+                best value seen so far from non-overlapping events.
+            </p>
+            <p><strong>Example:</strong>
+                Input: events = [[1,3,2],[4,5,2],[2,4,3]] → Output: 4. Attend events [1,3,2] and [4,5,2] for total value
+                4.
+                Input: events = [[1,3,2],[4,5,2],[1,5,5]] → Output: 5. Attend only the event with value 5.
+                Input: events = [[1,5,3],[1,5,1],[6,6,5]] → Output: 8. Attend events with values 3 and 5 for total 8.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxTwoEvents(vector&lt;vector&lt;int&gt;&gt;&amp; ev) {
+        // Sort events by start time
+        sort(ev.begin(), ev.end());
+        // Min-heap: {endTime, value}
+        priority_queue&lt;pair&lt;int,int&gt;, vector&lt;pair&lt;int,int&gt;&gt;, greater&lt;&gt;&gt; pq;
+        int bestVal = 0;   // Best value from already finished events
+        int res = 0;       // Final answer
+        for (auto &amp;e : ev) {
+            int s = e[0], t = e[1], v = e[2];
+            // Remove all events that ended before current starts
+            while (!pq.empty() &amp;&amp; pq.top().first &lt; s) {
+                bestVal = max(bestVal, pq.top().second);
+                pq.pop();
+            }
+            // Combine current event with best previous one
+            res = max(res, bestVal + v);
+            // Push current event into heap
+            pq.push({t, v});
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
