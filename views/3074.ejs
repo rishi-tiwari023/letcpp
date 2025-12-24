@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3074: Apple Redistribution into Boxes (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3074: Apple Redistribution into Boxes (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array apple of size n and an array capacity of size m. There are n packs where the ith
+                pack
+                contains apple[i] apples. There are m boxes as well, and the ith box has a capacity of capacity[i]
+                apples.
+                Return the minimum number of boxes you need to select to redistribute all the apples from the packs into
+                the
+                boxes. The greedy approach is optimal: use the largest capacity boxes first to minimize the total number
+                of
+                boxes needed.
+            </p>
+            <p><strong>Example:</strong>
+                Input: apple = [1,3,2], capacity = [4,3,1,5,2] → Output: 2. Total apples = 6. Use boxes with capacity 5
+                and
+                4 (or 5 and 3) to fit all apples in 2 boxes.
+                Input: apple = [5,5,5], capacity = [2,4,2,7] → Output: 4. Total apples = 15. Use all boxes: 7+4+2+2 =
+                15.
+                Input: apple = [10], capacity = [100] → Output: 1. One large box is enough.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minimumBoxes(vector&lt;int&gt;&amp; a, vector&lt;int&gt;&amp; cap) {
+        // Total apples to be stored
+        int need = accumulate(a.begin(), a.end(), 0);
+        // Use biggest boxes first
+        sort(cap.begin(), cap.end(), greater&lt;int&gt;());
+        int used = 0;
+        for (int c : cap) {
+            need -= c;   // fill current box
+            used++;      // one box used
+            // Stop once all apples are placed
+            if (need &lt;= 0) return used;
+        }
+        return 0; // safety (won't happen as per constraints)
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
