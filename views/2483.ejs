@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2483: Minimum Penalty for a Shop (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2483: Minimum Penalty for a Shop (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given the customer visit log of a shop represented by a 0-indexed string customers consisting
+                only
+                of characters 'N' and 'Y': if the ith character is 'Y', it means that customers come at the ith hour
+                whereas
+                'N' indicates that no customers come at the ith hour. If the shop closes at the jth hour (0 <= j <=n),
+                    the penalty is calculated as: for every hour when the shop is open and no customers come, the
+                    penalty increases by 1. For every hour when the shop is closed and customers come, the penalty
+                    increases by 1. Return the earliest hour at which the shop must be closed to incur a minimum
+                    penalty. The key insight is to track a running balance where 'N' adds +1 and 'Y' adds -1, finding
+                    the index with the minimum cumulative value. </p>
+                    <p><strong>Example:</strong>
+                        Input: customers = "YYNY" → Output: 2. Close at hour 2: penalty for open hours 0,1 = 0, penalty
+                        for closed
+                        hours 2,3 = 1. Total penalty = 1.
+                        Input: customers = "NNNNN" → Output: 0. Close immediately to avoid all penalties from 'N' hours.
+                        Input: customers = "YYYY" → Output: 4. Stay open all hours to serve all customers, close at end.
+                    </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int bestClosingTime(string s) {
+        int ans = 0, cur = 0, best = 0;
+        for (int i = 0; i &lt; s.size(); i++) {
+            cur += (s[i] == 'N') ? 1 : -1;   // N hurts, Y helps
+            if (cur &lt; best) {               // found smaller penalty
+                best = cur;
+                ans = i + 1;
+            }
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
