@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2402: Meeting Rooms III (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2402: Meeting Rooms III (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer n representing the number of available rooms numbered from 0 to n - 1, and a 2D
+                integer array meetings where meetings[i] = [start_i, end_i] represents a meeting scheduled from time
+                start_i
+                to end_i. All the values of start_i are unique. Meetings are allocated to rooms as follows: Each meeting
+                will take place in the unused room with the lowest number. If no rooms are free, the meeting waits until
+                a
+                room becomes free. The meeting should be assigned to that room with the lowest number. If multiple rooms
+                become free at the same time, choose the one with the lowest number. When a meeting is delayed, it has
+                the
+                same duration but starts when the room becomes available. Return the number of the room that held the
+                most
+                meetings. If there is a tie, return the room with the lowest number.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 2, meetings = [[0,10],[1,5],[2,7],[3,4]] → Output: 0. Room 0 handles meetings at times [0,10]
+                and delayed [1,5]. Room 1 handles [2,7] and [3,4]. Room 0 hosts most meetings.
+                Input: n = 3, meetings = [[1,20],[2,10],[3,5],[4,9],[6,8]] → Output: 1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int mostBooked(int n, vector&lt;vector&lt;int&gt;&gt;&amp; meet) {
+        sort(meet.begin(), meet.end());
+        vector&lt;int&gt; used(n, 0); // meeting count per room
+        // busy rooms → {endTime, room}
+        priority_queue&lt;pair&lt;long long,int&gt;, 
+            vector&lt;pair&lt;long long,int&gt;&gt;, 
+            greater&lt;&gt;&gt; busy;
+        // free rooms (min index first)
+        priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; free;
+        for(int i = 0; i &lt; n; i++) free.push(i);
+        for(auto &amp;m : meet) {
+            long long st = m[0], en = m[1];
+            // release rooms that are free before current meeting
+            while(!busy.empty() &amp;&amp; busy.top().first &lt;= st) {
+                free.push(busy.top().second);
+                busy.pop();
+            }
+            // if no room free → delay meeting
+            if(free.empty()) {
+                auto [t, r] = busy.top(); busy.pop();
+                busy.push({t + (en - st), r});
+                used[r]++;
+            } 
+            // room available → assign directly
+            else {
+                int r = free.top(); free.pop();
+                busy.push({en, r});
+                used[r]++;
+            }
+        }
+        // find room with max usage
+        int ans = 0;
+        for(int i = 1; i &lt; n; i++)
+            if(used[i] &gt; used[ans]) ans = i;
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
