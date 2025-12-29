@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 756: Pyramid Transition Matrix (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 756: Pyramid Transition Matrix (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are stacking blocks to form a pyramid. Each block has a color, which is represented by a single
+                letter.
+                Each row of blocks contains one fewer block than the row beneath it and is centered on top. To make the
+                pyramid aesthetically pleasing, there are only specific triangular patterns that are allowed. A
+                triangular
+                pattern consists of a single block stacked on top of two blocks. The patterns are given as a list of
+                three-letter strings allowed, where the first two characters of a pattern represent the left and right
+                bottom
+                blocks respectively, and the third character represents the top block. Return true if you can build the
+                pyramid all the way to the top, and false otherwise.
+            </p>
+            <p><strong>Example:</strong>
+                Input: bottom = "BCD", allowed = ["BCC","CDE","CEA","FFF"] → Output: true. We can build: BCD → CE → E.
+                Input: bottom = "AAAA", allowed = ["AAB","AAC","BCD","BBE","DEF"] → Output: false. Cannot build complete
+                pyramid.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    unordered_map&lt;string, vector&lt;char&gt;&gt; mp;
+    bool build(string base, string next) {
+        if (base.size() == 1) return true;
+        if (next.size() + 1 == base.size())
+            return build(next, "");
+        int i = next.size();
+        string key = base.substr(i, 2);
+        for (char c : mp[key]) {
+            if (build(base, next + c)) return true;
+        }
+        return false;
+    }
+    bool pyramidTransition(string bottom, vector&lt;string&gt;&amp; allowed) {
+        for (auto &amp;s : allowed)
+            mp[s.substr(0,2)].push_back(s[2]);
+        return build(bottom, "");
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
