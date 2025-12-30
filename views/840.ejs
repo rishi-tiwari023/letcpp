@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 840: Magic Squares In Grid (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 840: Magic Squares In Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                A 3 x 3 magic square is a 3 x 3 grid filled with distinct numbers from 1 to 9 such that each row,
+                column,
+                and both diagonals all have the same sum. Given a row x col grid of integers, how many 3 x 3 contiguous
+                magic square subgrids are there? Note: while the magic square can only contain numbers from 1 to 9, grid
+                may contain numbers up to 15. The solution uses a mathematical property: in any 3x3 magic square using
+                numbers 1-9, the center must be 5. This allows for quick early rejection of invalid candidates.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[4,3,8,4],[9,5,1,9],[2,7,6,2]] → Output: 1. There is one magic square:
+                [[4,3,8],[9,5,1],[2,7,6]].
+                Input: grid = [[8]] → Output: 0. No 3x3 subgrid can exist.
+                Input: grid = [[5,5,5],[5,5,5],[5,5,5]] → Output: 0. Not distinct numbers, not magic.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool isMagic(vector&lt;vector&lt;int&gt;&gt;&amp; g, int r, int c) {
+        if(g[r+1][c+1] != 5) return false; // magic center rule
+        vector&lt;int&gt; cnt(10, 0);
+        for(int i = 0; i &lt; 3; i++){
+            for(int j = 0; j &lt; 3; j++){
+                int v = g[r+i][c+j];
+                if(v &lt; 1 || v &gt; 9 || cnt[v]++) return false;
+            }
+        }
+        int s = g[r][c] + g[r][c+1] + g[r][c+2];
+        return g[r+1][c] + g[r+1][c+1] + g[r+1][c+2] == s &amp;&amp;
+               g[r+2][c] + g[r+2][c+1] + g[r+2][c+2] == s &amp;&amp;
+               g[r][c] + g[r+1][c] + g[r+2][c] == s &amp;&amp;
+               g[r][c+1] + g[r+1][c+1] + g[r+2][c+1] == s &amp;&amp;
+               g[r][c+2] + g[r+1][c+2] + g[r+2][c+2] == s &amp;&amp;
+               g[r][c] + g[r+1][c+1] + g[r+2][c+2] == s &amp;&amp;
+               g[r][c+2] + g[r+1][c+1] + g[r+2][c] == s;
+    }
+    int numMagicSquaresInside(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int ans = 0;
+        for(int i = 0; i + 2 &lt; grid.size(); i++){
+            for(int j = 0; j + 2 &lt; grid[0].size(); j++){
+                if(isMagic(grid, i, j)) ans++;
+            }
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
