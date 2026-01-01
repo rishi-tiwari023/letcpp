@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 66: Plus One (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 66: Plus One (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a large integer represented as an integer array digits, where each digits[i] is the ith
+                digit
+                of the integer. The digits are ordered from most significant to least significant in left-to-right
+                order.
+                The large integer does not contain any leading 0's. Increment the large integer by one and return the
+                resulting array of digits. The solution simulates manual addition by starting from the rightmost digit,
+                adding 1, and propagating any carry to the left. If all digits were 9, we need to insert a new leading
+                1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: digits = [1,2,3] → Output: [1,2,4]. The number 123 + 1 = 124.
+                Input: digits = [4,3,2,1] → Output: [4,3,2,2]. The number 4321 + 1 = 4322.
+                Input: digits = [9,9,9] → Output: [1,0,0,0]. The number 999 + 1 = 1000, requiring a new leading digit.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; plusOne(vector&lt;int&gt;&amp; num) {
+        // Start adding 1 from the last digit (like manual addition)
+        for (int idx = num.size() - 1; idx &gt;= 0; idx--) {
+            num[idx]++;                 // Add 1 to current digit
+            if (num[idx] &lt; 10)          // No carry → we are done
+                return num;
+            num[idx] = 0;               // Carry generated, reset digit to 0
+        }
+        // If all digits were 9, add 1 at the front (e.g., 999 → 1000)
+        num.insert(num.begin(), 1);
+        return num;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
