@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 961: N-Repeated Element in Size 2N Array (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 961: N-Repeated Element in Size 2N Array (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums with the following properties: nums.length == 2 * n. nums contains n
+                + 1
+                unique elements. Exactly one element of nums is repeated n times. Return the element that is repeated n
+                times.
+                The key insight is that since one element appears n times in an array of size 2n, with only n+1 unique
+                elements total, the repeated element must appear within any window of 3 consecutive elements (pigeonhole
+                principle). We can check adjacent pairs, and if none match, check edge cases where the repeated element
+                wraps around the array boundaries.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,3] → Output: 3. The element 3 is repeated n=2 times.
+                Input: nums = [2,1,2,5,3,2] → Output: 2. The element 2 is repeated n=3 times.
+                Input: nums = [5,1,5,2,5,3,5,4] → Output: 5. The element 5 is repeated n=4 times.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int repeatedNTimes(vector&lt;int&gt;&amp; arr) {
+        int n = arr.size();
+        // Check adjacent elements
+        for (int i = 0; i &lt; n - 1; i++) {
+            if (arr[i] == arr[i + 1])
+                return arr[i];
+        }
+        // Handle edge overlap cases
+        if (arr[0] == arr[n - 1] || arr[0] == arr[n - 2]) return arr[0];
+        if (arr[1] == arr[n - 1]) return arr[1];
+        return -1;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
