@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1411: Number of Ways to Paint N × 3 Grid (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1411: Number of Ways to Paint N × 3 Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You have a grid of size n x 3 and you want to paint each cell of the grid with exactly one of the three
+                colors: Red, Yellow, or Green while making sure that no two adjacent cells have the same color (i.e., no
+                two
+                cells that share vertical or horizontal sides have the same color). Given n the number of rows of the
+                grid,
+                return the number of ways you can paint this grid. As the answer may grow large, return it modulo 10^9 +
+                7.
+                The solution uses dynamic programming with two pattern types: "abc" (all three colors different) and
+                "aba"
+                (first and third same). We track how many ways each pattern can transition to valid patterns in the next
+                row.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 1 → Output: 12. There are 12 possible ways to paint one row with 3 cells using 3 colors with
+                adjacent cells different.
+                Input: n = 5000 → Output: 30228214. The number grows exponentially, requiring modulo arithmetic.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int numOfWays(int n) {
+        const long long MOD = 1e9 + 7;
+        long long dpA = 6; // abc type
+        long long dpB = 6; // aba type
+        for (int i = 2; i &lt;= n; i++) {
+            long long nextA = (2 * dpA + 2 * dpB) % MOD;
+            long long nextB = (2 * dpA + 3 * dpB) % MOD;
+            dpA = nextA;
+            dpB = nextB;
+        }
+        return (dpA + dpB) % MOD;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
