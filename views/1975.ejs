@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1975: Maximum Matrix Sum (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1975: Maximum Matrix Sum (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an n x n integer matrix. You can do the following operation any number of times: Choose
+                any
+                two adjacent elements of matrix and multiply each of them by -1. Two elements are considered adjacent if
+                and
+                only if they share a border. Your goal is to maximize the summation of the matrix's elements. Return the
+                maximum sum of the matrix's elements using the operation mentioned above. The key insight is that by
+                strategically flipping adjacent pairs, we can move negativity around. If we have an even number of
+                negative
+                values, we can make all values positive. If odd, we must keep one negative, so we choose the smallest
+                absolute value to minimize the loss.
+            </p>
+            <p><strong>Example:</strong>
+                Input: matrix = [[1,-1],[-1,1]] → Output: 4. We can flip to make all values positive: sum = 1+1+1+1 = 4.
+                Input: matrix = [[1,2,3],[-1,-2,-3],[1,2,3]] → Output: 16. Three negatives (odd), so one stays negative.
+                Best to keep -1, giving sum = 1+2+3+1+2+3+1+2+3-2 = 16.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long maxMatrixSum(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        long long absSum = 0;
+        long long smallest = LLONG_MAX;
+        int negs = 0;
+        for (int r = 0; r &lt; grid.size(); r++) {
+            for (int c = 0; c &lt; grid[0].size(); c++) {
+                if (grid[r][c] &lt; 0) negs++;              // count negatives
+                long long curr = llabs(grid[r][c]);
+                absSum += curr;                          // total absolute sum
+                smallest = min(smallest, curr);         // best candidate to flip
+            }
+        }
+        // Even negatives → all positives possible
+        if (negs % 2 == 0)
+            return absSum;
+        // Odd negatives → one smallest value must stay negative
+        return absSum - 2LL * smallest;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
