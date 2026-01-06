@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1161: Maximum Level Sum of a Binary Tree (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1161: Maximum Level Sum of a Binary Tree (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given the root of a binary tree, return the smallest level x such that the sum of all the values of
+                nodes
+                at level x is maximal. Note that the root is at level 1. The solution uses breadth-first search (BFS)
+                with
+                two queues to process the tree level by level. For each level, we calculate the sum of all node values
+                and
+                track which level has the maximum sum. If multiple levels have the same maximum sum, we return the
+                smallest
+                level number.
+            </p>
+            <p><strong>Example:</strong>
+                Input: root = [1,7,0,7,-8,null,null] → Output: 2. Level 1 sum = 1, Level 2 sum = 7, Level 3 sum = -1.
+                Maximum is at level 2.
+                Input: root = [989,null,10250,98693,-89388,null,null,null,-32127] → Output: 2. Level 2 has the maximum
+                sum.
+                Input: root = [-100,-200,-300,-20,-5,-10,null] → Output: 3. Level 3 has sum -30, which is the maximum.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxLevelSum(TreeNode* root) {
+        queue&lt;TreeNode*&gt; cur, nxt;
+        cur.push(root);
+        int lvl = 1, ans = 1;
+        long long best = LLONG_MIN;
+        while (!cur.empty()) {
+            long long sum = 0;
+            while (!cur.empty()) {
+                auto n = cur.front(); cur.pop();
+                sum += n-&gt;val;
+                if (n-&gt;left) nxt.push(n-&gt;left);
+                if (n-&gt;right) nxt.push(n-&gt;right);
+            }
+            if (sum &gt; best) best = sum, ans = lvl;
+            swap(cur, nxt);        // move to next level
+            lvl++;
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
