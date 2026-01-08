@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1458: Max Dot Product of Two Subsequences (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1458: Max Dot Product of Two Subsequences (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given two arrays nums1 and nums2, return the maximum dot product between non-empty subsequences of nums1
+                and nums2 with the same length. A subsequence of an array is a new array which is formed from the
+                original
+                array by deleting some (can be none) of the characters without disturbing the relative positions of the
+                remaining characters. The dot product of two arrays is the sum of products of corresponding elements.
+                The
+                solution uses dynamic programming where dp[i][j] represents the maximum dot product using first i
+                elements
+                of nums1 and first j elements of nums2.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums1 = [2,1,-2,5], nums2 = [3,0,-6] → Output: 18. Take subsequence [2,-2] from nums1 and [3,-6]
+                from nums2. Dot product = 2*3 + (-2)*(-6) = 6 + 12 = 18.
+                Input: nums1 = [3,-2], nums2 = [2,-6,7] → Output: 21. Take [3] and [7]. Product = 3*7 = 21.
+                Input: nums1 = [-1,-1], nums2 = [1,1] → Output: -1. Best is -1*1 = -1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxDotProduct(vector&lt;int&gt;&amp; vec1, vector&lt;int&gt;&amp; vec2) {
+        int n = vec1.size(), m = vec2.size();
+        const int NEG_INF = -1e9;
+        vector&lt;int&gt; prev(m + 1, NEG_INF);
+        for (int i = 1; i &lt;= n; i++) {
+            vector&lt;int&gt; curr(m + 1, NEG_INF);
+            for (int j = 1; j &lt;= m; j++) {
+                int value = vec1[i - 1] * vec2[j - 1];
+                // Either start new subsequence or extend previous
+                int pick = (prev[j - 1] == NEG_INF) ? value : max(value, prev[j - 1] + value);
+                curr[j] = max({pick, prev[j], curr[j - 1]});
+            }
+            prev = curr;
+        }
+        return prev[m];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
