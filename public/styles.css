@@ -4,7 +4,8 @@ body {
     margin: 0;
     padding: 2rem;
     line-height: 1.5;
-    background-color: #f8f9fa; /* Light grey background */
+    background-color: #f8f9fa;
+    /* Light grey background */
 }
 
 main {
@@ -38,7 +39,8 @@ a:hover {
 
 /* Code block styling for solution pages */
 pre {
-    background-color: #2d3748; /* Dark grey background for code blocks */
+    background-color: #2d3748;
+    /* Dark grey background for code blocks */
     padding: 1.5rem;
     border-radius: 8px;
     overflow: auto;
@@ -49,7 +51,8 @@ pre {
 code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, Monaco, monospace;
     font-size: 0.95rem;
-    color: #e2e8f0; /* Light text on dark background */
+    color: #e2e8f0;
+    /* Light text on dark background */
 }
 
 pre code {
@@ -59,7 +62,8 @@ pre code {
 }
 
 /* Inline code styling */
-p code, li code {
+p code,
+li code {
     background-color: #f1f5f9;
     color: #1e293b;
     padding: 0.2rem 0.4rem;
@@ -139,4 +143,117 @@ p code, li code {
 
 .copy-button.copied:hover {
     background-color: #2f855a;
+}
+
+/* Dark mode overrides */
+.dark body {
+    background-color: #0f172a;
+    /* Slate 900 */
+    color: #e2e8f0;
+    /* Slate 200 */
+}
+
+.dark main {
+    background-color: #1e293b;
+    /* Slate 800 */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4 {
+    color: #f8fafc;
+    /* Slate 50 */
+}
+
+.dark p,
+.dark li {
+    color: #cbd5e1;
+    /* Slate 300 */
+}
+
+.dark a {
+    color: #60a5fa;
+    /* Blue 400 */
+}
+
+.dark .problem-description {
+    background-color: #334155;
+    /* Slate 700 */
+    border-left-color: #60a5fa;
+}
+
+.dark p code,
+.dark li code {
+    background-color: #334155;
+    /* Slate 700 */
+    color: #e2e8f0;
+}
+
+/* Adjust scrollbar for dark mode */
+.dark ::-webkit-scrollbar {
+    width: 12px;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background-color: #475569;
+    border-radius: 6px;
+    border: 3px solid #0f172a;
+}
+
+/* Theme Toggle Button (for non-Tailwind pages) */
+#theme-toggle-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #e5e7eb;
+    border: none;
+    cursor: pointer;
+    z-index: 50;
+    transition: background-color 0.2s;
+    display: flex;
+    /* Ensure SVG centering */
+    align-items: center;
+    justify-content: center;
+}
+
+#theme-toggle-btn:hover {
+    background-color: #d1d5db;
+}
+
+.dark #theme-toggle-btn {
+    background-color: #334155;
+    /* Slate 700 */
+    color: #e2e8f0;
+}
+
+.dark #theme-toggle-btn:hover {
+    background-color: #475569;
+    /* Slate 600 */
+}
+
+.theme-toggle-sun {
+    display: block;
+    color: #eab308;
+    /* yellow-500 */
+}
+
+.theme-toggle-moon {
+    display: none;
+}
+
+.dark .theme-toggle-sun {
+    display: none;
+}
+
+.dark .theme-toggle-moon {
+    display: block;
+    color: #cbd5e1;
 }
