@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 712: Minimum ASCII Delete Sum for Two Strings (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 712: Minimum ASCII Delete Sum for Two Strings (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given two strings s1 and s2, return the lowest ASCII sum of deleted characters to make two strings
+                equal.
+                The solution uses dynamic programming where dp[i][j] represents the minimum ASCII delete sum to make
+                s1[i..] and s2[j..] equal. When characters match, we don't need to delete anything and move to the next
+                position. When they differ, we try deleting from either string and take the minimum cost. The base cases
+                handle when one string is exhausted - we must delete all remaining characters from the other string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s1 = "sea", s2 = "eat" → Output: 231. Delete 's' from "sea" (cost 115) and 't' from "eat" (cost
+                116).
+                Total = 231.
+                Input: s1 = "delete", s2 = "leet" → Output: 403. Delete 'd' (100) and 'e' (101) from "delete", and 'e'
+                (101)
+                and 't' (116) from "leet". But optimal path gives 403.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minimumDeleteSum(string s1, string s2) {
+        int n = s1.size(), m = s2.size();
+        vector&lt;vector&lt;int&gt;&gt; dp(n + 1, vector&lt;int&gt;(m + 1, 0));
+        // base: delete remaining chars
+        for (int i = n - 1; i &gt;= 0; i--)
+            dp[i][m] = dp[i + 1][m] + s1[i];
+        for (int j = m - 1; j &gt;= 0; j--)
+            dp[n][j] = dp[n][j + 1] + s2[j];
+        for (int i = n - 1; i &gt;= 0; i--) {
+            for (int j = m - 1; j &gt;= 0; j--) {
+                if (s1[i] == s2[j])
+                    dp[i][j] = dp[i + 1][j + 1];          // chars match
+                else
+                    dp[i][j] = min(s1[i] + dp[i + 1][j], // delete s1[i]
+                                   s2[j] + dp[i][j + 1]); // delete s2[j]
+            }
+        }
+        return dp[0][0];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
