@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3453: Separate Squares I (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3453: Separate Squares I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D array boxes where boxes[i] = [x_i, y_i, side_i] represents a square with its
+                bottom-left
+                corner at (x_i, y_i) and side length side_i. All squares have sides parallel to the axes. You need to
+                find
+                the y-coordinate of a horizontal line that divides the total area of all squares into two equal halves.
+                The
+                solution uses binary search on the y-coordinate, calculating the total area below each candidate line.
+                We
+                iterate 100 times to achieve sufficient precision for the floating-point answer.
+            </p>
+            <p><strong>Example:</strong>
+                Input: boxes = [[0,0,2],[1,1,2],[2,2,2]] → Output: varies. Find y such that area below equals area
+                above.
+                Input: boxes = [[0,0,10]] → Output: 5.0. Single square, cut at half height.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    double separateSquares(vector&lt;vector&lt;int&gt;&gt;&amp; boxes) {
+        double fullArea = 0;
+        double lowY = 2e9, highY = 0;
+        for (auto &amp;b : boxes) {
+            double y = b[1], len = b[2];
+            fullArea += len * len;
+            lowY = min(lowY, y);
+            highY = max(highY, y + len);
+        }
+        double target = fullArea / 2.0;
+        for (int i = 0; i &lt; 100; i++) {
+            double mid = lowY + (highY - lowY) / 2.0;
+            // If area is enough, try lowering the cut
+            if (areaBelow(boxes, mid) &gt;= target)
+                highY = mid;
+            else
+                lowY = mid;
+        }
+        return highY;
+    }
+private:
+    double areaBelow(vector&lt;vector&lt;int&gt;&gt;&amp; boxes, double cutY) {
+        double area = 0;
+        for (auto &amp;b : boxes) {
+            double y = b[1], len = b[2];
+            if (y &gt;= cutY) continue;
+            if (y + len &lt;= cutY) area += len * len;
+            else area += (cutY - y) * len;
+        }
+        return area; // Total area under the line
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
