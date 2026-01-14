@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3454: Separate Squares II (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3454: Separate Squares II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D array squares where squares[i] = [x_i, y_i, side_i] represents a square with its
+                bottom-left corner at (x_i, y_i) and side length side_i. All squares have sides parallel to the axes.
+                Squares may overlap. You need to find the y-coordinate of a horizontal line that divides the total union
+                area of all squares into two equal halves. This is the harder version where overlapping areas must be
+                counted only once. The solution uses a sweep line algorithm with a segment tree to efficiently track the
+                covered x-width at each y-level, computing horizontal slabs of area, then finding where cumulative area
+                reaches exactly half.
+            </p>
+            <p><strong>Example:</strong>
+                Input: squares = [[0,0,2],[1,1,2]] → Output: varies. Overlapping squares require union area calculation.
+                Input: squares = [[0,0,10],[5,5,10]] → Output: calculated based on union area bisection.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    double separateSquares(vector&lt;vector&lt;int&gt;&gt;&amp; squares) {
+        // (y, delta, xLeft, xRight)
+        vector&lt;tuple&lt;int, int, int, int&gt;&gt; sweepEvents;
+        unordered_set&lt;int&gt; xCoords;
+        for (const auto&amp; sq : squares) {
+            int x = sq[0], y = sq[1], len = sq[2];
+            sweepEvents.emplace_back(y, +1, x, x + len);
+            sweepEvents.emplace_back(y + len, -1, x, x + len);
+            xCoords.insert(x);
+            xCoords.insert(x + len);
+        }
+        sort(sweepEvents.begin(), sweepEvents.end(),
+             [](const auto&amp; a, const auto&amp; b) {
+                 return get&lt;0&gt;(a) &lt; get&lt;0&gt;(b);
+             });
+        // coordinate compression on x-axis
+        vector&lt;int&gt; compressedX(xCoords.begin(), xCoords.end());
+        sort(compressedX.begin(), compressedX.end());
+        unordered_map&lt;int, int&gt; xIndex;
+        for (int i = 0; i &lt; compressedX.size(); i++) {
+            xIndex[compressedX[i]] = i;
+        }
+        SegmentTree segTree(compressedX);
+        int prevY = get&lt;0&gt;(sweepEvents[0]);
+        vector&lt;tuple&lt;int, int, double&gt;&gt; slabs;  // (yStart, yEnd, coveredWidth)
+        // sweep along y-axis
+        for (const auto&amp; [y, delta, xL, xR] : sweepEvents) {
+            if (y != prevY) {
+                slabs.emplace_back(prevY, y, segTree.covered[1]);
+                prevY = y;
+            }
+            segTree.update(xIndex[xL], xIndex[xR], delta,
+                           0, compressedX.size() - 1, 1);
+        }
+        // total union area
+        double halfArea = 0;
+        for (const auto&amp; [y1, y2, width] : slabs) {
+            halfArea += (y2 - y1) * width;
+        }
+        halfArea /= 2.0;
+        // find y where cumulative area reaches half
+        double accumulated = 0;
+        for (const auto&amp; [y1, y2, width] : slabs) {
+            double slabArea = (y2 - y1) * width;
+            if (accumulated + slabArea &gt;= halfArea) {
+                return y1 + (halfArea - accumulated) / width;
+            }
+            accumulated += slabArea;
+        }
+        return -1;
+    }
+private:
+    class SegmentTree {
+    public:
+        SegmentTree(const vector&lt;int&gt;&amp; xVals) : xs(xVals) {
+            int n = xs.size() - 1;
+            int size = n &gt; 1 ? 1 &lt;&lt; (__lg(n - 1) + 2) : 2;
+            covered.assign(size, 0);
+            count.assign(size, 0);
+        }
+        // update coverage on interval [ql, qr)
+        void update(int ql, int qr, int delta, int l, int r, int idx) {
+            if (ql &gt;= r || qr &lt;= l) return;
+            if (ql &lt;= l &amp;&amp; r &lt;= qr) {
+                count[idx] += delta;
+            } else {
+                int mid = l + (r - l) / 2;
+                update(ql, qr, delta, l, mid, idx * 2);
+                update(ql, qr, delta, mid, r, idx * 2 + 1);
+            }
+            // compute covered x-length
+            if (count[idx] &gt; 0) {
+                covered[idx] = xs[r] - xs[l];
+            } else {
+                covered[idx] = (r - l == 1) ? 0
+                    : covered[idx * 2] + covered[idx * 2 + 1];
+            }
+        }
+        vector&lt;int&gt; xs;        // compressed x-coordinates
+        vector&lt;int&gt; covered;   // total covered length
+        vector&lt;int&gt; count;     // active interval count
+    };
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
