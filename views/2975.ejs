@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2975: Maximum Square Area by Removing Fences From a Field
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2975: Maximum Square Area by Removing Fences From a Field (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two integers m and n representing a field of size m x n. You are also given two integer
+                arrays hFences and vFences representing horizontal and vertical fences. You can remove some fences to
+                create a square area. Return the maximum area of a square that can be formed by removing some fences. If
+                no square can be formed, return -1. Since the answer may be large, return it modulo 10^9 + 7.
+            </p>
+            <p><strong>Example:</strong>
+                Input: m = 4, n = 3, hFences = [2, 3], vFences = [2]<br>
+                Output: 4<br>
+                Explanation: Removing fences allows us to create a square area with maximum side length 2, giving area
+                4.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    static constexpr int MOD = 1e9 + 7;
+    unordered_set&lt;int&gt; lengthSet;
+    int maxSide = 0;
+    void computeLengths(vector&lt;int&gt;&amp; fences, int size, bool checkMatch) {
+        sort(fences.begin(), fences.end());
+        for (int left = 0; left &lt; size - 1; left++) {
+            for (int right = left + 1; right &lt; size; right++) {
+                int len = fences[right] - fences[left];
+                // Either store all lengths or check for square match
+                if (checkMatch) {
+                    if (len &gt; maxSide &amp;&amp; lengthSet.count(len))
+                        maxSide = len;
+                } else {
+                    lengthSet.insert(len);
+                }
+            }
+        }
+    }
+    int maximizeSquareArea(int rows, int cols,
+                           vector&lt;int&gt;&amp; horizontalFences,
+                           vector&lt;int&gt;&amp; verticalFences) {
+        // Always compute lengths on the smaller fence set first
+        if (horizontalFences.size() &gt; verticalFences.size())
+            return maximizeSquareArea(cols, rows, verticalFences, horizontalFences);
+        horizontalFences.push_back(1);
+        horizontalFences.push_back(rows);
+        verticalFences.push_back(1);
+        verticalFences.push_back(cols);
+        computeLengths(horizontalFences, horizontalFences.size(), false);
+        computeLengths(verticalFences, verticalFences.size(), true);
+        return (maxSide == 0) ? -1 : (long long)maxSide * maxSide % MOD;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
