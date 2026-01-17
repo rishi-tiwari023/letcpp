@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3047: Find the Largest Area of Square Inside Two Rectangles
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3047: Find the Largest Area of Square Inside Two Rectangles (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two arrays of rectangles bottomLeft and topRight where bottomLeft[i] and topRight[i]
+                represent the bottom-left and top-right coordinates of the ith rectangle. Find the largest square area
+                that can be formed by the intersection of any two rectangles. Return the area of the largest square, or
+                0 if no intersection exists.
+            </p>
+            <p><strong>Example:</strong>
+                Input: bottomLeft = [[1,1],[2,2],[3,1]], topRight = [[3,3],[4,4],[6,6]]<br>
+                Output: 1<br>
+                Explanation: The intersection of rectangles 0 and 1 forms a square with side length 1, giving area 1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long largestSquareArea(vector&lt;vector&lt;int&gt;&gt;&amp; bottomLeft,
+                                vector&lt;vector&lt;int&gt;&gt;&amp; topRight) {
+        int rectCount = bottomLeft.size();
+        long long maxSquareSide = 0;
+        // Try forming an overlap square from every rectangle pair
+        for (int r1 = 0; r1 &lt; rectCount; r1++) {
+            for (int r2 = r1 + 1; r2 &lt; rectCount; r2++) {
+                int overlapW =
+                    min(topRight[r1][0], topRight[r2][0]) -
+                    max(bottomLeft[r1][0], bottomLeft[r2][0]);
+                int overlapH =
+                    min(topRight[r1][1], topRight[r2][1]) -
+                    max(bottomLeft[r1][1], bottomLeft[r2][1]);
+                // Maximum square side possible from this overlap
+                int possibleSide = min(overlapW, overlapH);
+                maxSquareSide = max(maxSquareSide, (long long)possibleSide);
+            }
+        }
+        return maxSquareSide * maxSquareSide;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
