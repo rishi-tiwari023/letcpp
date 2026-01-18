@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1895: Largest Magic Square
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1895: Largest Magic Square (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                A magic square is a k x k grid filled with integers such that every row sum, every column sum, and both
+                diagonal sums are all equal. Given an m x n integer grid, return the size (side length k) of the largest
+                magic square that can be found within this grid.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[7,1,4,5,6],[2,5,1,6,4],[1,5,4,3,2],[1,2,7,3,4]]<br>
+                Output: 3<br>
+                Explanation: The largest magic square has a size of 3 and is located in the grid. All rows, columns, and
+                diagonals sum to 12.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+    bool valid(vector&lt;vector&lt;int&gt;&gt;&amp; g, int r, int c, int k){
+        int tgt = 0;
+        // main diagonal sum
+        for(int i = 0; i &lt; k; i++)
+            tgt += g[r + i][c + i];
+        // anti-diagonal
+        int s = 0;
+        for(int i = 0; i &lt; k; i++)
+            s += g[r + i][c + k - 1 - i];
+        if(s != tgt) return false;
+        // rows
+        for(int i = r; i &lt; r + k; i++){
+            s = 0;
+            for(int j = c; j &lt; c + k; j++) s += g[i][j];
+            if(s != tgt) return false;
+        }
+        // columns
+        for(int j = c; j &lt; c + k; j++){
+            s = 0;
+            for(int i = r; i &lt; r + k; i++) s += g[i][j];
+            if(s != tgt) return false;
+        }
+        return true;
+    }
+public:
+    int largestMagicSquare(vector&lt;vector&lt;int&gt;&gt;&amp; g) {
+        int R = g.size(), C = g[0].size();
+        for(int k = min(R, C); k &gt; 1; k--){
+            for(int i = 0; i + k &lt;= R; i++)
+                for(int j = 0; j + k &lt;= C; j++)
+                    if(valid(g, i, j, k))
+                        return k; // early stop
+        }
+        return 1;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
