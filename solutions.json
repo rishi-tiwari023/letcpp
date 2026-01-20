@@ -865,6 +865,15 @@
             "spaceComplexity": "O(log n)"
         },
         {
+            "id": 2483,
+            "title": "Minimum Penalty for a Shop",
+            "route": "/2483",
+            "difficulty": "Medium",
+            "description": "Return the earliest hour at which the shop must be closed to incur a minimum penalty based on customer visit logs.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2528,
             "title": "Maximize the Minimum Powered City",
             "route": "/2528",
@@ -937,6 +946,24 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 2943,
+            "title": "Maximize Area of Square Hole in Grid",
+            "route": "/2943",
+            "difficulty": "Medium",
+            "description": "Maximize the area of a square hole that can be created by removing horizontal and vertical bars from a grid.",
+            "timeComplexity": "O(m log m + n log n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2975,
+            "title": "Maximum Square Area by Removing Fences From a Field",
+            "route": "/2975",
+            "difficulty": "Hard",
+            "description": "Return the maximum area of a square that can be formed by removing horizontal and vertical fences.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(n^2)"
+        },
+        {
             "id": 3000,
             "title": "Maximum Area of Longest Diagonal Rectangle",
             "route": "/3000",
@@ -989,6 +1016,33 @@
             "description": "You are given a 2D array points where points[i] = [xi, yi] represents a point on an X-Y plane.",
             "timeComplexity": "O(n^2)",
             "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3047,
+            "title": "Find the Largest Area of Square Inside Two Rectangles",
+            "route": "/3047",
+            "difficulty": "Easy",
+            "description": "Find the largest square area that can be formed by the intersection of any two rectangles.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3074,
+            "title": "Apple Redistribution into Boxes",
+            "route": "/3074",
+            "difficulty": "Easy",
+            "description": "Return the minimum number of boxes needed to redistribute all the apples from the packs into the boxes using greedy strategy.",
+            "timeComplexity": "O(m log m + n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3075,
+            "title": "Maximize Happiness of Selected Children",
+            "route": "/3075",
+            "difficulty": "Medium",
+            "description": "Maximize the sum of the happiness values of k selected children, accounting for turns and decrements.",
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3100,
@@ -1088,6 +1142,15 @@
             "description": "In the town of Digitville, there was a list of numbers called nums containing integers from 0 to n - 1. Each number was supposed to appear exactly once in the list, however, two mischievous numbers sneaked in an additional time, making the list longer than usual. As the town detective, your task is to find these two sneaky numbers. Return an array of size two containing the two numbers (in any order), so peace can return to Digitville.",
             "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3314,
+            "title": "Construct the Minimum Bitwise Array I",
+            "route": "/3314",
+            "difficulty": "Easy",
+            "description": "Construct the minimum possible array ans such that the bitwise OR of ans[i] and ans[i] + 1 is equal to nums[i].",
+            "timeComplexity": "O(n * log(val))",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3318,
@@ -1214,6 +1277,24 @@
             "description": "You are given a binary string s and a positive integer k.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3453,
+            "title": "Separate Squares I",
+            "route": "/3453",
+            "difficulty": "Medium",
+            "description": "Find the y-coordinate of a horizontal line that divides the total area of all non-overlapping squares into two equal halves.",
+            "timeComplexity": "O(n * log(precision))",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 3454,
+            "title": "Separate Squares II",
+            "route": "/3454",
+            "difficulty": "Hard",
+            "description": "Find the y-coordinate of a horizontal line that divides the total union area of overlapping squares into two equal halves.",
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3459,
@@ -1414,6 +1495,6 @@
             "spaceComplexity": "O(n)"
         }
     ],
-    "totalCount": 143,
+    "totalCount": 152,
     "lastUpdated": "2026-01-20"
 }
