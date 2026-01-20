@@ -11,7 +11,7 @@ function extractMetadata(filePath, id) {
     const titleMatch = content.match(/<title>\s*LeetCode\s*\d+:\s*(.*?)\s*\(C\+\+\)\s*<\/title>/i) ||
         content.match(/<h1>LeetCode\s*\d+:\s*(.*?)\s*\(C\+\+\)<\/h1>/i) ||
         content.match(/<h1>LeetCode\s*\d+:\s*(.*?)\s*<\/h1>/i);
-    const title = titleMatch ? titleMatch[1].trim() : `Problem ${id}`;
+    const title = titleMatch ? titleMatch[1].replace(/\s+/g, ' ').trim() : `Problem ${id}`;
 
     // Extract Difficulty
     // Note: Difficulty is often not explicitly in a tag but sometimes in the description or assumed Medium.
@@ -22,7 +22,7 @@ function extractMetadata(filePath, id) {
 
     // Extract Description
     const descMatch = content.match(/<div class="problem-description">[\s\S]*?<p><strong>Problem:<\/strong>([\s\S]*?)<\/p>/i);
-    let description = descMatch ? descMatch[1].replace(/<[^>]*>/g, '').trim() : "";
+    let description = descMatch ? descMatch[1].replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim() : "";
     if (description.length > 200) description = description.substring(0, 197) + "...";
 
     return {
