@@ -46,6 +46,24 @@
             "spaceComplexity": "O(n*n)"
         },
         {
+            "id": 66,
+            "title": "Plus One",
+            "route": "/66",
+            "difficulty": "Easy",
+            "description": "Increment a large integer represented as an integer array by one and return the resulting array of digits.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 85,
+            "title": "Maximal Rectangle",
+            "route": "/85",
+            "difficulty": "Hard",
+            "description": "Find the largest rectangle containing only 1's in a binary matrix and return its area.",
+            "timeComplexity": "O(r*c)",
+            "spaceComplexity": "O(r*c)"
+        },
+        {
             "id": 120,
             "title": "Triangle",
             "route": "/120",
@@ -145,6 +163,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 712,
+            "title": "Minimum ASCII Delete Sum for Two Strings",
+            "route": "/712",
+            "difficulty": "Medium",
+            "description": "Given two strings s1 and s2, return the lowest ASCII sum of deleted characters to make two strings equal.",
+            "timeComplexity": "O(n*m)",
+            "spaceComplexity": "O(n*m)"
+        },
+        {
             "id": 717,
             "title": "1-bit and 2-bit Characters",
             "route": "/717",
@@ -152,6 +179,15 @@
             "description": "We have two special characters: The first character can be represented by one bit 0. The second character can be represented by two bits (10 or 11). Given a binary array bits that ends with 0, return true if the last character must be a one-bit character.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 756,
+            "title": "Pyramid Transition Matrix",
+            "route": "/756",
+            "difficulty": "Medium",
+            "description": "Determine if you can build a pyramid all the way to the top using specific triangular patterns allowed.",
+            "timeComplexity": "O(allowed^base)",
+            "spaceComplexity": "O(base^2)"
         },
         {
             "id": 757,
@@ -190,6 +226,24 @@
             "spaceComplexity": "O(k + w)"
         },
         {
+            "id": 840,
+            "title": "Magic Squares In Grid",
+            "route": "/840",
+            "difficulty": "Medium",
+            "description": "Given a row x col grid of integers, how many 3 x 3 contiguous magic square subgrids are there?",
+            "timeComplexity": "O(r*c)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 865,
+            "title": "Smallest Subtree with all the Deepest Nodes",
+            "route": "/865",
+            "difficulty": "Medium",
+            "description": "Given the root of a binary tree, return the smallest subtree such that it contains all the deepest nodes.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(h)"
+        },
+        {
             "id": 869,
             "title": "Reordered Power of 2",
             "route": "/869",
@@ -224,6 +278,15 @@
             "description": "Return the minimum possible number of columns to delete such that the remaining columns form a non-decreasing sequence.",
             "timeComplexity": "O(n^2)",
             "spaceComplexity": "O(n^2)"
+        },
+        {
+            "id": 961,
+            "title": "N-Repeated Element in Size 2N Array",
+            "route": "/961",
+            "difficulty": "Easy",
+            "description": "Exactly one element of nums is repeated n times in an array of size 2n. Return that element.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
         },
         {
             "id": 966,
@@ -271,11 +334,29 @@
             "spaceComplexity": "O(n^2)"
         },
         {
+            "id": 1161,
+            "title": "Maximum Level Sum of a Binary Tree",
+            "route": "/1161",
+            "difficulty": "Medium",
+            "description": "Return the smallest level x such that the sum of all node values at level x is maximal.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
             "id": 1262,
             "title": "Greatest Sum Divisible by Three",
             "route": "/1262",
             "difficulty": "Medium",
             "description": "Given an integer array nums, return the maximum possible sum of elements of the array such that it is divisible by three.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1266,
+            "title": "Minimum Time Visiting All Points",
+            "route": "/1266",
+            "difficulty": "Easy",
+            "description": "Return the minimum time in seconds to visit all the points in the order given by points.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
         },
@@ -287,6 +368,15 @@
             "description": "Given a m * n matrix of ones and zeros, return how many square submatrices have all ones.",
             "timeComplexity": "O(m*n)",
             "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1292,
+            "title": "Maximum Side Length of a Square with Sum Less than or Equal to Threshold",
+            "route": "/1292",
+            "difficulty": "Medium",
+            "description": "Return the maximum side-length of a square with a sum less than or equal to threshold.",
+            "timeComplexity": "O(m*n*log(min(m,n)))",
+            "spaceComplexity": "O(m*n)"
         },
         {
             "id": 1304,
@@ -1234,6 +1324,6 @@
             "spaceComplexity": "O(n)"
         }
     ],
-    "totalCount": 123,
-    "lastUpdated": "2025-12-22"
+    "totalCount": 133,
+    "lastUpdated": "2026-01-20"
 }
