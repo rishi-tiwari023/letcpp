@@ -1493,6 +1493,15 @@
             "description": "Return the maximum profit you can achieve with a trading strategy and overrides.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 99999,
+            "title": "Workflow Test",
+            "route": "/99999",
+            "difficulty": "Medium",
+            "description": "This is a test problem to verify the automated GitHub Actions synchronization\n                workflow (permissions fix verified).",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
         }
     ],
     "totalCount": 152,
