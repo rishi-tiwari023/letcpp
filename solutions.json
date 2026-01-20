@@ -406,6 +406,42 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1339,
+            "title": "Maximum Product of Splitted Binary Tree",
+            "route": "/1339",
+            "difficulty": "Medium",
+            "description": "Split the binary tree into two subtrees by removing one edge such that the product of the sums of the subtrees is maximized.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(h)"
+        },
+        {
+            "id": 1351,
+            "title": "Count Negative Numbers in a Sorted Matrix",
+            "route": "/1351",
+            "difficulty": "Easy",
+            "description": "Given a sorted m x n matrix, return the number of negative numbers in the grid.",
+            "timeComplexity": "O(m + n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1390,
+            "title": "Four Divisors",
+            "route": "/1390",
+            "difficulty": "Medium",
+            "description": "Given an integer array nums, return the sum of divisors of the integers in that array that have exactly four divisors.",
+            "timeComplexity": "O(n * sqrt(val))",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1411,
+            "title": "Number of Ways to Paint N × 3 Grid",
+            "route": "/1411",
+            "difficulty": "Hard",
+            "description": "Return the number of ways you can paint a n x 3 grid with three colors such that no two adjacent cells have the same color.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1437,
             "title": "Check If All 1's Are at Least Length K Places Away",
             "route": "/1437",
@@ -413,6 +449,15 @@
             "description": "Given an binary array nums and an integer k, return true if all 1's are at least k places away from each other, otherwise return false.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 1458,
+            "title": "Max Dot Product of Two Subsequences",
+            "route": "/1458",
+            "difficulty": "Hard",
+            "description": "Return the maximum dot product between non-empty subsequences of nums1 and nums2 with the same length.",
+            "timeComplexity": "O(n*m)",
+            "spaceComplexity": "O(m)"
         },
         {
             "id": 1488,
@@ -541,6 +586,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 1895,
+            "title": "Largest Magic Square",
+            "route": "/1895",
+            "difficulty": "Medium",
+            "description": "Return the side length k of the largest magic square that can be found within an m x n integer grid.",
+            "timeComplexity": "O(m*n*min(m,n)^2)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1912,
             "title": "Design Movie Rental System",
             "route": "/1912",
@@ -577,6 +631,24 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1970,
+            "title": "Last Day Where You Can Still Cross",
+            "route": "/1970",
+            "difficulty": "Hard",
+            "description": "Find the last day where it is possible to walk from the top to the bottom of a matrix that is gradually flooding.",
+            "timeComplexity": "O(row*col*log(row*col))",
+            "spaceComplexity": "O(row*col)"
+        },
+        {
+            "id": 1975,
+            "title": "Maximum Matrix Sum",
+            "route": "/1975",
+            "difficulty": "Medium",
+            "description": "Maximize the summation of a matrix's elements by flipping adjacent pairs' signs.",
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2011,
             "title": "Final Value of Variable After Performing Operations",
             "route": "/2011",
@@ -602,6 +674,15 @@
             "description": "An integer x is numerically balanced if for every digit d in x, the frequency of d in x is equal to d.",
             "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 2054,
+            "title": "Two Best Non-Overlapping Events",
+            "route": "/2054",
+            "difficulty": "Medium",
+            "description": "You can attend at most two non-overlapping events. Return the maximum sum of values.",
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 2092,
@@ -754,6 +835,15 @@
             "difficulty": "Medium",
             "description": "Design a food rating system that can do the following.",
             "timeComplexity": "O(log n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": 2402,
+            "title": "Meeting Rooms III",
+            "route": "/2402",
+            "difficulty": "Hard",
+            "description": "Return the number of the room that held the most meetings in a system where meetings can be delayed.",
+            "timeComplexity": "O(m log m + m log n)",
             "spaceComplexity": "O(n)"
         },
         {
@@ -1324,6 +1414,6 @@
             "spaceComplexity": "O(n)"
         }
     ],
-    "totalCount": 133,
+    "totalCount": 143,
     "lastUpdated": "2026-01-20"
 }
