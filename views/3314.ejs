@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3314: Construct the Minimum Bitwise Array I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3314: Construct the Minimum Bitwise Array I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array nums consisting of n prime numbers. You need to construct an array ans of length
+                n such that, for each index i, the bitwise OR of ans[i] and ans[i] + 1 is equal to nums[i]. Return the
+                minimum possible array ans. If it is not possible to find such an array, return an array with -1 at that
+                index.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [2,3,5,7]<br>
+                Output: [-1,1,4,3]<br>
+                Explanation: For nums[0] = 2, no valid x exists. For nums[1] = 3, ans[1] = 1 because 1 | 2 = 3. For
+                nums[2] = 5, ans[2] = 4 because 4 | 5 = 5. For nums[3] = 7, ans[3] = 3 because 3 | 4 = 7.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; minBitwiseArray(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        vector&lt;int&gt; result(n);
+        for (int i = 0; i &lt; n; i++) {
+            // Special case where no valid x exists
+            result[i] = (nums[i] == 2) ? -1 : compute(nums[i]);
+        }
+        return result;
+    }
+private:
+    int compute(int val) {
+        int trailingOnes = 0;
+        int temp = val;
+        // Count continuous 1s from LSB
+        while ((temp &amp; 1) == 1) {
+            trailingOnes++;
+            temp &gt;&gt;= 1;
+        }
+        if (trailingOnes == 1) return val - 1;
+        // Clear trailing 1s and rebuild minimal pattern
+        int cleared = val ^ ((1 &lt;&lt; trailingOnes) - 1);
+        return cleared | ((1 &lt;&lt; (trailingOnes - 1)) - 1);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
