@@ -1495,6 +1495,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 9999,
+            "title": "Workflow Test",
+            "route": "/9999",
+            "difficulty": "Medium",
+            "description": "This is a test problem to verify the automated GitHub Actions synchronization workflow (whitespace cleaning verified).",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 99999,
             "title": "Workflow Test",
             "route": "/99999",
