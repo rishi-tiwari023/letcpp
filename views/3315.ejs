@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3315: Construct the Minimum Bitwise Array II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3315: Construct the Minimum Bitwise Array II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array nums consisting of n integers. You need to construct an array ans of length n
+                such that, for each index i, the bitwise OR of ans[i] and ans[i] + 1 is equal to nums[i]. Return the
+                minimum possible array ans. If it is not possible to find such a value for a given index, return -1 at
+                that index.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [11,13,31]<br>
+                Output: [9,12,15]<br>
+                Explanation: For nums[0] = 11, ans[0] = 9 because 9 | 10 = 11. For nums[1] = 13, ans[1] = 12 because 12
+                | 13 = 13. For nums[2] = 31, ans[2] = 15 because 15 | 16 = 31.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; minBitwiseArray(vector&lt;int&gt;&amp; nums) {
+        vector&lt;int&gt; result(nums.size());
+        for (int i = 0; i &lt; nums.size(); i++) {
+            int val = nums[i];
+            // even number cannot be formed
+            if ((val &amp; 1) == 0) {
+                result[i] = -1;
+                continue;
+            }
+            int ones = 0;
+            int temp = val;
+            // count trailing 1s
+            while (temp &amp; 1) {
+                ones++;
+                temp &gt;&gt;= 1;
+            }
+            result[i] = val - (1 &lt;&lt; (ones - 1));
+        }
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
