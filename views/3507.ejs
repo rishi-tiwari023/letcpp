@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3507: Minimum Pair Removal to Sort Array I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3507: Minimum Pair Removal to Sort Array I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array of integers nums. In one operation, you can select any two adjacent elements,
+                remove them, and replace them with their sum. Return the minimum number of operations required to make
+                the array sorted in non-decreasing order.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [3,1,4,2]<br>
+                Output: 2<br>
+                Explanation: First operation: merge 1 and 4 to get [3,5,2]. Second operation: merge 5 and 2 to get
+                [3,7]. The array is now sorted.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int findMinPair(vector&lt;int&gt;&amp; data) {
+        int smallest = INT_MAX, idx = -1;
+        for (int i = 0; i + 1 &lt; data.size(); i++) {
+            if (data[i] + data[i + 1] &lt; smallest) {
+                smallest = data[i] + data[i + 1];
+                idx = i;
+            }
+        }
+        return idx;
+    }
+    void combinePair(vector&lt;int&gt;&amp; data, int idx) {
+        data[idx] += data[idx + 1];
+        data.erase(data.begin() + idx + 1);
+    }
+    int minimumPairRemoval(vector&lt;int&gt;&amp; nums) {
+        vector&lt;int&gt; data(nums.begin(), nums.end());
+        int operations = 0;
+        while (!isSorted(data)) {
+            int pos = findMinPair(data);
+            combinePair(data, pos); // merge smallest adjacent pair
+            operations++;
+        }
+        return operations;
+    }
+    bool isSorted(vector&lt;int&gt;&amp; data) {
+        for (int i = 0; i + 1 &lt; data.size(); i++)
+            if (data[i] &gt; data[i + 1]) return false;
+        return true;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
