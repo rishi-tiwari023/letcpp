@@ -1351,6 +1351,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3507,
+            "title": "Minimum Pair Removal to Sort Array I",
+            "route": "/3507",
+            "difficulty": "Medium",
+            "description": "You are given an array of integers nums. In one operation, you can select any two adjacent elements, remove them, and replace them with their sum. Return the minimum number of operations required t...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3508,
             "title": "Find the Maximum Length of a Good Subsequence XII",
             "route": "/3508",
@@ -1523,5 +1532,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-01-21"
+    "lastUpdated": "2026-01-22"
 }
