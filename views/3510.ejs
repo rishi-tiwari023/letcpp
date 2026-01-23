@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3510: Minimum Pair Removal to Sort Array II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3510: Minimum Pair Removal to Sort Array II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array of integers nums. In one operation, you can select any two adjacent elements,
+                remove them, and replace them with their sum. Return the minimum number of operations required to make
+                the array sorted in non-decreasing order. This is the optimized version for larger constraints.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [5,2,8,1,3]<br>
+                Output: 3<br>
+                Explanation: Through a series of merge operations on adjacent pairs with minimum sum, we can achieve a
+                sorted array in 3 operations.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Node {
+public:
+    long long value;
+    Node *prev, *next;
+    Node(long long v) : value(v), prev(nullptr), next(nullptr) {}
+    Node(long long v, Node* p, Node* n) : value(v), prev(p), next(n) {}
+};
+class Solution {
+public:
+    int minimumPairRemoval(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        Node *head = nullptr, *tail = nullptr;
+        int badPairs = 0, operations = 0;
+        set&lt;pair&lt;long long, Node*&gt;&gt; minPairSet;
+        // build linked list and initialize adjacent pair sums
+        for (int i = 0; i &lt; n; i++) {
+            Node* curr = new Node(nums[i], tail, nullptr);
+            if (!head) head = curr;
+            if (tail) tail-&gt;next = curr;
+            if (i &lt; n - 1) {
+                if (nums[i] &gt; nums[i + 1]) badPairs++;
+                minPairSet.insert({nums[i] + 0LL + nums[i + 1], curr});
+            }
+            tail = curr;
+        }
+        while (badPairs &gt; 0) {
+            auto it = minPairSet.begin();   // smallest adjacent sum
+            Node* curr = it-&gt;second;
+            Node* nxt = curr-&gt;next;
+            Node* prv = curr-&gt;prev;
+            Node* nxtNext = nxt-&gt;next;
+            minPairSet.erase(it);
+            // update bad-pair count before merge
+            if (curr-&gt;value &gt; nxt-&gt;value) badPairs--;
+            if (prv) {
+                if (prv-&gt;value &gt; curr-&gt;value) badPairs--;
+                if (prv-&gt;value &gt; curr-&gt;value + nxt-&gt;value) badPairs++;
+                minPairSet.erase({prv-&gt;value + curr-&gt;value, prv});
+            }
+            if (nxtNext) {
+                if (nxt-&gt;value &gt; nxtNext-&gt;value) badPairs--;
+                if (nxtNext-&gt;value &lt; curr-&gt;value + nxt-&gt;value) badPairs++;
+                minPairSet.erase({nxt-&gt;value + nxtNext-&gt;value, nxt});
+            }
+            // merge current node with next
+            curr-&gt;value += nxt-&gt;value;
+            curr-&gt;next = nxtNext;
+            if (nxtNext) nxtNext-&gt;prev = curr;
+            delete nxt;
+            operations++;
+            // insert new adjacent sums after merge
+            if (prv)
+                minPairSet.insert({prv-&gt;value + curr-&gt;value, prv});
+            if (nxtNext)
+                minPairSet.insert({curr-&gt;value + nxtNext-&gt;value, curr});
+        }
+        return operations;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
