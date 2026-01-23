@@ -1369,6 +1369,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3510,
+            "title": "Minimum Pair Removal to Sort Array II",
+            "route": "/3510",
+            "difficulty": "Medium",
+            "description": "You are given an array of integers nums. In one operation, you can select any two adjacent elements, remove them, and replace them with their sum. Return the minimum number of operations required t...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3512,
             "title": "Minimum Operations to Make Array Sum Divisible by K",
             "route": "/3512",
@@ -1532,5 +1541,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-01-22"
+    "lastUpdated": "2026-01-23"
 }
