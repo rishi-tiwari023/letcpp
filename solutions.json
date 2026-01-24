@@ -586,6 +586,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 1877,
+            "title": "Minimize Maximum Pair Sum in Array",
+            "route": "/1877",
+            "difficulty": "Medium",
+            "description": "The pair sum of a pair (a,b) is equal to a + b. The maximum pair sum is the largest pair sum in a list of pairs. Given an array nums of even length n, pair up the elements of nums into n / 2 pairs ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1895,
             "title": "Largest Magic Square",
             "route": "/1895",
@@ -1541,5 +1550,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-01-23"
+    "lastUpdated": "2026-01-24"
 }
