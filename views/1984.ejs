@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1984: Minimum Difference Between Highest and Lowest of K Scores
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1984: Minimum Difference Between Highest and Lowest of K Scores (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed integer array nums, where nums[i] represents the score of the ith student. You
+                are also given an integer k. Pick the scores of any k students from the array so that the difference
+                between the highest and the lowest of the k scores is minimized. Return the minimum possible difference.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [90,85,100,70,95], k = 3<br>
+                Output: 10<br>
+                Explanation: One way to minimize the difference is to choose scores 85, 90, and 95. The difference is 95
+                - 85 = 10, which is the minimum possible.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minimumDifference(vector&lt;int&gt;&amp; scores, int groupSize) {
+        if (groupSize == 1) return 0;
+        sort(scores.begin(), scores.end());
+        int minGap = INT_MAX;
+        for (int start = 0; start + groupSize - 1 &lt; (int)scores.size(); start++) {
+            int currentGap = scores[start + groupSize - 1] - scores[start]; // difference within this group
+            minGap = min(minGap, currentGap);
+        }
+        return minGap;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
