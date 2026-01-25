@@ -658,6 +658,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1984,
+            "title": "Minimum Difference Between Highest and Lowest of K Scores",
+            "route": "/1984",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed integer array nums, where nums[i] represents the score of the ith student. You are also given an integer k. Pick the scores of any k students from the array so that the di...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2011,
             "title": "Final Value of Variable After Performing Operations",
             "route": "/2011",
@@ -1550,5 +1559,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-01-24"
+    "lastUpdated": "2026-01-25"
 }
