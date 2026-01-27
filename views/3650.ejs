@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3650: Minimum Cost Path with Edge Reversals
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3650: Minimum Cost Path with Edge Reversals (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer n representing the number of nodes in a directed graph, and a 2D integer array
+                edges where edges[i] = [u, v, cost] denotes a directed edge from node u to node v with a cost. You can
+                reverse any edge at double its cost. Find the minimum cost to reach node n-1 from node 0. If it is
+                impossible, return -1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 4, edges = [[0,1,2],[1,2,3],[2,3,1],[0,3,10]]<br>
+                Output: 6<br>
+                Explanation: The path 0 → 1 → 2 → 3 has cost 2 + 3 + 1 = 6. Reversing edges would cost more, so this is
+                optimal.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">using pii = pair&lt;int, int&gt;;
+class Solution {
+public:
+    int minCost(int nodes, vector&lt;vector&lt;int&gt;&gt;&amp; edgeList) {
+        vector&lt;vector&lt;pair&lt;int,int&gt;&gt;&gt; adjList(nodes);
+        // Store normal and reversed edges with respective costs
+        for (auto &amp;edge : edgeList) {
+            int u = edge[0];
+            int v = edge[1];
+            int cost = edge[2];
+            adjList[u].push_back({v, cost});
+            adjList[v].push_back({u, 2 * cost});
+        }
+        priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;&gt;&gt; pq;
+        vector&lt;int&gt; dist(nodes, 1e9);
+        pq.push({0, 0});
+        while (!pq.empty()) {
+            auto [currDist, currNode] = pq.top();
+            pq.pop();
+            // Process node only when a better distance is found
+            if (currDist &lt; dist[currNode]) {
+                dist[currNode] = currDist;
+                for (auto &amp;[nextNode, edgeCost] : adjList[currNode]) {
+                    pq.push({currDist + edgeCost, nextNode});
+                }
+            }
+        }
+        return dist[nodes - 1] == 1e9 ? -1 : dist[nodes - 1];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
