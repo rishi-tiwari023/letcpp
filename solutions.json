@@ -1540,6 +1540,15 @@
             "spaceComplexity": "O(n^2)"
         },
         {
+            "id": 3650,
+            "title": "Minimum Cost Path with Edge Reversals",
+            "route": "/3650",
+            "difficulty": "Medium",
+            "description": "You are given an integer n representing the number of nodes in a directed graph, and a 2D integer array edges where edges[i] = [u, v, cost] denotes a directed edge from node u to node v with a cost...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3652,
             "title": "Best Time to Buy and Sell Stock using Strategy",
             "route": "/3652",
@@ -1568,5 +1577,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-01-26"
+    "lastUpdated": "2026-01-27"
 }
