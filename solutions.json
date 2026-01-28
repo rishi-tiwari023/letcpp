@@ -1549,6 +1549,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3651,
+            "title": "Minimum Cost Path with Teleportations",
+            "route": "/3651",
+            "difficulty": "Medium",
+            "description": "You are given an m x n integer matrix grid and an integer k. You start at the top-left cell (0, 0) and want to reach the bottom-right cell (m-1, n-1). You can move right or down, and each move to a...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3652,
             "title": "Best Time to Buy and Sell Stock using Strategy",
             "route": "/3652",
@@ -1577,5 +1586,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-01-27"
+    "lastUpdated": "2026-01-28"
 }
