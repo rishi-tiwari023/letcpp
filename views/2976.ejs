@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2976: Minimum Cost to Convert String I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2976: Minimum Cost to Convert String I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two strings source and target, both of length n and consisting of lowercase English
+                letters. You are also given two character arrays original and changed, and an integer array cost, where
+                cost[i] represents the cost of changing the character original[i] to the character changed[i]. Return
+                the minimum cost to convert the string source to the string target. If it is impossible, return -1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: source = "abcd", target = "acbe", original = ["a","b","c","c","e","d"], changed =
+                ["b","c","b","e","b","e"], cost = [2,5,5,1,2,20]<br>
+                Output: 28<br>
+                Explanation: Convert 'a' to 'b' (cost 2), 'b' to 'c' (cost 5), 'c' to 'b' then 'b' to 'e' (cost 5+2=7),
+                'd' to 'e' (cost 20). Total: 2+5+7+20 = 34. Optimal path may differ.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long minimumCost(
+        string src,
+        string tgt,
+        vector&lt;char&gt;&amp; fromChar,
+        vector&lt;char&gt;&amp; toChar,
+        vector&lt;int&gt;&amp; edgeCost
+    ) {
+        const long long INF = 1e18;
+        // dist[i][j] = minimum cost to convert char i -&gt; j
+        vector&lt;vector&lt;long long&gt;&gt; dist(26, vector&lt;long long&gt;(26, INF));
+        for (int i = 0; i &lt; 26; i++)
+            dist[i][i] = 0; // zero cost to stay same
+        // direct conversion costs
+        for (int i = 0; i &lt; fromChar.size(); i++) {
+            int u = fromChar[i] - 'a';
+            int v = toChar[i] - 'a';
+            dist[u][v] = min(dist[u][v], (long long)edgeCost[i]);
+        }
+        // Floyd–Warshall to compute all-pairs minimum cost
+        for (int via = 0; via &lt; 26; via++)
+            for (int i = 0; i &lt; 26; i++)
+                for (int j = 0; j &lt; 26; j++)
+                    if (dist[i][via] &lt; INF &amp;&amp; dist[via][j] &lt; INF)
+                        dist[i][j] = min(dist[i][j], dist[i][via] + dist[via][j]);
+        long long totalCost = 0;
+        for (int i = 0; i &lt; src.size(); i++) {
+            if (src[i] == tgt[i]) continue;
+            int u = src[i] - 'a';
+            int v = tgt[i] - 'a';
+            if (dist[u][v] == INF) return -1; // conversion impossible
+            totalCost += dist[u][v];
+        }
+        return totalCost;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
