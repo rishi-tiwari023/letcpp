@@ -1000,6 +1000,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2977,
+            "title": "Minimum Cost to Convert String II",
+            "route": "/2977",
+            "difficulty": "Medium",
+            "description": "You are given two strings source and target, both consisting of lowercase English letters. You are also given two string arrays original and changed, and an integer array cost, where cost[i] repres...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3000,
             "title": "Maximum Area of Longest Diagonal Rectangle",
             "route": "/3000",
@@ -1595,5 +1604,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-01-29"
+    "lastUpdated": "2026-01-30"
 }
