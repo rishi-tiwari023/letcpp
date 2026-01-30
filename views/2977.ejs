@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2977: Minimum Cost to Convert String II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2977: Minimum Cost to Convert String II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two strings source and target, both consisting of lowercase English letters. You are also
+                given two string arrays original and changed, and an integer array cost, where cost[i] represents the
+                cost of converting the substring original[i] to changed[i]. You can perform any number of operations on
+                source where you replace a substring with another substring. Return the minimum cost to convert source
+                to target. If it is impossible, return -1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: source = "abcd", target = "acbe", original = ["a","b","c","ab","ac"], changed =
+                ["b","c","e","e","e"], cost = [2,5,1,2,1]<br>
+                Output: 5<br>
+                Explanation: Convert "ab" to "ac" (cost 1), then "c" to "e" (cost 1), then "d" to "e" using conversions.
+                Find optimal substring conversions to minimize total cost.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long minimumCost(string src, string tgt,
+                          vector&lt;string&gt;&amp; a, vector&lt;string&gt;&amp; b, vector&lt;int&gt;&amp; c) {
+        int n = src.size();
+        const long long INF = 1e18;
+        unordered_map&lt;string,int&gt; mp;
+        int id = 0;
+        for(auto &amp;s:a) if(!mp.count(s)) mp[s]=id++;
+        for(auto &amp;s:b) if(!mp.count(s)) mp[s]=id++;
+        vector&lt;vector&lt;long long&gt;&gt; d(id, vector&lt;long long&gt;(id, INF));
+        for(int i=0;i&lt;id;i++) d[i][i]=0;
+        for(int i=0;i&lt;a.size();i++)
+            d[mp[a[i]]][mp[b[i]]] = min(d[mp[a[i]]][mp[b[i]]], (long long)c[i]);
+        // All-pairs shortest conversion cost
+        for(int k=0;k&lt;id;k++)
+            for(int i=0;i&lt;id;i++)
+                for(int j=0;j&lt;id;j++)
+                    if(d[i][k]&lt;INF &amp;&amp; d[k][j]&lt;INF)
+                        d[i][j] = min(d[i][j], d[i][k]+d[k][j]);
+        unordered_set&lt;int&gt; lens;
+        for(auto &amp;s:a) lens.insert(s.size());
+        vector&lt;long long&gt; dp(n+1, INF);
+        dp[0]=0;
+        for(int i=0;i&lt;n;i++){
+            if(dp[i]==INF) continue;
+            if(src[i]==tgt[i]) dp[i+1] = min(dp[i+1], dp[i]);
+            for(int L:lens){
+                if(i+L&gt;n) continue;
+                string s = src.substr(i,L), t = tgt.substr(i,L);
+                if(mp.count(s) &amp;&amp; mp.count(t) &amp;&amp; d[mp[s]][mp[t]]&lt;INF)
+                    dp[i+L] = min(dp[i+L], dp[i] + d[mp[s]][mp[t]]);
+            }
+        }
+        return dp[n]==INF ? -1 : dp[n];
+    }
+};
+</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
