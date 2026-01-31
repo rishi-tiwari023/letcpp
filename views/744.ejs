@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 744: Find Smallest Letter Greater Than Target
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 744: Find Smallest Letter Greater Than Target (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array of characters letters that is sorted in non-decreasing order, and a character
+                target. There are at least two different characters in letters. Return the smallest character in letters
+                that is lexicographically greater than target. If such a character does not exist, return the first
+                character in letters.
+            </p>
+            <p><strong>Example:</strong>
+                Input: letters = ["c","f","j"], target = "a"<br>
+                Output: "c"<br>
+                Explanation: The smallest character that is lexicographically greater than 'a' in letters is 'c'.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    char nextGreatestLetter(vector&lt;char&gt;&amp; letters, char target) {
+        int size = letters.size();
+        int left = 0, right = size - 1;
+        int resultIndex = 0;
+        // Binary search to find the first character greater than target
+        while (left &lt;= right) {
+            int middle = left + (right - left) / 2;
+            if (letters[middle] &gt; target) {
+                resultIndex = middle;
+                right = middle - 1;
+            } else {
+                left = middle + 1;
+            }
+        }
+        return letters[resultIndex];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
