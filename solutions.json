@@ -1045,6 +1045,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3010,
+            "title": "Divide an Array Into Subarrays With Minimum Cost I",
+            "route": "/3010",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed integer array nums of length n. The cost of dividing the array into subarrays is defined as the sum of the first elements of each subarray. The first element of the origin...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3021,
             "title": "Alice and Bob Playing Flower Game",
             "route": "/3021",
@@ -1613,5 +1622,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-01-31"
+    "lastUpdated": "2026-02-01"
 }
