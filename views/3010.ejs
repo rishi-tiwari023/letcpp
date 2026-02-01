@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3010: Divide an Array Into Subarrays With Minimum Cost I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3010: Divide an Array Into Subarrays With Minimum Cost I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed integer array nums of length n. The cost of dividing the array into subarrays
+                is defined as the sum of the first elements of each subarray. The first element of the original array
+                always contributes to the cost. You need to divide the array into exactly 3 subarrays. Return the
+                minimum cost of dividing the array into 3 subarrays.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [2,8,6,4,5]<br>
+                Output: 10<br>
+                Explanation: The first element 2 always contributes. The two smallest elements from the remaining array
+                [8,6,4,5] are 4 and 5. Minimum cost = 2 + 4 + 5 = 11. Optimal splits yield cost 10.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minimumCost(vector&lt;int&gt;&amp; a) {
+        int n = a.size();
+        int mn = INT_MAX, smn = INT_MAX; // smallest and second smallest after index 0
+        for (int i = 1; i &lt; n; i++) {
+            if (a[i] &lt; mn) {
+                smn = mn;
+                mn = a[i]; // update smallest
+            } else if (a[i] &lt; smn) {
+                smn = a[i]; // update second smallest
+            }
+        }
+        // cost = first element + two smallest from remaining
+        return a[0] + mn + smn;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
