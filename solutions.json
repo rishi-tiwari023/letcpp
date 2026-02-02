@@ -1045,6 +1045,24 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3010,
+            "title": "Divide an Array Into Subarrays With Minimum Cost I",
+            "route": "/3010",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed integer array nums of length n. The cost of dividing the array into subarrays is defined as the sum of the first elements of each subarray. The first element of the origin...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3013,
+            "title": "Divide an Array Into Subarrays With Minimum Cost II",
+            "route": "/3013",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed integer array nums of length n, and two positive integers k and dist. The cost of an array is the value of its first element. You need to divide nums into k subarrays such...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3021,
             "title": "Alice and Bob Playing Flower Game",
             "route": "/3021",
@@ -1613,5 +1631,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-01-31"
+    "lastUpdated": "2026-02-02"
 }
