@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3013: Divide an Array Into Subarrays With Minimum Cost II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3013: Divide an Array Into Subarrays With Minimum Cost II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed integer array nums of length n, and two positive integers k and dist. The cost
+                of an array is the value of its first element. You need to divide nums into k subarrays such that the
+                difference between the starting index of the second subarray and the starting index of the kth subarray
+                is at most dist. Return the minimum possible sum of the cost of these subarrays.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,3,2,6,4,2], k = 3, dist = 3<br>
+                Output: 5<br>
+                Explanation: The optimal division yields subarrays starting at indices that minimize cost. The first
+                element is always included, and we select k-1 more elements within the distance constraint to minimize
+                sum.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long minimumCost(vector&lt;int&gt;&amp; a, int k, int d) {
+        int n = a.size();
+        auto cmp = [&amp;](int i, int j) {
+            return a[i] == a[j] ? i &lt; j : a[i] &lt; a[j];
+        };
+        set&lt;int, decltype(cmp)&gt; take(cmp), extra(cmp);
+        k--; // we already include a[0]
+        long long sum = 0, best = LLONG_MAX;
+        int end = min(d + 1, n - 1);
+        for (int i = 1; i &lt;= end; i++) {
+            sum += a[i];
+            take.insert(i);
+        }
+        while ((int)take.size() &gt; k) {
+            auto it = prev(take.end());
+            sum -= a[*it];
+            extra.insert(*it);
+            take.erase(it);
+        }
+        best = sum;
+        for (int r = d + 2, l = 1; r &lt; n; r++, l++) {
+            extra.insert(r);
+            if (take.count(l)) {
+                take.erase(l);
+                sum -= a[l];
+                int x = *extra.begin();
+                extra.erase(extra.begin());
+                take.insert(x);
+                sum += a[x];
+            } else {
+                extra.erase(l);
+                if (!take.empty() &amp;&amp; !extra.empty() &amp;&amp;
+                    a[*prev(take.end())] &gt; a[*extra.begin()]) {
+                    int big = *prev(take.end());
+                    take.erase(prev(take.end()));
+                    sum -= a[big];
+                    extra.insert(big);
+                    int small = *extra.begin();
+                    extra.erase(extra.begin());
+                    take.insert(small);
+                    sum += a[small];
+                }
+            }
+            best = min(best, sum);
+        }
+        return a[0] + best; // add fixed first element
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
