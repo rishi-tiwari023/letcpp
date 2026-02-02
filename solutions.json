@@ -184,9 +184,9 @@
             "id": 744,
             "title": "Find Smallest Letter Greater Than Target",
             "route": "/744",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "You are given an array of characters letters that is sorted in non-decreasing order, and a character target. There are at least two different characters in letters. Return the smallest character in...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(log n)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -355,10 +355,10 @@
             "id": 1200,
             "title": "Minimum Absolute Difference",
             "route": "/1200",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given an array of distinct integers arr, find all pairs of elements with the minimum absolute difference of any two elements. Return a list of pairs in ascending order (with respect to pairs), each...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 1262,
@@ -609,7 +609,7 @@
             "route": "/1877",
             "difficulty": "Medium",
             "description": "The pair sum of a pair (a,b) is equal to a + b. The maximum pair sum is the largest pair sum in a list of pairs. Given an array nums of even length n, pair up the elements of nums into n / 2 pairs ...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -679,9 +679,9 @@
             "id": 1984,
             "title": "Minimum Difference Between Highest and Lowest of K Scores",
             "route": "/1984",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "You are given a 0-indexed integer array nums, where nums[i] represents the score of the ith student. You are also given an integer k. Pick the scores of any k students from the array so that the di...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -1012,10 +1012,10 @@
             "id": 2977,
             "title": "Minimum Cost to Convert String II",
             "route": "/2977",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given two strings source and target, both consisting of lowercase English letters. You are also given two string arrays original and changed, and an integer array cost, where cost[i] repres...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n^2 + m^3)",
+            "spaceComplexity": "O(n + m^2)"
         },
         {
             "id": 3000,
@@ -1048,7 +1048,7 @@
             "id": 3010,
             "title": "Divide an Array Into Subarrays With Minimum Cost I",
             "route": "/3010",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "You are given a 0-indexed integer array nums of length n. The cost of dividing the array into subarrays is defined as the sum of the first elements of each subarray. The first element of the origin...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -1057,10 +1057,10 @@
             "id": 3013,
             "title": "Divide an Array Into Subarrays With Minimum Cost II",
             "route": "/3013",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given a 0-indexed integer array nums of length n, and two positive integers k and dist. The cost of an array is the value of its first element. You need to divide nums into k subarrays such...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n * log k)",
+            "spaceComplexity": "O(k)"
         },
         {
             "id": 3021,
@@ -1231,7 +1231,7 @@
             "difficulty": "Medium",
             "description": "You are given an array nums consisting of n integers. You need to construct an array ans of length n such that, for each index i, the bitwise OR of ans[i] and ans[i] + 1 is equal to nums[i]. Return...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3318,
@@ -1428,8 +1428,8 @@
             "route": "/3507",
             "difficulty": "Medium",
             "description": "You are given an array of integers nums. In one operation, you can select any two adjacent elements, remove them, and replace them with their sum. Return the minimum number of operations required t...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3508,
@@ -1444,10 +1444,10 @@
             "id": 3510,
             "title": "Minimum Pair Removal to Sort Array II",
             "route": "/3510",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given an array of integers nums. In one operation, you can select any two adjacent elements, remove them, and replace them with their sum. Return the minimum number of operations required t...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3512,
@@ -1588,19 +1588,19 @@
             "id": 3650,
             "title": "Minimum Cost Path with Edge Reversals",
             "route": "/3650",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given an integer n representing the number of nodes in a directed graph, and a 2D integer array edges where edges[i] = [u, v, cost] denotes a directed edge from node u to node v with a cost...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(E log V)",
+            "spaceComplexity": "O(V + E)"
         },
         {
             "id": 3651,
             "title": "Minimum Cost Path with Teleportations",
             "route": "/3651",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given an m x n integer matrix grid and an integer k. You start at the top-left cell (0, 0) and want to reach the bottom-right cell (m-1, n-1). You can move right or down, and each move to a...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(k * m * n)",
+            "spaceComplexity": "O(m * n)"
         },
         {
             "id": 3652,
