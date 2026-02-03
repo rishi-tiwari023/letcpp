@@ -1585,6 +1585,15 @@
             "spaceComplexity": "O(n^2)"
         },
         {
+            "id": 3637,
+            "title": "Trionic Array I",
+            "route": "/3637",
+            "difficulty": "Medium",
+            "description": "An array is called trionic if it can be divided into three non-empty parts such that the first part is strictly increasing, the second part is strictly decreasing, and the third part is strictly in...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3650,
             "title": "Minimum Cost Path with Edge Reversals",
             "route": "/3650",
@@ -1631,5 +1640,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-02-02"
+    "lastUpdated": "2026-02-03"
 }
