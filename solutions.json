@@ -1594,6 +1594,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3640,
+            "title": "Trionic Array II",
+            "route": "/3640",
+            "difficulty": "Medium",
+            "description": "A trionic subarray consists of three parts: strictly increasing, strictly decreasing, and strictly increasing (each part must have at least one element). Find the maximum sum of elements in a trion...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3650,
             "title": "Minimum Cost Path with Edge Reversals",
             "route": "/3650",
@@ -1640,5 +1649,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-02-03"
+    "lastUpdated": "2026-02-04"
 }
