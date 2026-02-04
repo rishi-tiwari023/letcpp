@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3640: Trionic Array II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3640: Trionic Array II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                A trionic subarray consists of three parts: strictly increasing, strictly decreasing, and strictly
+                increasing (each part must have at least one element). Find the maximum sum of elements in a trionic
+                subarray. You must include at least the last two elements of the first increasing part, all elements of
+                the decreasing part, and the first element of the final increasing part. You can optionally extend the
+                first and last increasing parts to maximize the sum.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,5,3,2,4,6]<br>
+                Output: 21<br>
+                Explanation: The trionic subarray [1,5,3,2,4,6] has sum = 1+5+3+2+4+6 = 21. Parts: [1,5] increasing,
+                [3,2] decreasing, [4,6] increasing.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long maxSumTrionic(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        long long answer = LLONG_MIN;
+        for (int start = 0; start &lt; n; start++) {
+            int idx = start;
+            long long currSum = 0;
+            // find strictly increasing part
+            for (idx = start + 1; idx &lt; n &amp;&amp; nums[idx] &gt; nums[idx - 1]; idx++);
+            int peak = idx - 1;
+            if (peak == start) continue;
+            currSum += nums[peak] + nums[peak - 1];
+            // find strictly decreasing part
+            for (; idx &lt; n &amp;&amp; nums[idx] &lt; nums[idx - 1]; idx++)
+                currSum += nums[idx];
+            int valley = idx - 1;
+            if (valley == peak || valley == n - 1 || nums[idx] &lt;= nums[valley]) {
+                start = valley;
+                continue;
+            }
+            currSum += nums[valley + 1];
+            // extend increasing on the right
+            long long best = 0, temp = 0;
+            for (int k = valley + 2; k &lt; n &amp;&amp; nums[k] &gt; nums[k - 1]; k++) {
+                temp += nums[k];
+                best = max(best, temp);
+            }
+            currSum += best;
+            // extend increasing on the left
+            best = 0, temp = 0;
+            for (int k = peak - 2; k &gt;= start; k--) {
+                temp += nums[k];
+                best = max(best, temp);
+            }
+            currSum += best;
+            answer = max(answer, currSum);
+            start = valley - 1; // skip processed segment
+        }
+        return answer;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
