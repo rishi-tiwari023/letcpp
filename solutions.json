@@ -1306,6 +1306,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3379,
+            "title": "Transformed Array",
+            "route": "/3379",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums. Create a transformed array result of the same length where result[i] is obtained by moving nums[i] steps from index i. If nums[i] is positive, move right (wrapp...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3381,
             "title": "Maximum Subarray Sum With Length Divisible by K",
             "route": "/3381",
@@ -1649,5 +1658,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-02-04"
+    "lastUpdated": "2026-02-05"
 }
