@@ -1594,6 +1594,15 @@
             "spaceComplexity": "O(n^2)"
         },
         {
+            "id": 3634,
+            "title": "Minimum Removals to Balance Array",
+            "route": "/3634",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums and an integer k. An array is considered balanced if for every pair of elements nums[i] and nums[j] where i &lt; j, the condition nums[i] * k &gt;= nums[j] holds...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3637,
             "title": "Trionic Array I",
             "route": "/3637",
@@ -1658,5 +1667,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-02-05"
+    "lastUpdated": "2026-02-06"
 }
