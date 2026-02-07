@@ -577,6 +577,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 1653,
+            "title": "Minimum Deletions to Make String Balanced",
+            "route": "/1653",
+            "difficulty": "Medium",
+            "description": "You are given a string s consisting only of characters 'a' and 'b'. A string is balanced if there is no pair of indices (i, j) such that i &lt; j and s[i] = 'b' and s[j] = 'a'. Return the minimum n...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1716,
             "title": "Calculate Money in Leetcode Bank",
             "route": "/1716",
@@ -1667,5 +1676,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-02-06"
+    "lastUpdated": "2026-02-07"
 }
