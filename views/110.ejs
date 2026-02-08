@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 110: Balanced Binary Tree
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 110: Balanced Binary Tree (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a binary tree, determine if it is height-balanced. A height-balanced binary tree is a binary tree
+                in which the depth of the two subtrees of every node never differs by more than one.
+            </p>
+            <p><strong>Example:</strong>
+                Input: root = [3,9,20,null,null,15,7]<br>
+                Output: true<br>
+                Explanation: The tree structure shows left subtree has height 1, right subtree has height 2. The
+                difference is 1, so it's balanced. All nodes satisfy the balance condition.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int height(TreeNode* node) {
+        if (!node) return 0;
+        return max(height(node-&gt;left), height(node-&gt;right)) + 1;
+    }
+    bool isBalanced(TreeNode* root) {
+        if (!root) return true;
+        int lh = height(root-&gt;left);
+        int rh = height(root-&gt;right);
+        if (abs(lh - rh) &gt; 1) return false;
+        return isBalanced(root-&gt;left) &amp;&amp; isBalanced(root-&gt;right);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
