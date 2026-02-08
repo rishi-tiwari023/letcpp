@@ -64,6 +64,15 @@
             "spaceComplexity": "O(r*c)"
         },
         {
+            "id": 110,
+            "title": "Balanced Binary Tree",
+            "route": "/110",
+            "difficulty": "Medium",
+            "description": "Given a binary tree, determine if it is height-balanced. A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 120,
             "title": "Triangle",
             "route": "/120",
@@ -1676,5 +1685,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-02-07"
+    "lastUpdated": "2026-02-08"
 }
