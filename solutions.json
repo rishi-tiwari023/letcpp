@@ -451,6 +451,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1382,
+            "title": "Balance a Binary Search Tree",
+            "route": "/1382",
+            "difficulty": "Medium",
+            "description": "Given the root of a binary search tree, return a balanced binary search tree with the same node values. A binary search tree is balanced if the depth of the two subtrees of every node never differs...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1390,
             "title": "Four Divisors",
             "route": "/1390",
@@ -1685,5 +1694,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-02-08"
+    "lastUpdated": "2026-02-09"
 }
