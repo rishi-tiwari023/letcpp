@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3719: Longest Balanced Subarray I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3719: Longest Balanced Subarray I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums. A subarray is called balanced if it contains an equal number of
+                distinct even and distinct odd integers. Return the length of the longest balanced subarray. A subarray
+                is a contiguous part of an array.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,4,5,6]<br>
+                Output: 6<br>
+                Explanation: The entire array has 3 distinct odd numbers (1,3,5) and 3 distinct even numbers (2,4,6),
+                making it balanced with length 6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">bitset&lt;100001&gt; seen;
+class Solution {
+public:
+    int longestBalanced(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        int ans = 0;
+        for (int left = 0; left &lt; n; left++) {
+            int balance = 0;
+            for (int right = left; right &lt; n; right++) {
+                int val = nums[right];
+                // Update balance only when encountering a new number
+                if (!seen.test(val))
+                    balance += (val &amp; 1) ? 1 : -1;
+                seen.set(val);
+                // balance == 0 → equal distinct evens and odds
+                if (balance == 0)
+                    ans = max(ans, right - left + 1);
+            }
+            seen.reset(); // reset for next starting index
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
