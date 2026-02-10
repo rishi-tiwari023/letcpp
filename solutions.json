@@ -1675,6 +1675,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3719,
+            "title": "Longest Balanced Subarray I",
+            "route": "/3719",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums. A subarray is called balanced if it contains an equal number of distinct even and distinct odd integers. Return the length of the longest balanced subarray. A s...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 9999,
             "title": "Workflow Test",
             "route": "/9999",
@@ -1694,5 +1703,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-02-09"
+    "lastUpdated": "2026-02-10"
 }
