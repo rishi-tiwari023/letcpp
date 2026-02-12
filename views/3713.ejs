@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3713: Longest Balanced Substring I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3713: Longest Balanced Substring I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string s consisting of lowercase English letters. A substring is called balanced if all
+                characters in it appear the same number of times. Return the length of the longest balanced substring. A
+                substring is a contiguous sequence of characters within a string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "aabbcc"<br>
+                Output: 6<br>
+                Explanation: The entire string "aabbcc" is balanced because each character 'a', 'b', and 'c' appears
+                exactly 2 times. Length = 6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int longestBalanced(string str) {
+        int length = str.size();
+        int best = 0;  // stores maximum balanced substring length
+        for (int left = 0; left &lt; length; left++) {
+            if (length - left &lt;= best) break;  // no need to continue if remaining is smaller
+            int freq[26] = {0};
+            int distinct = 0, highestFreq = 0;
+            for (int right = left; right &lt; length; right++) {
+                int pos = str[right] - 'a';
+                if (freq[pos] == 0) distinct++;  // new character found
+                freq[pos]++;
+                highestFreq = max(highestFreq, freq[pos]);
+                int windowSize = right - left + 1;
+                // balanced if total length equals distinct chars × max frequency
+                if (windowSize == distinct * highestFreq)
+                    best = max(best, windowSize);
+            }
+        }
+        return best;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
