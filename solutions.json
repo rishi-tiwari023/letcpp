@@ -1675,6 +1675,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3713,
+            "title": "Longest Balanced Substring I",
+            "route": "/3713",
+            "difficulty": "Medium",
+            "description": "You are given a string s consisting of lowercase English letters. A substring is called balanced if all characters in it appear the same number of times. Return the length of the longest balanced s...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3719,
             "title": "Longest Balanced Subarray I",
             "route": "/3719",
@@ -1712,5 +1721,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-02-11"
+    "lastUpdated": "2026-02-12"
 }
