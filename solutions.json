@@ -1684,6 +1684,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3714,
+            "title": "Longest Balanced Substring II",
+            "route": "/3714",
+            "difficulty": "Medium",
+            "description": "You are given a string s consisting only of characters 'a', 'b', and 'c'. A substring is called balanced if all characters that appear in it have the same frequency. Return the length of the longes...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3719,
             "title": "Longest Balanced Subarray I",
             "route": "/3719",
@@ -1721,5 +1730,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-02-12"
+    "lastUpdated": "2026-02-13"
 }
