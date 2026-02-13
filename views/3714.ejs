@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3714: Longest Balanced Substring II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3714: Longest Balanced Substring II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string s consisting only of characters 'a', 'b', and 'c'. A substring is called balanced
+                if all characters that appear in it have the same frequency. Return the length of the longest balanced
+                substring. This is the optimized version for larger constraints.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "aabbccabc"<br>
+                Output: 6<br>
+                Explanation: The substring "aabbcc" is balanced with each character appearing exactly 2 times, giving
+                length 6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int longestBalanced(string str) {
+        int len = (int)str.size();
+        int maxLen = 0;
+        // Case 1: Handle substrings with only one distinct character
+        for (int left = 0; left &lt; len; ) {
+            int segmentStart = left;
+            left++;
+            while (left &lt; len &amp;&amp; str[left] == str[left - 1]) 
+                left++;
+            maxLen = max(maxLen, left - segmentStart);
+        }
+        // Case 2: Check balance between any two characters
+        auto checkTwoChars = [&amp;](char ch1, char ch2) {
+            int ptr = 0;
+            vector&lt;int&gt; firstPos(2 * len + 1, INT_MAX);
+            vector&lt;int&gt; modifiedIndex;
+            modifiedIndex.reserve(2 * len + 1);
+            while (ptr &lt; len) {
+                int blockStart = ptr;
+                firstPos[len] = blockStart - 1;  // diff = 0 base case
+                modifiedIndex.push_back(len);
+                int diff = 0;
+                while (ptr &lt; len &amp;&amp; (str[ptr] == ch1 || str[ptr] == ch2)) {
+                    diff += (str[ptr] == ch1) ? 1 : -1;
+                    int mappedIndex = diff + len;
+                    if (firstPos[mappedIndex] != INT_MAX) {
+                        maxLen = max(maxLen, ptr - firstPos[mappedIndex]);
+                    } else {
+                        firstPos[mappedIndex] = ptr;
+                        modifiedIndex.push_back(mappedIndex);
+                    }
+                    ptr++;
+                }
+                // Reset only touched indices for next segment
+                for (int idx : modifiedIndex)
+                    firstPos[idx] = INT_MAX;
+                modifiedIndex.clear();
+                ptr++;
+            }
+        };
+        checkTwoChars('a','b');
+        checkTwoChars('a','c');
+        checkTwoChars('b','c');
+        // Case 3: Check balance among all three characters
+        unordered_map&lt;long long, int&gt; firstOccurrence;
+        firstOccurrence.reserve(len * 2 + 1);
+        auto encodeKey = [&amp;](int diffAB, int diffBC) -&gt; long long {
+            return ((long long)diffAB &lt;&lt; 32) ^ (unsigned int)diffBC;
+        };
+        int countA = 0, countB = 0, countC = 0;
+        firstOccurrence[encodeKey(0, 0)] = -1;
+        for (int i = 0; i &lt; len; i++) {
+            if (str[i] == 'a') countA++;
+            else if (str[i] == 'b') countB++;
+            else if (str[i] == 'c') countC++;
+            int diffAB = countA - countB;
+            int diffBC = countB - countC;
+            long long stateKey = encodeKey(diffAB, diffBC);
+            if (firstOccurrence.count(stateKey)) {
+                maxLen = max(maxLen, i - firstOccurrence[stateKey]);
+            } else {
+                firstOccurrence[stateKey] = i;
+            }
+        }
+        return maxLen;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
