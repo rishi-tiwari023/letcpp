@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 799: Champagne Tower
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 799: Champagne Tower (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                We stack glasses in a pyramid, where the first row has 1 glass, the second row has 2 glasses, and so on.
+                Each glass holds one cup of champagne. When a glass is full, any excess champagne overflows equally to
+                the two glasses directly below it. Given the amount of champagne poured and the position (query_row,
+                query_glass), return how full the glass at that position is (a value between 0 and 1).
+            </p>
+            <p><strong>Example:</strong>
+                Input: poured = 2, query_row = 1, query_glass = 1<br>
+                Output: 0.50000<br>
+                Explanation: Pour 2 cups into the top glass. It overflows 1 cup (0.5 to each glass below). The glass at
+                row 1, position 1 receives 0.5 cups.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    double champagneTower(int pouredAmount, int targetRow, int targetGlass) {
+        
+        // Only store current row instead of full triangle
+        vector&lt;double&gt; currentRow(101, 0.0);
+        currentRow[0] = pouredAmount;
+        
+        for (int row = 0; row &lt; targetRow; row++) {
+            vector&lt;double&gt; nextRow(101, 0.0);
+            
+            for (int col = 0; col &lt;= row; col++) {
+                
+                // Push overflow to next row
+                if (currentRow[col] &gt; 1.0) {
+                    double extra = (currentRow[col] - 1.0) / 2.0;
+                    nextRow[col] += extra;
+                    nextRow[col + 1] += extra;
+                }
+            }
+            
+            currentRow = nextRow;  // Move to next row
+        }
+        
+        return min(1.0, currentRow[targetGlass]);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
