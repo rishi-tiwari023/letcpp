@@ -226,6 +226,15 @@
             "spaceComplexity": "O(n^2)"
         },
         {
+            "id": 799,
+            "title": "Champagne Tower",
+            "route": "/799",
+            "difficulty": "Medium",
+            "description": "We stack glasses in a pyramid, where the first row has 1 glass, the second row has 2 glasses, and so on. Each glass holds one cup of champagne. When a glass is full, any excess champagne overflows ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 812,
             "title": "Largest Triangle Area",
             "route": "/812",
@@ -1730,5 +1739,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-02-13"
+    "lastUpdated": "2026-02-14"
 }
