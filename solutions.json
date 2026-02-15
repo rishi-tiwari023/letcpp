@@ -55,6 +55,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 67,
+            "title": "Add Binary",
+            "route": "/67",
+            "difficulty": "Medium",
+            "description": "Given two binary strings a and b, return their sum as a binary string. The input strings are both non-empty and contain only characters '0' or '1'.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 85,
             "title": "Maximal Rectangle",
             "route": "/85",
@@ -1739,5 +1748,5 @@
         }
     ],
     "totalCount": 152,
-    "lastUpdated": "2026-02-14"
+    "lastUpdated": "2026-02-15"
 }
