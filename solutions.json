@@ -61,7 +61,7 @@
             "difficulty": "Medium",
             "description": "Given two binary strings a and b, return their sum as a binary string. The input strings are both non-empty and contain only characters '0' or '1'.",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 85,
@@ -79,7 +79,7 @@
             "difficulty": "Medium",
             "description": "Given a binary tree, determine if it is height-balanced. A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 120,
@@ -240,8 +240,8 @@
             "route": "/799",
             "difficulty": "Medium",
             "description": "We stack glasses in a pyramid, where the first row has 1 glass, the second row has 2 glasses, and so on. Each glass holds one cup of champagne. When a glass is full, any excess champagne overflows ...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(n^2)"
         },
         {
             "id": 812,
@@ -475,7 +475,7 @@
             "difficulty": "Medium",
             "description": "Given the root of a binary search tree, return a balanced binary search tree with the same node values. A binary search tree is balanced if the depth of the two subtrees of every node never differs...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 1390,
@@ -1354,10 +1354,10 @@
             "id": 3379,
             "title": "Transformed Array",
             "route": "/3379",
-            "difficulty": "Medium",
-            "description": "You are given an integer array nums. Create a transformed array result of the same length where result[i] is obtained by moving nums[i] steps from index i. If nums[i] is positive, move right (wrapp...",
+            "difficulty": "Easy",
+            "description": "You are given an integer array nums. Create a transformed array result of the same length where result[i] is obtained by moving nums[i] steps from index i.",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3381,
@@ -1644,14 +1644,14 @@
             "route": "/3634",
             "difficulty": "Medium",
             "description": "You are given an integer array nums and an integer k. An array is considered balanced if for every pair of elements nums[i] and nums[j] where i &lt; j, the condition nums[i] * k &gt;= nums[j] holds...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3637,
             "title": "Trionic Array I",
             "route": "/3637",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "An array is called trionic if it can be divided into three non-empty parts such that the first part is strictly increasing, the second part is strictly decreasing, and the third part is strictly in...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -1660,7 +1660,7 @@
             "id": 3640,
             "title": "Trionic Array II",
             "route": "/3640",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "A trionic subarray consists of three parts: strictly increasing, strictly decreasing, and strictly increasing (each part must have at least one element). Find the maximum sum of elements in a trion...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -1698,7 +1698,7 @@
             "route": "/3713",
             "difficulty": "Medium",
             "description": "You are given a string s consisting of lowercase English letters. A substring is called balanced if all characters in it appear the same number of times. Return the length of the longest balanced s...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n^2)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -1708,7 +1708,7 @@
             "difficulty": "Medium",
             "description": "You are given a string s consisting only of characters 'a', 'b', and 'c'. A substring is called balanced if all characters that appear in it have the same frequency. Return the length of the longes...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3719,
@@ -1716,17 +1716,17 @@
             "route": "/3719",
             "difficulty": "Medium",
             "description": "You are given an integer array nums. A subarray is called balanced if it contains an equal number of distinct even and distinct odd integers. Return the length of the longest balanced subarray. A s...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3721,
             "title": "Longest Balanced Subarray II",
             "route": "/3721",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given an integer array nums. A subarray is called balanced if it contains an equal number of distinct even and distinct odd integers. Return the length of the longest balanced subarray. Thi...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 9999,
@@ -1747,6 +1747,6 @@
             "spaceComplexity": "O(1)"
         }
     ],
-    "totalCount": 152,
+    "totalCount": 192,
     "lastUpdated": "2026-02-15"
 }
