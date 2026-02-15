@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 67: Add Binary
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 67: Add Binary (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given two binary strings a and b, return their sum as a binary string. The input strings are both
+                non-empty and contain only characters '0' or '1'.
+            </p>
+            <p><strong>Example:</strong>
+                Input: a = "11", b = "1"<br>
+                Output: "100"<br>
+                Explanation: In binary, 11 + 1 = 100 (which is 3 + 1 = 4 in decimal).
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string addBinary(string first, string second) {
+        // Ensure 'first' is the longer string
+        if (first.size() &lt; second.size()) 
+            swap(first, second);
+        int len1 = first.size();
+        int len2 = second.size();
+        // Add digits of second into first from right to left
+        for (int i = 0; i &lt; len2; i++) {
+            first[len1 - 1 - i] += second[len2 - 1 - i] - '0';
+        }
+        // Propagate carry from right to left
+        for (int i = len1 - 1; i &gt; 0; i--) {
+            if (first[i] &gt;= '2') {
+                first[i] -= 2;
+                first[i - 1] += 1;
+            }
+        }
+        // Handle carry at the most significant bit
+        if (first[0] &gt;= '2') {
+            first[0] -= 2;
+            first = "1" + first;
+        }
+        return first;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
