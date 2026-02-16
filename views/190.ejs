@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 190: Reverse Bits
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 190: Reverse Bits (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Reverse the bits of a given 32-bit unsigned integer. For example, the 32-bit integer represented in
+                binary as 00000010100101000001111010011100 should be reversed to 00111001011110000010100101000000.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 00000010100101000001111010011100<br>
+                Output: 964176192 (00111001011110000010100101000000)<br>
+                Explanation: The input binary is reversed bit by bit to produce the output.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int reverseBits(int num) {
+        unsigned int reversed = 0;
+        
+        for (int bitIndex = 0; bitIndex &lt; 32; bitIndex++) {
+            reversed &lt;&lt;= 1;                // Make space for next bit
+            reversed |= (num &amp; 1);         // Append extracted bit to result
+            num &gt;&gt;= 1;                     // Shift input to process next bit
+        }
+        
+        return reversed;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
