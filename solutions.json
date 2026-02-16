@@ -109,6 +109,15 @@
             "spaceComplexity": "O(denominator)"
         },
         {
+            "id": 190,
+            "title": "Reverse Bits",
+            "route": "/190",
+            "difficulty": "Medium",
+            "description": "Reverse the bits of a given 32-bit unsigned integer. For example, the 32-bit integer represented in binary as 00000010100101000001111010011100 should be reversed to 00111001011110000010100101000000.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 326,
             "title": "Power of Three",
             "route": "/326",
@@ -1748,5 +1757,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-02-15"
+    "lastUpdated": "2026-02-16"
 }
