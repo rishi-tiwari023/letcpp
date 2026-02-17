@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 401: Binary Watch
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 401: Binary Watch (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                A binary watch has 4 LEDs on the top to represent the hours (0-11), and 6 LEDs on the bottom to
+                represent the minutes (0-59). Each LED represents a zero or one, with the least significant bit on the
+                right. Given an integer turnedOn which represents the number of LEDs that are currently on, return all
+                possible times the watch could represent. You may return the answer in any order.
+            </p>
+            <p><strong>Example:</strong>
+                Input: turnedOn = 1<br>
+                Output: ["0:01","0:02","0:04","0:08","0:16","0:32","1:00","2:00","4:00","8:00"]<br>
+                Explanation: Each time has exactly 1 LED turned on across both hours and minutes combined.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int getBitCount(int num) {
+        int bits = 0;
+        while (num) {
+            num &amp;= (num - 1);   // remove the lowest set bit
+            bits++;
+        }
+        return bits;
+    }
+    vector&lt;string&gt; readBinaryWatch(int ledsOn) {
+        vector&lt;string&gt; result;
+        for (int hour = 0; hour &lt; 12; hour++) {
+            for (int minute = 0; minute &lt; 60; minute++) {
+                if (getBitCount(hour) + getBitCount(minute) == ledsOn) {
+                    string currentTime = to_string(hour) + ":";
+                    if (minute &lt; 10) currentTime += "0";  // ensure 2-digit minute format
+                    currentTime += to_string(minute);
+                    result.push_back(currentTime);
+                }
+            }
+        }
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
