@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 696: Count Binary Substrings
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 696: Count Binary Substrings (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a binary string s, return the number of non-empty substrings that have the same number of 0's and
+                1's, and all the 0's and all the 1's in these substrings are grouped consecutively. Substrings that
+                occur multiple times are counted the number of times they occur.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "00110011"<br>
+                Output: 6<br>
+                Explanation: There are 6 substrings with equal consecutive 0's and 1's: "0011", "01", "1100", "10",
+                "0011", and "01". Note that some substrings repeat and are counted multiple times.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countBinarySubstrings(string s) {
+        int n = s.size();
+        int answer = 0;
+        for(int i = 0; i &lt; n - 1; i++) {
+            if(s[i] != s[i + 1]) {  
+                int left = i;
+                int right = i + 1;
+                // Expand while balanced 0s and 1s
+                while(left &gt;= 0 &amp;&amp; right &lt; n &amp;&amp; s[left] == s[i] &amp;&amp; s[right] == s[i + 1]) {
+                    answer++;
+                    left--;
+                    right++;
+                }
+            }
+        }
+        return answer;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
