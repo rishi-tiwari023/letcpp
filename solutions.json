@@ -262,6 +262,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 761,
+            "title": "Special Binary String",
+            "route": "/761",
+            "difficulty": "Medium",
+            "description": "Special binary strings are binary strings with the following two properties: (1) The number of 0's is equal to the number of 1's. (2) Every prefix of the binary string has at least as many 1's as 0...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 778,
             "title": "Swim in Rising Water",
             "route": "/778",
@@ -1784,5 +1793,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-02-19"
+    "lastUpdated": "2026-02-20"
 }
