@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 762: Prime Number of Set Bits in Binary Representation
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 762: Prime Number of Set Bits in Binary Representation (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given two integers left and right, return the count of numbers in the inclusive range [left, right]
+                having a prime number of set bits in their binary representation. A set bit is a bit in the binary
+                representation of a number that has a value of 1. Recall that a number is prime if it has exactly two
+                divisors: 1 and itself.
+            </p>
+            <p><strong>Example:</strong>
+                Input: left = 6, right = 10<br>
+                Output: 4<br>
+                Explanation: 6 (110) has 2 set bits, 7 (111) has 3, 8 (1000) has 1, 9 (1001) has 2, 10 (1010) has 2.
+                Numbers with prime set bits: 6, 7, 9, 10 = 4 numbers.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countPrimeSetBits(int leftBound, int rightBound) {
+        
+        // Pre-mark prime counts up to 19 (max possible set bits)
+        bool isPrimeCount[20] = {false};
+        int primeList[] = {2, 3, 5, 7, 11, 13, 17, 19};
+        
+        for(int &amp;primeVal : primeList)
+            isPrimeCount[primeVal] = true;
+        
+        int total = 0;
+        
+        for(int num = leftBound; num &lt;= rightBound; num++){
+            int bitCount = __builtin_popcount(num);  // Fast built-in bit count
+            if(isPrimeCount[bitCount])
+                total++;
+        }
+        
+        return total;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
