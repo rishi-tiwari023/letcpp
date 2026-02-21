@@ -271,6 +271,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 762,
+            "title": "Prime Number of Set Bits in Binary Representation",
+            "route": "/762",
+            "difficulty": "Medium",
+            "description": "Given two integers left and right, return the count of numbers in the inclusive range [left, right] having a prime number of set bits in their binary representation. A set bit is a bit in the binar...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 778,
             "title": "Swim in Rising Water",
             "route": "/778",
@@ -1793,5 +1802,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-02-20"
+    "lastUpdated": "2026-02-21"
 }
