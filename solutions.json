@@ -334,6 +334,15 @@
             "spaceComplexity": "O(h)"
         },
         {
+            "id": 868,
+            "title": "Binary Gap",
+            "route": "/868",
+            "difficulty": "Medium",
+            "description": "Given a positive integer n, find and return the longest distance between any two adjacent 1's in the binary representation of n. If there are no two adjacent 1's, return 0. Two 1's are adjacent if ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 869,
             "title": "Reordered Power of 2",
             "route": "/869",
@@ -1802,5 +1811,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-02-21"
+    "lastUpdated": "2026-02-22"
 }
