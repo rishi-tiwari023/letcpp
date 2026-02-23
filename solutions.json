@@ -577,6 +577,15 @@
             "spaceComplexity": "O(m)"
         },
         {
+            "id": 1461,
+            "title": "Check If a String Contains All Binary Codes of Size K",
+            "route": "/1461",
+            "difficulty": "Medium",
+            "description": "Given a binary string s and an integer k, return true if every binary code of length k is a substring of s. Otherwise, return false. Note that there are 2^k possible binary codes of length k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1488,
             "title": "Avoid Flood in The City",
             "route": "/1488",
@@ -1811,5 +1820,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-02-22"
+    "lastUpdated": "2026-02-23"
 }
