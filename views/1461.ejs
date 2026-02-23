@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1461: Check If a String Contains All Binary Codes of Size K
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1461: Check If a String Contains All Binary Codes of Size K (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a binary string s and an integer k, return true if every binary code of length k is a substring of
+                s. Otherwise, return false. Note that there are 2^k possible binary codes of length k.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "00110110", k = 2<br>
+                Output: true<br>
+                Explanation: The 2-bit codes are "00", "01", "10", and "11". All of them appear as substrings in s:
+                "00110110".
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool hasAllCodes(string s, int k) {
+        int n = s.size();
+        if (k &gt; n) return false;
+        unordered_set&lt;int&gt; st;
+        for (int i = 0; i + k &lt;= n; i++)
+            st.insert(stoi(s.substr(i, k), nullptr, 2));  // store each substring value
+        for (int i = 0; i &lt; (1 &lt;&lt; k); i++)
+            if (!st.count(i)) return false;
+        return true;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
