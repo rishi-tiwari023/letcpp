@@ -424,6 +424,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1022,
+            "title": "Sum of Root To Leaf Binary Numbers",
+            "route": "/1022",
+            "difficulty": "Medium",
+            "description": "You are given the root of a binary tree where each node has a value 0 or 1. Each root-to-leaf path represents a binary number starting with the most significant bit. For example, if the path is 0 -...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1039,
             "title": "Minimum Score Triangulation of Polygon",
             "route": "/1039",
@@ -1820,5 +1829,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-02-23"
+    "lastUpdated": "2026-02-24"
 }
