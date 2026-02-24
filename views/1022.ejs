@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1022: Sum of Root To Leaf Binary Numbers
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1022: Sum of Root To Leaf Binary Numbers (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given the root of a binary tree where each node has a value 0 or 1. Each root-to-leaf path
+                represents a binary number starting with the most significant bit. For example, if the path is 0 -&gt; 1
+                -&gt; 1 -&gt; 0 -&gt; 1, then this could represent 01101 in binary, which is 13. For all leaves in the
+                tree, consider the numbers represented by the path from the root to that leaf. Return the sum of these
+                numbers.
+            </p>
+            <p><strong>Example:</strong>
+                Input: root = [1,0,1,0,1,0,1]<br>
+                Output: 22<br>
+                Explanation: (100) + (101) + (110) + (111) = 4 + 5 + 6 + 7 = 22.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int dfs(TreeNode* n, int v) {
+        if (!n) return 0;
+        
+        v = v * 2 + n-&gt;val;   // accumulate path value
+        
+        if (!n-&gt;left &amp;&amp; !n-&gt;right)
+            return v;
+        
+        return dfs(n-&gt;left, v) + dfs(n-&gt;right, v);
+    }
+    int sumRootToLeaf(TreeNode* r) {
+        return dfs(r, 0);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
