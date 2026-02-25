@@ -541,6 +541,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1356,
+            "title": "Sort Integers by The Number of 1 Bits",
+            "route": "/1356",
+            "difficulty": "Medium",
+            "description": "You are given an integer array arr. Sort the integers in the array in ascending order by the number of 1's in their binary representation and in case of two or more integers have the same number of...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1382,
             "title": "Balance a Binary Search Tree",
             "route": "/1382",
@@ -1829,5 +1838,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-02-24"
+    "lastUpdated": "2026-02-25"
 }
