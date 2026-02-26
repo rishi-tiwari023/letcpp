@@ -58,7 +58,7 @@
             "id": 67,
             "title": "Add Binary",
             "route": "/67",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given two binary strings a and b, return their sum as a binary string. The input strings are both non-empty and contain only characters '0' or '1'.",
             "timeComplexity": "O(max(m,n))",
             "spaceComplexity": "O(max(m,n))"
@@ -76,7 +76,7 @@
             "id": 110,
             "title": "Balanced Binary Tree",
             "route": "/110",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given a binary tree, determine if it is height-balanced. A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.",
             "timeComplexity": "O(n^2)",
             "spaceComplexity": "O(n)"
@@ -112,7 +112,7 @@
             "id": 190,
             "title": "Reverse Bits",
             "route": "/190",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Reverse the bits of a given 32-bit unsigned integer. For example, the 32-bit integer represented in binary as 00000010100101000001111010011100 should be reversed to 00111001011110000010100101000000.",
             "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
@@ -139,7 +139,7 @@
             "id": 401,
             "title": "Binary Watch",
             "route": "/401",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "A binary watch has 4 LEDs on the top to represent the hours (0-11), and 6 LEDs on the bottom to represent the minutes (0-59). Each LED represents a zero or one, with the least significant bit on th...",
             "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
@@ -202,7 +202,7 @@
             "id": 693,
             "title": "Binary Number with Alternating Bits",
             "route": "/693",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given a positive integer, check whether it has alternating bits: namely, if two adjacent bits will always have different values. Return true if the number has alternating bits, otherwise return false.",
             "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
@@ -211,7 +211,7 @@
             "id": 696,
             "title": "Count Binary Substrings",
             "route": "/696",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given a binary string s, return the number of non-empty substrings that have the same number of 0's and 1's, and all the 0's and all the 1's in these substrings are grouped consecutively. Substring...",
             "timeComplexity": "O(n^2)",
             "spaceComplexity": "O(1)"
@@ -265,7 +265,7 @@
             "id": 761,
             "title": "Special Binary String",
             "route": "/761",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "Special binary strings are binary strings with the following two properties: (1) The number of 0's is equal to the number of 1's. (2) Every prefix of the binary string has at least as many 1's as 0...",
             "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(n)"
@@ -274,7 +274,7 @@
             "id": 762,
             "title": "Prime Number of Set Bits in Binary Representation",
             "route": "/762",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given two integers left and right, return the count of numbers in the inclusive range [left, right] having a prime number of set bits in their binary representation. A set bit is a bit in the binar...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -294,8 +294,8 @@
             "route": "/799",
             "difficulty": "Medium",
             "description": "We stack glasses in a pyramid, where the first row has 1 glass, the second row has 2 glasses, and so on. Each glass holds one cup of champagne. When a glass is full, any excess champagne overflows ...",
-            "timeComplexity": "O(n^2)",
-            "spaceComplexity": "O(n^2)"
+            "timeComplexity": "O(r^2)",
+            "spaceComplexity": "O(1)"
         },
         {
             "id": 812,
@@ -337,7 +337,7 @@
             "id": 868,
             "title": "Binary Gap",
             "route": "/868",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given a positive integer n, find and return the longest distance between any two adjacent 1's in the binary representation of n. If there are no two adjacent 1's, return 0. Two 1's are adjacent if ...",
             "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
@@ -427,7 +427,7 @@
             "id": 1022,
             "title": "Sum of Root To Leaf Binary Numbers",
             "route": "/1022",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "You are given the root of a binary tree where each node has a value 0 or 1. Each root-to-leaf path represents a binary number starting with the most significant bit. For example, if the path is 0 -...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(h)"
@@ -544,7 +544,7 @@
             "id": 1356,
             "title": "Sort Integers by The Number of 1 Bits",
             "route": "/1356",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "You are given an integer array arr. Sort the integers in the array in ascending order by the number of 1's in their binary representation and in case of two or more integers have the same number of...",
             "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(1)"
@@ -1455,7 +1455,7 @@
             "route": "/3379",
             "difficulty": "Easy",
             "description": "You are given an integer array nums. Create a transformed array result of the same length where result[i] is obtained by moving nums[i] steps from index i.",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n^2)",
             "spaceComplexity": "O(n)"
         },
         {
