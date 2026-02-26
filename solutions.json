@@ -568,6 +568,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1404,
+            "title": "Number of Steps to Reduce a Number in Binary Representation to One",
+            "route": "/1404",
+            "difficulty": "Medium",
+            "description": "Given the binary representation of an integer as a string s, return the number of steps to reduce it to 1 under the following rules: If the current number is even, you have to divide it by 2. If th...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1411,
             "title": "Number of Ways to Paint N × 3 Grid",
             "route": "/1411",
@@ -1838,5 +1847,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-02-25"
+    "lastUpdated": "2026-02-26"
 }
