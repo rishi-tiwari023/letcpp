@@ -60,8 +60,8 @@
             "route": "/67",
             "difficulty": "Medium",
             "description": "Given two binary strings a and b, return their sum as a binary string. The input strings are both non-empty and contain only characters '0' or '1'.",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(n)"
+            "timeComplexity": "O(max(m,n))",
+            "spaceComplexity": "O(max(m,n))"
         },
         {
             "id": 85,
@@ -78,7 +78,7 @@
             "route": "/110",
             "difficulty": "Medium",
             "description": "Given a binary tree, determine if it is height-balanced. A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n^2)",
             "spaceComplexity": "O(n)"
         },
         {
@@ -114,7 +114,7 @@
             "route": "/190",
             "difficulty": "Medium",
             "description": "Reverse the bits of a given 32-bit unsigned integer. For example, the 32-bit integer represented in binary as 00000010100101000001111010011100 should be reversed to 00111001011110000010100101000000.",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -141,7 +141,7 @@
             "route": "/401",
             "difficulty": "Medium",
             "description": "A binary watch has 4 LEDs on the top to represent the hours (0-11), and 6 LEDs on the bottom to represent the minutes (0-59). Each LED represents a zero or one, with the least significant bit on th...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -204,7 +204,7 @@
             "route": "/693",
             "difficulty": "Medium",
             "description": "Given a positive integer, check whether it has alternating bits: namely, if two adjacent bits will always have different values. Return true if the number has alternating bits, otherwise return false.",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -213,7 +213,7 @@
             "route": "/696",
             "difficulty": "Medium",
             "description": "Given a binary string s, return the number of non-empty substrings that have the same number of 0's and 1's, and all the 0's and all the 1's in these substrings are grouped consecutively. Substring...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n^2)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -267,8 +267,8 @@
             "route": "/761",
             "difficulty": "Medium",
             "description": "Special binary strings are binary strings with the following two properties: (1) The number of 0's is equal to the number of 1's. (2) Every prefix of the binary string has at least as many 1's as 0...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 762,
@@ -339,7 +339,7 @@
             "route": "/868",
             "difficulty": "Medium",
             "description": "Given a positive integer n, find and return the longest distance between any two adjacent 1's in the binary representation of n. If there are no two adjacent 1's, return 0. Two 1's are adjacent if ...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -430,7 +430,7 @@
             "difficulty": "Medium",
             "description": "You are given the root of a binary tree where each node has a value 0 or 1. Each root-to-leaf path represents a binary number starting with the most significant bit. For example, if the path is 0 -...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(h)"
         },
         {
             "id": 1039,
@@ -546,7 +546,7 @@
             "route": "/1356",
             "difficulty": "Medium",
             "description": "You are given an integer array arr. Sort the integers in the array in ascending order by the number of 1's in their binary representation and in case of two or more integers have the same number of...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -609,8 +609,8 @@
             "route": "/1461",
             "difficulty": "Medium",
             "description": "Given a binary string s and an integer k, return true if every binary code of length k is a substring of s. Otherwise, return false. Note that there are 2^k possible binary codes of length k.",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n*k)",
+            "spaceComplexity": "O(2^k)"
         },
         {
             "id": 1488,
@@ -1752,7 +1752,7 @@
             "route": "/3637",
             "difficulty": "Easy",
             "description": "An array is called trionic if it can be divided into three non-empty parts such that the first part is strictly increasing, the second part is strictly decreasing, and the third part is strictly in...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n^3)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -1816,7 +1816,7 @@
             "difficulty": "Medium",
             "description": "You are given an integer array nums. A subarray is called balanced if it contains an equal number of distinct even and distinct odd integers. Return the length of the longest balanced subarray. A s...",
             "timeComplexity": "O(n^2)",
-            "spaceComplexity": "O(n)"
+            "spaceComplexity": "O(1)"
         },
         {
             "id": 3721,
