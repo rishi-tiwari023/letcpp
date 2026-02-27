@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3666: Minimum Operations to Equalize Binary String
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3666: Minimum Operations to Equalize Binary String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a binary string s and an integer k. In one operation, you can select exactly k characters
+                from s and flip them (change '0' to '1' or '1' to '0'). Return the minimum number of operations needed
+                to make all characters in the string equal. If it is impossible, return -1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "0101", k = 2<br>
+                Output: 2<br>
+                Explanation: Select indices 0 and 2 to flip, getting "1111". Then select any 2 indices to flip back if
+                needed. Minimum operations = 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minOperations(string s, int k) {
+        int n = s.size(), z = 0;
+        for (char c : s)
+            if (c == '0') z++;
+        if (z == 0)
+            return 0; // already equal
+        if (k == n)
+            return (z == n) ? 1 : -1;
+        int ans = INT_MAX;
+        // Case 1: odd operations
+        if (z % 2 == 0) {
+            int m = max((z + k - 1) / k,
+                        (z + n - k - 1) / (n - k));
+            ans = (m % 2 == 0) ? m : m + 1;
+        }
+        // Case 2: even operations
+        if (z % 2 == k % 2) {
+            int m = max((z + k - 1) / k,
+                        (n - z + n - k - 1) / (n - k));
+            ans = min(ans, (m % 2 == 1) ? m : m + 1);
+        }
+        return (ans == INT_MAX) ? -1 : ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
