@@ -1792,6 +1792,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3666,
+            "title": "Minimum Operations to Equalize Binary String",
+            "route": "/3666",
+            "difficulty": "Medium",
+            "description": "You are given a binary string s and an integer k. In one operation, you can select exactly k characters from s and flip them (change '0' to '1' or '1' to '0'). Return the minimum number of operatio...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3713,
             "title": "Longest Balanced Substring I",
             "route": "/3713",
@@ -1847,5 +1856,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-02-26"
+    "lastUpdated": "2026-02-27"
 }
