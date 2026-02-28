@@ -721,6 +721,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1680,
+            "title": "Concatenation of Consecutive Binary Numbers",
+            "route": "/1680",
+            "difficulty": "Medium",
+            "description": "Given an integer n, return the decimal value of the binary string formed by concatenating the binary representations of 1 to n in order, modulo 10^9 + 7. For example, if n = 3, the binary represent...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1716,
             "title": "Calculate Money in Leetcode Bank",
             "route": "/1716",
@@ -1856,5 +1865,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-02-27"
+    "lastUpdated": "2026-02-28"
 }
