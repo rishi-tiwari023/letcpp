@@ -730,6 +730,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1689,
+            "title": "Partitioning Into Minimum Number Of Deci-Binary Numbers",
+            "route": "/1689",
+            "difficulty": "Medium",
+            "description": "A decimal number is called deci-binary if each of its digits is either 0 or 1 without any leading zeros. For example, 101 and 1100 are deci-binary, while 112 and 3001 are not. Given a string n that...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1716,
             "title": "Calculate Money in Leetcode Bank",
             "route": "/1716",
@@ -1865,5 +1874,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-02-28"
+    "lastUpdated": "2026-03-01"
 }
