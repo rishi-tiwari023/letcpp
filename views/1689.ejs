@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1689: Partitioning Into Minimum Number Of Deci-Binary Numbers
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1689: Partitioning Into Minimum Number Of Deci-Binary Numbers (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                A decimal number is called deci-binary if each of its digits is either 0 or 1 without any leading zeros.
+                For example, 101 and 1100 are deci-binary, while 112 and 3001 are not. Given a string n that represents
+                a positive decimal integer, return the minimum number of positive deci-binary numbers needed so that
+                they sum up to n.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = "32"<br>
+                Output: 3<br>
+                Explanation: 32 = 10 + 11 + 11. We need at least 3 deci-binary numbers. The maximum digit is 3, so the
+                answer is 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minPartitions(string s) {
+        int res = 0;
+        for(int i = 0; i &lt; s.size(); i++){
+            if(s[i] - '0' &gt; res)
+                res = s[i] - '0';   // Keep updating with highest digit seen so far
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
