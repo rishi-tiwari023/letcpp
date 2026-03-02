@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1536: Minimum Swaps to Arrange a Binary Grid
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1536: Minimum Swaps to Arrange a Binary Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an n x n binary grid, in one step you can choose two adjacent rows of the grid and swap them. A
+                grid is said to be valid if all the cells above the main diagonal are zeros. Return the minimum number
+                of steps needed to make the grid valid, or -1 if the grid cannot be valid. The main diagonal consists of
+                cells where row index equals column index.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[0,0,1],[1,1,0],[1,0,0]]<br>
+                Output: 3<br>
+                Explanation: Row 0 needs at most 0 trailing zeros, row 1 needs at most 1, row 2 needs at most 2. We can
+                rearrange rows with 3 swaps.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minSwaps(vector&lt;vector&lt;int&gt;&gt;&amp; g) {
+        int n = g.size(), ans = 0;
+        vector&lt;int&gt; r(n, -1);
+        // Store rightmost 1 position of each row
+        for (int i = 0; i &lt; n; i++) {
+            for (int j = n - 1; j &gt;= 0; j--) {
+                if (g[i][j] == 1) {
+                    r[i] = j;
+                    break;
+                }
+            }
+        }
+        for (int i = 0; i &lt; n; i++) {
+            int j = i;
+            while (j &lt; n &amp;&amp; r[j] &gt; i) j++;  // need row with rightmost 1 ≤ i
+            if (j == n) return -1;
+            while (j &gt; i) {  // bring valid row to correct position
+                swap(r[j], r[j - 1]);
+                ans++;
+                j--;
+            }
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
