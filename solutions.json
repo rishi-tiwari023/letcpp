@@ -676,6 +676,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1536,
+            "title": "Minimum Swaps to Arrange a Binary Grid",
+            "route": "/1536",
+            "difficulty": "Medium",
+            "description": "Given an n x n binary grid, in one step you can choose two adjacent rows of the grid and swap them. A grid is said to be valid if all the cells above the main diagonal are zeros. Return the minimum...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1578,
             "title": "Minimum Time to Make Rope Colorful",
             "route": "/1578",
@@ -1874,5 +1883,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-01"
+    "lastUpdated": "2026-03-02"
 }
