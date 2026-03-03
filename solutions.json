@@ -685,6 +685,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1545,
+            "title": "Find Kth Bit in Nth Binary String",
+            "route": "/1545",
+            "difficulty": "Medium",
+            "description": "Given two positive integers n and k, the binary string Sn is formed as follows: S1 = \"0\", Si = Si-1 + \"1\" + reverse(invert(Si-1)) for i &gt; 1. Return the kth bit in Sn. It is guaranteed that k is ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1578,
             "title": "Minimum Time to Make Rope Colorful",
             "route": "/1578",
@@ -1883,5 +1892,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-02"
+    "lastUpdated": "2026-03-03"
 }
