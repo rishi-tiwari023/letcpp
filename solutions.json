@@ -703,6 +703,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1582,
+            "title": "Special Positions in a Binary Matrix",
+            "route": "/1582",
+            "difficulty": "Medium",
+            "description": "Given an m x n binary matrix mat, return the number of special positions in mat. A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i and column j are 0 (rows and c...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1590,
             "title": "Make Sum Divisible by P",
             "route": "/1590",
@@ -1892,5 +1901,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-03"
+    "lastUpdated": "2026-03-04"
 }
