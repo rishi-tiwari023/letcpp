@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1582: Special Positions in a Binary Matrix
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1582: Special Positions in a Binary Matrix (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an m x n binary matrix mat, return the number of special positions in mat. A position (i, j) is
+                called special if mat[i][j] == 1 and all other elements in row i and column j are 0 (rows and columns
+                are 0-indexed).
+            </p>
+            <p><strong>Example:</strong>
+                Input: mat = [[1,0,0],[0,0,1],[1,0,0]]<br>
+                Output: 1<br>
+                Explanation: Position (1,2) is special because mat[1][2] == 1 and all other elements in row 1 and column
+                2 are 0.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int numSpecial(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+        vector&lt;int&gt; rowOnes(rows, 0);
+        vector&lt;int&gt; colOnes(cols, 0);
+        // Count number of 1s in each row and column
+        for(int r = 0; r &lt; rows; r++){
+            for(int c = 0; c &lt; cols; c++){
+                if(grid[r][c] == 1){
+                    rowOnes[r]++;
+                    colOnes[c]++;
+                }
+            }
+        }
+        int specialCount = 0;
+        // A position is special if it's the only 1 in its row and column
+        for(int r = 0; r &lt; rows; r++){
+            for(int c = 0; c &lt; cols; c++){
+                if(grid[r][c] == 1 &amp;&amp; rowOnes[r] == 1 &amp;&amp; colOnes[c] == 1){
+                    specialCount++;
+                }
+            }
+        }
+        return specialCount;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
