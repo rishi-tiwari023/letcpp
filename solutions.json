@@ -784,6 +784,15 @@
             "spaceComplexity": "O(m*n*l)"
         },
         {
+            "id": 1758,
+            "title": "Minimum Changes To Make Alternating Binary String",
+            "route": "/1758",
+            "difficulty": "Medium",
+            "description": "You are given a string s consisting only of characters '0' and '1'. In one operation, you can change any '0' to '1' or vice versa. The string is called alternating if no two adjacent characters are...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1792,
             "title": "Maximum Average Pass Ratio",
             "route": "/1792",
@@ -1901,5 +1910,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-04"
+    "lastUpdated": "2026-03-05"
 }
