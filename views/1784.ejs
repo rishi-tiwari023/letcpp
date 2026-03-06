@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1784: Check if Binary String Has at Most One Segment of Ones
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1784: Check if Binary String Has at Most One Segment of Ones (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a binary string s without leading zeros, return true if s contains at most one contiguous segment
+                of ones. Otherwise, return false. A segment of ones is a contiguous sequence of one or more '1's.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "1001"<br>
+                Output: false<br>
+                Explanation: The string has two segments of ones: "1" at the beginning and "1" at the end.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool checkOnesSegment(string s) {
+        for (int i = 1; i &lt; s.size(); i++) {
+            // "01" directly creates another ones segment
+            if (s[i - 1] == '0' &amp;&amp; s[i] == '1') return false;
+        }
+        return true;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
