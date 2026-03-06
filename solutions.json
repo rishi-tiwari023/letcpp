@@ -793,6 +793,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1784,
+            "title": "Check if Binary String Has at Most One Segment of Ones",
+            "route": "/1784",
+            "difficulty": "Medium",
+            "description": "Given a binary string s without leading zeros, return true if s contains at most one contiguous segment of ones. Otherwise, return false. A segment of ones is a contiguous sequence of one or more '...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1792,
             "title": "Maximum Average Pass Ratio",
             "route": "/1792",
@@ -1910,5 +1919,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-05"
+    "lastUpdated": "2026-03-06"
 }
