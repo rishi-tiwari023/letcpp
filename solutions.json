@@ -820,6 +820,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1888,
+            "title": "Minimum Number of Flips to Make the Binary String Alternating",
+            "route": "/1888",
+            "difficulty": "Medium",
+            "description": "You are given a binary string s. You are allowed to perform two types of operations on the string: Type-1: Remove the character at the start of the string and append it to the end. Type-2: Pick any...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1895,
             "title": "Largest Magic Square",
             "route": "/1895",
@@ -1919,5 +1928,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-06"
+    "lastUpdated": "2026-03-07"
 }
