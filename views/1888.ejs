@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1888: Minimum Number of Flips to Make the Binary String Alternating
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1888: Minimum Number of Flips to Make the Binary String Alternating (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a binary string s. You are allowed to perform two types of operations on the string:
+                Type-1: Remove the character at the start of the string and append it to the end. Type-2: Pick any
+                character in the string and flip its value (change '0' to '1' or '1' to '0'). Return the minimum number
+                of type-2 operations needed to make s alternating (no two adjacent characters are equal) after
+                performing any number of type-1 operations.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "111000"<br>
+                Output: 2<br>
+                Explanation: Use type-1 operations to get "000111", then use 2 type-2 operations to get "010101".
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minFlips(string s) {
+        string a = "", b = "";
+        bool f = true;
+        int x = 0, y = 0;
+        int ans = INT_MAX;
+        for (int i = 0; i &lt; 2 * s.size(); i++) {
+            if (f) {
+                a.push_back('1');
+                b.push_back('0');
+            } else {
+                a.push_back('0');
+                b.push_back('1');
+            }
+            f = !f;
+        }
+        int n = s.size();
+        string t = s + s;
+        // Initial window mismatch count
+        for (int i = 0; i &lt; n; i++) {
+            if (a[i] != s[i]) x++;
+            if (b[i] != s[i]) y++;
+        }
+        ans = min(x, y);
+        int l = 0;
+        for (int r = n; r &lt; t.size(); r++) {
+            // Remove left char, add right char
+            if (a[l] != t[l]) x--;
+            if (b[l] != t[l]) y--;
+            l++;
+            if (a[r] != t[r]) x++;
+            if (b[r] != t[r]) y++;
+            ans = min({ans, x, y});
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
