@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1980: Find Unique Binary String
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1980: Find Unique Binary String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an array of strings nums containing n unique binary strings each of length n, return a binary
+                string of length n that does not appear in nums. If there are multiple answers, you may return any of
+                them.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = ["01","10"]<br>
+                Output: "11"<br>
+                Explanation: "11" does not appear in nums. "00" would also be correct.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;string&gt; allStrings;
+    void generate(int len, string curr) {
+        if (len == 0) {
+            allStrings.push_back(curr);
+            return;
+        }
+        // Try both binary choices at each position
+        generate(len - 1, curr + "0");
+        generate(len - 1, curr + "1");
+    }
+    string findDifferentBinaryString(vector&lt;string&gt;&amp; nums) {
+        int length = nums[0].size();
+        map&lt;string, int&gt; used;
+        for (auto str : nums) {
+            used[str]++;
+        }
+        generate(length, "");
+        // Return first binary string not present in input
+        for (auto str : allStrings) {
+            if (!used.count(str)) return str;
+        }
+        return "";
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
