@@ -681,8 +681,8 @@
             "route": "/1536",
             "difficulty": "Medium",
             "description": "Given an n x n binary grid, in one step you can choose two adjacent rows of the grid and swap them. A grid is said to be valid if all the cells above the main diagonal are zeros. Return the minimum...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n^2)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 1545,
@@ -706,10 +706,10 @@
             "id": 1582,
             "title": "Special Positions in a Binary Matrix",
             "route": "/1582",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given an m x n binary matrix mat, return the number of special positions in mat. A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i and column j are 0 (rows and c...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(m * n)",
+            "spaceComplexity": "O(m + n)"
         },
         {
             "id": 1590,
@@ -787,7 +787,7 @@
             "id": 1758,
             "title": "Minimum Changes To Make Alternating Binary String",
             "route": "/1758",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "You are given a string s consisting only of characters '0' and '1'. In one operation, you can change any '0' to '1' or vice versa. The string is called alternating if no two adjacent characters are...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -796,7 +796,7 @@
             "id": 1784,
             "title": "Check if Binary String Has at Most One Segment of Ones",
             "route": "/1784",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given a binary string s without leading zeros, return true if s contains at most one contiguous segment of ones. Otherwise, return false. A segment of ones is a contiguous sequence of one or more '...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -826,7 +826,7 @@
             "difficulty": "Medium",
             "description": "You are given a binary string s. You are allowed to perform two types of operations on the string: Type-1: Remove the character at the start of the string and append it to the end. Type-2: Pick any...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 1895,
@@ -897,8 +897,8 @@
             "route": "/1980",
             "difficulty": "Medium",
             "description": "Given an array of strings nums containing n unique binary strings each of length n, return a binary string of length n that does not appear in nums. If there are multiple answers, you may return an...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(2^n)",
+            "spaceComplexity": "O(2^n)"
         },
         {
             "id": 1984,
@@ -1876,7 +1876,7 @@
             "id": 3666,
             "title": "Minimum Operations to Equalize Binary String",
             "route": "/3666",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given a binary string s and an integer k. In one operation, you can select exactly k characters from s and flip them (change '0' to '1' or '1' to '0'). Return the minimum number of operatio...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
