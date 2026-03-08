@@ -892,6 +892,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1980,
+            "title": "Find Unique Binary String",
+            "route": "/1980",
+            "difficulty": "Medium",
+            "description": "Given an array of strings nums containing n unique binary strings each of length n, return a binary string of length n that does not appear in nums. If there are multiple answers, you may return an...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1984,
             "title": "Minimum Difference Between Highest and Lowest of K Scores",
             "route": "/1984",
@@ -1928,5 +1937,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-07"
+    "lastUpdated": "2026-03-08"
 }
