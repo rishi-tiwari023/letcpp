@@ -1351,6 +1351,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3129,
+            "title": "Find All Possible Stable Binary Arrays I",
+            "route": "/3129",
+            "difficulty": "Medium",
+            "description": "You are given 3 positive integers zero, one, and limit. A binary array arr is called stable if: The number of occurrences of 0 in arr is exactly zero. The number of occurrences of 1 in arr is exact...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3147,
             "title": "Taking Maximum Energy From the Mystic Dungeon",
             "route": "/3147",
@@ -1937,5 +1946,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-08"
+    "lastUpdated": "2026-03-09"
 }
