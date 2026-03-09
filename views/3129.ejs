@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3129: Find All Possible Stable Binary Arrays I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3129: Find All Possible Stable Binary Arrays I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given 3 positive integers zero, one, and limit. A binary array arr is called stable if: The
+                number of occurrences of 0 in arr is exactly zero. The number of occurrences of 1 in arr is exactly one.
+                Each subarray of arr with a size greater than limit has both 0 and 1. Return the total number of stable
+                binary arrays. Since the answer may be very large, return it modulo 10^9 + 7.
+            </p>
+            <p><strong>Example:</strong>
+                Input: zero = 1, one = 1, limit = 2<br>
+                Output: 2<br>
+                Explanation: The two possible stable binary arrays are [0,1] and [1,0].
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+private:
+    const int M = 1e9 + 7;
+public:
+    int numberOfStableArrays(int z, int o, int lim) {
+        static long long dp[201][201][2];
+        memset(dp, 0, sizeof(dp));
+        for(int i = 1; i &lt;= z; i++)
+            if(i &lt;= lim) dp[i][0][0] = 1;
+        for(int j = 1; j &lt;= o; j++)
+            if(j &lt;= lim) dp[0][j][1] = 1;
+        for(int i = 1; i &lt;= z; i++) {
+            for(int j = 1; j &lt;= o; j++) {
+                // place 0 at end
+                dp[i][j][0] = (dp[i-1][j][0] + dp[i-1][j][1]) % M;
+                if(i - lim - 1 &gt;= 0)
+                    dp[i][j][0] = (dp[i][j][0] - dp[i-lim-1][j][1] + M) % M;
+                // place 1 at end
+                dp[i][j][1] = (dp[i][j-1][0] + dp[i][j-1][1]) % M;
+                if(j - lim - 1 &gt;= 0)
+                    dp[i][j][1] = (dp[i][j][1] - dp[i][j-lim-1][0] + M) % M;
+            }
+        }
+        return (dp[z][o][0] + dp[z][o][1]) % M;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
