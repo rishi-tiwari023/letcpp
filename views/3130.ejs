@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3130: Find All Possible Stable Binary Arrays II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3130: Find All Possible Stable Binary Arrays II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given 3 positive integers zero, one, and limit. A binary array arr is called stable if: The
+                number of occurrences of 0 in arr is exactly zero. The number of occurrences of 1 in arr is exactly one.
+                Each subarray of arr with a size greater than limit has both 0 and 1. Return the total number of stable
+                binary arrays. Since the answer may be very large, return it modulo 10^9 + 7. This is the optimized
+                version for larger constraints.
+            </p>
+            <p><strong>Example:</strong>
+                Input: zero = 1, one = 2, limit = 1<br>
+                Output: 2<br>
+                Explanation: The two possible stable binary arrays are [0,1,1] and [1,0,1] (considering limit
+                constraint).
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    const int MOD = 1e9 + 7;
+    int dp[1005][1005][2];
+    int dfs(int z, int o, int p, int Z, int O, int lim) {
+        if (z &gt; Z || o &gt; O) return 0;
+        if (z == Z &amp;&amp; o == O) return 1;
+        if (dp[z][o][p] != -1) return dp[z][o][p];
+        long long ans = 0;
+        if (p == 0) {
+            if (o + 1 &lt;= O) {
+                ans = dfs(z, o + 1, 1, Z, O, lim);
+                if (o + 1 &lt; O) {
+                    ans = (ans + dfs(z, o + 1, 0, Z, O, lim)) % MOD;
+                    // remove invalid sequences crossing limit
+                    if (o + lim + 1 &lt;= O)
+                        ans = (ans - dfs(z, o + lim + 1, 1, Z, O, lim) + MOD) % MOD;
+                }
+            }
+        } 
+        else {
+            if (z + 1 &lt;= Z) {
+                ans = dfs(z + 1, o, 0, Z, O, lim);
+                if (z + 1 &lt; Z) {
+                    ans = (ans + dfs(z + 1, o, 1, Z, O, lim)) % MOD;
+                    // subtract overflow block contribution
+                    if (z + lim + 1 &lt;= Z)
+                        ans = (ans - dfs(z + lim + 1, o, 0, Z, O, lim) + MOD) % MOD;
+                }
+            }
+        }
+        return dp[z][o][p] = ans;
+    }
+    int numberOfStableArrays(int zero, int one, int limit) {
+        memset(dp, -1, sizeof(dp));
+        return (dfs(0, 0, 0, zero, one, limit) +
+                dfs(0, 0, 1, zero, one, limit)) % MOD;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
