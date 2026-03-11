@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1009: Complement of Base 10 Integer
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1009: Complement of Base 10 Integer (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                The complement of an integer is the integer you get when you flip all the 0's to 1's and all the 1's to
+                0's in its binary representation. For example, the integer 5 is "101" in binary and its complement is
+                "010" which is the integer 2. Given an integer n, return its complement.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 5<br>
+                Output: 2<br>
+                Explanation: 5 is "101" in binary, with complement "010" in binary, which is 2 in base-10.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int bitwiseComplement(int x) {
+        if (x == 0) return 1;
+        int a = 0, p = 0;
+        while (x) {
+            int d = x % 2;
+            a += pow(2, p) * (!d);   // Flip each binary digit manually
+            p++;
+            x /= 2;
+        }
+        return a;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
