@@ -1810,6 +1810,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3600,
+            "title": "Maximize Spanning Tree Stability with Upgrades",
+            "route": "/3600",
+            "difficulty": "Medium",
+            "description": "You are given an integer n representing n nodes labeled from 0 to n - 1, a 2D integer array edges where edges[i] = [ui, vi, stabilityi, mandatoryi] indicates an edge between nodes ui and vi with st...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3606,
             "title": "Coupon Code Validator",
             "route": "/3606",
@@ -1964,5 +1973,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-11"
+    "lastUpdated": "2026-03-12"
 }
