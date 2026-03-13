@@ -1468,6 +1468,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3296,
+            "title": "Minimum Number of Seconds to Make Mountain Height Zero",
+            "route": "/3296",
+            "difficulty": "Medium",
+            "description": "You are given an integer mountainHeight denoting the height of a mountain. You are also given an integer array workerTimes representing the work time of workers in seconds. The workers work simulta...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3314,
             "title": "Construct the Minimum Bitwise Array I",
             "route": "/3314",
@@ -1973,5 +1982,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-12"
+    "lastUpdated": "2026-03-13"
 }
