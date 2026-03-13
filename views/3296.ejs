@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3296: Minimum Number of Seconds to Make Mountain Height Zero
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3296: Minimum Number of Seconds to Make Mountain Height Zero (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer mountainHeight denoting the height of a mountain. You are also given an integer
+                array workerTimes representing the work time of workers in seconds. The workers work simultaneously to
+                reduce the height of the mountain. For each unit of the mountain's height, the ith worker needs
+                workerTimes[i] + workerTimes[i] * 2 + ... + workerTimes[i] * X seconds to carry out all X units. Return
+                the minimum number of seconds required for all workers to reduce the mountain height to zero.
+            </p>
+            <p><strong>Example:</strong>
+                Input: mountainHeight = 4, workerTimes = [2,1,1]<br>
+                Output: 3<br>
+                Explanation: Workers can reduce the mountain height optimally by distributing work based on their
+                completion times. The minimum time is 3 seconds.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long minNumberOfSeconds(int mountainHeight, vector&lt;int&gt;&amp; workerTimes) {
+        priority_queue&lt;
+            vector&lt;long long&gt;,
+            vector&lt;vector&lt;long long&gt;&gt;,
+            greater&lt;vector&lt;long long&gt;&gt;
+        &gt; pq;
+        for (int t : workerTimes) {
+            pq.push({t, t, 1});
+        }
+        long long current = 0;
+        while (mountainHeight--) {
+            auto top = pq.top();
+            pq.pop();
+            long long finishTime = top[0];
+            long long base = top[1];
+            long long step = top[2];
+            current = finishTime;
+            step++;
+            pq.push({finishTime + base * step, base, step});
+        }
+        return current;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
