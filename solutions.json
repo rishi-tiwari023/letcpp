@@ -595,6 +595,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1415,
+            "title": "The k-th Lexicographical String of All Happy Strings of Length n",
+            "route": "/1415",
+            "difficulty": "Medium",
+            "description": "A happy string is a string that consists only of letters from the set ['a', 'b', 'c'] and does not have any two consecutive characters that are the same. Given two integers n and k, return the kth ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1437,
             "title": "Check If All 1's Are at Least Length K Places Away",
             "route": "/1437",
@@ -1982,5 +1991,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-13"
+    "lastUpdated": "2026-03-14"
 }
