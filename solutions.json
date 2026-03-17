@@ -802,6 +802,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1727,
+            "title": "Largest Submatrix With Rearrangements",
+            "route": "/1727",
+            "difficulty": "Medium",
+            "description": "You are given a binary matrix matrix of size m x n, and you are allowed to rearrange the columns of the matrix in any order. Return the area of the largest submatrix within matrix where every eleme...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1733,
             "title": "Minimum Number of People to Teach",
             "route": "/1733",
@@ -2009,5 +2018,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-16"
+    "lastUpdated": "2026-03-17"
 }
