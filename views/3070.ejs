@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3070: Count Submatrices with Top-Left Element and Sum Less Than k
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3070: Count Submatrices with Top-Left Element and Sum Less Than k (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a m x n matrix and an integer k, return the number of submatrices that have their top-left element
+                at (0, 0) and the sum of all elements in the submatrix is less than or equal to k.
+            </p>
+            <p><strong>Example:</strong>
+                Input: matrix = [[1,1],[1,0],[1,1]], k = 5<br>
+                Output: 4<br>
+                Explanation: The submatrices with sum &lt;= 5 are: [1], [1,1], [1], [1,0]. But we need submatrices with
+                top-left at (0,0), so the count would be calculated accordingly.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countSubmatrices(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int limit) {
+        int rows = matrix.size();
+        int cols = matrix[0].size();
+        vector&lt;int&gt; colPrefix(cols, 0);
+        int count = 0;
+        for (int row = 0; row &lt; rows; row++) {
+            int runningSum = 0;
+            for (int col = 0; col &lt; cols; col++) {
+                runningSum += matrix[row][col];
+                colPrefix[col] += runningSum;   // stores prefix sum till current row
+                if (colPrefix[col] &lt;= limit) count++;
+            }
+        }
+        return count;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
