@@ -1369,6 +1369,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3070,
+            "title": "Count Submatrices with Top-Left Element and Sum Less Than k",
+            "route": "/3070",
+            "difficulty": "Medium",
+            "description": "Given a m x n matrix and an integer k, return the number of submatrices that have their top-left element at (0, 0) and the sum of all elements in the submatrix is less than or equal to k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3074,
             "title": "Apple Redistribution into Boxes",
             "route": "/3074",
@@ -2018,5 +2027,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-17"
+    "lastUpdated": "2026-03-18"
 }
