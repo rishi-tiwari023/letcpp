@@ -1468,6 +1468,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3212,
+            "title": "Count Submatrices With Equal Frequency of X and Y",
+            "route": "/3212",
+            "difficulty": "Medium",
+            "description": "Given an m x n matrix containing only 'X' and 'Y', count the number of submatrices where the frequency of 'X' equals the frequency of 'Y'. A submatrix is defined by a top-left corner and a bottom-r...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3217,
             "title": "Delete Nodes From Linked List Present in Array",
             "route": "/3217",
@@ -2027,5 +2036,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-18"
+    "lastUpdated": "2026-03-19"
 }
