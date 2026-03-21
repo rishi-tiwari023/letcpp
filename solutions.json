@@ -1954,6 +1954,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3643,
+            "title": "Flip Square Submatrix Vertically",
+            "route": "/3643",
+            "difficulty": "Medium",
+            "description": "You are given an m x n matrix mat and three integers r, c, and size. You need to flip the square submatrix of size size x size starting at position (r, c) vertically (reverse the order of rows). Re...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3650,
             "title": "Minimum Cost Path with Edge Reversals",
             "route": "/3650",
@@ -2045,5 +2054,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-20"
+    "lastUpdated": "2026-03-21"
 }
