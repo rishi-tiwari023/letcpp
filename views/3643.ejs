@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3643: Flip Square Submatrix Vertically
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3643: Flip Square Submatrix Vertically (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an m x n matrix mat and three integers r, c, and size. You need to flip the square submatrix of size size x size starting at position (r, c) vertically (reverse the order of rows). Return the modified matrix.
+            </p>
+            <p><strong>Example:</strong>
+                Input: mat = [[1,2,3,4],[5,6,7,8],[9,10,11,12]], r = 0, c = 0, size = 2<br>
+                Output: [[5,6,3,4],[1,2,7,8],[9,10,11,12]]<br>
+                Explanation: The 2x2 submatrix starting at (0,0) is flipped vertically, swapping rows 0 and 1 within that submatrix.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; reverseSubmatrix(vector&lt;vector&lt;int&gt;&gt;&amp; mat, int r, int c, int size) {
+        
+        int topRow = r, bottomRow = r + size - 1;
+        // Move inward swapping entire rows of the submatrix
+        while (topRow &lt; bottomRow) {
+            for (int col = c; col &lt; c + size; col++) {
+                swap(mat[topRow][col], mat[bottomRow][col]);
+            }
+            topRow++;
+            bottomRow--;
+        }
+        return mat;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
