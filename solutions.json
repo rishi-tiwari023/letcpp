@@ -865,6 +865,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1886,
+            "title": "Determine Whether Matrix Can Be Obtained By Rotation",
+            "route": "/1886",
+            "difficulty": "Medium",
+            "description": "Given two n x n integer matrices grid and target, return true if target is obtained by rotating grid by 90 degrees zero or more times, or false otherwise.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1888,
             "title": "Minimum Number of Flips to Make the Binary String Alternating",
             "route": "/1888",
@@ -2054,5 +2063,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-21"
+    "lastUpdated": "2026-03-22"
 }
