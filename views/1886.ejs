@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1886: Determine Whether Matrix Can Be Obtained By Rotation
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1886: Determine Whether Matrix Can Be Obtained By Rotation (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given two n x n integer matrices grid and target, return true if target is obtained by rotating grid by
+                90 degrees zero or more times, or false otherwise.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[0,1],[1,1]], target = [[1,0],[1,1]]<br>
+                Output: true<br>
+                Explanation: We can obtain target by rotating grid 90 degrees clockwise once.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool findRotation(vector&lt;vector&lt;int&gt;&gt;&amp; grid, vector&lt;vector&lt;int&gt;&gt;&amp; target) {
+        if (isEqual(grid, target)) return true;
+        int attempts = 3;
+        while (attempts--) {
+            grid = rotateNew(grid); // create rotated copy
+            if (isEqual(grid, target)) return true;
+        }
+        return false;
+    }
+    // compare two matrices
+    bool isEqual(vector&lt;vector&lt;int&gt;&gt;&amp; a, vector&lt;vector&lt;int&gt;&gt;&amp; b) {
+        int n = a.size();
+        for (int r = 0; r &lt; n; r++)
+            for (int c = 0; c &lt; n; c++)
+                if (a[r][c] != b[r][c]) return false;
+        return true;
+    }
+    // build a new rotated matrix
+    vector&lt;vector&lt;int&gt;&gt; rotateNew(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int n = grid.size();
+        vector&lt;vector&lt;int&gt;&gt; rotated(n, vector&lt;int&gt;(n));
+        // map each element to its rotated position
+        for (int r = 0; r &lt; n; r++) {
+            for (int c = 0; c &lt; n; c++) {
+                rotated[n - 1 - c][r] = grid[r][c];
+            }
+        }
+        return rotated;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
