@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1594: Maximum Non Negative Product in a Matrix
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1594: Maximum Non Negative Product in a Matrix (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an m x n matrix grid. You start at the top-left cell and want to reach the bottom-right
+                cell. You can only move right or down. Return the maximum non-negative product of the integers along
+                your path modulo 10^9 + 7. If the maximum product is negative, return -1 instead.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[-1,-2,-3],[-2,-3,-3],[-3,-3,-2]]<br>
+                Output: -1<br>
+                Explanation: All paths produce negative products, so return -1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution
+{
+public:
+    int maxProductPath(vector&lt;vector&lt;int&gt;&gt;&amp; grid)
+    {
+        int rows = grid.size();
+        int cols = grid[0].size();
+        long long minProd[16], maxProd[16];
+        // initialize first row (only left movement possible)
+        long long curr = 1;
+        for (int c = 0; c &lt; cols; c++) {
+            curr *= grid[0][c];
+            minProd[c] = maxProd[c] = curr;
+        }
+        // process remaining rows
+        for (int r = 1; r &lt; rows; r++)
+        {
+            // first column (only upward path)
+            minProd[0] *= grid[r][0];
+            maxProd[0] *= grid[r][0];
+            for (int c = 1; c &lt; cols; c++)
+            {
+                long long val = grid[r][c];
+                // try all combinations (min/max * current value)
+                long long p1 = minProd[c - 1] * val;
+                long long p2 = minProd[c] * val;
+                long long p3 = maxProd[c - 1] * val;
+                long long p4 = maxProd[c] * val;
+                minProd[c] = min({p1, p2, p3, p4});
+                maxProd[c] = max({p1, p2, p3, p4});
+            }
+        }
+        long long ans = maxProd[cols - 1];
+        if (ans &lt; 0) return -1;
+        return ans % 1000000007;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
