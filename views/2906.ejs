@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2906: Construct Product Matrix
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2906: Construct Product Matrix (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an m x n matrix mat, construct a new matrix result where result[i][j] is the product of all
+                elements in mat except mat[i][j], modulo 12345. You must accomplish this without using the division
+                operation.
+            </p>
+            <p><strong>Example:</strong>
+                Input: mat = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]<br>
+                Output: [[5040,2520,1680,1260],[1008,840,720,630],[560,504,480,420]]<br>
+                Explanation: For each position, we calculate the product of all other elements modulo 12345.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; constructProductMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; mat) {
+        int rows = mat.size();
+        int cols = mat[0].size();
+        int MOD = 12345;
+        vector&lt;vector&lt;int&gt;&gt; result(rows, vector&lt;int&gt;(cols, 0));
+        long long running = 1;
+        // suffix products first (reverse traversal)
+        for (int i = rows - 1; i &gt;= 0; i--) {
+            for (int j = cols - 1; j &gt;= 0; j--) {
+                result[i][j] = running;
+                running = (running * mat[i][j]) % MOD;
+            }
+        }
+        running = 1;
+        // multiply with prefix products
+        for (int i = 0; i &lt; rows; i++) {
+            for (int j = 0; j &lt; cols; j++) {
+                result[i][j] = (result[i][j] * running) % MOD;
+                running = (running * mat[i][j]) % MOD;
+            }
+        }
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
