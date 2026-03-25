@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3546: Equal Sum Grid Partition I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3546: Equal Sum Grid Partition I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an m x n matrix of integers, determine if the grid can be partitioned into two parts of equal sum
+                by a single horizontal or vertical line. Return true if such a partition exists, false otherwise.
+            </p>
+            <p><strong>Example:</strong>
+                Input: matrix = [[1,1,1],[1,1,1]]<br>
+                Output: true<br>
+                Explanation: We can partition the grid horizontally or vertically to get two parts with equal sum.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool canPartitionGrid(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
+        int rows = matrix.size();
+        int cols = matrix[0].size();
+        long long totalSum = 0;
+        // compute total sum
+        for (int i = 0; i &lt; rows; i++) {
+            for (int j = 0; j &lt; cols; j++) {
+                totalSum += matrix[i][j];
+            }
+        }
+        long long prefixRowSum = 0;
+        // check horizontal partitions
+        for (int i = 0; i &lt; rows; i++) {
+            for (int j = 0; j &lt; cols; j++) {
+                prefixRowSum += matrix[i][j];
+            }
+            if (prefixRowSum * 2 == totalSum) return true;
+        }
+        long long prefixColSum = 0;
+        // check vertical partitions
+        for (int j = 0; j &lt; cols; j++) {
+            for (int i = 0; i &lt; rows; i++) {
+                prefixColSum += matrix[i][j];
+            }
+            if (prefixColSum * 2 == totalSum) return true;
+        }
+        return false;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
