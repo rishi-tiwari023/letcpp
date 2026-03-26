@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3548: Equal Sum Grid Partition II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3548: Equal Sum Grid Partition II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an m x n matrix of integers, determine if the grid can be partitioned into two parts of equal sum
+                by removing a single row or column. Return true if such a partition exists, false otherwise.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[1,1,1],[1,1,1]]<br>
+                Output: true<br>
+                Explanation: We can remove a row or column to partition the grid into two equal sum parts.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool canPartitionGrid(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int rows = grid.size(), cols = grid[0].size();
+        unordered_map&lt;long long, int&gt; totalFreq, rightFreq, leftSeen;
+        long long totalSum = 0;
+        // Build total sum + frequency map
+        for (auto &amp;row : grid) {
+            for (int val : row) {
+                totalSum += val;
+                totalFreq[val]++;
+            }
+        }
+        rightFreq = totalFreq;
+        long long currSum = 0;
+        // 🔹 Horizontal cuts
+        for (int r = 0; r &lt; rows; r++) {
+            for (int c = 0; c &lt; cols; c++) {
+                currSum += grid[r][c];
+                leftSeen[grid[r][c]] = 1;
+                rightFreq[grid[r][c]]--;
+            }
+            long long diff = 2 * currSum - totalSum;
+            if (diff == 0) return true;
+            else if (diff &gt; 0) {
+                // Remove from top part
+                if (r == 0 || cols == 1) {
+                    if (grid[0][0] == diff || grid[0][cols - 1] == diff) return true;
+                    if (cols == 1 &amp;&amp; grid[r][0] == diff) return true;
+                } 
+                else if (leftSeen.count(diff)) return true;
+            } 
+            else {
+                diff = abs(diff);
+                // Remove from bottom part
+                if (r == rows - 2 || cols == 1) {
+                    if (grid[rows - 1][0] == diff || grid[rows - 1][cols - 1] == diff) return true;
+                    if (cols == 1 &amp;&amp; grid[r + 1][0] == diff) return true;
+                } 
+                else if (rightFreq.count(diff) &amp;&amp; rightFreq[diff] &gt; 0) return true;
+            }
+        }
+        // 🔹 Vertical cuts
+        currSum = 0;
+        rightFreq = totalFreq;
+        leftSeen.clear();
+        for (int c = 0; c &lt; cols; c++) {
+            for (int r = 0; r &lt; rows; r++) {
+                currSum += grid[r][c];
+                leftSeen[grid[r][c]] = 1;
+                rightFreq[grid[r][c]]--;
+            }
+            long long diff = 2 * currSum - totalSum;
+            if (diff == 0) return true;
+            else if (diff &gt; 0) {
+                if (c == 0 || rows == 1) {
+                    if (grid[0][0] == diff || grid[rows - 1][0] == diff) return true;
+                    if (rows == 1 &amp;&amp; grid[0][c] == diff) return true;
+                } 
+                else if (leftSeen.count(diff)) return true;
+            } 
+            else {
+                diff = abs(diff);
+                if (c == cols - 2 || rows == 1) {
+                    if (grid[0][cols - 1] == diff || grid[rows - 1][cols - 1] == diff) return true;
+                    if (rows == 1 &amp;&amp; grid[0][c + 1] == diff) return true;
+                } 
+                else if (rightFreq.count(diff) &amp;&amp; rightFreq[diff] &gt; 0) return true;
+            }
+        }
+        return false;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
