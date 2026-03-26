@@ -1864,6 +1864,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3548,
+            "title": "Equal Sum Grid Partition II",
+            "route": "/3548",
+            "difficulty": "Medium",
+            "description": "Given an m x n matrix of integers, determine if the grid can be partitioned into two parts of equal sum by removing a single row or column. Return true if such a partition exists, false otherwise.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3562,
             "title": "Maximum Profit from Trading Stocks with Discounts",
             "route": "/3562",
@@ -2090,5 +2099,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-25"
+    "lastUpdated": "2026-03-26"
 }
