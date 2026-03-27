@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2946: Matrix Similarity After Cyclic Shifts
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2946: Matrix Similarity After Cyclic Shifts (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an m x n matrix grid. Each even-indexed row (0, 2, 4, ...) is shifted right by k positions cyclically. Each odd-indexed row (1, 3, 5, ...) is shifted left by k positions cyclically. Return true if the matrix after these cyclic shifts is identical to the original matrix, false otherwise.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[1,2,3],[4,5,6],[7,8,9],[10,11,12]], k = 2<br>
+                Output: true<br>
+                Explanation: After shifting even rows right by 2 and odd rows left by 2, the matrix matches the original.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool areSimilar(vector&lt;vector&lt;int&gt;&gt;&amp; grid, int k) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+        k %= cols;
+        for (int r = 0; r &lt; rows; r++) {
+            for (int c = 0; c &lt; cols; c++) {
+                int shiftedIndex;
+                // compute where current element should come from
+                if (r % 2 == 0)
+                    shiftedIndex = (c + k) % cols;          // even row → right
+                else
+                    shiftedIndex = (c - k + cols) % cols;   // odd row → left
+                if (grid[r][c] != grid[r][shiftedIndex])
+                    return false;
+            }
+        }
+        return true;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
