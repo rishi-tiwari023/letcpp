@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2573: Find the String with LCP
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2573: Find the String with LCP (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an n x n matrix lcp where lcp[i][j] represents the length of the longest common prefix (LCP)
+                between suffixes starting at positions i and j of some string, reconstruct and return the string. If no
+                valid string exists, return an empty string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: lcp = [[4,3,2,4],[0,3,2,3],[0,0,2,2],[0,0,0,3]]<br>
+                Output: "aaaa"<br>
+                Explanation: The string "aaaa" produces the given LCP matrix.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string findTheString(vector&lt;vector&lt;int&gt;&gt;&amp; lcp) {
+        int size = lcp.size();
+        vector&lt;char&gt; ans(size, 0);
+        char ch = 'a';
+        // Build string greedily by grouping same LCP prefixes
+        for (int i = 0; i &lt; size; i++) {
+            if (ans[i] == 0) {
+                if (ch &gt; 'z') return "";
+                ans[i] = ch;
+                for (int j = i + 1; j &lt; size; j++) {
+                    if (lcp[i][j] &gt; 0)
+                        ans[j] = ans[i];
+                }
+                ch++;
+            }
+        }
+        // Validate using reverse LCP relation
+        for (int i = size - 1; i &gt;= 0; i--) {
+            for (int j = size - 1; j &gt;= 0; j--) {
+                if (ans[i] != ans[j]) {
+                    if (lcp[i][j] != 0) return "";
+                } else {
+                    if (i == size - 1 || j == size - 1) {
+                        if (lcp[i][j] != 1) return "";
+                    } else {
+                        if (lcp[i][j] != lcp[i + 1][j + 1] + 1) return "";
+                    }
+                }
+            }
+        }
+        return string(ans.begin(), ans.end());
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
