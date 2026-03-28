@@ -1216,6 +1216,15 @@
             "spaceComplexity": "O(n^2)"
         },
         {
+            "id": 2573,
+            "title": "Find the String with LCP",
+            "route": "/2573",
+            "difficulty": "Medium",
+            "description": "Given an n x n matrix lcp where lcp[i][j] represents the length of the longest common prefix (LCP) between suffixes starting at positions i and j of some string, reconstruct and return the string. ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2598,
             "title": "Smallest Missing Non-negative Integer After Operations",
             "route": "/2598",
@@ -2108,5 +2117,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-27"
+    "lastUpdated": "2026-03-28"
 }
