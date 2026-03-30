@@ -1279,6 +1279,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2840,
+            "title": "Check if Strings Can be Made Equal With Operations II",
+            "route": "/2840",
+            "difficulty": "Medium",
+            "description": "You are given two strings a and b of the same length. You can perform the following operations on string a any number of times: swap any two characters at even indices, or swap any two characters a...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2872,
             "title": "Maximum Number of K-Divisible Components",
             "route": "/2872",
@@ -2126,5 +2135,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-29"
+    "lastUpdated": "2026-03-30"
 }
