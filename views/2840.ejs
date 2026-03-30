@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2840: Check if Strings Can be Made Equal With Operations II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2840: Check if Strings Can be Made Equal With Operations II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two strings a and b of the same length. You can perform the following operations on string
+                a any number of times: swap any two characters at even indices, or swap any two characters at odd
+                indices. Return true if you can make string a equal to string b by performing these operations, false
+                otherwise.
+            </p>
+            <p><strong>Example:</strong>
+                Input: a = "abcd", b = "dacb"<br>
+                Output: true<br>
+                Explanation: By swapping characters at even and odd indices separately, you can transform a into b.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool checkStrings(string a, string b) {
+        int len = a.size();
+        string evenA = "", oddA = "";
+        string evenB = "", oddB = "";
+        for(int idx = 0; idx &lt; len; idx++) {
+            // split chars based on index parity
+            if(idx % 2 == 0){
+                evenA += a[idx];
+                evenB += b[idx];
+            } else {
+                oddA += a[idx];
+                oddB += b[idx];
+            }
+        }
+        // sort to normalize order before comparison
+        sort(evenA.begin(), evenA.end());
+        sort(evenB.begin(), evenB.end());
+        sort(oddA.begin(), oddA.end());
+        sort(oddB.begin(), oddB.end());
+        return (evenA == evenB &amp;&amp; oddA == oddB);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
