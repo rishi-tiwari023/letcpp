@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3474: Lexicographically Smallest Generated String
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3474: Lexicographically Smallest Generated String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a pattern string and a target string. Generate a string of length n + m - 1 (where n is
+                pattern length and m is target length) such that: for each 'T' in pattern at position i, the substring
+                of the generated string starting at i should equal the target; for each 'F' in pattern at position i,
+                the substring starting at i should NOT equal the target. Return the lexicographically smallest such
+                string, or an empty string if impossible.
+            </p>
+            <p><strong>Example:</strong>
+                Input: pattern = "TFT", target = "ab"<br>
+                Output: "abab"<br>
+                Explanation: At positions marked 'T', the substrings match "ab"; at positions marked 'F', they don't.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string generateString(string pattern, string target) {
+        int n = pattern.size(), m = target.size();
+        
+        vector&lt;char&gt; result(n + m - 1, 'X'); // placeholder array
+        
+        // Step 1: Force 'T' positions to match target
+        for (int i = 0; i &lt; n; i++) {
+            if (pattern[i] == 'F') continue;
+            
+            for (int j = 0; j &lt; m; j++) {
+                if (result[i + j] == 'X') {
+                    result[i + j] = target[j];
+                } else if (result[i + j] != target[j]) {
+                    return ""; // conflict found
+                }
+            }
+        }
+        
+        // Step 2: Ensure 'F' positions do NOT match target
+        for (int i = 0; i &lt; n; i++) {
+            if (pattern[i] == 'T') continue;
+            
+            bool isMatch = true;
+            for (int j = 0; j &lt; m; j++) {
+                if (result[i + j] != target[j]) {
+                    isMatch = false;
+                    break;
+                }
+            }
+            if (isMatch) return "";
+        }
+        if (count(result.begin(), result.end(), 'X') == 0) {
+            return string(result.begin(), result.end());
+        }
+        // Step 3: Break unwanted matches at 'F' by tweaking one position
+        for (int i = 0; i &lt; n; i++) {
+            if (pattern[i] == 'F') {
+                bool canMatch = true;
+                int changeIdx = -1;
+                for (int j = m - 1; j &gt;= 0; j--) {
+                    if (result[i + j] == 'X') {
+                        if (changeIdx == -1) changeIdx = i + j;
+                        if (target[j] != 'a') {
+                            canMatch = false;
+                            break;
+                        }
+                    } else {
+                        if (result[i + j] != target[j]) {
+                            canMatch = false;
+                            break;
+                        }
+                    }
+                }
+                if (canMatch) {
+                    if (changeIdx == -1) return "";
+                    result[changeIdx] = 'b'; // break lexicographically minimal match
+                }
+            }
+        }
+        // Step 4: Fill remaining with 'a' for smallest lexicographic result
+        for (char &amp;ch : result) {
+            if (ch == 'X') ch = 'a';
+        }
+        return string(result.begin(), result.end());
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
