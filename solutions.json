@@ -1783,6 +1783,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3474,
+            "title": "Lexicographically Smallest Generated String",
+            "route": "/3474",
+            "difficulty": "Medium",
+            "description": "You are given a pattern string and a target string. Generate a string of length n + m - 1 (where n is pattern length and m is target length) such that: for each 'T' in pattern at position i, the su...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3484,
             "title": "Find the Maximum Length of a Good Subsequence IX",
             "route": "/3484",
@@ -2135,5 +2144,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-30"
+    "lastUpdated": "2026-03-31"
 }
