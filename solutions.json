@@ -1252,6 +1252,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2751,
+            "title": "Robot Collisions",
+            "route": "/2751",
+            "difficulty": "Medium",
+            "description": "You are given arrays pos, hp, and a string dir representing the positions, health points, and directions of robots on a line. Robots with direction 'R' move right, and robots with direction 'L' mov...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2785,
             "title": "Sort Vowels in a String",
             "route": "/2785",
@@ -2144,5 +2153,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-03-31"
+    "lastUpdated": "2026-04-01"
 }
