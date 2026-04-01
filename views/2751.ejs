@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2751: Robot Collisions
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2751: Robot Collisions (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given arrays pos, hp, and a string dir representing the positions, health points, and directions
+                of robots on a line. Robots with direction 'R' move right, and robots with direction 'L' move left. When
+                two robots collide, each loses 1 HP. A robot is destroyed when its HP reaches 0. Return the health
+                values of surviving robots in order of their original indices.
+            </p>
+            <p><strong>Example:</strong>
+                Input: pos = [5,4,3,2,1], hp = [2,17,9,15,10], dir = "RRLLR"<br>
+                Output: [2,17,9,15,10]<br>
+                Explanation: After simulating all collisions, these robots survive with the given health values.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    struct Bot {
+        int pos;
+        int hp;
+        char dir;
+        int idx;
+    };
+    vector&lt;int&gt; survivedRobotsHealths(vector&lt;int&gt;&amp; pos, vector&lt;int&gt;&amp; hp, string dir) {
+        int n = pos.size();
+        vector&lt;Bot&gt; bots;
+        for (int i = 0; i &lt; n; i++) {
+            bots.push_back({pos[i], hp[i], dir[i], i});
+        }
+        sort(bots.begin(), bots.end(), [](const Bot&amp; a, const Bot&amp; b) {
+            return a.pos &lt; b.pos;
+        });
+        stack&lt;int&gt; st; // indices of right-moving bots
+        for (int i = 0; i &lt; n; i++) {
+            if (bots[i].dir == 'R') {
+                st.push(i);
+            } else {
+                // fight with closest right-moving bot
+                while (!st.empty() &amp;&amp; bots[i].hp &gt; 0) {
+                    int j = st.top();
+                    if (bots[j].hp &lt; bots[i].hp) {
+                        st.pop();
+                        bots[i].hp--;
+                        bots[j].hp = 0;
+                    } 
+                    else if (bots[j].hp &gt; bots[i].hp) {
+                        bots[j].hp--;
+                        bots[i].hp = 0;
+                    } 
+                    else {
+                        st.pop();
+                        bots[j].hp = bots[i].hp = 0;
+                    }
+                }
+            }
+        }
+        vector&lt;pair&lt;int,int&gt;&gt; alive;
+        for (auto &amp;b : bots) {
+            if (b.hp &gt; 0) alive.push_back({b.idx, b.hp});
+        }
+        sort(alive.begin(), alive.end());
+        vector&lt;int&gt; ans;
+        for (auto &amp;p : alive) ans.push_back(p.second);
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
