@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3418: Maximum Amount of Money Robot Can Earn
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3418: Maximum Amount of Money Robot Can Earn (Java)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an m x n grid where each cell contains an integer value (positive or negative). A robot
+                starts at the top-left corner and can only move right or down to reach the bottom-right corner. You can
+                skip at most 2 negative cells on the path. Return the maximum amount of money the robot can earn.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[10,1,3,2],[5,0,5,4],[1,3,1,1]]<br>
+                Output: 24<br>
+                Explanation: The robot takes the path with maximum total by optionally skipping negative cells when
+                beneficial.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-java">class Solution {
+    public int maximumAmount(int[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+        // dp[row][col][negativesUsed]
+        int[][][] dp = new int[rows][cols][3];
+        for (int i = 0; i &lt; rows; i++) {
+            for (int j = 0; j &lt; cols; j++) {
+                Arrays.fill(dp[i][j], Integer.MIN_VALUE);
+            }
+        }
+        return solve(0, 0, 0, rows, cols, grid, dp);
+    }
+    static int solve(int r, int c, int used, int rows, int cols,
+                     int[][] grid, int[][][] dp) {
+        // reached destination
+        if (r == rows - 1 &amp;&amp; c == cols - 1) {
+            if (grid[r][c] &lt; 0 &amp;&amp; used &lt; 2) return 0; // skip negative
+            return grid[r][c];
+        }
+        if (dp[r][c][used] != Integer.MIN_VALUE)
+            return dp[r][c][used];
+        int right = Integer.MIN_VALUE;
+        int down = Integer.MIN_VALUE;
+        int curr = grid[r][c];
+        // move right
+        if (c + 1 &lt; cols) {
+            right = curr + solve(r, c + 1, used, rows, cols, grid, dp);
+            // optionally skip negative cell
+            if (curr &lt; 0 &amp;&amp; used &lt; 2) {
+                right = Math.max(right,
+                        solve(r, c + 1, used + 1, rows, cols, grid, dp));
+            }
+        }
+        // move down
+        if (r + 1 &lt; rows) {
+            down = curr + solve(r + 1, c, used, rows, cols, grid, dp);
+            if (curr &lt; 0 &amp;&amp; used &lt; 2) {
+                down = Math.max(down,
+                        solve(r + 1, c, used + 1, rows, cols, grid, dp));
+            }
+        }
+        // take best path
+        return dp[r][c][used] = Math.max(right, down);
+    }
+}</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
