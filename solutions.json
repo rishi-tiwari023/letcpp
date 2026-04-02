@@ -1729,6 +1729,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3418,
+            "title": "Maximum Amount of Money Robot Can Earn (Java)",
+            "route": "/3418",
+            "difficulty": "Medium",
+            "description": "You are given an m x n grid where each cell contains an integer value (positive or negative). A robot starts at the top-left corner and can only move right or down to reach the bottom-right corner....",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3432,
             "title": "Count Partitions with Even Sum Difference",
             "route": "/3432",
@@ -2153,5 +2162,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-01"
+    "lastUpdated": "2026-04-02"
 }
