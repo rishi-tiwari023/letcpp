@@ -2098,6 +2098,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3661,
+            "title": "Maximum Walls Destroyed by Robots",
+            "route": "/3661",
+            "difficulty": "Medium",
+            "description": "You are given arrays representing robot positions and their destruction power (distance they can reach left or right). You also have walls at various positions. Each robot must choose to move eithe...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3666,
             "title": "Minimum Operations to Equalize Binary String",
             "route": "/3666",
@@ -2162,5 +2171,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-02"
+    "lastUpdated": "2026-04-03"
 }
