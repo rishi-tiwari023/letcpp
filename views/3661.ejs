@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3661: Maximum Walls Destroyed by Robots
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3661: Maximum Walls Destroyed by Robots (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given arrays representing robot positions and their destruction power (distance they can reach
+                left or right). You also have walls at various positions. Each robot must choose to move either left or
+                right. Robots cannot overlap in their coverage areas. Return the maximum number of walls that can be
+                destroyed by all robots combined.
+            </p>
+            <p><strong>Example:</strong>
+                Input: robotPos = [1,4,6], dist = [4,4,4], wallPos = [1,2,3,5,7,8]<br>
+                Output: 5<br>
+                Explanation: By optimally choosing directions for each robot, the maximum number of walls destroyed is
+                5.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Robot {
+public:
+    int position, power;
+    Robot(int p, int d) : position(p), power(d) {}
+};
+class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; memo;
+    int maxWalls(vector&lt;int&gt;&amp; robotPos, vector&lt;int&gt;&amp; dist, vector&lt;int&gt;&amp; wallPos) {
+        int n = robotPos.size();
+        // Build robot list
+        vector&lt;Robot&gt; robots;
+        for (int i = 0; i &lt; n; i++) {
+            robots.emplace_back(robotPos[i], dist[i]);
+        }
+        // Sort robots and walls
+        sort(robots.begin(), robots.end(), [](Robot &amp;a, Robot &amp;b) {
+            return a.position &lt; b.position;
+        });
+        sort(wallPos.begin(), wallPos.end());
+        memo.assign(n, vector&lt;int&gt;(2, -1));
+        return dfs(0, 0, robots, wallPos);
+    }
+    int dfs(int i, int prevMove, vector&lt;Robot&gt;&amp; robots, vector&lt;int&gt;&amp; walls) {
+        if (i == robots.size()) return 0;
+        if (memo[i][prevMove] != -1) return memo[i][prevMove];
+        Robot &amp;curr = robots[i];
+        // Try moving LEFT (respect previous robot's coverage)
+        int leftLimit = max(0, curr.position - curr.power);
+        if (i &gt; 0) {
+            if (prevMove == 0) {
+                leftLimit = max(leftLimit, robots[i - 1].position + 1);
+            } else {
+                leftLimit = max(leftLimit,
+                                robots[i - 1].position + robots[i - 1].power + 1);
+            }
+        }
+        int leftCount = countInRange(leftLimit, curr.position, walls);
+        int goLeft = leftCount + dfs(i + 1, 0, robots, walls);
+        // Try moving RIGHT (bounded by next robot)
+        int rightLimit = curr.position + curr.power;
+        if (i &lt; robots.size() - 1) {
+            rightLimit = min(rightLimit, robots[i + 1].position - 1);
+        }
+        int rightCount = countInRange(curr.position, rightLimit, walls);
+        int goRight = rightCount + dfs(i + 1, 1, robots, walls);
+        return memo[i][prevMove] = max(goLeft, goRight);
+    }
+    // Count walls in [l, r] using binary search
+    int countInRange(int l, int r, vector&lt;int&gt;&amp; walls) {
+        int leftIdx = firstGreaterEqual(walls, l);
+        int rightIdx = lastLessEqual(walls, r);
+        if (leftIdx == -1 || rightIdx == -1 || leftIdx &gt; rightIdx)
+            return 0;
+        return rightIdx - leftIdx + 1;
+    }
+    // First index &gt;= target
+    int firstGreaterEqual(vector&lt;int&gt;&amp; arr, int target) {
+        int low = 0, high = arr.size() - 1, res = -1;
+        while (low &lt;= high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] &gt;= target) {
+                res = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return res;
+    }
+    // Last index &lt;= target
+    int lastLessEqual(vector&lt;int&gt;&amp; arr, int target) {
+        int low = 0, high = arr.size() - 1, res = -1;
+        while (low &lt;= high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] &lt;= target) {
+                res = mid;
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
