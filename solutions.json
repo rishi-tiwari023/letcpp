@@ -1009,6 +1009,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 2075,
+            "title": "Decode the Slanted Ciphertext",
+            "route": "/2075",
+            "difficulty": "Medium",
+            "description": "You are given an encoded string and the number of rows it was arranged in. The string was encoded by arranging it in a zigzag pattern row by row, then reading it off diagonally. Decode the original...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2092,
             "title": "Find All People With Secret",
             "route": "/2092",
@@ -2171,5 +2180,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-03"
+    "lastUpdated": "2026-04-04"
 }
