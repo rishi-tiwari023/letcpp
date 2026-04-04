@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2075: Decode the Slanted Ciphertext
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2075: Decode the Slanted Ciphertext (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an encoded string and the number of rows it was arranged in. The string was encoded by
+                arranging it in a zigzag pattern row by row, then reading it off diagonally. Decode the original message
+                by reversing this process.
+            </p>
+            <p><strong>Example:</strong>
+                Input: encodedText = "ch p ocede ciaDecrypt", rows = 3<br>
+                Output: "chpcode"<br>
+                Explanation: The original message "chpcode" was encoded in a 3-row zigzag pattern and read diagonally.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string decodeCiphertext(string encodedText, int rows) {
+        if (rows == 1) [[unlikely]] return encodedText;
+        int totalLen = encodedText.length();
+        int cols = totalLen / rows;
+        int jump = cols + 1;  // move diagonally in 1D array
+        string result;
+        result.resize(totalLen);
+        char* dst = result.data();
+        const char* src = encodedText.data();
+        int writeIdx = 0;
+        for (int startCol = 0; startCol &lt; cols; ++startCol) {
+            for (int idx = startCol; idx &lt; totalLen; idx += jump) {
+                dst[writeIdx++] = src[idx];  // directly copy diagonal chars
+            }
+        }
+        // trim trailing spaces
+        while (writeIdx &gt; 0 &amp;&amp; dst[writeIdx - 1] == ' ') --writeIdx;
+        result.resize(writeIdx);
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
