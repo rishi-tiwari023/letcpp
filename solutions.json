@@ -190,6 +190,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 657,
+            "title": "Robot Return to Origin",
+            "route": "/657",
+            "difficulty": "Medium",
+            "description": "You are given a string moves where each character is a direction the robot should move: 'U' (up), 'D' (down), 'L' (left), 'R' (right). Return true if the robot returns to the origin after executing...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 679,
             "title": "24 Game",
             "route": "/679",
@@ -2180,5 +2189,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-04"
+    "lastUpdated": "2026-04-05"
 }
