@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 657: Robot Return to Origin
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 657: Robot Return to Origin (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string moves where each character is a direction the robot should move: 'U' (up), 'D'
+                (down), 'L' (left), 'R' (right). Return true if the robot returns to the origin after executing all the
+                moves, false otherwise.
+            </p>
+            <p><strong>Example:</strong>
+                Input: moves = "UDLR"<br>
+                Output: true<br>
+                Explanation: The robot moves up, down, left, right and returns to the origin.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool judgeCircle(string moves) {
+        int horizontal = 0, vertical = 0;
+        // Track net movement instead of counting separately
+        for (int i = 0; i &lt; moves.size(); i++) {
+            if (moves[i] == 'L') horizontal++;
+            if (moves[i] == 'R') horizontal--;
+            if (moves[i] == 'U') vertical++;
+            if (moves[i] == 'D') vertical--;
+        }
+        // Zero displacement means robot is back at origin
+        return (horizontal == 0 &amp;&amp; vertical == 0);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
