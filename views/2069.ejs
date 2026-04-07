@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2069: Walking Robot Simulation II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2069: Walking Robot Simulation II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                A robot starts at the bottom-left corner (0, 0) of an w x h rectangular grid, facing East. It can
+                execute a step() method to move forward a given number of steps along the grid boundary. When the robot
+                reaches a corner, it automatically turns counter-clockwise (East → North → West → South → East). Return
+                the robot's position and direction after executing commands.
+            </p>
+            <p><strong>Example:</strong>
+                Input: Robot(4, 6), step(4), step(8)<br>
+                Output: Position [0,0], Direction "South"<br>
+                Explanation: After moving 4 steps East, then 8 more steps following the boundary, the robot completes
+                the cycle and faces South.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Robot {
+private:
+    int posX, posY;        // current position
+    int direction;         // 0=N, 1=E, 2=S, 3=W
+    int width, height;
+    int perimeterSteps;    // total boundary cycle
+public:
+    Robot(int w, int h) {
+        posX = 0;
+        posY = 0;
+        direction = 1;     // start facing East
+        width = w;
+        height = h;
+        perimeterSteps = 2 * width + 2 * (height - 2);
+    }
+    void step(int steps) {
+        // handle full cycle case at origin
+        if (steps % perimeterSteps == 0 &amp;&amp; posX == 0 &amp;&amp; posY == 0)
+            direction = 2;
+        steps %= perimeterSteps;
+        while (steps) {
+            // move in current direction as much as possible
+            if (direction == 1) { // East
+                int move = min(width - posX - 1, steps);
+                posX += move;
+                steps -= move;
+            }
+            else if (direction == 0) { // North
+                int move = min(height - posY - 1, steps);
+                posY += move;
+                steps -= move;
+            }
+            else if (direction == 3) { // West
+                int move = min(posX, steps);
+                posX -= move;
+                steps -= move;
+            }
+            else { // South
+                int move = min(posY, steps);
+                posY -= move;
+                steps -= move;
+            }
+            // turn counter-clockwise if steps remain
+            if (steps)
+                direction = (direction - 1 + 4) % 4;
+        }
+    }
+    vector&lt;int&gt; getPos() {
+        return {posX, posY};
+    }
+    string getDir() {
+        if (direction == 1) return "East";
+        if (direction == 0) return "North";
+        if (direction == 3) return "West";
+        return "South";
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
