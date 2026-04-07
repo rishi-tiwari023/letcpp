@@ -193,8 +193,8 @@
             "id": 657,
             "title": "Robot Return to Origin",
             "route": "/657",
-            "difficulty": "Medium",
-            "description": "You are given a string moves where each character is a direction the robot should move: 'U' (up), 'D' (down), 'L' (left), 'R' (right). Return true if the robot returns to the origin after executing...",
+            "difficulty": "Easy",
+            "description": "You are given a string moves where each character is a direction the robot should move: 'U' (up), 'D' (down), 'L' (left), 'R' (right). Return true if the robot returns to the origin after executing all the moves, false otherwise.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
         },
@@ -365,9 +365,9 @@
             "title": "Walking Robot Simulation",
             "route": "/874",
             "difficulty": "Medium",
-            "description": "A robot is placed at the origin (0, 0) facing north. It receives a list of commands where positive integers represent steps to move forward, -1 represents turning right 90 degrees, and -2 represent...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "description": "A robot is placed at the origin (0, 0) facing north. It receives a list of commands where positive integers represent steps to move forward, -1 represents turning right 90 degrees, and -2 represents turning left 90 degrees. There are also obstacles at certain coordinates that block the robot's path. Return the square of the maximum Euclidean distance the robot reaches at any point during its journey.",
+            "timeComplexity": "O(n + k)",
+            "spaceComplexity": "O(k)"
         },
         {
             "id": 944,
@@ -1031,8 +1031,8 @@
             "title": "Walking Robot Simulation II",
             "route": "/2069",
             "difficulty": "Medium",
-            "description": "A robot starts at the bottom-left corner (0, 0) of an w x h rectangular grid, facing East. It can execute a step() method to move forward a given number of steps along the grid boundary. When the r...",
-            "timeComplexity": "O(n)",
+            "description": "A robot starts at the bottom-left corner (0, 0) of an w x h rectangular grid, facing East. It can move forward a given number of steps along the grid boundary. When the robot reaches a corner, it automatically turns counter-clockwise.",
+            "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -1040,9 +1040,9 @@
             "title": "Decode the Slanted Ciphertext",
             "route": "/2075",
             "difficulty": "Medium",
-            "description": "You are given an encoded string and the number of rows it was arranged in. The string was encoded by arranging it in a zigzag pattern row by row, then reading it off diagonally. Decode the original...",
+            "description": "You are given an encoded string and the number of rows it was arranged in. Decode the original message by reading it off diagonally.",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 2092,
@@ -1291,10 +1291,10 @@
             "id": 2751,
             "title": "Robot Collisions",
             "route": "/2751",
-            "difficulty": "Medium",
-            "description": "You are given arrays pos, hp, and a string dir representing the positions, health points, and directions of robots on a line. Robots with direction 'R' move right, and robots with direction 'L' mov...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "difficulty": "Hard",
+            "description": "You are given arrays pos, hp, and a string dir representing the positions, health points, and directions of robots on a line. Solve for collisions where each collision reduces HP by 1. Return the health values of surviving robots in order of their original indices.",
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 2785,
@@ -1318,9 +1318,9 @@
             "id": 2839,
             "title": "Check if Strings Can be Made Equal With Operations I",
             "route": "/2839",
-            "difficulty": "Medium",
-            "description": "You are given two strings a and b of the same length. You can perform the following operations on string a: swap positions 0 and 2, or swap positions 1 and 3. Return true if you can make string a e...",
-            "timeComplexity": "O(n)",
+            "difficulty": "Easy",
+            "description": "You are given two strings a and b of length 4. You can perform the following operations on string a: swap positions 0 and 2, or swap positions 1 and 3. Return true if you can make string a equal to string b.",
+            "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -1328,9 +1328,9 @@
             "title": "Check if Strings Can be Made Equal With Operations II",
             "route": "/2840",
             "difficulty": "Medium",
-            "description": "You are given two strings a and b of the same length. You can perform the following operations on string a any number of times: swap any two characters at even indices, or swap any two characters a...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "description": "You are given two strings a and b of the same length. You can perform the following operations on string a any number of times: swap any two characters at even indices, or swap any two characters at odd indices. Return true if you can make string a equal to string b.",
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 2872,
@@ -1766,12 +1766,12 @@
         },
         {
             "id": 3418,
-            "title": "Maximum Amount of Money Robot Can Earn (Java)",
+            "title": "Maximum Amount of Money Robot Can Earn",
             "route": "/3418",
             "difficulty": "Medium",
-            "description": "You are given an m x n grid where each cell contains an integer value (positive or negative). A robot starts at the top-left corner and can only move right or down to reach the bottom-right corner....",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "description": "You are given an m x n grid where each cell contains an integer value (positive or negative). A robot starts at the top-left corner and can only move right or down to reach the bottom-right corner. You can skip at most 2 negative cells on the path. Return the maximum amount of money the robot can earn.",
+            "timeComplexity": "O(m * n)",
+            "spaceComplexity": "O(m * n)"
         },
         {
             "id": 3432,
@@ -1840,10 +1840,10 @@
             "id": 3474,
             "title": "Lexicographically Smallest Generated String",
             "route": "/3474",
-            "difficulty": "Medium",
-            "description": "You are given a pattern string and a target string. Generate a string of length n + m - 1 (where n is pattern length and m is target length) such that: for each 'T' in pattern at position i, the su...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "difficulty": "Hard",
+            "description": "You are given a pattern string and a target string. Generate a string of length n + m - 1 such that for each 'T' in pattern at position i, the substring of the generated string starting at i should equal the target; for each 'F', it should NOT equal the target. Return the lexicographically smallest such string.",
+            "timeComplexity": "O(n * m)",
+            "spaceComplexity": "O(n + m)"
         },
         {
             "id": 3484,
@@ -2137,10 +2137,10 @@
             "id": 3661,
             "title": "Maximum Walls Destroyed by Robots",
             "route": "/3661",
-            "difficulty": "Medium",
-            "description": "You are given arrays representing robot positions and their destruction power (distance they can reach left or right). You also have walls at various positions. Each robot must choose to move eithe...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "difficulty": "Hard",
+            "description": "You are given robot positions and their destruction power. Each robot chooses to move either left or right. Robots cannot overlap in their coverage areas. Return the maximum number of walls that can be destroyed.",
+            "timeComplexity": "O(n log m)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3666,
