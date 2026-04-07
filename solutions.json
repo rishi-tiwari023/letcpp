@@ -361,6 +361,15 @@
             "spaceComplexity": "O(log n)"
         },
         {
+            "id": 874,
+            "title": "Walking Robot Simulation",
+            "route": "/874",
+            "difficulty": "Medium",
+            "description": "A robot is placed at the origin (0, 0) facing north. It receives a list of commands where positive integers represent steps to move forward, -1 represents turning right 90 degrees, and -2 represent...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 944,
             "title": "Delete Columns to Make Sorted",
             "route": "/944",
