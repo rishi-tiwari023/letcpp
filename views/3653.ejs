@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3653: XOR After Range Multiplication Queries I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3653: XOR After Range Multiplication Queries I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array data and a list of queries. Each query specifies a range [left, right], a step
+                value, and a multiplier. For each query, multiply all elements at indices left, left+step, left+2*step,
+                ... (up to right) by the multiplier, modulo 10^9 + 7. After executing all queries, return the XOR of all
+                elements in the array.
+            </p>
+            <p><strong>Example:</strong>
+                Input: data = [1,2,3,4], queries = [[0,3,1,2]]<br>
+                Output: 6<br>
+                Explanation: After multiplying all elements by 2 (indices 0,1,2,3), the array becomes [2,4,6,8]. XOR =
+                2^4^6^8 = 6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+    static const int MOD = 1e9 + 7;
+public:
+    int xorAfterQueries(vector&lt;int&gt;&amp; data, vector&lt;vector&lt;int&gt;&gt;&amp; queries) {
+        int n = data.size();
+        // Loop through each query and update affected indices
+        for (auto &amp;q : queries) {
+            int l = q[0], r = q[1], step = q[2], multiplier = q[3];
+            for (int idx = l; idx &lt;= r; idx += step) {
+                data[idx] = (1LL * data[idx] * multiplier) % MOD;
+            }
+        }
+        int finalXor = 0;
+        for (int value : data) {
+            finalXor ^= value;
+        }
+        return finalXor;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
