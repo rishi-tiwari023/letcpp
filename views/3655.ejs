@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3655: XOR After Range Multiplication Queries II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3655: XOR After Range Multiplication Queries II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array nums and a list of queries. Each query specifies a range [left, right], a step
+                value k, and a multiplier val. For each query, multiply all elements at indices left, left+k, left+2k,
+                ... (up to right) by val, modulo 10^9 + 7. After executing all queries, return the XOR of all elements
+                in the array.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,4], queries = [[0,3,2,5]]<br>
+                Output: 30<br>
+                Explanation: Elements at indices 0 and 2 are multiplied by 5, resulting in [5,2,15,4]. XOR = 5^2^15^4 =
+                30.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+class Solution {
+    long long modPow(long long base, long long exp) {
+        long long res = 1;
+        while (exp) {
+            if (exp &amp; 1) res = res * base % 1000000007;
+            base = base * base % 1000000007;
+            exp &gt;&gt;= 1;
+        }
+        return res;
+    }
+public:
+    int xorAfterQueries(vector&lt;int&gt;&amp; nums, vector&lt;vector&lt;int&gt;&gt;&amp; queries) {
+        int n = nums.size();
+        const int B = 100;
+        int ans = 0;
+        // pref[k][i] stores cumulative multiplier for step k
+        vector&lt;vector&lt;long long&gt;&gt; pref(B, vector&lt;long long&gt;(n + B, 1));
+        for (auto &amp;q : queries) {
+            int l = q[0], r = q[1], k = q[2], val = q[3];
+            if (k &gt;= B) {
+                // brute force for large k
+                for (int i = l; i &lt;= r; i += k)
+                    nums[i] = 1LL * nums[i] * val % 1000000007;
+            } else {
+                pref[k][l] = pref[k][l] * val % 1000000007;
+                int nextPos = l + ((r - l) / k + 1) * k;
+                // use inverse to cancel effect after range
+                pref[k][nextPos] = pref[k][nextPos] * modPow(val, 1000000005) % 1000000007;
+            }
+        }
+        for (int i = 0; i &lt; n; i++) {
+            long long curr = nums[i];
+            for (int k = 1; k &lt; B; k++) {
+                if (i &gt;= k)
+                    pref[k][i] = pref[k][i] * pref[k][i - k] % 1000000007;
+                curr = curr * pref[k][i] % 1000000007;
+            }
+            ans ^= (int)curr;
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
