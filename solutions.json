@@ -2143,6 +2143,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3655,
+            "title": "XOR After Range Multiplication Queries II",
+            "route": "/3655",
+            "difficulty": "Medium",
+            "description": "You are given an array nums and a list of queries. Each query specifies a range [left, right], a step value k, and a multiplier val. For each query, multiply all elements at indices left, left+k, l...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3661,
             "title": "Maximum Walls Destroyed by Robots",
             "route": "/3661",
@@ -2216,5 +2225,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-08"
+    "lastUpdated": "2026-04-09"
 }
