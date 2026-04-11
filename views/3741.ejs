@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3741: Minimum Distance Between Three Equal Elements II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3741: Minimum Distance Between Three Equal Elements II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array arr. Find the minimum distance (sum of absolute differences modulo some metric)
+                between any three equal elements in the array. The distance is calculated based on the positions of the
+                three occurrences. If no three equal elements exist, return -1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [1,2,1,1,2,1]<br>
+                Output: 4<br>
+                Explanation: The element 1 appears at indices [0,2,3,5]. The minimum distance among any three
+                occurrences using the optimized formula is 2*(3-0) = 6, 2*(5-2) = 6, or 2*(5-3) = 4.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution { 
+public:
+    int minimumDistance(vector&lt;int&gt;&amp; arr) {
+        unordered_map&lt;int, vector&lt;int&gt;&gt; indexMap;
+        // Map values to their indices
+        for (int i = 0; i &lt; arr.size(); i++) {
+            indexMap[arr[i]].push_back(i);
+        }
+        int minDist = INT_MAX;
+        for (auto &amp;it : indexMap) {
+            vector&lt;int&gt; &amp;pos = it.second;
+            if (pos.size() &lt; 3) continue;
+            // Direct formula for minimum distance
+            for (int i = 0; i + 2 &lt; pos.size(); i++) {
+                int dist = 2 * (pos[i + 2] - pos[i]);
+                minDist = min(minDist, dist);
+            }
+        }
+        return (minDist == INT_MAX) ? -1 : minDist;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
