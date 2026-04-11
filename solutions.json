@@ -2215,6 +2215,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3741,
+            "title": "Minimum Distance Between Three Equal Elements II",
+            "route": "/3741",
+            "difficulty": "Medium",
+            "description": "You are given an array arr. Find the minimum distance (sum of absolute differences modulo some metric) between any three equal elements in the array. The distance is calculated based on the positio...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 9999,
             "title": "Workflow Test",
             "route": "/9999",
@@ -2234,5 +2243,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-10"
+    "lastUpdated": "2026-04-11"
 }
