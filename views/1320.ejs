@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1320: Minimum Distance to Type a Word Using Two Fingers
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1320: Minimum Distance to Type a Word Using Two Fingers (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You have a keyboard laid out in a 6-row by 6-column grid. You have two fingers that can move on the
+                keyboard. For each character in a word, you must type it using one of your fingers. The cost of moving a
+                finger from position A to position B is the Manhattan distance between them. Return the minimum total
+                distance needed to type the entire word.
+            </p>
+            <p><strong>Example:</strong>
+                Input: word = "CAKE"<br>
+                Output: 3<br>
+                Explanation: Place one finger at 'C', use the other for 'A', then move to 'K' and 'E' optimally. Total
+                distance = 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int distance(int a, int b) {
+        if(a == 26 || b == 26) return 0; // no cost if finger unused
+        int r1 = a / 6, c1 = a % 6;
+        int r2 = b / 6, c2 = b % 6;
+        return abs(r1 - r2) + abs(c1 - c2);
+    }
+    int memo[301][27][27];
+    int solve(int idx, int finger1, int finger2, string &amp;word) {
+        if(idx == word.size()) return 0;
+        if(memo[idx][finger1][finger2] != -1)
+            return memo[idx][finger1][finger2];
+        int curr = word[idx] - 'A';
+        // Option 1: use finger1
+        int useF1 = distance(finger1, curr) +
+                    solve(idx + 1, curr, finger2, word);
+        // Option 2: use finger2
+        int useF2 = distance(finger2, curr) +
+                    solve(idx + 1, finger1, curr, word);
+        return memo[idx][finger1][finger2] = min(useF1, useF2); // pick best move
+    }
+    int minimumDistance(string word) {
+        memset(memo, -1, sizeof(memo));
+        return solve(0, 26, 26, word); // start with both fingers unused
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
