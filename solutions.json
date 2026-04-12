@@ -541,6 +541,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1320,
+            "title": "Minimum Distance to Type a Word Using Two Fingers",
+            "route": "/1320",
+            "difficulty": "Medium",
+            "description": "You have a keyboard laid out in a 6-row by 6-column grid. You have two fingers that can move on the keyboard. For each character in a word, you must type it using one of your fingers. The cost of m...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1323,
             "title": "Maximum 69 Number",
             "route": "/1323",
@@ -2243,5 +2252,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-11"
+    "lastUpdated": "2026-04-12"
 }
