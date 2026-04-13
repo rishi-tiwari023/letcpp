@@ -883,6 +883,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 1848,
+            "title": "Minimum Distance to the Target Element",
+            "route": "/1848",
+            "difficulty": "Medium",
+            "description": "You are given an array arr, a target value, and a starting index. Find the minimum distance from the starting index to any element in the array that equals the target value. The distance is measure...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1877,
             "title": "Minimize Maximum Pair Sum in Array",
             "route": "/1877",
@@ -2252,5 +2261,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-12"
+    "lastUpdated": "2026-04-13"
 }
