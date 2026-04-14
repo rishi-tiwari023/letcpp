@@ -1243,6 +1243,15 @@
             "spaceComplexity": "O(log n)"
         },
         {
+            "id": 2463,
+            "title": "Minimum Total Distance Traveled",
+            "route": "/2463",
+            "difficulty": "Medium",
+            "description": "You are given an array of robot positions and a 2D array of plants where each plant has a location and a capacity (number of repair slots). Each robot must be assigned to a unique plant slot. Find ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2483,
             "title": "Minimum Penalty for a Shop",
             "route": "/2483",
@@ -2261,5 +2270,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-13"
+    "lastUpdated": "2026-04-14"
 }
