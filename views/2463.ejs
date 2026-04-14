@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2463: Minimum Total Distance Traveled
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2463: Minimum Total Distance Traveled (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array of robot positions and a 2D array of plants where each plant has a location and a
+                capacity (number of repair slots). Each robot must be assigned to a unique plant slot. Find the minimum
+                total distance traveled by all robots to their assigned slots.
+            </p>
+            <p><strong>Example:</strong>
+                Input: bots = [0,4,6], plants = [[2,2],[5,2]]<br>
+                Output: 4<br>
+                Explanation: Assign bots optimally to plant slots to minimize total distance. For example, bot 0→slot at
+                2, bot 4→slot at 5, bot 6→slot at 5.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long INF = 1e18;
+    long long dfs(int rIdx, int sIdx, vector&lt;int&gt;&amp; bots, vector&lt;int&gt;&amp; positions, vector&lt;vector&lt;long long&gt;&gt;&amp; memo) {
+        if (rIdx &gt;= bots.size()) return 0;
+        if (sIdx &gt;= positions.size()) return INF;
+        if (memo[rIdx][sIdx] != -1) return memo[rIdx][sIdx];
+        // Either assign current robot or skip this slot
+        long long assign = abs(bots[rIdx] - positions[sIdx]) + dfs(rIdx + 1, sIdx + 1, bots, positions, memo);
+        long long skip = dfs(rIdx, sIdx + 1, bots, positions, memo);
+        return memo[rIdx][sIdx] = min(assign, skip);
+    }
+    long long minimumTotalDistance(vector&lt;int&gt;&amp; bots, vector&lt;vector&lt;int&gt;&gt;&amp; plants) {
+        sort(bots.begin(), bots.end());
+        sort(plants.begin(), plants.end());
+        vector&lt;int&gt; positions;
+        // Expand factories into individual slots
+        for (auto &amp;p : plants) {
+            int loc = p[0], cap = p[1];
+            while (cap--) {
+                positions.push_back(loc);
+            }
+        }
+        vector&lt;vector&lt;long long&gt;&gt; memo(bots.size() + 1, vector&lt;long long&gt;(positions.size() + 1, -1));
+        return dfs(0, 0, bots, positions, memo);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
