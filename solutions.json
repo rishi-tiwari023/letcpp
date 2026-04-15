@@ -1261,6 +1261,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2515,
+            "title": "Shortest Distance to Target String in a Circular Array",
+            "route": "/2515",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed circular string array words and a string target. A circular array means that the end of the array connects to the beginning of the array. Formally, the next element of wor...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2528,
             "title": "Maximize the Minimum Powered City",
             "route": "/2528",
@@ -2270,5 +2279,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-14"
+    "lastUpdated": "2026-04-15"
 }
