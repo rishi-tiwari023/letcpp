@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3488: Closest Equal Element Queries
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3488: Closest Equal Element Queries (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array arr and a list of queries. For each query index q, find the closest element to
+                arr[q] that has the same value in the array. The array is circular, meaning the end wraps around to the
+                beginning. Return the minimum distance to a duplicate element, or -1 if no duplicate exists.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [1,2,3,2,1], queries = [0,1,2,3,4]<br>
+                Output: [2,1,4,1,2]<br>
+                Explanation: For each query index, find the closest occurrence of arr[q] in the circular array.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; solveQueries(vector&lt;int&gt;&amp; arr, vector&lt;int&gt;&amp; queries) {
+        int n = arr.size();
+        // Duplicate array to handle circular behavior
+        for (int i = 0; i &lt; n; i++) {
+            arr.push_back(arr[i]);
+        }
+        int m = arr.size();
+        vector&lt;int&gt; prevIdx(m), nextIdx(m);
+        unordered_map&lt;int, int&gt; lastPos, nextPos;
+        // Track previous occurrence
+        for (int i = 0; i &lt; m; i++) {
+            if (lastPos.count(arr[i])) {
+                prevIdx[i] = lastPos[arr[i]];
+            } else {
+                prevIdx[i] = -1;
+            }
+            lastPos[arr[i]] = i;
+        }
+        // Track next occurrence
+        for (int i = m - 1; i &gt;= 0; i--) {
+            if (nextPos.count(arr[i])) {
+                nextIdx[i] = nextPos[arr[i]];
+            } else {
+                nextIdx[i] = -1;
+            }
+            nextPos[arr[i]] = i;
+        }
+        vector&lt;int&gt; result(queries.size());
+        for (int i = 0; i &lt; queries.size(); i++) {
+            int q = queries[i];
+            int center = n + q; // shifted index in doubled array
+            int leftDist = (prevIdx[center] == -1) ? n : center - prevIdx[center];
+            int rightDist = (nextIdx[q] == -1) ? n : nextIdx[q] - q;
+            // If no duplicate found
+            if (leftDist == n &amp;&amp; rightDist == n) {
+                result[i] = -1;
+            } else {
+                result[i] = min(leftDist, rightDist);
+            }
+        }
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
