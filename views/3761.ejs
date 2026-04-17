@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3761: Minimum Absolute Distance Between Mirror Pairs
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3761: Minimum Absolute Distance Between Mirror Pairs (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array arr. A mirror pair consists of two indices i and j where arr[i] is the reverse of
+                arr[j] (e.g., 123 and 321 are mirror pairs). Find the minimum absolute distance between any two mirror
+                pairs in the array. If no mirror pairs exist, return -1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [1,2,3,321,2,1]<br>
+                Output: 1<br>
+                Explanation: The pair (3, 321) at indices (2, 3) have distance 1. Also (2, 2) at indices (1, 4) have
+                distance 3. The minimum is 1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int reverseNumber(int num) {
+        int rev = 0;
+        while (num &gt; 0) {
+            rev = rev * 10 + (num % 10);
+            num /= 10;
+        }
+        return rev;
+    }
+    int minMirrorPairDistance(vector&lt;int&gt;&amp; arr) {
+        unordered_map&lt;int, int&gt; seen; // stores reversed value -&gt; latest index
+        int minDist = INT_MAX;
+        for (int i = 0; i &lt; arr.size(); i++) {
+            // If current number was seen as a reversed earlier, update answer
+            if (seen.count(arr[i])) {
+                minDist = min(minDist, i - seen[arr[i]]);
+            }
+            // Store reverse of current number for future matches
+            int revVal = reverseNumber(arr[i]);
+            seen[revVal] = i;
+        }
+        return (minDist == INT_MAX) ? -1 : minDist;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
