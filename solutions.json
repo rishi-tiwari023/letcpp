@@ -2269,6 +2269,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3761,
+            "title": "Minimum Absolute Distance Between Mirror Pairs",
+            "route": "/3761",
+            "difficulty": "Medium",
+            "description": "You are given an array arr. A mirror pair consists of two indices i and j where arr[i] is the reverse of arr[j] (e.g., 123 and 321 are mirror pairs). Find the minimum absolute distance between any ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 9999,
             "title": "Workflow Test",
             "route": "/9999",
@@ -2288,5 +2297,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-16"
+    "lastUpdated": "2026-04-17"
 }
