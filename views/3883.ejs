@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3783: Mirror Distance of an Integer
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3783: Mirror Distance of an Integer (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an integer num, the mirror distance is defined as the absolute difference between num and its
+                digit-reversed counterpart. For example, the mirror distance of 123 is |123 - 321| = 198. Return the
+                mirror distance of the given integer.
+            </p>
+            <p><strong>Example:</strong>
+                Input: num = 123<br>
+                Output: 198<br>
+                Explanation: The reverse of 123 is 321. The mirror distance is |123 - 321| = 198.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int reverseNumber(int num) {
+        int reversedNum = 0;
+        // Extract digits and form reversed number
+        while (num != 0) {
+            int digit = num % 10;
+            reversedNum = reversedNum * 10 + digit;
+            num /= 10;
+        }
+        return reversedNum;
+    }
+    int mirrorDistance(int num) {
+        int reversedNum = reverseNumber(num);
+        return abs(num - reversedNum);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
