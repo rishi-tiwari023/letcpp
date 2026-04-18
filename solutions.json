@@ -2278,6 +2278,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3883,
+            "title": "Mirror Distance of an Integer",
+            "route": "/3883",
+            "difficulty": "Medium",
+            "description": "Given an integer num, the mirror distance is defined as the absolute difference between num and its digit-reversed counterpart. For example, the mirror distance of 123 is |123 - 321| = 198. Return ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 9999,
             "title": "Workflow Test",
             "route": "/9999",
@@ -2297,5 +2306,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-17"
+    "lastUpdated": "2026-04-18"
 }
