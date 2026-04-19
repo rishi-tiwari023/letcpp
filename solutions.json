@@ -892,6 +892,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1855,
+            "title": "Maximum Distance Between a Pair of Values",
+            "route": "/1855",
+            "difficulty": "Medium",
+            "description": "You are given two non-increasing arrays a and b. Find the maximum distance between indices i and j such that i &lt; j and a[i] &lt;= b[j]. The distance is defined as j - i.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1877,
             "title": "Minimize Maximum Pair Sum in Array",
             "route": "/1877",
@@ -2306,5 +2315,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-18"
+    "lastUpdated": "2026-04-19"
 }
