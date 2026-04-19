@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1855: Maximum Distance Between a Pair of Values
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1855: Maximum Distance Between a Pair of Values (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two non-increasing arrays a and b. Find the maximum distance between indices i and j such
+                that i &lt; j and a[i] &lt;= b[j]. The distance is defined as j - i.
+            </p>
+            <p><strong>Example:</strong>
+                Input: a = [55,1,100], b = [1,77,100]<br>
+                Output: 2<br>
+                Explanation: For i=0, j=2: a[0]=55 &lt;= b[2]=100 and distance is 2-0=2. For i=1, j=2: a[1]=1 &lt;=
+                b[2]=100 and distance is 2-1=1. Maximum is 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxDistance(vector&lt;int&gt;&amp; a, vector&lt;int&gt;&amp; b) {
+        int i = 0, j = 0, res = 0;
+        while (i &lt; a.size() &amp;&amp; j &lt; b.size()) {
+            if (b[j] &gt;= a[i]) {
+                res = max(res, j - i); // valid, move j
+                j++;
+            } else {
+                i++; 
+                j++; // shift both to keep j &gt;= i
+            }
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
