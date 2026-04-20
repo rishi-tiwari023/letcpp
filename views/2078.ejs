@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2078: Two Furthest Houses With Different Colors
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2078: Two Furthest Houses With Different Colors (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array colors where each element represents the color of a house. Find the maximum
+                distance between any two houses with different colors. The distance between houses at indices i and j is
+                |i - j|.
+            </p>
+            <p><strong>Example:</strong>
+                Input: colors = [1,1,1,6,1,1,1]<br>
+                Output: 3<br>
+                Explanation: House at index 0 (color 1) and house at index 3 (color 6) have different colors with
+                distance |3 - 0| = 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxDistance(vector&lt;int&gt;&amp; a) {
+        int n = a.size();
+        int first = a[0], idx = 1;
+        while (a[idx] == first) idx++; // find first different
+        int second = a[idx];
+        int res = idx;
+        for (int i = idx + 1; i &lt; n; i++) {
+            if (a[i] != first)
+                res = i; // extend far from first
+            else
+                res = max(res, i - idx); // distance from second block
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
