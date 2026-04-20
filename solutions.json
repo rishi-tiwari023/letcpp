@@ -1072,6 +1072,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 2078,
+            "title": "Two Furthest Houses With Different Colors",
+            "route": "/2078",
+            "difficulty": "Medium",
+            "description": "You are given an array colors where each element represents the color of a house. Find the maximum distance between any two houses with different colors. The distance between houses at indices i an...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2092,
             "title": "Find All People With Secret",
             "route": "/2092",
@@ -2315,5 +2324,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-19"
+    "lastUpdated": "2026-04-20"
 }
