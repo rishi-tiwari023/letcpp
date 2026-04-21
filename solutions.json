@@ -838,6 +838,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1722,
+            "title": "Minimize Hamming Distance After Swap Operations",
+            "route": "/1722",
+            "difficulty": "Medium",
+            "description": "You have two arrays src and tgt of the same length, and a list of edges that define allowed swap positions. You can swap elements at positions that are connected in the graph defined by edges. Find...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1727,
             "title": "Largest Submatrix With Rearrangements",
             "route": "/1727",
@@ -2324,5 +2333,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-20"
+    "lastUpdated": "2026-04-21"
 }
