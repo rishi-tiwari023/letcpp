@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1722: Minimize Hamming Distance After Swap Operations
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1722: Minimize Hamming Distance After Swap Operations (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You have two arrays src and tgt of the same length, and a list of edges that define allowed swap
+                positions. You can swap elements at positions that are connected in the graph defined by edges. Find the
+                minimum Hamming distance (number of positions where src[i] != tgt[i]) after performing optimal swaps.
+            </p>
+            <p><strong>Example:</strong>
+                Input: src = [1,2,3], tgt = [2,1,3], edges = [[0,1]]<br>
+                Output: 0<br>
+                Explanation: Positions 0 and 1 can be swapped, allowing src to become [2,1,3], which matches tgt
+                exactly.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; par, rnk;
+
+    int find(int x) {
+        return par[x] == x ? x : par[x] = find(par[x]);
+    }
+
+    void unite(int a, int b) {
+        int pa = find(a), pb = find(b);
+        if (pa == pb) return;
+
+        if (rnk[pa] &lt; rnk[pb]) swap(pa, pb);
+        par[pb] = pa;
+
+        if (rnk[pa] == rnk[pb]) rnk[pa]++;
+    }
+
+    int minimumHammingDistance(vector&lt;int&gt;&amp; src, vector&lt;int&gt;&amp; tgt, vector&lt;vector&lt;int&gt;&gt;&amp; edges) {
+        int n = src.size();
+
+        par.resize(n);
+        rnk.assign(n, 0);
+        for (int i = 0; i &lt; n; i++) par[i] = i;
+
+        for (auto &amp;e : edges)
+            unite(e[0], e[1]); // union all swaps
+
+        unordered_map&lt;int, unordered_map&lt;int,int&gt;&gt; mp;
+
+        for (int i = 0; i &lt; n; i++) {
+            mp[find(i)][src[i]]++; // group-wise frequency
+        }
+
+        int res = 0;
+
+        for (int i = 0; i &lt; n; i++) {
+            int p = find(i);
+
+            if (mp[p][tgt[i]] &gt; 0)
+                mp[p][tgt[i]]--; // consume match
+            else
+                res++;           // mismatch
+        }
+
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
