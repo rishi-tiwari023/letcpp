@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2452: Words Within Two Edits of Dictionary
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2452: Words Within Two Edits of Dictionary (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a list of query words and a dictionary. For each query word, determine if there exists a
+                word in the dictionary that is within two edits (character replacements) of the query word. Return all
+                query words that have a match in the dictionary within the edit distance of 2.
+            </p>
+            <p><strong>Example:</strong>
+                Input: queries = ["word","note","ants","wood"], dict = ["wood","note","ants"]<br>
+                Output: ["word","note","ants","wood"]<br>
+                Explanation: "word" has 1 edit from "wood", "note" matches exactly, "ants" matches exactly, "wood"
+                matches exactly.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;string&gt; twoEditWords(vector&lt;string&gt;&amp; queries,
+                                vector&lt;string&gt;&amp; dict) {
+        vector&lt;string&gt; res;
+
+        for (string&amp; qWord : queries) {
+            for (string&amp; dWord : dict) {
+                int diff = 0;
+
+                for (int i = 0; i &lt; qWord.size(); i++) {
+                    if (qWord[i] != dWord[i])
+                        diff++;
+
+                    // stop early if already exceeds limit
+                    if (diff &gt; 2)
+                        break;
+                }
+
+                if (diff &lt;= 2) {
+                    res.push_back(qWord);
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
