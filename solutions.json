@@ -1270,6 +1270,15 @@
             "spaceComplexity": "O(log n)"
         },
         {
+            "id": 2452,
+            "title": "Words Within Two Edits of Dictionary",
+            "route": "/2452",
+            "difficulty": "Medium",
+            "description": "You are given a list of query words and a dictionary. For each query word, determine if there exists a word in the dictionary that is within two edits (character replacements) of the query word. Re...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2463,
             "title": "Minimum Total Distance Traveled",
             "route": "/2463",
@@ -2333,5 +2342,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-21"
+    "lastUpdated": "2026-04-22"
 }
