@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2615: Sum of Distances
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2615: Sum of Distances (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed array nums. For each index i, calculate the sum of distances from nums[i] to
+                all other indices j where nums[i] == nums[j]. The distance is |i - j|. Return an array where the
+                result[i] is the sum of distances for index i.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,3,1,1,2]<br>
+                Output: [5,0,5,3,0]<br>
+                Explanation: For index 0 (value 1), distances to indices 2 and 3 are |0-2|+|0-3|=5. For index 1 (value
+                3), no other 3 exists, distance is 0. And so on.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;long long&gt; distance(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        unordered_map&lt;int, vector&lt;int&gt;&gt; posMap;
+        for (int i = 0; i &lt; n; i++)
+            posMap[nums[i]].push_back(i);
+        vector&lt;long long&gt; res(n, 0);
+        for (auto &amp;p : posMap) {
+            vector&lt;int&gt; &amp;idx = p.second;
+            int m = idx.size();
+            vector&lt;long long&gt; pref(m + 1, 0);
+            for (int i = 0; i &lt; m; i++)
+                pref[i + 1] = pref[i] + idx[i];
+            for (int i = 0; i &lt; m; i++) {
+                long long left = 1LL * i * idx[i] - pref[i];
+                long long right = (pref[m] - pref[i]) - 1LL * (m - i) * idx[i];
+                // combine left + right contributions
+                res[idx[i]] = left + right;
+            }
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
