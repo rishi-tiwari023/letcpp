@@ -1342,6 +1342,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 2615,
+            "title": "Sum of Distances",
+            "route": "/2615",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed array nums. For each index i, calculate the sum of distances from nums[i] to all other indices j where nums[i] == nums[j]. The distance is |i - j|. Return an array where t...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2654,
             "title": "Minimum Number of Operations to Make All Array Elements Equal to 1",
             "route": "/2654",
@@ -2342,5 +2351,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-22"
+    "lastUpdated": "2026-04-23"
 }
