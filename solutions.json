@@ -544,10 +544,10 @@
             "id": 1320,
             "title": "Minimum Distance to Type a Word Using Two Fingers",
             "route": "/1320",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You have a keyboard laid out in a 6-row by 6-column grid. You have two fingers that can move on the keyboard. For each character in a word, you must type it using one of your fingers. The cost of m...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 1323,
@@ -843,8 +843,8 @@
             "route": "/1722",
             "difficulty": "Medium",
             "description": "You have two arrays src and tgt of the same length, and a list of edges that define allowed swap positions. You can swap elements at positions that are connected in the graph defined by edges. Find...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n + e)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 1727,
@@ -895,7 +895,7 @@
             "id": 1848,
             "title": "Minimum Distance to the Target Element",
             "route": "/1848",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "You are given an array arr, a target value, and a starting index. Find the minimum distance from the starting index to any element in the array that equals the target value. The distance is measure...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -906,7 +906,7 @@
             "route": "/1855",
             "difficulty": "Medium",
             "description": "You are given two non-increasing arrays a and b. Find the maximum distance between indices i and j such that i &lt; j and a[i] &lt;= b[j]. The distance is defined as j - i.",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n + m)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -1084,7 +1084,7 @@
             "id": 2078,
             "title": "Two Furthest Houses With Different Colors",
             "route": "/2078",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "You are given an array colors where each element represents the color of a house. Find the maximum distance between any two houses with different colors. The distance between houses at indices i an...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -1275,17 +1275,17 @@
             "route": "/2452",
             "difficulty": "Medium",
             "description": "You are given a list of query words and a dictionary. For each query word, determine if there exists a word in the dictionary that is within two edits (character replacements) of the query word. Re...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n * m * L)",
             "spaceComplexity": "O(1)"
         },
         {
             "id": 2463,
             "title": "Minimum Total Distance Traveled",
             "route": "/2463",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given an array of robot positions and a 2D array of plants where each plant has a location and a capacity (number of repair slots). Each robot must be assigned to a unique plant slot. Find ...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n * m)",
+            "spaceComplexity": "O(n * m)"
         },
         {
             "id": 2483,
@@ -1300,7 +1300,7 @@
             "id": 2515,
             "title": "Shortest Distance to Target String in a Circular Array",
             "route": "/2515",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "You are given a 0-indexed circular string array words and a string target. A circular array means that the end of the array connects to the beginning of the array. Formally, the next element of wor...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -1348,7 +1348,7 @@
             "difficulty": "Medium",
             "description": "You are given a 0-indexed array nums. For each index i, calculate the sum of distances from nums[i] to all other indices j where nums[i] == nums[j]. The distance is |i - j|. Return an array where t...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 2654,
@@ -1950,8 +1950,8 @@
             "route": "/3488",
             "difficulty": "Medium",
             "description": "You are given an array arr and a list of queries. For each query index q, find the closest element to arr[q] that has the same value in the array. The array is circular, meaning the end wraps aroun...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n + q)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3494,
@@ -2238,17 +2238,17 @@
             "route": "/3653",
             "difficulty": "Medium",
             "description": "You are given an array data and a list of queries. Each query specifies a range [left, right], a step value, and a multiplier. For each query, multiply all elements at indices left, left+step, left...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(q * n)",
             "spaceComplexity": "O(1)"
         },
         {
             "id": 3655,
             "title": "XOR After Range Multiplication Queries II",
             "route": "/3655",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given an array nums and a list of queries. Each query specifies a range [left, right], a step value k, and a multiplier val. For each query, multiply all elements at indices left, left+k, l...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n * B + q)",
+            "spaceComplexity": "O(n * B)"
         },
         {
             "id": 3661,
@@ -2256,7 +2256,7 @@
             "route": "/3661",
             "difficulty": "Hard",
             "description": "You are given robot positions and their destruction power. Each robot chooses to move either left or right. Robots cannot overlap in their coverage areas. Return the maximum number of walls that can be destroyed.",
-            "timeComplexity": "O(n log m)",
+            "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(n)"
         },
         {
@@ -2308,10 +2308,10 @@
             "id": 3740,
             "title": "Minimum Distance Between Three Equal Elements I",
             "route": "/3740",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "You are given an array nums. Find the minimum distance (sum of absolute differences) between any three equal elements in the array. The distance is calculated as the sum of absolute differences bet...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3741,
@@ -2320,7 +2320,7 @@
             "difficulty": "Medium",
             "description": "You are given an array arr. Find the minimum distance (sum of absolute differences modulo some metric) between any three equal elements in the array. The distance is calculated based on the positio...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3761,
@@ -2329,15 +2329,15 @@
             "difficulty": "Medium",
             "description": "You are given an array arr. A mirror pair consists of two indices i and j where arr[i] is the reverse of arr[j] (e.g., 123 and 321 are mirror pairs). Find the minimum absolute distance between any ...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3883,
             "title": "Mirror Distance of an Integer",
             "route": "/3883",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given an integer num, the mirror distance is defined as the absolute difference between num and its digit-reversed counterpart. For example, the mirror distance of 123 is |123 - 321| = 198. Return ...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(log N)",
             "spaceComplexity": "O(1)"
         },
         {
