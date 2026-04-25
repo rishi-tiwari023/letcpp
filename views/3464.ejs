@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3464: Maximize the Distance Between Points on a Square
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3464: Maximize the Distance Between Points on a Square (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a square with a side length and a list of points on its boundary. You need to select k
+                points from the given points such that the minimum pairwise distance between any two selected points is
+                maximized. Return the maximum possible minimum distance.
+            </p>
+            <p><strong>Example:</strong>
+                Input: side = 10, pts = [[0,0],[5,0],[10,0],[10,5],[10,10],[5,10],[0,10],[0,5]], k = 3<br>
+                Output: 10<br>
+                Explanation: Select points to maximize the minimum distance between any two selected points.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    // Map boundary point → linear perimeter position
+    long long getPosition(int side, vector&lt;int&gt;&amp; p) {
+        long long x = p[0], y = p[1];
+        if (y == 0) return x;
+        if (x == side) return side + y;
+        if (y == side) return 2LL * side + (side - x);
+        return 3LL * side + (side - y);
+    }
+    bool isPossible(vector&lt;long long&gt;&amp; base, long long perimeter, int k, long long dist) {
+        int n = base.size();
+        // Duplicate array to handle circular wrap
+        vector&lt;long long&gt; extended = base;
+        for (int i = 0; i &lt; n; i++)
+            extended.push_back(base[i] + perimeter);
+        int m = extended.size();
+        vector&lt;int&gt; next(m, m);
+        // Find next valid position using lower_bound
+        for (int i = 0; i &lt; m; i++) {
+            next[i] = lower_bound(extended.begin(), extended.end(), extended[i] + dist) - extended.begin();
+        }
+        int LOG = 20;
+        vector&lt;vector&lt;int&gt;&gt; jump(LOG, vector&lt;int&gt;(m + 1, m));
+        for (int i = 0; i &lt; m; i++)
+            jump[0][i] = next[i];
+        // Binary lifting precomputation
+        for (int j = 1; j &lt; LOG; j++) {
+            for (int i = 0; i &lt; m; i++) {
+                jump[j][i] = jump[j - 1][jump[j - 1][i]];
+            }
+        }
+        // Try every starting point
+        for (int start = 0; start &lt; n; start++) {
+            int cur = start, steps = k - 1;
+            // Jump k-1 times efficiently
+            for (int j = 0; j &lt; LOG; j++) {
+                if (steps &amp; (1 &lt;&lt; j)) {
+                    cur = jump[j][cur];
+                }
+            }
+            if (cur &lt; start + n &amp;&amp; extended[cur] - extended[start] &lt;= perimeter - dist)
+                return true;
+        }
+        return false;
+    }
+    int maxDistance(int side, vector&lt;vector&lt;int&gt;&gt;&amp; pts, int k) {
+        vector&lt;long long&gt; pos;
+        for (auto&amp; p : pts)
+            pos.push_back(getPosition(side, p));
+        sort(pos.begin(), pos.end());
+        long long perimeter = 4LL * side;
+        long long low = 0, high = 2LL * side, ans = 0;
+        // Binary search for maximum minimum distance
+        while (low &lt;= high) {
+            long long mid = (low + high) / 2;
+            if (isPossible(pos, perimeter, k, mid)) {
+                ans = mid;
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
