@@ -1927,6 +1927,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3464,
+            "title": "Maximize the Distance Between Points on a Square",
+            "route": "/3464",
+            "difficulty": "Medium",
+            "description": "You are given a square with a side length and a list of points on its boundary. You need to select k points from the given points such that the minimum pairwise distance between any two selected po...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3474,
             "title": "Lexicographically Smallest Generated String",
             "route": "/3474",
@@ -2360,5 +2369,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-24"
+    "lastUpdated": "2026-04-25"
 }
