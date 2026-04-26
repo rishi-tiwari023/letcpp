@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1559: Detect Cycles in 2D Grid
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1559: Detect Cycles in 2D Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D grid containing characters. A cycle is a path that starts and ends at the same cell,
+                visiting adjacent cells (up, down, left, right) with the same character value. Determine whether such a
+                cycle exists in the grid.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [["a","a","a"],["b","c","b"],["b","c","b"]]<br>
+                Output: true<br>
+                Explanation: The cells with 'b' and 'c' form a cycle where you can move in a loop:
+                (1,0)→(2,0)→(2,1)→(2,2)→(1,2)→(1,1)→(0,2)→(0,1)→(0,0) (simplified example).
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+    const vector&lt;pair&lt;int,int&gt;&gt; dir = {
+        {1,0}, {-1,0}, {0,1}, {0,-1}
+    };
+public:
+    bool explore(int start, int n, int m,
+                 vector&lt;vector&lt;char&gt;&gt;&amp; g,
+                 vector&lt;vector&lt;bool&gt;&gt;&amp; vis) {
+        stack&lt;tuple&lt;int,int,int&gt;&gt; st;
+        st.push({start / m, start % m, -1});
+        while (!st.empty()) {
+            auto [r, c, parent] = st.top();
+            st.pop();
+            if (!vis[r][c]) vis[r][c] = true;
+            for (auto [dr, dc] : dir) {
+                int nr = r + dr;
+                int nc = c + dc;
+                if (nr &lt; 0 || nr &gt;= n || nc &lt; 0 || nc &gt;= m) continue;
+                if (g[nr][nc] != g[r][c]) continue;
+                if (nr * m + nc == parent) continue;
+                if (vis[nr][nc]) return true; // cycle detected
+                st.push({nr, nc, r * m + c});
+            }
+        }
+        return false;
+    }
+    bool containsCycle(vector&lt;vector&lt;char&gt;&gt;&amp; g) {
+        int n = g.size(), m = g[0].size();
+        vector&lt;vector&lt;bool&gt;&gt; vis(n, vector&lt;bool&gt;(m, false));
+        for (int i = 0; i &lt; n; i++) {
+            for (int j = 0; j &lt; m; j++) {
+                if (vis[i][j]) continue;
+                if (explore(i * m + j, n, m, g, vis)) return true;
+            }
+        }
+        return false;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
