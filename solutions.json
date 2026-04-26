@@ -739,6 +739,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1559,
+            "title": "Detect Cycles in 2D Grid",
+            "route": "/1559",
+            "difficulty": "Medium",
+            "description": "You are given a 2D grid containing characters. A cycle is a path that starts and ends at the same cell, visiting adjacent cells (up, down, left, right) with the same character value. Determine whet...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1578,
             "title": "Minimum Time to Make Rope Colorful",
             "route": "/1578",
@@ -2369,5 +2378,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-25"
+    "lastUpdated": "2026-04-26"
 }
