@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1391: Check if There is a Valid Path in a Grid
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1391: Check if There is a Valid Path in a Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an m x n grid where each cell contains a pipe. Different pipe types allow flow in
+                different directions: 1 (horizontal), 2 (vertical), 3 (vertical-right), 4 (vertical-left), 5
+                (horizontal-down), 6 (horizontal-up). Find a valid path from the top-left corner to the bottom-right
+                corner where pipes connect properly based on their types.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[2,4,3],[6,4,6]]<br>
+                Output: true<br>
+                Explanation: There exists a valid path from (0,0) to (1,1) where pipes connect properly through the
+                grid.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+    int n, m;
+    vector&lt;vector&lt;int&gt;&gt; mat;
+    vector&lt;vector&lt;bool&gt;&gt; vis;
+    unordered_map&lt;int, vector&lt;tuple&lt;int,int,vector&lt;int&gt;&gt;&gt;&gt; mp;
+    bool dfs(int x, int y) {
+        vis[x][y] = true;
+        if(x == n-1 &amp;&amp; y == m-1) return true;
+        for(auto &amp;[dx,dy,valid] : mp[mat[x][y]]) {
+            int nx = x + dx, ny = y + dy;
+            if(nx&gt;=0 &amp;&amp; ny&gt;=0 &amp;&amp; nx&lt;n &amp;&amp; ny&lt;m &amp;&amp; !vis[nx][ny]) {
+                // move only if next cell type is compatible
+                if(find(valid.begin(), valid.end(), mat[nx][ny]) != valid.end()) {
+                    if(dfs(nx,ny)) return true;
+                }
+            }
+        }
+        return false;
+    }
+public:
+    bool hasValidPath(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        mp = {
+            {1, {{0,-1,{1,4,6}}, {0,1,{1,3,5}}}},
+            {2, {{-1,0,{2,3,4}}, {1,0,{2,5,6}}}},
+            {3, {{0,-1,{1,4,6}}, {1,0,{2,5,6}}}},
+            {4, {{0,1,{1,3,5}}, {1,0,{2,5,6}}}},
+            {5, {{0,-1,{1,4,6}}, {-1,0,{2,3,4}}}},
+            {6, {{0,1,{1,3,5}}, {-1,0,{2,3,4}}}}
+        };
+        mat = grid;
+        n = mat.size();
+        m = mat[0].size();
+        vis.assign(n, vector&lt;bool&gt;(m,false));
+        return dfs(0,0);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
