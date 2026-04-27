@@ -604,6 +604,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1391,
+            "title": "Check if There is a Valid Path in a Grid",
+            "route": "/1391",
+            "difficulty": "Medium",
+            "description": "You are given an m x n grid where each cell contains a pipe. Different pipe types allow flow in different directions: 1 (horizontal), 2 (vertical), 3 (vertical-right), 4 (vertical-left), 5 (horizon...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1404,
             "title": "Number of Steps to Reduce a Number in Binary Representation to One",
             "route": "/1404",
@@ -2378,5 +2387,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-26"
+    "lastUpdated": "2026-04-27"
 }
