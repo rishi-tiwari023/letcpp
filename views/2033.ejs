@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2033: Minimum Operations to Make a Uni-Value Grid
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2033: Minimum Operations to Make a Uni-Value Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an m x n grid of integers and a positive integer x. In each operation, you can either
+                increase or decrease any element by x. Find the minimum number of operations needed to make all grid
+                elements equal, or return -1 if it's impossible.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[2,4],[6,8]], x = 2<br>
+                Output: 4<br>
+                Explanation: All elements can be made equal to 6 with 2 operations for 4, 2 for 8, and 0 for 6.
+                Operations for 2→6 would cost |2-6|/2 = 2. Total: 2 + 0 + 1 + 1 = 4.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minOperations(vector&lt;vector&lt;int&gt;&gt;&amp; grid, int x) {
+        vector&lt;int&gt; vals;
+        // Flatten the grid into a single array
+        for (auto &amp;r : grid) {
+            for (int v : r) vals.push_back(v);
+        }
+        sort(vals.begin(), vals.end());
+        int med = vals[vals.size() / 2];  // median minimizes total moves
+        long long ops = 0;
+        for (int v : vals) {
+            int diff = abs(v - med);
+            if (diff % x != 0) return -1;  // cannot make equal
+            ops += diff / x;
+        }
+        return ops;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
