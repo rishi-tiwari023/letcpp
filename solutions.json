@@ -1054,6 +1054,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2033,
+            "title": "Minimum Operations to Make a Uni-Value Grid",
+            "route": "/2033",
+            "difficulty": "Medium",
+            "description": "You are given an m x n grid of integers and a positive integer x. In each operation, you can either increase or decrease any element by x. Find the minimum number of operations needed to make all g...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2043,
             "title": "Simple Bank System",
             "route": "/2043",
@@ -2387,5 +2396,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-27"
+    "lastUpdated": "2026-04-28"
 }
