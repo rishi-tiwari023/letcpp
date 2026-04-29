@@ -1711,6 +1711,15 @@
             "spaceComplexity": "O(m)"
         },
         {
+            "id": 3225,
+            "title": "Maximum Score From Grid Operations",
+            "route": "/3225",
+            "difficulty": "Medium",
+            "description": "You are given an n x n grid of integers. You can perform operations that remove rows and columns to collect their values. When you remove a row or column, you collect the sum of its elements. Find ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3227,
             "title": "Vowels of All Substrings",
             "route": "/3227",
@@ -2396,5 +2405,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-28"
+    "lastUpdated": "2026-04-29"
 }
