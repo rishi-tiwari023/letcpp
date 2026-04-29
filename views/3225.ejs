@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3225: Maximum Score From Grid Operations
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3225: Maximum Score From Grid Operations (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an n x n grid of integers. You can perform operations that remove rows and columns to
+                collect their values. When you remove a row or column, you collect the sum of its elements. Find the
+                maximum total score you can achieve by removing rows and columns in an optimal order.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[1,2,3],[4,5,6],[7,8,9]]<br>
+                Output: 60<br>
+                Explanation: By removing rows and columns in an optimal order, you can collect all values with some
+                operations gaining multiplied scores.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long maximumScore(vector&lt;vector&lt;int&gt;&gt;&amp; g) {
+        int n = g.size();
+        long long pref[2][n + 1];
+        pref[0][0] = pref[1][0] = 0;
+        for (int i = 0; i &lt; n; i++)
+            pref[0][i + 1] = pref[0][i] + g[i][0];
+        long long dp[2][n + 1][2];
+        memset(dp, 0, sizeof(dp));
+        int prev = 0, curr = 1;
+        for (int c = 0; c &lt; n - 1; c++) {
+            for (int i = 0; i &lt; n; i++)
+                pref[curr][i + 1] = pref[curr][i] + g[i][c + 1];
+            long long bestPref = dp[prev][0][1];
+            for (int nxt = 1; nxt &lt;= n; nxt++) {
+                dp[curr][nxt][0] = dp[curr][nxt][1] =
+                    max(dp[prev][nxt][0], bestPref + pref[prev][nxt]);
+                // maintain best prefix transition
+                bestPref = max(bestPref, dp[prev][nxt][1] - pref[prev][nxt]);
+            }
+            long long bestSuf = dp[prev][n][0] + pref[curr][n];
+            for (int nxt = n - 1; nxt &gt; 0; nxt--) {
+                dp[curr][nxt][0] = max(dp[curr][nxt][0],
+                                      bestSuf - pref[curr][nxt]);
+                // maintain best suffix transition
+                bestSuf = max(bestSuf, dp[prev][nxt][0] + pref[curr][nxt]);
+            }
+            dp[curr][0][0] = bestSuf;
+            dp[curr][0][1] = max(dp[prev][0][0], dp[prev][n][0]);
+            swap(prev, curr);
+        }
+        return *max_element((long long*)dp[prev],
+                            (long long*)dp[prev] + (n + 1) * 2);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
