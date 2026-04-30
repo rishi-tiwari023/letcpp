@@ -2368,6 +2368,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3742,
+            "title": "Maximum Path Score in a Grid",
+            "route": "/3742",
+            "difficulty": "Medium",
+            "description": "You are given an m x n grid where each cell contains an integer value. You can move only right or down. You start at (0,0) and want to reach (m-1,n-1). You can visit at most k cells with non-zero v...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3761,
             "title": "Minimum Absolute Distance Between Mirror Pairs",
             "route": "/3761",
@@ -2405,5 +2414,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-04-29"
+    "lastUpdated": "2026-04-30"
 }
