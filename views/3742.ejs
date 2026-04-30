@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3742: Maximum Path Score in a Grid
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3742: Maximum Path Score in a Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an m x n grid where each cell contains an integer value. You can move only right or down.
+                You start at (0,0) and want to reach (m-1,n-1). You can visit at most k cells with non-zero values. Find
+                the maximum sum of values you can collect while respecting the constraint on non-zero cells visited.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[0,3,6],[9,7,9]], k = 2<br>
+                Output: 18<br>
+                Explanation: You can collect values 0+9+9 = 18 by visiting at most 2 non-zero cells.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxPathScore(vector&lt;vector&lt;int&gt;&gt;&amp; g, int k) {
+        int r = g.size(), c = g[0].size();
+        vector&lt;vector&lt;vector&lt;int&gt;&gt;&gt; dp(r, vector&lt;vector&lt;int&gt;&gt;(c, vector&lt;int&gt;(k + 1, -1)));
+        dp[0][0][0] = 0; // starting point
+        for (int i = 0; i &lt; r; i++) {
+            for (int j = 0; j &lt; c; j++) {
+                for (int used = 0; used &lt;= k; used++) {
+                    if (dp[i][j][used] == -1) continue;
+                    // move right
+                    if (j + 1 &lt; c) {
+                        int val = g[i][j + 1];
+                        int cost = (val != 0);
+                        if (used + cost &lt;= k)
+                            dp[i][j + 1][used + cost] =
+                                max(dp[i][j + 1][used + cost],
+                                    dp[i][j][used] + val);
+                    }
+                    // move down
+                    if (i + 1 &lt; r) {
+                        int val = g[i + 1][j];
+                        int cost = (val != 0);
+                        if (used + cost &lt;= k)
+                            dp[i + 1][j][used + cost] =
+                                max(dp[i + 1][j][used + cost],
+                                    dp[i][j][used] + val);
+                    }
+                }
+            }
+        }
+        int ans = -1;
+        for (int used = 0; used &lt;= k; used++)
+            ans = max(ans, dp[r - 1][c - 1][used]);
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
