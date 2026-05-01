@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 396: Rotate Function
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 396: Rotate Function (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array nums. Define F(k) as the sum of i * nums[(i + k) % n] for all 0 &lt;= i &lt; n.
+                Find the maximum value of F(k) for 0 &lt;= k &lt; n.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [4,3,2,6]<br>
+                Output: 26<br>
+                Explanation: F(0) = 0*4 + 1*3 + 2*2 + 3*6 = 0 + 3 + 4 + 18 = 25. F(1) = 0*6 + 1*4 + 2*3 + 3*2 = 0 + 4 +
+                6 + 6 = 16. F(2) = 0*2 + 1*6 + 2*4 + 3*3 = 0 + 6 + 8 + 9 = 23. F(3) = 0*3 + 1*2 + 2*6 + 3*4 = 0 + 2 + 12
+                + 12 = 26. Maximum is 26.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxRotateFunction(vector&lt;int&gt;&amp; a) {
+        int n = a.size();
+        if (n == 1) return 0;
+        int sum = 0, f0 = 0;
+        for (int i = 0; i &lt; n; i++) {
+            sum += a[i];
+            f0 += i * a[i];   // initial value
+        }
+        int best = f0, curr = f0;
+        for (int i = n - 1; i &gt; 0; i--) {
+            curr = curr + sum - n * a[i]; // recurrence relation
+            best = max(best, curr);
+        }
+        return best;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
