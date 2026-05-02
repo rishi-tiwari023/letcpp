@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 788: Rotated Digits
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 788: Rotated Digits (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                An integer x is a good number if after rotating its digits 180 degrees, we get a valid and different
+                number. When we rotate digits, 0 becomes 0, 1 becomes 1, 2 becomes 5, 5 becomes 2, 6 becomes 9, 9
+                becomes 6, and digits 3, 4, 7 cannot be rotated. Find how many numbers between 1 and n (inclusive) are
+                good numbers.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 10<br>
+                Output: 4<br>
+                Explanation: The numbers 2, 5, 6, 9 are good numbers (they are valid rotations). 1 is not good (rotates
+                to itself). Numbers with 3, 4, 7 are invalid.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool isGoodNumber(int num) {
+        bool hasInvalid = false, hasChange = false;
+        while (num &gt; 0) {
+            int digit = num % 10;
+            if (digit == 3 || digit == 4 || digit == 7)
+                hasInvalid = true; // makes number invalid
+            if (digit == 2 || digit == 5 || digit == 6 || digit == 9)
+                hasChange = true; // ensures number actually changes
+            num /= 10;
+        }
+        if (hasInvalid) return false;
+        return hasChange;
+    }
+    int rotatedDigits(int n) {
+        int countGood = 0;
+        for (int i = 1; i &lt;= n; i++) {
+            if (isGoodNumber(i)) countGood++;
+        }
+        return countGood;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
