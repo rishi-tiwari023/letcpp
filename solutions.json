@@ -307,6 +307,15 @@
             "spaceComplexity": "O(n^2)"
         },
         {
+            "id": 788,
+            "title": "Rotated Digits",
+            "route": "/788",
+            "difficulty": "Medium",
+            "description": "An integer x is a good number if after rotating its digits 180 degrees, we get a valid and different number. When we rotate digits, 0 becomes 0, 1 becomes 1, 2 becomes 5, 5 becomes 2, 6 becomes 9, ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 799,
             "title": "Champagne Tower",
             "route": "/799",
@@ -2423,5 +2432,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-01"
+    "lastUpdated": "2026-05-02"
 }
