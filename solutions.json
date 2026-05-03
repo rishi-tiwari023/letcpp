@@ -316,6 +316,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 796,
+            "title": "Rotate String",
+            "route": "/796",
+            "difficulty": "Medium",
+            "description": "Given two strings str and target, check if target is a rotation of str. A rotation of a string is created by taking some characters from the beginning and appending them to the end. For example, \"a...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 799,
             "title": "Champagne Tower",
             "route": "/799",
@@ -2432,5 +2441,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-02"
+    "lastUpdated": "2026-05-03"
 }
