@@ -46,6 +46,15 @@
             "spaceComplexity": "O(n*n)"
         },
         {
+            "id": 48,
+            "title": "Rotate Image",
+            "route": "/48",
+            "difficulty": "Medium",
+            "description": "You are given an n x n 2D matrix representing an image. Rotate the image 90 degrees clockwise in-place. You must rotate the image such that every element's row index and column index are transforme...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 66,
             "title": "Plus One",
             "route": "/66",
@@ -2441,5 +2450,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-03"
+    "lastUpdated": "2026-05-04"
 }
