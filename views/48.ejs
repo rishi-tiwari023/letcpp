@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 48: Rotate Image
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 48: Rotate Image (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an n x n 2D matrix representing an image. Rotate the image 90 degrees clockwise in-place.
+                You must rotate the image such that every element's row index and column index are transformed
+                accordingly.
+            </p>
+            <p><strong>Example:</strong>
+                Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]<br>
+                Output: [[7,4,1],[8,5,2],[9,6,3]]<br>
+                Explanation: The matrix is rotated 90 degrees clockwise. The top row becomes the left column, the right
+                column becomes the top row, etc.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        
+        // transpose matrix (upper &lt;-&gt; lower triangle)
+        for(int i = 0; i &lt; grid.size(); i++) {
+            for(int j = 0; j &lt; i; j++) {
+                swap(grid[i][j], grid[j][i]);
+            }
+        }
+        // manually reverse each row using two pointers
+        for(int i = 0; i &lt; grid.size(); i++) {
+            for(int j = 0; j &lt; grid.size() / 2; j++) {
+                swap(grid[i][j], grid[i][grid.size() - 1 - j]);
+            }
+        }
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
