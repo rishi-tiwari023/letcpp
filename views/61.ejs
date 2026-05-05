@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 61: Rotate List
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 61: Rotate List (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given the head of a linked list, rotate the list to the right by k places. Rotating right means moving
+                the last k elements to the front of the list.
+            </p>
+            <p><strong>Example:</strong>
+                Input: head = [1,2,3,4,5], k = 2<br>
+                Output: [4,5,1,2,3]<br>
+                Explanation: The list is rotated right by 2 positions. The last two elements (4,5) move to the front.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head == NULL || head-&gt;next == NULL || k == 0) return head;
+        int size = 0;
+        ListNode* curr = head;
+        ListNode* last = NULL;
+        // count nodes and track tail
+        while(curr){
+            size++;
+            last = curr;
+            curr = curr-&gt;next;
+        }
+        k %= size;
+        if(k == 0) return head;
+        int move = size - k;
+        curr = head;
+        ListNode* prev = NULL;
+        while(move--){
+            prev = curr;
+            curr = curr-&gt;next;
+        }
+        prev-&gt;next = NULL;  // cut list
+        last-&gt;next = head;  // attach tail to old head
+        return curr;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
