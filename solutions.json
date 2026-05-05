@@ -55,6 +55,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 61,
+            "title": "Rotate List",
+            "route": "/61",
+            "difficulty": "Medium",
+            "description": "Given the head of a linked list, rotate the list to the right by k places. Rotating right means moving the last k elements to the front of the list.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 66,
             "title": "Plus One",
             "route": "/66",
@@ -2450,5 +2459,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-04"
+    "lastUpdated": "2026-05-05"
 }
