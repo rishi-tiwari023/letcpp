@@ -2350,6 +2350,15 @@
             "spaceComplexity": "O(n * B)"
         },
         {
+            "id": 3660,
+            "title": "Jump Game IX",
+            "route": "/3660",
+            "difficulty": "Medium",
+            "description": "You are given an array arr of integers. Starting from index 0, you can jump to any index i where arr[i] is less than the maximum value seen so far up to the current index. For each position, determ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3661,
             "title": "Maximum Walls Destroyed by Robots",
             "route": "/3661",
@@ -2468,5 +2477,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-06"
+    "lastUpdated": "2026-05-07"
 }
