@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3629: Minimum Jumps to Reach End via Prime Teleportation
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3629: Minimum Jumps to Reach End via Prime Teleportation (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array arr. From index i, you can: (1) jump to adjacent indices i-1 or i+1, or (2) if arr[i] is prime, teleport to any index j where arr[j] is a multiple of arr[i]. Find the minimum number of jumps needed to reach the last index.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [2,3,6,9]<br>
+                Output: 2<br>
+                Explanation: Start at index 0 (value 2, which is prime). Teleport to index 2 (value 6, which is 2×3). Then jump to index 3. Total jumps: 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;bool&gt; mark;
+    void buildSieve(int limit) {
+        mark.assign(limit + 1, false);
+        if (limit &gt;= 0) {
+            mark[0] = true;
+        }
+        if (limit &gt;= 1) {
+            mark[1] = true;
+        }
+        for (int i = 2; i * i &lt;= limit; i++) {
+            if (!mark[i]) {
+                for (int j = i * i; j &lt;= limit; j += i) {
+                    mark[j] = true;
+                }
+            }
+        }
+    }
+    int minJumps(vector&lt;int&gt;&amp; arr) {
+        int len = arr.size();
+        int mx = arr[0];
+        unordered_map&lt;int, vector&lt;int&gt;&gt; idxMap;
+        for (int i = 0; i &lt; len; i++) {
+            idxMap[arr[i]].push_back(i);
+            mx = max(mx, arr[i]);
+        }
+        buildSieve(mx);
+        queue&lt;int&gt; bfs;
+        vector&lt;int&gt; vis(len, 0);
+        unordered_set&lt;int&gt; done;
+        bfs.push(0);
+        vis[0] = 1;
+        int steps = 0;
+        while (!bfs.empty()) {
+            int sz = bfs.size();
+            while (sz--) {
+                int node = bfs.front();
+                bfs.pop();
+                if (node == len - 1) {
+                    return steps;
+                }
+                // Move to neighbours
+                if (node - 1 &gt;= 0 &amp;&amp; !vis[node - 1]) {
+                    vis[node - 1] = 1;
+                    bfs.push(node - 1);
+                }
+                if (node + 1 &lt; len &amp;&amp; !vis[node + 1]) {
+                    vis[node + 1] = 1;
+                    bfs.push(node + 1);
+                }
+                int val = arr[node];
+                // Skip composite/already used values
+                if (mark[val] || done.count(val)) {
+                    continue;
+                }
+                // Visit all valid multiples
+                for (int mul = val; mul &lt;= mx; mul += val) {
+                    if (!idxMap.count(mul)) {
+                        continue;
+                    }
+                    for (int nxt : idxMap[mul]) {
+                        if (!vis[nxt]) {
+                            vis[nxt] = 1;
+                            bfs.push(nxt);
+                        }
+                    }
+                }
+                done.insert(val);
+            }
+            steps++;
+        }
+        return -1;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
