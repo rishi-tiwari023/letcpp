@@ -1036,6 +1036,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 1914,
+            "title": "Cyclically Rotating a Grid",
+            "route": "/1914",
+            "difficulty": "Medium",
+            "description": "You are given an m x n matrix grid and an integer k. Rotate the matrix's elements k times. Each rotation moves all elements in each layer of the grid one position clockwise around the perimeter of ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1925,
             "title": "Count Square Sum Triples",
             "route": "/1925",
