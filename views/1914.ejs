@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1914: Cyclically Rotating a Grid
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1914: Cyclically Rotating a Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an m x n matrix grid and an integer k. Rotate the matrix's elements k times. Each rotation
+                moves all elements in each layer of the grid one position clockwise around the perimeter of that layer.
+                Return the rotated grid.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[1,2,3],[4,5,6],[7,8,9]], k = 1<br>
+                Output: [[4,1,2],[7,5,3],[8,9,6]]<br>
+                Explanation: The outer layer rotates: 1→2→3→6→9→8→7→4→1. Inner element 5 stays in place.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+private:
+    int ring[196];
+    void nextPos(int &amp;idx, int len) {
+        idx = (idx == len - 1) ? 0 : idx + 1;
+    }
+public:
+    vector&lt;vector&lt;int&gt;&gt; rotateGrid(vector&lt;vector&lt;int&gt;&gt;&amp; grid, int k) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+        int totalLayers = min(rows, cols) / 2;
+        for (int layer = 0; layer &lt; totalLayers; layer++) {
+            int top = layer;
+            int left = layer;
+            int bottom = rows - layer - 1;
+            int right = cols - layer - 1;
+            int height = rows - 2 * layer;
+            int width = cols - 2 * layer;
+            int len = 2 * (height + width - 2);
+            int idx = 0;
+            // Store current layer elements in order
+            for (int j = 0; j &lt; width - 1; j++)
+                ring[idx++] = grid[top][left + j];
+            for (int i = 0; i &lt; height - 1; i++)
+                ring[idx++] = grid[top + i][right];
+            for (int j = 0; j &lt; width - 1; j++)
+                ring[idx++] = grid[bottom][right - j];
+            for (int i = 0; i &lt; height - 1; i++)
+                ring[idx++] = grid[bottom - i][left];
+            idx = k % len;
+            // Put rotated values back into the grid
+            for (int j = 0; j &lt; width - 1; j++) {
+                grid[top][left + j] = ring[idx];
+                nextPos(idx, len);
+            }
+            for (int i = 0; i &lt; height - 1; i++) {
+                grid[top + i][right] = ring[idx];
+                nextPos(idx, len);
+            }
+            for (int j = 0; j &lt; width - 1; j++) {
+                grid[bottom][right - j] = ring[idx];
+                nextPos(idx, len);
+            }
+            for (int i = 0; i &lt; height - 1; i++) {
+                grid[bottom - i][left] = ring[idx];
+                nextPos(idx, len);
+            }
+        }
+        return grid;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
