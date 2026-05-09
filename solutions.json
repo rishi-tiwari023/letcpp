@@ -2269,6 +2269,15 @@
             "spaceComplexity": "O(n^2)"
         },
         {
+            "id": 3629,
+            "title": "Minimum Jumps to Reach End via Prime Teleportation",
+            "route": "/3629",
+            "difficulty": "Medium",
+            "description": "You are given an array arr. From index i, you can: (1) jump to adjacent indices i-1 or i+1, or (2) if arr[i] is prime, teleport to any index j where arr[j] is a multiple of arr[i]. Find the minimum...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3634,
             "title": "Minimum Removals to Balance Array",
             "route": "/3634",
@@ -2477,5 +2486,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-07"
+    "lastUpdated": "2026-05-09"
 }
