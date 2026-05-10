@@ -1468,6 +1468,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 2770,
+            "title": "Maximum Number of Jumps to Reach the Last Index",
+            "route": "/2770",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed array nums and an integer target. From index i, you can jump to index j if |nums[i] - nums[j]| &lt;= target. Return the maximum number of jumps needed to reach the last in...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2785,
             "title": "Sort Vowels in a String",
             "route": "/2785",
@@ -2495,5 +2504,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-09"
+    "lastUpdated": "2026-05-10"
 }
