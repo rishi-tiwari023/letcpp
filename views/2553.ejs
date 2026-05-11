@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2553: Separate the Digits in an Array
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2553: Separate the Digits in an Array (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an array arr of positive integers, separate the digits of each integer in order they appear.
+                Return a new array of the separated digits in the same order.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [123,456,789]<br>
+                Output: [1,2,3,4,5,6,7,8,9]<br>
+                Explanation: Each number is converted to its individual digits: 123 becomes [1,2,3], 456 becomes
+                [4,5,6], 789 becomes [7,8,9]. These are concatenated in order.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; separateDigits(vector&lt;int&gt;&amp; arr) {
+        vector&lt;int&gt; ans;
+        for (int val : arr) {
+            string str = to_string(val);
+            // Push every character as a digit
+            for (char ch : str) {
+                ans.push_back(ch - '0');
+            }
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
