@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1665: Minimum Initial Energy to Finish Tasks
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1665: Minimum Initial Energy to Finish Tasks (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array tasks where tasks[i] = [actual_i, minimum_i]. actual_i is the actual energy
+                spent to finish the i-th task, and minimum_i is the minimum energy required to begin it. You can
+                finish the tasks in any order. Return the minimum initial amount of energy you will need to finish
+                all the tasks.
+            </p>
+            <p><strong>Example:</strong>
+                Input: tasks = [[1,2],[2,4],[4,8]]<br>
+                Output: 8<br>
+                Explanation: Start with 8 energy. Finish task 3 (needs 8, costs 4): 4 left. Finish task 2 (needs 4,
+                costs 2): 2 left. Finish task 1 (needs 2, costs 1): 1 left.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+private:
+    static bool sortByDifference(vector&lt;int&gt;&amp; firstTask, vector&lt;int&gt;&amp; secondTask) {
+        return (firstTask[1] - firstTask[0]) &gt;
+               (secondTask[1] - secondTask[0]);
+    }
+
+public:
+    int minimumEffort(vector&lt;vector&lt;int&gt;&gt;&amp; tasks) {
+
+        sort(tasks.begin(), tasks.end(), sortByDifference);
+
+        int minimumStartEnergy = 0;
+
+        // Build required energy from back to front
+        for (int i = tasks.size() - 1; i &gt;= 0; i--) {
+
+            int energyLoss = tasks[i][0];
+            int minimumNeeded = tasks[i][1];
+
+            minimumStartEnergy =
+                max(minimumNeeded, minimumStartEnergy + energyLoss);
+        }
+
+        return minimumStartEnergy;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
