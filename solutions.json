@@ -874,6 +874,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1665,
+            "title": "Minimum Initial Energy to Finish Tasks",
+            "route": "/1665",
+            "difficulty": "Medium",
+            "description": "You are given an array tasks where tasks[i] = [actual_i, minimum_i]. actual_i is the actual energy spent to finish the i-th task, and minimum_i is the minimum energy required to begin it. You can f...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1680,
             "title": "Concatenation of Consecutive Binary Numbers",
             "route": "/1680",
@@ -2513,5 +2522,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-11"
+    "lastUpdated": "2026-05-12"
 }
