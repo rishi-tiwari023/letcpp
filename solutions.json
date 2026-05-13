@@ -883,6 +883,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1674,
+            "title": "Minimum Moves to Make Array Complementary",
+            "route": "/1674",
+            "difficulty": "Medium",
+            "description": "You are given an integer array arr and an integer limit. In each move, you can increase or decrease any element by 1. Make arr complementary: for each pair (arr[i], arr[n-1-i]), their sum should eq...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1680,
             "title": "Concatenation of Consecutive Binary Numbers",
             "route": "/1680",
@@ -2522,5 +2531,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-12"
+    "lastUpdated": "2026-05-13"
 }
