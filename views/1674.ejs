@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1674: Minimum Moves to Make Array Complementary
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1674: Minimum Moves to Make Array Complementary (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array arr and an integer limit. In each move, you can increase or decrease any
+                element by 1. Make arr complementary: for each pair (arr[i], arr[n-1-i]), their sum should equal some
+                target value between 2 and 2*limit. Find the minimum number of moves needed.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [1,2,1,2,1,2], limit = 5<br>
+                Output: 0<br>
+                Explanation: Each pair already sums to 3, which is between 2 and 10. No moves needed.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minMoves(vector&lt;int&gt;&amp; arr, int lim) {
+        int sz = arr.size();
+        vector&lt;int&gt; changes(2 * lim + 2, 0);
+        for (int idx = 0; idx &lt; sz / 2; idx++) {
+            int first = arr[idx];
+            int second = arr[sz - idx - 1];
+            int small = min(first, second);
+            int large = max(first, second);
+            // default contribution is 2 moves
+            changes[2] += 2;
+            // 1 move range begins here
+            changes[small + 1] -= 1;
+            // exact pair sum needs no move
+            changes[small + large] -= 1;
+            changes[small + large + 1] += 1;
+            // outside this range again needs 2 moves
+            changes[large + lim + 1] += 1;
+        }
+        int result = INT_MAX;
+        int running = 0;
+        for (int targetSum = 2; targetSum &lt;= 2 * lim; targetSum++) {
+            running += changes[targetSum];
+            result = min(result, running);
+        }
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
