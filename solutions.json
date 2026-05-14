@@ -1504,6 +1504,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2784,
+            "title": "Check if Array is Good",
+            "route": "/2784",
+            "difficulty": "Medium",
+            "description": "An array with n elements is \"good\" if it contains the elements [1, 2, ..., n-1, n-1] in some order. Given an array arr, determine if it is good.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2785,
             "title": "Sort Vowels in a String",
             "route": "/2785",
@@ -2531,5 +2540,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-13"
+    "lastUpdated": "2026-05-14"
 }
