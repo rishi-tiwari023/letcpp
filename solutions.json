@@ -109,6 +109,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 153,
+            "title": "Find Minimum in Rotated Sorted Array",
+            "route": "/153",
+            "difficulty": "Medium",
+            "description": "Suppose an array of length n sorted in ascending order is rotated between 1 and n times. For example, the array [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]. Find the minimum element of this array....",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 165,
             "title": "Compare Version Numbers",
             "route": "/165",
@@ -2540,5 +2549,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-14"
+    "lastUpdated": "2026-05-15"
 }
