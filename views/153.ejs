@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 153: Find Minimum in Rotated Sorted Array
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 153: Find Minimum in Rotated Sorted Array (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Suppose an array of length n sorted in ascending order is rotated between 1 and n times. For example,
+                the array [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]. Find the minimum element of this array. You must
+                write an algorithm that runs in O(log n) time.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [3,4,5,1,2]<br>
+                Output: 1<br>
+                Explanation: The original array [1,2,3,4,5] was rotated 3 times. The minimum element 1 is at index 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int findMin(vector&lt;int&gt;&amp; nums) {
+        int left = 0;
+        int right = nums.size() - 1;
+        while (left &lt;= right) {
+            int mid = (left + right) / 2;
+            // current element is the minimum
+            if (mid &gt; 0 &amp;&amp; nums[mid - 1] &gt; nums[mid])
+                return nums[mid];
+            if (nums[mid] &lt; nums[right])
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
+        if (right == -1)
+            right = 0;
+        return nums[right];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
