@@ -51,7 +51,7 @@
             "route": "/48",
             "difficulty": "Medium",
             "description": "You are given an n x n 2D matrix representing an image. Rotate the image 90 degrees clockwise in-place. You must rotate the image such that every element's row index and column index are transforme...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n^2)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -348,17 +348,17 @@
             "route": "/788",
             "difficulty": "Medium",
             "description": "An integer x is a good number if after rotating its digits 180 degrees, we get a valid and different number. When we rotate digits, 0 becomes 0, 1 becomes 1, 2 becomes 5, 5 becomes 2, 6 becomes 9, ...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(1)"
         },
         {
             "id": 796,
             "title": "Rotate String",
             "route": "/796",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given two strings str and target, check if target is a rotation of str. A rotation of a string is created by taking some characters from the beginning and appending them to the end. For example, \"a...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 799,
@@ -672,8 +672,8 @@
             "route": "/1391",
             "difficulty": "Medium",
             "description": "You are given an m x n grid where each cell contains a pipe. Different pipe types allow flow in different directions: 1 (horizontal), 2 (vertical), 3 (vertical-right), 4 (vertical-left), 5 (horizon...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(m*n)",
+            "spaceComplexity": "O(m*n)"
         },
         {
             "id": 1404,
@@ -1014,8 +1014,8 @@
             "route": "/1861",
             "difficulty": "Medium",
             "description": "You are given an m x n matrix box where each cell contains '#' (a stone), '*' (a fixed obstacle), or '.' (empty). Due to gravity, stones fall to the right within each row until they hit an obstacle...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(m*n)",
+            "spaceComplexity": "O(m*n)"
         },
         {
             "id": 1877,
@@ -1158,8 +1158,8 @@
             "route": "/2033",
             "difficulty": "Medium",
             "description": "You are given an m x n grid of integers and a positive integer x. In each operation, you can either increase or decrease any element by x. Find the minimum number of operations needed to make all g...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(N*M*log(N*M))",
+            "spaceComplexity": "O(N*M)"
         },
         {
             "id": 2043,
@@ -1840,10 +1840,10 @@
             "id": 3225,
             "title": "Maximum Score From Grid Operations",
             "route": "/3225",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given an n x n grid of integers. You can perform operations that remove rows and columns to collect their values. When you remove a row or column, you collect the sum of its elements. Find ...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n^3)",
+            "spaceComplexity": "O(n^2)"
         },
         {
             "id": 3227,
@@ -2517,8 +2517,8 @@
             "route": "/3742",
             "difficulty": "Medium",
             "description": "You are given an m x n grid where each cell contains an integer value. You can move only right or down. You start at (0,0) and want to reach (m-1,n-1). You can visit at most k cells with non-zero v...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(m*n*k)",
+            "spaceComplexity": "O(m*n*k)"
         },
         {
             "id": 3761,
