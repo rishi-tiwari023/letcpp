@@ -816,8 +816,8 @@
             "route": "/1559",
             "difficulty": "Medium",
             "description": "You are given a 2D grid containing characters. A cycle is a path that starts and ends at the same cell, visiting adjacent cells (up, down, left, right) with the same character value. Determine whet...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(m*n)",
+            "spaceComplexity": "O(m*n)"
         },
         {
             "id": 1578,
@@ -2092,10 +2092,10 @@
             "id": 3464,
             "title": "Maximize the Distance Between Points on a Square",
             "route": "/3464",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given a square with a side length and a list of points on its boundary. You need to select k points from the given points such that the minimum pairwise distance between any two selected po...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n log(side))",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3474,
