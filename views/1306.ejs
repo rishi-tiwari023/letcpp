@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1306: Jump Game III
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1306: Jump Game III (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an array arr of non-negative integers and a starting index, you are at position start. At each
+                step, you can jump to any position i where arr[start] + start = i or start - arr[start] = i. Determine
+                if you can reach any index where arr[i] = 0.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [4,2,3,0,3,1,2], start = 5<br>
+                Output: true<br>
+                Explanation: From index 5 (value 1), you can jump to index 4 or 6. Eventually you can reach index 3
+                where arr[3] = 0.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool jump(vector&lt;int&gt;&amp; vals, int pos, vector&lt;bool&gt;&amp; vis) {
+        // Stop if index goes out of bounds or repeats
+        if (pos &lt; 0 || pos &gt;= vals.size() || vis[pos])
+            return false;
+        if (vals[pos] == 0)
+            return true;
+        vis[pos] = true;
+        int step = vals[pos];
+        return jump(vals, pos + step, vis) ||
+               jump(vals, pos - step, vis);
+    }
+    bool canReach(vector&lt;int&gt;&amp; vals, int start) {
+        vector&lt;bool&gt; vis(vals.size(), false);
+        return jump(vals, start, vis);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
