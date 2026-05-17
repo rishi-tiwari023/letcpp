@@ -595,6 +595,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1306,
+            "title": "Jump Game III",
+            "route": "/1306",
+            "difficulty": "Medium",
+            "description": "Given an array arr of non-negative integers and a starting index, you are at position start. At each step, you can jump to any position i where arr[start] + start = i or start - arr[start] = i. Det...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1317,
             "title": "Convert Integer to the Sum of Two No-Zero Integers",
             "route": "/1317",
@@ -2558,5 +2567,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-16"
+    "lastUpdated": "2026-05-17"
 }
