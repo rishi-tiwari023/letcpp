@@ -640,6 +640,15 @@
             "spaceComplexity": "O(h)"
         },
         {
+            "id": 1345,
+            "title": "Jump Game IV",
+            "route": "/1345",
+            "difficulty": "Medium",
+            "description": "Given an array arr of integers, you are initially positioned at index 0. In each step, you can jump to any index i where: i + 1 &lt;= i &lt;= i - 1, or any index j such that arr[i] == arr[j]. Find ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1351,
             "title": "Count Negative Numbers in a Sorted Matrix",
             "route": "/1351",
@@ -2567,5 +2576,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-17"
+    "lastUpdated": "2026-05-18"
 }
