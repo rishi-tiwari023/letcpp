@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1345: Jump Game IV
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1345: Jump Game IV (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an array arr of integers, you are initially positioned at index 0. In each step, you can jump to
+                any index i where: i + 1 &lt;= i &lt;= i - 1, or any index j such that arr[i] == arr[j]. Find the
+                minimum number of steps to reach the last index of the array.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [100,-23,-23,404,100,23,23,23]<br>
+                Output: 3<br>
+                Explanation: From index 0 (value 100), jump to index 4 (value 100). From index 4, jump to index 3
+                (adjacent). From index 3, jump to index 2 (adjacent). Minimum steps: 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minJumps(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        if (n == 1)
+            return 0;
+        unordered_map&lt;int, vector&lt;int&gt;&gt; pos;
+        for (int i = 0; i &lt; n; i++) {
+            pos[nums[i]].push_back(i);
+        }
+        queue&lt;int&gt; q;
+        vector&lt;bool&gt; vis(n, false);
+        q.push(0);
+        vis[0] = true;
+        int steps = 0;
+        while (!q.empty()) {
+            int sz = q.size();
+            while (sz--) {
+                int cur = q.front();
+                q.pop();
+                if (cur == n - 1)
+                    return steps;
+                if (cur - 1 &gt;= 0 &amp;&amp; !vis[cur - 1]) {
+                    vis[cur - 1] = true;
+                    q.push(cur - 1);
+                }
+                if (cur + 1 &lt; n &amp;&amp; !vis[cur + 1]) {
+                    vis[cur + 1] = true;
+                    q.push(cur + 1);
+                }
+                // Jump to all indices having same value
+                if (pos.count(nums[cur])) {
+                    for (auto nxt : pos[nums[cur]]) {
+                        if (!vis[nxt]) {
+                            vis[nxt] = true;
+                            q.push(nxt);
+                        }
+                    }
+                    pos.erase(nums[cur]);
+                }
+            }
+            steps++;
+        }
+        return -1;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
