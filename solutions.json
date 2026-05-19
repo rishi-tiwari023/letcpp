@@ -1468,6 +1468,15 @@
             "spaceComplexity": "O(n^2)"
         },
         {
+            "id": 2540,
+            "title": "Minimum Common Value",
+            "route": "/2540",
+            "difficulty": "Medium",
+            "description": "Given two integer arrays arr1 and arr2, both sorted in ascending order, return the smallest integer that appears in both arrays. If no such integer exists, return -1.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2553,
             "title": "Separate the Digits in an Array",
             "route": "/2553",
@@ -2576,5 +2585,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-18"
+    "lastUpdated": "2026-05-19"
 }
