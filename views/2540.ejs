@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2540: Minimum Common Value
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2540: Minimum Common Value (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given two integer arrays arr1 and arr2, both sorted in ascending order, return the smallest integer that
+                appears in both arrays. If no such integer exists, return -1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr1 = [1,2,3,6], arr2 = [2,3,4,5]<br>
+                Output: 2<br>
+                Explanation: The common elements are 2 and 3. The smallest is 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int getCommon(vector&lt;int&gt;&amp; arr1, vector&lt;int&gt;&amp; arr2) {
+        int i = 0, j = 0;
+        int n = arr1.size();
+        int m = arr2.size();
+        // No overlap possible between ranges
+        if (arr1[n - 1] &lt; arr2[0] || arr2[m - 1] &lt; arr1[0])
+            return -1;
+        while (i &lt; n &amp;&amp; j &lt; m) {
+            if (arr1[i] == arr2[j])
+                return arr1[i];
+            if (arr1[i] &lt; arr2[j])
+                i++;
+            else
+                j++;
+        }
+        return -1;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
