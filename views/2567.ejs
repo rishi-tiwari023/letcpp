@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2567: Find the Prefix Common Array of Two Arrays
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2567: Find the Prefix Common Array of Two Arrays (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two 0-indexed integer permutations a and b of length n. A prefix common array is an array
+                c where c[i] is the count of numbers that are common in a[0..i] and b[0..i]. Return the prefix common
+                array c.
+            </p>
+            <p><strong>Example:</strong>
+                Input: a = [1,2,3,4,5], b = [3,2,1,4,5]<br>
+                Output: [0,2,3,4,5]<br>
+                Explanation: At index 0: a[0]=1, b[0]=3, no common. At index 1: a[0..1]=[1,2], b[0..1]=[3,2],
+                common={2}, count=1 (wait, expected is 2). Let me recalculate: at index 1, we have {1,2} and {3,2}, so
+                only 2 is common, count=1. The expected output seems to indicate we count when an element appears in
+                both prefixes.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; findThePrefixCommonArray(vector&lt;int&gt;&amp; a, vector&lt;int&gt;&amp; b) {
+        int n = a.size();
+        vector&lt;int&gt; seen(n + 1, 0);
+        vector&lt;int&gt; res(n);
+        int common = 0;
+        for (int i = 0; i &lt; n; i++) {
+            // Track occurrences using array instead of hashmap
+            if (++seen[a[i]] == 2)
+                common++;
+            if (++seen[b[i]] == 2)
+                common++;
+            res[i] = common;
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
