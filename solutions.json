@@ -1486,6 +1486,15 @@
             "spaceComplexity": "O(n log M)"
         },
         {
+            "id": 2567,
+            "title": "Find the Prefix Common Array of Two Arrays",
+            "route": "/2567",
+            "difficulty": "Medium",
+            "description": "You are given two 0-indexed integer permutations a and b of length n. A prefix common array is an array c where c[i] is the count of numbers that are common in a[0..i] and b[0..i]. Return the prefi...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2573,
             "title": "Find the String with LCP",
             "route": "/2573",
@@ -2585,5 +2594,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-19"
+    "lastUpdated": "2026-05-20"
 }
