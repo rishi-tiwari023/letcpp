@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3043: Find the Length of the Longest Common Prefix
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3043: Find the Length of the Longest Common Prefix (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two arrays nums1 and nums2 of positive integers. A common prefix of two numbers is a
+                common digit sequence at the start of their decimal representations. For example, 123 and 1234 have a
+                common prefix of "123". Return the length of the longest common prefix among all pairs of numbers where
+                the first number is from nums1 and the second number is from nums2.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums1 = [123,456,789], nums2 = [1,2,3,12,34,56,67,89,90]<br>
+                Output: 3<br>
+                Explanation: The longest common prefix is "123" which has length 3. This comes from the pair (123, 123).
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int longestCommonPrefix(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) {
+        unordered_set&lt;string&gt; st;
+        int res = 0;
+        // Generate and store all string prefixes from nums1
+        for (int i = 0; i &lt; nums1.size(); i++) {
+            string str = "";
+            int val = nums1[i];
+            while (val &gt; 0) {
+                str.push_back(char((val % 10) + '0'));
+                val /= 10;
+            }
+            reverse(str.begin(), str.end());
+            for (int j = 1; j &lt;= str.size(); j++) {
+                st.insert(str.substr(0, j));
+            }
+        }
+        for (int i = 0; i &lt; nums2.size(); i++) {
+            string str = "";
+            int val = nums2[i];
+            while (val &gt; 0) {
+                str.push_back(char((val % 10) + '0'));
+                val /= 10;
+            }
+            reverse(str.begin(), str.end());
+            // Check longest matching prefix
+            for (int j = 1; j &lt;= str.size(); j++) {
+                if (st.find(str.substr(0, j)) != st.end()) {
+                    res = max(res, j);
+                }
+            }
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
