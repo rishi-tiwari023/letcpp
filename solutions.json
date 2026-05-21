@@ -1747,6 +1747,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3043,
+            "title": "Find the Length of the Longest Common Prefix",
+            "route": "/3043",
+            "difficulty": "Medium",
+            "description": "You are given two arrays nums1 and nums2 of positive integers. A common prefix of two numbers is a common digit sequence at the start of their decimal representations. For example, 123 and 1234 hav...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3047,
             "title": "Find the Largest Area of Square Inside Two Rectangles",
             "route": "/3047",
@@ -2594,5 +2603,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-20"
+    "lastUpdated": "2026-05-21"
 }
