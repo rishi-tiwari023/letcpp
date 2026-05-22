@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 33: Search in Rotated Sorted Array
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 33: Search in Rotated Sorted Array (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                There is an integer array nums sorted in ascending order (with distinct values), then rotated at an
+                unknown pivot index. Given the rotated array and a target value, return the index of the target if it is
+                in the array, or -1 if it is not. You must write an algorithm with O(log n) runtime complexity.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [4,5,6,7,0,1,2], target = 0<br>
+                Output: 4<br>
+                Explanation: The target 0 is found at index 4 in the rotated array.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int search(vector&lt;int&gt;&amp; arr, int key) {
+        int st = 0, ed = arr.size() - 1;
+        while (st &lt;= ed) {
+            int md = st + (ed - st) / 2;
+            if (arr[md] == key)
+                return md;
+            // Left half is sorted
+            if (arr[st] &lt;= arr[md]) {
+                if (arr[st] &lt;= key &amp;&amp; key &lt; arr[md])
+                    ed = md - 1;
+                else
+                    st = md + 1;
+            }
+            else {
+                // Right half is sorted
+                if (arr[md] &lt; key &amp;&amp; key &lt;= arr[ed])
+                    st = md + 1;
+                else
+                    ed = md - 1;
+            }
+        }
+        return -1;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
