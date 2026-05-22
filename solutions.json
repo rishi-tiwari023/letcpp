@@ -28,6 +28,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 33,
+            "title": "Search in Rotated Sorted Array",
+            "route": "/33",
+            "difficulty": "Medium",
+            "description": "There is an integer array nums sorted in ascending order (with distinct values), then rotated at an unknown pivot index. Given the rotated array and a target value, return the index of the target i...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 36,
             "title": "Valid Sudoku",
             "route": "/36",
@@ -2603,5 +2612,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-21"
+    "lastUpdated": "2026-05-22"
 }
