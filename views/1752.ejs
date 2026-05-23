@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1752: Check if Array Is Sorted and Rotated
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1752: Check if Array Is Sorted and Rotated (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an array arr, return true if the array was originally sorted in non-decreasing order, then rotated
+                some number of times (possibly zero). Otherwise, return false.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [3,4,5,1,2]<br>
+                Output: true<br>
+                Explanation: The original array could have been [1,2,3,4,5], and it was rotated 3 times.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool check(vector&lt;int&gt;&amp; arr) {
+        int len = arr.size();
+        int pivot = 1;
+        // Find first decreasing point
+        while (pivot &lt; len) {
+            if (arr[pivot] &lt; arr[pivot - 1]) {
+                break;
+            }
+            pivot++;
+        }
+        for (int pos = pivot; pos &lt; len; pos++) {
+            // Elements after rotation must stay sorted
+            if (arr[0] &lt; arr[pos]) return false;
+            if (pos + 1 &lt; len &amp;&amp; arr[pos + 1] &lt; arr[pos]) {
+                return false;
+            }
+        }
+        return true;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
