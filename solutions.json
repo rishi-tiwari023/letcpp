@@ -991,6 +991,15 @@
             "spaceComplexity": "O(m*n*l)"
         },
         {
+            "id": 1752,
+            "title": "Check if Array Is Sorted and Rotated",
+            "route": "/1752",
+            "difficulty": "Medium",
+            "description": "Given an array arr, return true if the array was originally sorted in non-decreasing order, then rotated some number of times (possibly zero). Otherwise, return false.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1758,
             "title": "Minimum Changes To Make Alternating Binary String",
             "route": "/1758",
@@ -2612,5 +2621,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-22"
+    "lastUpdated": "2026-05-23"
 }
