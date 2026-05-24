@@ -649,6 +649,15 @@
             "spaceComplexity": "O(h)"
         },
         {
+            "id": 1340,
+            "title": "Jump Game V",
+            "route": "/1340",
+            "difficulty": "Medium",
+            "description": "Given an array arr of positive integers and an integer d, you are initially at index 0 and can make a jump to any index i where i + 1 &lt;= i + d and arr[i] &lt; arr[current]. Find the maximum numb...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1345,
             "title": "Jump Game IV",
             "route": "/1345",
@@ -2621,5 +2630,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-23"
+    "lastUpdated": "2026-05-24"
 }
