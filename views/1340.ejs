@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1340: Jump Game V
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1340: Jump Game V (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an array arr of positive integers and an integer d, you are initially at index 0 and can make a
+                jump to any index i where i + 1 &lt;= i + d and arr[i] &lt; arr[current]. Find the maximum number of
+                jumps you can make.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [6,4,14,6,8,13,9,7,10,6,12], d = 2<br>
+                Output: 4<br>
+                Explanation: You can jump from index 0 (arr[0]=6) to index 2 (arr[2]=14), then to index 4 (arr[4]=8),
+                then to index 5 (arr[5]=13), then to index 10 (arr[10]=12). Total jumps: 4.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int memo[1001];
+    int solve(vector&lt;int&gt;&amp; arr, int d, int idx) {
+        int n = arr.size();
+        if(memo[idx] != -1)
+            return memo[idx];
+        int best = 1;
+        // Try jumping to the right
+        for(int next = idx + 1; next &lt;= min(idx + d, n - 1); next++) {
+            if(arr[next] &gt;= arr[idx]) break;
+            best = max(best, 1 + solve(arr, d, next));
+        }
+        // Try jumping to the left
+        for(int next = idx - 1; next &gt;= max(0, idx - d); next--) {
+            if(arr[next] &gt;= arr[idx]) break;
+            best = max(best, 1 + solve(arr, d, next));
+        }
+        return memo[idx] = best;
+    }
+    int maxJumps(vector&lt;int&gt;&amp; arr, int d) {
+        int n = arr.size();
+        int ans = 1;
+        memset(memo, -1, sizeof(memo));
+        for(int i = 0; i &lt; n; i++) {
+            ans = max(ans, solve(arr, d, i));
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
