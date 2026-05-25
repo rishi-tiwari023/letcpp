@@ -1063,6 +1063,15 @@
             "spaceComplexity": "O(m*n)"
         },
         {
+            "id": 1871,
+            "title": "Jump Game VII",
+            "route": "/1871",
+            "difficulty": "Medium",
+            "description": "You are given a binary string s and two integers minJump and maxJump. In one move, you can jump from index i to any index j such that i + minJump &lt;= j &lt;= i + maxJump and s[j] = '0'. Find if y...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1877,
             "title": "Minimize Maximum Pair Sum in Array",
             "route": "/1877",
@@ -2630,5 +2639,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-24"
+    "lastUpdated": "2026-05-25"
 }
