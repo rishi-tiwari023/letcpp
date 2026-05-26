@@ -1837,6 +1837,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3120,
+            "title": "Count the Number of Special Characters I",
+            "route": "/3120",
+            "difficulty": "Medium",
+            "description": "You are given a string s. A character is considered \"special\" if it appears in the string in both lowercase and uppercase forms. Return the count of special characters in the string.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3129,
             "title": "Find All Possible Stable Binary Arrays I",
             "route": "/3129",
@@ -2639,5 +2648,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-25"
+    "lastUpdated": "2026-05-26"
 }
