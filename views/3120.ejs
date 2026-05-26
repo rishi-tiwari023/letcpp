@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3120: Count the Number of Special Characters I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3120: Count the Number of Special Characters I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string s. A character is considered "special" if it appears in the string in both
+                lowercase and uppercase forms. Return the count of special characters in the string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "aBBBacBC"<br>
+                Output: 2<br>
+                Explanation: Character 'a' appears as both 'a' and 'A', and character 'b' appears as both 'b' and 'B'.
+                Character 'c' only appears as lowercase. So the special characters are 'a' and 'b', count = 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int numberOfSpecialChars(string s) {
+        unordered_map&lt;char, int&gt; mp;
+        for (char ch : s) {
+            mp[ch]++;
+        }
+        int ans = 0;
+        // Verify whether opposite case character exists
+        for (auto it : mp) {
+            char ch = it.first;
+            if (islower(ch)) {
+                if (mp.find(ch - 32) != mp.end())
+                    ans++;
+            } 
+            else {
+                if (mp.find(ch + 32) != mp.end())
+                    ans++;
+            }
+        }
+        return ans / 2;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
