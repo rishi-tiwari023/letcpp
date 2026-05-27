@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3121: Count the Number of Special Characters II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3121: Count the Number of Special Characters II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string s. A character is considered "special" if it appears in the string such that the
+                lowercase version appears before the uppercase version. Return the count of special characters in the
+                string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "aBBBacBC"<br>
+                Output: 1<br>
+                Explanation: Character 'a' appears as lowercase first at index 0, then as uppercase 'A' never appears.
+                Character 'b' appears as lowercase 'b' at indices 4 and 6, but uppercase 'B' appears first at index 1.
+                Character 'c' only appears as lowercase. So only 'a' would qualify if 'A' appeared after 'a', but since
+                'A' doesn't appear, the answer depends on the actual string pattern where lowercase appears before
+                uppercase.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int numberOfSpecialChars(string str) {
+        vector&lt;int&gt; lastLow(26, -1);
+        vector&lt;int&gt; firstUp(26, -1);
+        for (int i = 0; i &lt; str.size(); i++) {
+            // Keep updating latest lowercase position
+            if (str[i] &gt;= 'a' &amp;&amp; str[i] &lt;= 'z') {
+                lastLow[str[i] - 'a'] = i;
+            }
+            else {
+                if (firstUp[str[i] - 'A'] == -1)
+                    firstUp[str[i] - 'A'] = i;
+            }
+        }
+        int ans = 0;
+        for (int i = 0; i &lt; 26; i++) {
+            if (lastLow[i] != -1 &amp;&amp; lastLow[i] &lt; firstUp[i])
+                ans++;
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
