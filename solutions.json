@@ -1828,6 +1828,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3093,
+            "title": "Longest Common Suffix Queries",
+            "route": "/3093",
+            "difficulty": "Medium",
+            "description": "You are given two arrays wordsContainer and wordsQuery. For each query word, find the index of the word in wordsContainer that has the longest common suffix with the query word. If multiple words h...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3100,
             "title": "Water Bottles II",
             "route": "/3100",
@@ -2657,5 +2666,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-27"
+    "lastUpdated": "2026-05-28"
 }
