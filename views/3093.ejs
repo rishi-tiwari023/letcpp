@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3093: Longest Common Suffix Queries
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3093: Longest Common Suffix Queries (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two arrays wordsContainer and wordsQuery. For each query word, find the index of the word
+                in wordsContainer that has the longest common suffix with the query word. If multiple words have the
+                same longest suffix, return the index of the shortest one.
+            </p>
+            <p><strong>Example:</strong>
+                Input: wordsContainer = ["abcd","bcd","xbcd"], wordsQuery = ["cd","bcd","xyz"]<br>
+                Output: [1,1,2]<br>
+                Explanation: For "cd": "bcd" and "xbcd" both have suffix "cd", "bcd" is shorter, so return 1. For "bcd":
+                "bcd" and "xbcd" both have suffix "bcd", "bcd" is shorter, so return 1. For "xyz": "xbcd" has longest
+                suffix "x", return 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">struct TrieNode {
+    int bestIdx;
+    TrieNode* child[26];
+};
+class Solution {
+public:
+    static const int MAX_NODES = 500002;
+    static TrieNode pool[MAX_NODES];
+    static int poolPtr;
+    TrieNode* newNode(int idx) {
+        TrieNode* node = &amp;pool[poolPtr++];
+        node-&gt;bestIdx = idx;
+        for (int i = 0; i &lt; 26; i++) {
+            node-&gt;child[i] = NULL;
+        }
+        return node;
+    }
+    void insert(TrieNode* root, int idx,
+                vector&lt;string&gt;&amp; wordsContainer) {
+        string word = wordsContainer[idx];
+        int len = word.size();
+        for (int i = len - 1; i &gt;= 0; i--) {
+            int ch = word[i] - 'a';
+            if (root-&gt;child[ch] == NULL) {
+                root-&gt;child[ch] = newNode(idx);
+            }
+            root = root-&gt;child[ch];
+            // Store index of shortest suffix match
+            if (wordsContainer[root-&gt;bestIdx].size() &gt; len) {
+                root-&gt;bestIdx = idx;
+            }
+        }
+    }
+    int search(TrieNode* root, string&amp; word) {
+        int ansIdx = root-&gt;bestIdx;
+        for (int i = word.size() - 1; i &gt;= 0; i--) {
+            int ch = word[i] - 'a';
+            root = root-&gt;child[ch];
+            if (root == NULL) {
+                return ansIdx;
+            }
+            ansIdx = root-&gt;bestIdx;
+        }
+        return ansIdx;
+    }
+    vector&lt;int&gt; stringIndices(vector&lt;string&gt;&amp; wordsContainer,
+                              vector&lt;string&gt;&amp; wordsQuery) {
+        poolPtr = 0;
+        int n = wordsQuery.size();
+        vector&lt;int&gt; ans(n);
+        TrieNode* root = newNode(0);
+        for (int i = 0; i &lt; wordsContainer.size(); i++) {
+            // Root keeps globally shortest word index
+            if (wordsContainer[root-&gt;bestIdx].size() &gt;
+                wordsContainer[i].size()) {
+                root-&gt;bestIdx = i;
+            }
+            insert(root, i, wordsContainer);
+        }
+        for (int i = 0; i &lt; n; i++) {
+            ans[i] = search(root, wordsQuery[i]);
+        }
+        return ans;
+    }
+};
+TrieNode Solution::pool[Solution::MAX_NODES];
+int Solution::poolPtr = 0;</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
