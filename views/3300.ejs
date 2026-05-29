@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3300: Minimum Element After Replacement With Digit Sum
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3300: Minimum Element After Replacement With Digit Sum (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums. You can replace each element of the array with the sum of its
+                digits. Perform this operation until all elements in the array are single digits. Return the minimum
+                element in the final array.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [10,12,13,14]<br>
+                Output: 1<br>
+                Explanation: Replace 10 with 1+0=1, replace 12 with 1+2=3, replace 13 with 1+3=4, replace 14 with 1+4=5.
+                The array becomes [1,3,4,5]. The minimum is 1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minElement(vector&lt;int&gt;&amp; nums) {
+        int ans = INT_MAX;
+        for (int val : nums) {
+            int sum = 0;
+            // Extract and add digits
+            while (val) {
+                sum += val % 10;
+                val /= 10;
+            }
+            ans = min(ans, sum);
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
