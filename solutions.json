@@ -1999,6 +1999,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3300,
+            "title": "Minimum Element After Replacement With Digit Sum",
+            "route": "/3300",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums. You can replace each element of the array with the sum of its digits. Perform this operation until all elements in the array are single digits. Return the minim...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3314,
             "title": "Construct the Minimum Bitwise Array I",
             "route": "/3314",
@@ -2666,5 +2675,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-28"
+    "lastUpdated": "2026-05-29"
 }
