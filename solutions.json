@@ -1891,6 +1891,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3161,
+            "title": "Block Placement Queries",
+            "route": "/3161",
+            "difficulty": "Medium",
+            "description": "You are given an infinite number line starting at 0 and extending towards the positive x-axis. You need to process a sequence of queries, which are of two types:",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3186,
             "title": "Maximum Total Damage With Spell Casting",
             "route": "/3186",
@@ -2675,5 +2684,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-29"
+    "lastUpdated": "2026-05-30"
 }
