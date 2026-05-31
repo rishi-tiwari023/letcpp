@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2126: Destroying Asteroids
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2126: Destroying Asteroids (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer mass representing the mass of a planet and an array asteroids where
+                asteroids[i] is the mass of an asteroid. You can destroy an asteroid if your current mass is greater
+                than or equal to its mass. When you destroy an asteroid, you gain its mass. Return true if you can
+                destroy all asteroids, or false otherwise.
+            </p>
+            <p><strong>Example:</strong>
+                Input: mass = 10, asteroids = [3,9,19,5,21]<br>
+                Output: true<br>
+                Explanation: After destroying the asteroid with mass 3, your mass becomes 13. After destroying the
+                asteroid with mass 5, your mass becomes 18. After destroying the asteroid with mass 9, your mass becomes
+                27. After destroying the asteroid with mass 19, your mass becomes 46. After destroying the asteroid with
+                mass 21, your mass becomes 67. The mission is accomplished.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool asteroidsDestroyed(int mass, vector&lt;int&gt;&amp; asteroids) {
+        long long m=(long long)mass;
+        int n=asteroids.size();
+        sort(asteroids.begin(),asteroids.end());
+        for(int i=0;i&lt;n;i++)
+        {
+            if(m&gt;=asteroids[i])
+            {
+                m+=asteroids[i];
+            }
+            else
+                return false;
+        }
+        return true;        
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
