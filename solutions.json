@@ -1297,6 +1297,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2126,
+            "title": "Destroying Asteroids",
+            "route": "/2126",
+            "difficulty": "Medium",
+            "description": "You are given an integer mass representing the mass of a planet and an array asteroids where asteroids[i] is the mass of an asteroid. You can destroy an asteroid if your current mass is greater tha...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2141,
             "title": "Maximum Running Time of N Computers",
             "route": "/2141",
@@ -2684,5 +2693,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-30"
+    "lastUpdated": "2026-05-31"
 }
