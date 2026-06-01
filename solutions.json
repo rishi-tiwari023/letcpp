@@ -1315,6 +1315,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2144,
+            "title": "Minimum Cost of Buying Candies With Discount",
+            "route": "/2144",
+            "difficulty": "Medium",
+            "description": "A shop is selling candies under the following offer: Buy two candies and get the third one with a discount equal to the lowest price among the three. You are given an integer array cost where cost[...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2147,
             "title": "Number of Ways to Divide a Long Corridor",
             "route": "/2147",
@@ -2693,5 +2702,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-05-31"
+    "lastUpdated": "2026-06-01"
 }
