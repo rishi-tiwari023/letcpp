@@ -2494,6 +2494,15 @@
             "spaceComplexity": "O(M+N)"
         },
         {
+            "id": 3633,
+            "title": "Earliest Finish Time for Land and Water Rides I",
+            "route": "/3633",
+            "difficulty": "Medium",
+            "description": "You want to take two rides: one on land and one on water. For each ride, you can choose from different options. Each ride option has a start time and a duration. You must take both rides and can st...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3634,
             "title": "Minimum Removals to Balance Array",
             "route": "/3634",
@@ -2702,5 +2711,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-01"
+    "lastUpdated": "2026-06-02"
 }
