@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3633: Earliest Finish Time for Land and Water Rides I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3633: Earliest Finish Time for Land and Water Rides I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You want to take two rides: one on land and one on water. For each ride, you can choose from different
+                options. Each ride option has a start time and a duration. You must take both rides and can start the
+                second ride only after the first ride finishes. Find the minimum time to complete both rides.
+            </p>
+            <p><strong>Example:</strong>
+                Input: landStartTime = [5], landDuration = [3], waterStartTime = [2], waterDuration = [2]<br>
+                Output: 10<br>
+                Explanation: If you take the land ride first at time 5 with duration 3, you finish at time 8. Then you
+                can start the water ride at max(8, 2) = 8 with duration 2, finishing at time 10. If you take water first
+                at time 2 with duration 2, you finish at time 4. Then you start land at max(4, 5) = 5 with duration 3,
+                finishing at time 8. So the minimum is 8.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int calc(vector&lt;int&gt;&amp; s1, vector&lt;int&gt;&amp; d1,
+             vector&lt;int&gt;&amp; s2, vector&lt;int&gt;&amp; d2) {
+        int minEnd = INT_MAX;
+        for (int i = 0; i &lt; s1.size(); i++) {
+            minEnd = min(minEnd, s1[i] + d1[i]);
+        }
+        int ans = INT_MAX;
+        for (int i = 0; i &lt; s2.size(); i++) {
+            ans = min(ans, max(minEnd, s2[i]) + d2[i]);
+        }
+        return ans;
+    }
+    int earliestFinishTime(vector&lt;int&gt;&amp; landStartTime,
+                           vector&lt;int&gt;&amp; landDuration,
+                           vector&lt;int&gt;&amp; waterStartTime,
+                           vector&lt;int&gt;&amp; waterDuration) {
+        int landThenWater =
+            calc(landStartTime, landDuration,
+                 waterStartTime, waterDuration);
+        int waterThenLand =
+            calc(waterStartTime, waterDuration,
+                 landStartTime, landDuration);
+        return min(landThenWater, waterThenLand);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
