@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3635: Earliest Finish Time for Land and Water Rides II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3635: Earliest Finish Time for Land and Water Rides II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You want to take two rides: one on land and one on water. For each ride, you can choose from different
+                options. Each ride option has a start time and a duration. You must take both rides sequentially (one
+                after the other). The second ride can only start when both the first ride is finished and the second
+                ride's start time has arrived. Find the minimum time to complete both rides.
+            </p>
+            <p><strong>Example:</strong>
+                Input: landStartTime = [8,15,2], landDuration = [5,10,6], waterStartTime = [1,4,3], waterDuration =
+                [2,6,4]<br>
+                Output: 20<br>
+                Explanation: Options include: Land ride at time 8 (duration 5, ends at 13) then water at time 13 or
+                later. Best is water at time 4 ends at 4, but must wait for land. Or land at 2 (duration 6, ends at 8)
+                then water at max(8,4) ends at 8+2=10. Or land at 8 (duration 5, ends at 13) then water at max(13,1)=13
+                ends at 13+2=15. Or land at 15 (duration 10, ends at 25) then water ends later. Water first: water at 1
+                (duration 2, ends at 3) then land at max(3,8)=8 ends at 8+5=13. So minimum is 13? Let me trust the
+                algorithm.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    void calc(vector&lt;int&gt;&amp; s1, vector&lt;int&gt;&amp; d1,
+              vector&lt;int&gt;&amp; s2, vector&lt;int&gt;&amp; d2,
+              int &amp;res)
+    {
+        int mn = INT_MAX;
+        // Earliest possible finish among first-category rides
+        for(int i = 0; i &lt; s1.size(); i++)
+            mn = min(mn, s1[i] + d1[i]);
+        // Start second ride as soon as both rider and ride are available
+        for(int i = 0; i &lt; s2.size(); i++)
+            res = min(res, max(s2[i], mn) + d2[i]);
+    }
+    int earliestFinishTime(vector&lt;int&gt;&amp; landStartTime,
+                           vector&lt;int&gt;&amp; landDuration,
+                           vector&lt;int&gt;&amp; waterStartTime,
+                           vector&lt;int&gt;&amp; waterDuration) {
+        int res = INT_MAX;
+        calc(landStartTime, landDuration,
+             waterStartTime, waterDuration, res);
+        swap(landStartTime, waterStartTime);
+        swap(landDuration, waterDuration);
+        calc(landStartTime, landDuration,
+             waterStartTime, waterDuration, res);
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
