@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3751: Total Waviness of Numbers in Range I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3751: Total Waviness of Numbers in Range I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                An integer is called wavy if, for every adjacent pair of digits, they are either all alternately greater
+                and less than each other. Given two numbers num1 and num2, return the sum of the count of wavy numbers
+                for each number in the range [num1, num2]. A digit is considered a peak if it is greater than both
+                neighbors, or a valley if it is less than both neighbors.
+            </p>
+            <p><strong>Example:</strong>
+                Input: num1 = 1, num2 = 3<br>
+                Output: 0<br>
+                Explanation: Single digit numbers have no peaks or valleys. 1, 2, and 3 are all single digits, so the
+                answer is 0.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int totalWaviness(int num1, int num2) {
+        int ans = 0;
+        for (int num = num1; num &lt;= num2; num++) {
+            string str = to_string(num);
+            for (int pos = 1; pos &lt; (int)str.size() - 1; pos++) {
+                // check whether current digit forms a peak or valley
+                if ((str[pos] &gt; str[pos - 1] &amp;&amp; str[pos] &gt; str[pos + 1]) ||
+                    (str[pos] &lt; str[pos - 1] &amp;&amp; str[pos] &lt; str[pos + 1])) {
+                    ans++;
+                }
+            }
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
