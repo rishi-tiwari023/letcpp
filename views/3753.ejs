@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3753: Total Waviness of Numbers in Range II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3753: Total Waviness of Numbers in Range II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                A number is wavy if for every adjacent pair of digits, the direction alternates (either up-down-up or down-up-down pattern). Given a range [num1, num2], calculate the total waviness of all numbers in the range, where waviness is the count of peak and valley points.
+            </p>
+            <p><strong>Example:</strong>
+                Input: num1 = 1, num2 = 100<br>
+                Output: some value representing total peaks and valleys<br>
+                Explanation: For each number in range [1, 100], count peaks and valleys and sum them up.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+private:
+    int direction(int a, int b) {
+        if (a &lt; b) return 0;
+        if (a == b) return 1;
+        return 2;
+    }
+    bool isWave(int p, int c) {
+        return (p == 0 &amp;&amp; c == 2) || (p == 2 &amp;&amp; c == 0);
+    }
+    int stateId(int pos, int smaller, int dir, int digit) {
+        return ((pos * 2 + smaller) * 3 + dir) * 10 + digit;
+    }
+    long long solve(long long x) {
+        if (x &lt;= 0) return 0;
+        vector&lt;int&gt; dig;
+        while (x) {
+            dig.push_back(x % 10);
+            x /= 10;
+        }
+        reverse(dig.begin(), dig.end());
+        int n = dig.size();
+        int states = n * 2 * 3 * 10;
+        vector&lt;long long&gt; waveCnt(states, 0);
+        vector&lt;long long&gt; ways(states, 0);
+        for (int startPos = 0; startPos &lt; n; startPos++) {
+            int lim = (startPos == 0 ? dig[0] : 9);
+            for (int d = 1; d &lt;= lim; d++) {
+                int smaller = (startPos == 0 ? (d &lt; dig[0]) : 1);
+                ways[stateId(startPos, smaller, 1, d)]++;
+            }
+        }
+        for (int pos = 0; pos + 1 &lt; n; pos++) {
+            for (int smaller = 0; smaller &lt; 2; smaller++) {
+                for (int dir = 0; dir &lt; 3; dir++) {
+                    for (int last = 0; last &lt; 10; last++) {
+                        int cur = stateId(pos, smaller, dir, last);
+                        if (!ways[cur]) continue;
+                        int lim = smaller ? 9 : dig[pos + 1];
+                        for (int nxt = 0; nxt &lt;= lim; nxt++) {
+                            int newSmaller = smaller || (nxt &lt; dig[pos + 1]);
+                            int newDir = direction(last, nxt);
+                            int nxtState = stateId(pos + 1, newSmaller, newDir, nxt);
+                            // Add new waviness if direction flips.
+                            waveCnt[nxtState] += waveCnt[cur] +
+                                                 ways[cur] * isWave(dir, newDir);
+                            ways[nxtState] += ways[cur];
+                        }
+                    }
+                }
+            }
+        }
+        long long res = 0;
+        for (int smaller = 0; smaller &lt; 2; smaller++) {
+            for (int dir = 0; dir &lt; 3; dir++) {
+                for (int digit = 0; digit &lt; 10; digit++) {
+                    res += waveCnt[stateId(n - 1, smaller, dir, digit)];
+                }
+            }
+        }
+        return res;
+    }
+public:
+    long long totalWaviness(long long num1, long long num2) {
+        // Range answer = prefix(num2) - prefix(num1 - 1)
+        return solve(num2) - solve(num1 - 1);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
