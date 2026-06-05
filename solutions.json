@@ -2692,6 +2692,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3753,
+            "title": "Total Waviness of Numbers in Range II",
+            "route": "/3753",
+            "difficulty": "Medium",
+            "description": "A number is wavy if for every adjacent pair of digits, the direction alternates (either up-down-up or down-up-down pattern). Given a range [num1, num2], calculate the total waviness of all numbers ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3761,
             "title": "Minimum Absolute Distance Between Mirror Pairs",
             "route": "/3761",
@@ -2729,5 +2738,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-04"
+    "lastUpdated": "2026-06-05"
 }
