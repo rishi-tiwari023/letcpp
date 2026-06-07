@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2196: Create Binary Tree From Descriptions
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2196: Create Binary Tree From Descriptions (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D integer array descriptions where descriptions[i] = [parent, child, isLeft] indicates
+                that parent has a child node with value child, and the child is either a left child (if isLeft == 1) or
+                a right child (if isLeft == 0). Construct the binary tree from the descriptions and return its root
+                node.
+            </p>
+            <p><strong>Example:</strong>
+                Input: descriptions = [[20,15,1],[20,17,0],[50,20,1],[50,80,0],[80,19,1]]<br>
+                Output: [50,20,80,15,17,19]<br>
+                Explanation: A tree with root 50 is constructed with the given parent-child relationships.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(right) {}
+ * };
+ */
+const int MX = 100001;
+bitset&lt;MX&gt; vis = 0;
+int par[MX] = {0};
+TreeNode* nodes[MX];
+TreeNode pool[MX];
+int idx = 0;
+class Solution {
+public:
+    static TreeNode* createBinaryTree(vector&lt;vector&lt;int&gt;&gt;&amp; descriptions) {
+        int rt = -1;
+        idx = 0;
+        for (auto&amp; e : descriptions) {
+            int p = e[0], c = e[1], isLeft = e[2];
+            if (!vis[p]) {
+                nodes[p] = new (&amp;pool[idx++]) TreeNode(p);
+                vis[p] = 1;
+                if (par[p] == 0) rt = p;
+            }
+            if (!vis[c]) {
+                nodes[c] = new (&amp;pool[idx++]) TreeNode(c);
+                vis[c] = 1;
+            }
+            par[c] = p;
+            if (isLeft)
+                nodes[p]-&gt;left = nodes[c];
+            else
+                nodes[p]-&gt;right = nodes[c];
+        }
+        // Climb parent links to get the actual root
+        while (par[rt] != 0) rt = par[rt];
+        TreeNode* ans = nodes[rt];
+        // Reset global state for next test
+        for (auto&amp; e : descriptions) {
+            int p = e[0], c = e[1];
+            vis[p] = vis[c] = 0;
+            par[p] = par[c] = 0;
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
