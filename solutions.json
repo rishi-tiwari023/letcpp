@@ -1351,6 +1351,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2196,
+            "title": "Create Binary Tree From Descriptions",
+            "route": "/2196",
+            "difficulty": "Medium",
+            "description": "You are given a 2D integer array descriptions where descriptions[i] = [parent, child, isLeft] indicates that parent has a child node with value child, and the child is either a left child (if isLef...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2197,
             "title": "Replace Non-Coprime Numbers in Array",
             "route": "/2197",
@@ -2747,5 +2756,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-06"
+    "lastUpdated": "2026-06-07"
 }
