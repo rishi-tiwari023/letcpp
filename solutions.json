@@ -1342,6 +1342,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 2161,
+            "title": "Partition Array According to Given Pivot",
+            "route": "/2161",
+            "difficulty": "Medium",
+            "description": "You are given an integer array arr and an integer pivot. Rearrange the array such that every element smaller than pivot appears before every element greater than pivot, and every element equal to p...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2169,
             "title": "Count Operations to Obtain Zero",
             "route": "/2169",
@@ -2756,5 +2765,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-07"
+    "lastUpdated": "2026-06-08"
 }
