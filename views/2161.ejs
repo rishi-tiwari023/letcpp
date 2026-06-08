@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2161: Partition Array According to Given Pivot
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2161: Partition Array According to Given Pivot (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array arr and an integer pivot. Rearrange the array such that every element
+                smaller than pivot appears before every element greater than pivot, and every element equal to pivot
+                appears in between. Return the rearranged array.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [9,12,5,10,14,3,10], pivot = 10<br>
+                Output: [9,5,3,10,10,12,14]<br>
+                Explanation: Elements smaller than 10: [9,5,3]. Elements equal to 10: [10,10]. Elements greater than 10:
+                [12,14].
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; pivotArray(vector&lt;int&gt;&amp; arr, int pivot) {
+        int n = arr.size();
+        int left = 0, right = n - 1;
+        vector&lt;int&gt; res(n);
+        // Place elements smaller than pivot from left side
+        for (int val : arr) {
+            if (val &lt; pivot) {
+                res[left++] = val;
+            }
+        }
+        // Fill pivot values and larger elements in one backward pass
+        for (int idx = n - 1; idx &gt;= 0; idx--) {
+            if (arr[idx] == pivot) {
+                res[left++] = arr[idx];
+            } else if (arr[idx] &gt; pivot) {
+                res[right--] = arr[idx];
+            }
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
