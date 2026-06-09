@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3689: Maximum Total Subarray Value I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3689: Maximum Total Subarray Value I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums and an integer k. You can perform operations on subarrays of nums.
+                In each operation, you can select a subarray and add the difference between its maximum and minimum
+                element multiplied by k to the total value. Find the maximum total value you can achieve.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,4,5], k = 2<br>
+                Output: 8<br>
+                Explanation: The maximum element is 5 and the minimum element is 1. The difference is 5 - 1 = 4.
+                Multiplying by k gives 4 * 2 = 8.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long maxTotalValue(vector&lt;int&gt;&amp; nums, int k) {
+        long long largest = 0, smallest = INT_MAX;
+        for (int idx = 0; idx &lt; nums.size(); idx++) {
+            if (nums[idx] &gt; largest) largest = nums[idx];
+            if (nums[idx] &lt; smallest) smallest = nums[idx];
+        }
+        // Find overall minimum and maximum element
+        return (largest - smallest) * k;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
