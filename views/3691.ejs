@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3691: Maximum Total Subarray Value II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3691: Maximum Total Subarray Value II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums and an integer k. You can perform up to k operations on subarrays.
+                In each operation, you can select a subarray and add the difference between its maximum and minimum
+                element to the total value. The constraint is that once you select a range [l, r], you can only select
+                ranges [l, r'], where r' &lt; r in future operations. Find the maximum total value you can achieve.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,4,5], k = 2<br>
+                Output: 8<br>
+                Explanation: Select range [0, 4] with diff = 5-1 = 4. Then select range [0, 3] with diff = 4-1 = 3. But
+                we only do 2 operations so total = 4 + 3 = 7 or similar combinations.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+    struct Range {
+        int l, r;
+        long long diff;
+        Range(int left, int right, long long val) {
+            l = left;
+            r = right;
+            diff = val;
+        }
+    };
+    struct Comp {
+        bool operator()(const Range&amp; a, const Range&amp; b) const {
+            return a.diff &lt; b.diff;
+        }
+    };
+    class SegTree {
+        struct Node {
+            int l, r;
+            int mn, mx;
+            Node* left;
+            Node* right;
+            Node(int s, int e) {
+                l = s;
+                r = e;
+                mn = INT_MAX;
+                mx = INT_MIN;
+                left = nullptr;
+                right = nullptr;
+            }
+        };
+        Node* root;
+        Node* build(vector&lt;int&gt;&amp; nums, int l, int r) {
+            Node* node = new Node(l, r);
+            if (l == r) {
+                node-&gt;mn = nums[l];
+                node-&gt;mx = nums[l];
+                return node;
+            }
+            int mid = (l + r) / 2;
+            node-&gt;left = build(nums, l, mid);
+            node-&gt;right = build(nums, mid + 1, r);
+            node-&gt;mn = min(node-&gt;left-&gt;mn, node-&gt;right-&gt;mn);
+            node-&gt;mx = max(node-&gt;left-&gt;mx, node-&gt;right-&gt;mx);
+            return node;
+        }
+        pair&lt;int, int&gt; query(Node* node, int ql, int qr) {
+            if (!node)
+                return {INT_MAX, INT_MIN};
+            if (ql &lt;= node-&gt;l &amp;&amp; node-&gt;r &lt;= qr)
+                return {node-&gt;mn, node-&gt;mx};
+            if (node-&gt;r &lt; ql || qr &lt; node-&gt;l)
+                return {INT_MAX, INT_MIN};
+            auto leftPart = query(node-&gt;left, ql, qr);
+            auto rightPart = query(node-&gt;right, ql, qr);
+            return {min(leftPart.first, rightPart.first),
+                    max(leftPart.second, rightPart.second)};
+        }
+    public:
+        SegTree(vector&lt;int&gt;&amp; nums) {
+            root = build(nums, 0, nums.size() - 1);
+        }
+        pair&lt;int, int&gt; query(int l, int r) {
+            return query(root, l, r);
+        }
+    };
+public:
+    long long maxTotalValue(vector&lt;int&gt;&amp; nums, int k) {
+        int n = nums.size();
+        SegTree seg(nums);
+        priority_queue&lt;Range, vector&lt;Range&gt;, Comp&gt; pq;
+        // Initially take ranges [i ... n-1]
+        for (int i = 0; i &lt; n; i++) {
+            auto cur = seg.query(i, n - 1);
+            pq.push(Range(i, n - 1,
+                          (long long)cur.second - cur.first));
+        }
+        long long ans = 0;
+        while (k--) {
+            auto cur = pq.top();
+            pq.pop();
+            ans += cur.diff;
+            int l = cur.l;
+            int r = cur.r - 1;
+            // Shrink current range from the right
+            if (l &lt;= r) {
+                auto nxt = seg.query(l, r);
+                pq.push(
+                    Range(l, r, (long long)nxt.second - nxt.first));
+            }
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
