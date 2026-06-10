@@ -2656,6 +2656,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3691,
+            "title": "Maximum Total Subarray Value II",
+            "route": "/3691",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums and an integer k. You can perform up to k operations on subarrays. In each operation, you can select a subarray and add the difference between its maximum and mi...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3713,
             "title": "Longest Balanced Substring I",
             "route": "/3713",
@@ -2774,5 +2783,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-09"
+    "lastUpdated": "2026-06-10"
 }
