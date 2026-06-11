@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3558: Number of Ways to Assign Edge Weights I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3558: Number of Ways to Assign Edge Weights I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a tree with n nodes (rooted at node 1) represented by an edge list. You need to assign
+                weights (either 1 or 2) to each edge such that certain parity constraints are satisfied. Count the
+                number of valid ways to assign edge weights.
+            </p>
+            <p><strong>Example:</strong>
+                Input: edges = [[1,2],[1,3],[2,4]]<br>
+                Output: some count representing valid weight assignments<br>
+                Explanation: For each edge, assign weight 1 or 2. Count assignments that satisfy all constraints.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    const int MOD = 1e9 + 7;
+    int solve(int idx, int oddParity, int depth,
+              vector&lt;vector&lt;int&gt;&gt;&amp; memo) {
+        if (idx == depth)
+            return memo[idx][oddParity] = 1 - oddParity;
+        if (memo[idx][oddParity] != -1)
+            return memo[idx][oddParity];
+        long long ways = 0;
+        // Weight 1 flips parity
+        ways += solve(idx + 1, 1 - oddParity, depth, memo);
+        // Weight 2 keeps parity unchanged
+        ways += solve(idx + 1, oddParity, depth, memo);
+        return memo[idx][oddParity] = ways % MOD;
+    }
+    int assignEdgeWeights(vector&lt;vector&lt;int&gt;&gt;&amp; edges) {
+        int nodes = edges.size() + 1;
+        vector&lt;vector&lt;int&gt;&gt; graph(nodes + 1);
+        for (auto&amp; edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            graph[u].push_back(v);
+            graph[v].push_back(u);
+        }
+        vector&lt;int&gt; seen(nodes + 1, 0);
+        queue&lt;int&gt; q;
+        q.push(1);
+        seen[1] = 1;
+        int depth = 0;
+        while (!q.empty()) {
+            int sz = q.size();
+            // Process one BFS level at a time
+            while (sz--) {
+                int cur = q.front();
+                q.pop();
+                for (int nxt : graph[cur]) {
+                    if (!seen[nxt]) {
+                        seen[nxt] = 1;
+                        q.push(nxt);
+                    }
+                }
+            }
+            depth++;
+        }
+        depth--;
+        vector&lt;vector&lt;int&gt;&gt; memo(depth + 1, vector&lt;int&gt;(2, -1));
+        long long ways = 0;
+        ways += solve(0, 0, depth - 1, memo);
+        ways += solve(0, 1, depth - 1, memo);
+        return ways % MOD;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
