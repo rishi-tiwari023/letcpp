@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3559: Number of Ways to Assign Edge Weights II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3559: Number of Ways to Assign Edge Weights II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a tree with n nodes and a list of queries. For each query asking about the path between
+                two nodes, determine the number of ways to assign weights (1 or 2) to edges on that path such that
+                certain constraints are satisfied. The number of valid assignments depends on the path length.
+            </p>
+            <p><strong>Example:</strong>
+                Input: edges = [[1,2],[1,3],[2,4]], queries = [[2,4],[1,3]]<br>
+                Output: valid assignment counts for each query<br>
+                Explanation: For each query, find the path between nodes and count valid weight assignments based on
+                path length.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    static const int MOD = 1000000007;
+    vector&lt;int&gt; dep;
+    vector&lt;vector&lt;int&gt;&gt; lift;
+    vector&lt;vector&lt;int&gt;&gt; adj;
+    int lg;
+    void dfs(int u, int p) {
+        lift[u][0] = p;
+        for (int j = 1; j &lt; lg; j++) {
+            lift[u][j] = lift[lift[u][j - 1]][j - 1];
+        }
+        for (int v : adj[u]) {
+            if (v == p) continue;
+            dep[v] = dep[u] + 1;
+            dfs(v, u);
+        }
+    }
+    int getLca(int u, int v) {
+        if (dep[u] &lt; dep[v]) swap(u, v);
+        int diff = dep[u] - dep[v];
+        for (int j = lg - 1; j &gt;= 0; j--) {
+            if ((diff &gt;&gt; j) &amp; 1) {
+                u = lift[u][j];
+            }
+        }
+        if (u == v) return u;
+        for (int j = lg - 1; j &gt;= 0; j--) {
+            if (lift[u][j] != lift[v][j]) {
+                u = lift[u][j];
+                v = lift[v][j];
+            }
+        }
+        return lift[u][0];
+    }
+    vector&lt;int&gt; assignEdgeWeights(vector&lt;vector&lt;int&gt;&gt;&amp; edges, vector&lt;vector&lt;int&gt;&gt;&amp; queries) {
+        int n = edges.size() + 1;
+        lg = 17;
+        while ((1 &lt;&lt; lg) &lt;= n) lg++;
+        adj.assign(n + 1, {});
+        for (auto &amp;e : edges) {
+            int u = e[0];
+            int v = e[1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        dep.assign(n + 1, 0);
+        lift.assign(n + 1, vector&lt;int&gt;(lg, 1));
+        dfs(1, 1);
+        vector&lt;int&gt; p2(n + 1, 1);
+        for (int i = 1; i &lt;= n; i++) {
+            p2[i] = (long long)p2[i - 1] * 2 % MOD;
+        }
+        vector&lt;int&gt; res;
+        for (auto &amp;q : queries) {
+            int u = q[0];
+            int v = q[1];
+            int lca = getLca(u, v);
+            int dist = dep[u] + dep[v] - 2 * dep[lca];
+            // Path length determines the number of valid assignments
+            if (dist == 0) {
+                res.push_back(0);
+            } else {
+                res.push_back(p2[dist - 1]);
+            }
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
