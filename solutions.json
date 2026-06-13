@@ -2773,6 +2773,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3838,
+            "title": "Weighted Word Mapping",
+            "route": "/3838",
+            "difficulty": "Medium",
+            "description": "You are given a list of words and a weight array where weights[i] represents the weight of character ('a' + i). For each word, calculate the sum of weights of all characters in that word. Map this ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3883,
             "title": "Mirror Distance of an Integer",
             "route": "/3883",
@@ -2801,5 +2810,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-12"
+    "lastUpdated": "2026-06-13"
 }
