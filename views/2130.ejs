@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2130: Maximum Twin Sum of a Linked List
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2130: Maximum Twin Sum of a Linked List (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                A twin sum of a linked list is the sum of values at the i-th node and the (n-1-i)-th node (where n is
+                the length of the list). In other words, a twin sum is the sum of a node at position i and the node at
+                position (length - 1 - i). Find the maximum twin sum of the list.
+            </p>
+            <p><strong>Example:</strong>
+                Input: head = [5,4,2,1]<br>
+                Output: 6<br>
+                Explanation: Twin sums are: 5+1=6, 4+2=6. The maximum is 6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int pairSum(ListNode* head) {
+        ListNode* mid = head;
+        ListNode* runner = head;
+        // Locate the middle of the list
+        while (runner &amp;&amp; runner-&gt;next) {
+            mid = mid-&gt;next;
+            runner = runner-&gt;next-&gt;next;
+        }
+        ListNode* revHead = nullptr;
+        // Reverse the second half in-place
+        while (mid) {
+            ListNode* nxt = mid-&gt;next;
+            mid-&gt;next = revHead;
+            revHead = mid;
+            mid = nxt;
+        }
+        int maxSum = 0;
+        ListNode* left = head;
+        ListNode* right = revHead;
+        while (right) {
+            maxSum = max(maxSum, left-&gt;val + right-&gt;val);
+            left = left-&gt;next;
+            right = right-&gt;next;
+        }
+        return maxSum;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
