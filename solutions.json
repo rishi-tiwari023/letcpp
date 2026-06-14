@@ -1306,6 +1306,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2130,
+            "title": "Maximum Twin Sum of a Linked List",
+            "route": "/2130",
+            "difficulty": "Medium",
+            "description": "A twin sum of a linked list is the sum of values at the i-th node and the (n-1-i)-th node (where n is the length of the list). In other words, a twin sum is the sum of a node at position i and the ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2141,
             "title": "Maximum Running Time of N Computers",
             "route": "/2141",
@@ -2810,5 +2819,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-13"
+    "lastUpdated": "2026-06-14"
 }
