@@ -1279,6 +1279,15 @@
             "spaceComplexity": "O(n + m)"
         },
         {
+            "id": 2095,
+            "title": "Delete the Middle Node of a Linked List",
+            "route": "/2095",
+            "difficulty": "Medium",
+            "description": "You are given the head of a linked list. Delete the middle node of the linked list and return the head of the modified list. The middle node of a linked list of length n is the node at position flo...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2110,
             "title": "Number of Smooth Descent Periods of a Stock",
             "route": "/2110",
@@ -2819,5 +2828,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-14"
+    "lastUpdated": "2026-06-15"
 }
