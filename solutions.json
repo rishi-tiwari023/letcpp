@@ -2530,6 +2530,15 @@
             "spaceComplexity": "O(n + m)"
         },
         {
+            "id": 3612,
+            "title": "Process String with Special Operations I",
+            "route": "/3612",
+            "difficulty": "Medium",
+            "description": "You are given a string s containing lowercase letters and special characters. Process the string according to the following rules: lowercase letters are added to the result, '*' removes the last ch...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3623,
             "title": "Count Number of Trapezoids I",
             "route": "/3623",
@@ -2828,5 +2837,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-15"
+    "lastUpdated": "2026-06-16"
 }
