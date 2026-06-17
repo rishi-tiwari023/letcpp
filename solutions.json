@@ -2539,6 +2539,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3614,
+            "title": "Process String with Special Operations II",
+            "route": "/3614",
+            "difficulty": "Medium",
+            "description": "You are given a string s and a long long index idx. The string contains lowercase letters and special characters: '*' removes the last character, '#' doubles the string, '%' reverses the string. Wi...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3623,
             "title": "Count Number of Trapezoids I",
             "route": "/3623",
@@ -2837,5 +2846,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-16"
+    "lastUpdated": "2026-06-17"
 }
