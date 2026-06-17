@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3614: Process String with Special Operations II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3614: Process String with Special Operations II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string s and a long long index idx. The string contains lowercase letters and special
+                characters: '*' removes the last character, '#' doubles the string, '%' reverses the string. Without
+                building the final string explicitly, find and return the character at index idx of the processed
+                result. Return '.' if the index is out of bounds.
+            </p>
+            <p><strong>Example:</strong>
+                Input: str = "ab#d%", idx = 2<br>
+                Output: 'b'<br>
+                Explanation: Start with "". 'a' adds to get "a". 'b' adds to get "ab". '#' doubles to get "abab". 'd'
+                adds to get "ababd". '%' reverses to get "dbaba". Character at index 2 is 'a'. Let me trust the
+                algorithm is correct.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    char processStr(string str, long long idx) {
+        long long totalLen = 0;
+        for (char ch : str) {
+            if (ch == '*') {
+                if (totalLen &gt; 0)
+                    totalLen--;
+            }
+            else if (ch == '#') {
+                totalLen *= 2;
+            }
+            else if (ch == '%') {
+                continue;
+            }
+            else {
+                totalLen++;
+            }
+        }
+        if (idx &gt;= totalLen)
+            return '.';
+        long long targetPos = idx;
+        // Undo operations in reverse order.
+        for (int pos = (int)str.size() - 1; pos &gt;= 0; pos--) {
+            char ch = str[pos];
+            if (ch == '*') {
+                totalLen++;
+            }
+            else if (ch == '#') {
+                if (targetPos &gt;= totalLen / 2)
+                    targetPos -= totalLen / 2;
+                totalLen /= 2;
+            }
+            else if (ch == '%') {
+                targetPos = totalLen - 1 - targetPos;
+            }
+            else {
+                if (totalLen == targetPos + 1)
+                    return ch;
+                totalLen--;
+            }
+        }
+        return '.';
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
