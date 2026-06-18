@@ -658,6 +658,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1344,
+            "title": "Angle Between Hands of a Clock",
+            "route": "/1344",
+            "difficulty": "Medium",
+            "description": "Given two numbers, hour and minutes, return the smaller angle (in degrees) formed between the hour and the minute hand of a clock. Answers within 10^-5 of the actual value will be accepted.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1345,
             "title": "Jump Game IV",
             "route": "/1345",
@@ -2846,5 +2855,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-17"
+    "lastUpdated": "2026-06-18"
 }
