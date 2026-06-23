@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3699: Number of ZigZag Arrays I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3699: Number of ZigZag Arrays I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given three integers n, l, and r. Count the number of zigzag arrays of length n where each
+                element is in the range [l, r]. A zigzag array alternates between strictly increasing and strictly
+                decreasing consecutive elements. Return the count modulo 10^9 + 7.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 2, l = 1, r = 3<br>
+                Output: 12<br>
+                Explanation: For length-2 arrays from [1,3], zigzag means arr[0] != arr[1]. Valid pairs include
+                (1,2),(1,3),(2,1),(2,3),(3,1),(3,2) — 6 pairs where first &lt; second, and 6 pairs where first &gt;
+                second, giving 12 total.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int zigZagArrays(int n, int l, int r) {
+        const int MOD = 1e9 + 7;
+        int range = r - l;
+        vector&lt;int&gt; ways(range + 1, 1);
+        for (int pos = 1; pos &lt; n; pos++) {
+            int running = 0, nextRunning;
+            // Alternate between prefix and suffix accumulation.
+            if (pos &amp; 1) {
+                for (int val = 0; val &lt;= range; val++) {
+                    nextRunning = running + ways[val];
+                    ways[val] = running;
+                    running = nextRunning % MOD;
+                }
+            } else {
+                for (int val = range; val &gt;= 0; val--) {
+                    nextRunning = running + ways[val];
+                    ways[val] = running;
+                    running = nextRunning % MOD;
+                }
+            }
+        }
+        int answer = 0;
+        for (int cnt : ways) {
+            answer = (answer + cnt) % MOD;
+        }
+        return (answer * 2LL) % MOD;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
