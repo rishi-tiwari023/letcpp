@@ -2764,6 +2764,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3699,
+            "title": "Number of ZigZag Arrays I",
+            "route": "/3699",
+            "difficulty": "Medium",
+            "description": "You are given three integers n, l, and r. Count the number of zigzag arrays of length n where each element is in the range [l, r]. A zigzag array alternates between strictly increasing and strictly...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3713,
             "title": "Longest Balanced Substring I",
             "route": "/3713",
@@ -2891,5 +2900,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-22"
+    "lastUpdated": "2026-06-23"
 }
