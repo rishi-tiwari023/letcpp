@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3737: Count Subarrays With Majority Element I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3737: Count Subarrays With Majority Element I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums and an integer target. Return the number of subarrays where target
+                is the majority element. A majority element of a subarray is an element that appears more than half the
+                length of the subarray.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,1,1,2], target = 1<br>
+                Output: 9<br>
+                Explanation: Count all subarrays where 1 appears more than half the time. Single elements [1] count (3
+                of them), and several larger subarrays also qualify, giving a total of 9.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">constexpr int MAXN = 2002;
+int freq[MAXN], offset;
+class Solution {
+public:
+    static int countMajoritySubarrays(vector&lt;int&gt;&amp; nums, int target) {
+        offset = nums.size() + 1;
+        int balance = offset;
+        memset(freq, 0, (2 * offset) * sizeof(int));
+        freq[balance] = 1;
+        int answer = 0, running = 0;
+        for (int value : nums) {
+            bool match = (value == target);
+            // Update contribution based on current balance.
+            running += (-match &amp; freq[balance]) - (-!match &amp; freq[balance - 1]);
+            balance += (match &lt;&lt; 1) - 1;
+            freq[balance]++;
+            answer += running;
+        }
+        return answer;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
