@@ -2818,6 +2818,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3737,
+            "title": "Count Subarrays With Majority Element I",
+            "route": "/3737",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums and an integer target. Return the number of subarrays where target is the majority element. A majority element of a subarray is an element that appears more than...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3740,
             "title": "Minimum Distance Between Three Equal Elements I",
             "route": "/3740",
@@ -2909,5 +2918,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-24"
+    "lastUpdated": "2026-06-25"
 }
