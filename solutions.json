@@ -1864,6 +1864,15 @@
             "spaceComplexity": "O(k)"
         },
         {
+            "id": 3020,
+            "title": "Find the Maximum Number of Elements in Subset",
+            "route": "/3020",
+            "difficulty": "Medium",
+            "description": "You are given an array nums of positive integers. You need to find the maximum length of a subset where elements can be arranged as [x, x^2, x^4, ..., x^(2^k), ..., x^4, x^2, x] — a palindrome-like...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3021,
             "title": "Alice and Bob Playing Flower Game",
             "route": "/3021",
@@ -2927,5 +2936,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-26"
+    "lastUpdated": "2026-06-27"
 }
