@@ -1356,7 +1356,7 @@
             "route": "/2126",
             "difficulty": "Medium",
             "description": "You are given an integer mass representing the mass of a planet and an array asteroids where asteroids[i] is the mass of an asteroid. You can destroy an asteroid if your current mass is greater tha...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -1381,9 +1381,9 @@
             "id": 2144,
             "title": "Minimum Cost of Buying Candies With Discount",
             "route": "/2144",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "A shop is selling candies under the following offer: Buy two candies and get the third one with a discount equal to the lowest price among the three. You are given an integer array cost where cost[...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n log n)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -1429,7 +1429,7 @@
             "difficulty": "Medium",
             "description": "You are given a 2D integer array descriptions where descriptions[i] = [parent, child, isLeft] indicates that parent has a child node with value child, and the child is either a left child (if isLef...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 2197,
@@ -1642,10 +1642,10 @@
             "id": 2574,
             "title": "Left and Right Sum Differences",
             "route": "/2574",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given a 0-indexed integer array arr, compute an array result where result[i] is the absolute difference between the sum of elements to the left of index i in arr and the sum of elements to the righ...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 2598,
@@ -1948,10 +1948,10 @@
             "id": 3093,
             "title": "Longest Common Suffix Queries",
             "route": "/3093",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given two arrays wordsContainer and wordsQuery. For each query word, find the index of the word in wordsContainer that has the longest common suffix with the query word. If multiple words h...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(N + M)",
+            "spaceComplexity": "O(N)"
         },
         {
             "id": 3100,
@@ -2011,10 +2011,10 @@
             "id": 3161,
             "title": "Block Placement Queries",
             "route": "/3161",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given an infinite number line starting at 0 and extending towards the positive x-axis. You need to process a sequence of queries, which are of two types:",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(q log q)",
+            "spaceComplexity": "O(q)"
         },
         {
             "id": 3186,
@@ -2128,7 +2128,7 @@
             "id": 3300,
             "title": "Minimum Element After Replacement With Digit Sum",
             "route": "/3300",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "You are given an integer array nums. You can replace each element of the array with the sum of its digits. Perform this operation until all elements in the array are single digits. Return the minim...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -2634,8 +2634,8 @@
             "route": "/3633",
             "difficulty": "Medium",
             "description": "You want to take two rides: one on land and one on water. For each ride, you can choose from different options. Each ride option has a start time and a duration. You must take both rides and can st...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3634,
@@ -2650,10 +2650,10 @@
             "id": 3635,
             "title": "Earliest Finish Time for Land and Water Rides II",
             "route": "/3635",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You want to take two rides: one on land and one on water. For each ride, you can choose from different options. Each ride option has a start time and a duration. You must take both rides sequential...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3637,
@@ -2877,17 +2877,17 @@
             "route": "/3751",
             "difficulty": "Medium",
             "description": "An integer is called wavy if, for every adjacent pair of digits, they are either all alternately greater and less than each other. Given two numbers num1 and num2, return the sum of the count of wa...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(log N)",
+            "spaceComplexity": "O(log N)"
         },
         {
             "id": 3753,
             "title": "Total Waviness of Numbers in Range II",
             "route": "/3753",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "A number is wavy if for every adjacent pair of digits, the direction alternates (either up-down-up or down-up-down pattern). Given a range [num1, num2], calculate the total waviness of all numbers ...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(log N)",
+            "spaceComplexity": "O(log N)"
         },
         {
             "id": 3761,
