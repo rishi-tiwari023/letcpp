@@ -268,6 +268,16 @@ if (missingFiles.length > 0) {
 
 Run with: `node search.js`
 
+## 🔄 Syncing Solutions Metadata
+
+To automatically sync and validate solution metadata (like missing difficulties or complexities) across the repository, use the included sync script:
+
+```bash
+node scripts/sync-solutions.js
+```
+
+This ensures `solutions.json` correctly reflects all the solutions available in the `views/` directory.
+
 ---
 
 **LetCpp** - Making LeetCode solutions accessible and beautiful! 🚀
