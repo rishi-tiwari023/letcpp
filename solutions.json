@@ -33,7 +33,7 @@
             "route": "/33",
             "difficulty": "Medium",
             "description": "There is an integer array nums sorted in ascending order (with distinct values), then rotated at an unknown pivot index. Given the rotated array and a target value, return the index of the target i...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(log n)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -619,7 +619,7 @@
             "difficulty": "Medium",
             "description": "Given an array arr of non-negative integers and a starting index, you are at position start. At each step, you can jump to any position i where arr[start] + start = i or start - arr[start] = i. Det...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 1317,
@@ -661,10 +661,10 @@
             "id": 1340,
             "title": "Jump Game V",
             "route": "/1340",
-            "difficulty": "Medium",
-            "description": "Given an array arr of positive integers and an integer d, you are initially at index 0 and can make a jump to any index i where i + 1 &lt;= i + d and arr[i] &lt; arr[current]. Find the maximum numb...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "difficulty": "Hard",
+            "description": "Given an array arr of positive integers and an integer d, you are initially at index 0 and can make a jump to any index i where i + 1 <= i + d and arr[i] < arr[current]. Find the maximum numb...",
+            "timeComplexity": "O(n d)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 1344,
@@ -679,10 +679,10 @@
             "id": 1345,
             "title": "Jump Game IV",
             "route": "/1345",
-            "difficulty": "Medium",
-            "description": "Given an array arr of integers, you are initially positioned at index 0. In each step, you can jump to any index i where: i + 1 &lt;= i &lt;= i - 1, or any index j such that arr[i] == arr[j]. Find ...",
+            "difficulty": "Hard",
+            "description": "Given an array arr of integers, you are initially positioned at index 0. In each step, you can jump to any index i where: i + 1 <= i <= i - 1, or any index j such that arr[i] == arr[j]. Find ...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 1351,
@@ -1030,7 +1030,7 @@
             "id": 1752,
             "title": "Check if Array Is Sorted and Rotated",
             "route": "/1752",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given an array arr, return true if the array was originally sorted in non-decreasing order, then rotated some number of times (possibly zero). Otherwise, return false.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -1112,9 +1112,9 @@
             "title": "Jump Game VII",
             "route": "/1871",
             "difficulty": "Medium",
-            "description": "You are given a binary string s and two integers minJump and maxJump. In one move, you can jump from index i to any index j such that i + minJump &lt;= j &lt;= i + maxJump and s[j] = '0'. Find if y...",
+            "description": "You are given a binary string s and two integers minJump and maxJump. In one move, you can jump from index i to any index j such that i + minJump <= j <= i + maxJump and s[j] = '0'. Find if y...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 1877,
@@ -1606,9 +1606,9 @@
             "id": 2540,
             "title": "Minimum Common Value",
             "route": "/2540",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given two integer arrays arr1 and arr2, both sorted in ascending order, return the smallest integer that appears in both arrays. If no such integer exists, return -1.",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(n + m)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -1627,7 +1627,7 @@
             "difficulty": "Medium",
             "description": "You are given two 0-indexed integer permutations a and b of length n. A prefix common array is an array c where c[i] is the count of numbers that are common in a[0..i] and b[0..i]. Return the prefi...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 2573,
@@ -1905,8 +1905,8 @@
             "route": "/3043",
             "difficulty": "Medium",
             "description": "You are given two arrays nums1 and nums2 of positive integers. A common prefix of two numbers is a common digit sequence at the start of their decimal representations. For example, 123 and 1234 hav...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(M + N)",
+            "spaceComplexity": "O(M + N)"
         },
         {
             "id": 3047,
@@ -1966,7 +1966,7 @@
             "id": 3120,
             "title": "Count the Number of Special Characters I",
             "route": "/3120",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "You are given a string s. A character is considered \"special\" if it appears in the string in both lowercase and uppercase forms. Return the count of special characters in the string.",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
