@@ -553,7 +553,7 @@
             "id": 1189,
             "title": "Maximum Number of Balloons",
             "route": "/1189",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "Given a string text, you want to use the characters of text to form as many instances of the word \"balloon\" as possible. You can use each character in text at most once. Return the maximum number o...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -672,7 +672,7 @@
             "route": "/1344",
             "difficulty": "Medium",
             "description": "Given two numbers, hour and minutes, return the smaller angle (in degrees) formed between the hour and the minute hand of a clock. Answers within 10^-5 of the actual value will be accepted.",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -1012,7 +1012,7 @@
             "id": 1732,
             "title": "Find the Highest Altitude",
             "route": "/1732",
-            "difficulty": "Medium",
+            "difficulty": "Easy",
             "description": "A biker is going on a road trip. The trip consists of n + 1 points at different altitudes. The biker starts at point 0 with altitude 0. You are given an integer array gain where gain[i] is the net ...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -1068,16 +1068,16 @@
             "route": "/1833",
             "difficulty": "Medium",
             "description": "You are given an array prices where prices[i] is the price of the i-th ice cream bar. You have a budget coins. Return the maximum number of ice cream bars you can buy with your budget. Note that yo...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n + m)",
+            "spaceComplexity": "O(m)"
         },
         {
             "id": 1840,
             "title": "Maximum Building Height",
             "route": "/1840",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You want to build n buildings in a line. The height of the i-th building must be a non-negative integer, and building 1 must have height 0. The height difference between adjacent buildings must be ...",
-            "timeComplexity": "O(n)",
+            "timeComplexity": "O(m log m)",
             "spaceComplexity": "O(1)"
         },
         {
@@ -1870,7 +1870,7 @@
             "difficulty": "Medium",
             "description": "You are given an array nums of positive integers. You need to find the maximum length of a subset where elements can be arranged as [x, x^2, x^4, ..., x^(2^k), ..., x^4, x^2, x] — a palindrome-like...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3021,
@@ -2776,19 +2776,19 @@
             "id": 3699,
             "title": "Number of ZigZag Arrays I",
             "route": "/3699",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given three integers n, l, and r. Count the number of zigzag arrays of length n where each element is in the range [l, r]. A zigzag array alternates between strictly increasing and strictly...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n * m)",
+            "spaceComplexity": "O(m)"
         },
         {
             "id": 3700,
             "title": "Number of ZigZag Arrays II",
             "route": "/3700",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given three integers n, l, and r. Count the number of zigzag arrays of length n where each element is in the range [l, r]. A zigzag array strictly alternates between increasing and decreasi...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(m^3 log n)",
+            "spaceComplexity": "O(m^2 log n)"
         },
         {
             "id": 3713,
@@ -2833,16 +2833,16 @@
             "difficulty": "Medium",
             "description": "You are given an integer array nums and an integer target. Return the number of subarrays where target is the majority element. A majority element of a subarray is an element that appears more than...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3739,
             "title": "Count Subarrays With Majority Element II",
             "route": "/3739",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given an integer array nums and an integer target. Return the number of subarrays where target is the majority element. A majority element of a subarray is an element that appears strictly ...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3740,
