@@ -1411,7 +1411,7 @@
             "difficulty": "Medium",
             "description": "You are given an integer array arr and an integer pivot. Rearrange the array such that every element smaller than pivot appears before every element greater than pivot, and every element equal to p...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 2169,
@@ -2490,17 +2490,17 @@
             "route": "/3558",
             "difficulty": "Medium",
             "description": "You are given a tree with n nodes (rooted at node 1) represented by an edge list. You need to assign weights (either 1 or 2) to each edge such that certain parity constraints are satisfied. Count t...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(V + E)",
+            "spaceComplexity": "O(V + E)"
         },
         {
             "id": 3559,
             "title": "Number of Ways to Assign Edge Weights II",
             "route": "/3559",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given a tree with n nodes and a list of queries. For each query asking about the path between two nodes, determine the number of ways to assign weights (1 or 2) to edges on that path such t...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(V log V + Q log V)",
+            "spaceComplexity": "O(V log V)"
         },
         {
             "id": 3562,
@@ -2590,16 +2590,16 @@
             "difficulty": "Medium",
             "description": "You are given a string s containing lowercase letters and special characters. Process the string according to the following rules: lowercase letters are added to the result, '*' removes the last ch...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3614,
             "title": "Process String with Special Operations II",
             "route": "/3614",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given a string s and a long long index idx. The string contains lowercase letters and special characters: '*' removes the last character, '#' doubles the string, '%' reverses the string. Wi...",
             "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3623,
@@ -2767,10 +2767,10 @@
             "id": 3691,
             "title": "Maximum Total Subarray Value II",
             "route": "/3691",
-            "difficulty": "Medium",
+            "difficulty": "Hard",
             "description": "You are given an integer array nums and an integer k. You can perform up to k operations on subarrays. In each operation, you can select a subarray and add the difference between its maximum and mi...",
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "timeComplexity": "O(n log n)",
+            "spaceComplexity": "O(n)"
         },
         {
             "id": 3699,
