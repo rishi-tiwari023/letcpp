@@ -1081,6 +1081,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1846,
+            "title": "Maximum Element After Decreasing and Rearranging",
+            "route": "/1846",
+            "difficulty": "Medium",
+            "description": "You are given an integer array arr. You can perform two operations: decrease any element to any positive integer, and rearrange elements in any order. The first element must be 1, and the absolute ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1848,
             "title": "Minimum Distance to the Target Element",
             "route": "/1848",
@@ -2936,5 +2945,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-27"
+    "lastUpdated": "2026-06-28"
 }
