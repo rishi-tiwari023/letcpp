@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1846: Maximum Element After Decreasing and Rearranging
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1846: Maximum Element After Decreasing and Rearranging (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array arr. You can perform two operations: decrease any element to any positive
+                integer, and rearrange elements in any order. The first element must be 1, and the absolute difference
+                between any two adjacent elements must be at most 1. Return the maximum possible value of the last
+                element.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [2,2,1,2,1]<br>
+                Output: 2<br>
+                Explanation: Sort to [1,1,2,2,2]. Arranged as [1,1,2,2,2], differences are all at most 1. The maximum
+                achievable last element is 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maximumElementAfterDecrementingAndRearranging(vector&lt;int&gt;&amp; nums) {
+        sort(nums.begin(), nums.end());
+        int currMax = 0;
+        // Extend the sequence whenever possible.
+        for (int val : nums) {
+            if (currMax + 1 &lt;= val) {
+                currMax++;
+            }
+        }
+        return currMax;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
