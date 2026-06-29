@@ -1216,6 +1216,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1967,
+            "title": "Number of Strings That Appear as Substrings in Word",
+            "route": "/1967",
+            "difficulty": "Medium",
+            "description": "Given an array of strings patterns and a string word, return the number of strings in patterns that appear as a substring of word.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1970,
             "title": "Last Day Where You Can Still Cross",
             "route": "/1970",
@@ -2945,5 +2954,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-28"
+    "lastUpdated": "2026-06-29"
 }
