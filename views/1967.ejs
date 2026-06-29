@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1967: Number of Strings That Appear as Substrings in Word
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1967: Number of Strings That Appear as Substrings in Word (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an array of strings patterns and a string word, return the number of strings in patterns that
+                appear as a substring of word.
+            </p>
+            <p><strong>Example:</strong>
+                Input: patterns = ["a","abc","bc","d"], word = "abc"<br>
+                Output: 3<br>
+                Explanation: "a" is a substring of "abc". "abc" is a substring of "abc". "bc" is a substring of "abc".
+                "d" is not a substring of "abc". So the answer is 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int numOfStrings(vector&lt;string&gt;&amp; patternList, string text) {
+        int matchCount = 0;
+        // Check each pattern independently.
+        for (string &amp;currPattern : patternList) {
+            if (text.find(currPattern) != string::npos) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
