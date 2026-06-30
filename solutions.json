@@ -703,6 +703,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1358,
+            "title": "Number of Substrings Containing All Three Characters",
+            "route": "/1358",
+            "difficulty": "Medium",
+            "description": "Given a string s consisting only of characters 'a', 'b', and 'c', return the number of substrings that contain at least one occurrence of all three characters a, b, and c.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1382,
             "title": "Balance a Binary Search Tree",
             "route": "/1382",
@@ -2954,5 +2963,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-29"
+    "lastUpdated": "2026-06-30"
 }
