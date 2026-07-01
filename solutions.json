@@ -1756,6 +1756,15 @@
             "spaceComplexity": "O(n^(1/x))"
         },
         {
+            "id": 2812,
+            "title": "Find the Safest Path in a Grid",
+            "route": "/2812",
+            "difficulty": "Medium",
+            "description": "You are given an n x n grid where each cell is either 0 (empty) or 1 (thief). The safeness factor of a path is the minimum Manhattan distance from any thief to any cell on the path. Find the maximu...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2833,
             "title": "Furthest Point From Origin",
             "route": "/2833",
@@ -2963,5 +2972,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-06-30"
+    "lastUpdated": "2026-07-01"
 }
