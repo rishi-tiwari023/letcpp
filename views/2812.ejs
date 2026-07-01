@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2812: Find the Safest Path in a Grid
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2812: Find the Safest Path in a Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an n x n grid where each cell is either 0 (empty) or 1 (thief). The safeness factor of a
+                path is the minimum Manhattan distance from any thief to any cell on the path. Find the maximum safeness
+                factor of all paths from the top-left cell to the bottom-right cell.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[0,0,1],[0,0,0],[0,0,0]]<br>
+                Output: 2<br>
+                Explanation: The path [0,0] → [1,0] → [2,0] → [2,1] → [2,2] has a minimum distance of 2 from any thief,
+                which is the maximum possible safeness factor.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">const int MAXN = 160000;
+int parent[MAXN], rankArr[MAXN];
+static int dir[5] = {0, 1, 0, -1, 0};
+class UnionFind {
+public:
+    UnionFind(int n) {
+        iota(parent, parent + n, 0);
+        memset(rankArr, 0, n * sizeof(int));
+    }
+    int Find(int x) {
+        return x == parent[x] ? x : parent[x] = Find(parent[x]);
+    }
+    bool Union(int a, int b) {
+        a = Find(a);
+        b = Find(b);
+        if (a == b) return false;
+        if (rankArr[a] &gt; rankArr[b])
+            swap(a, b);
+        parent[a] = b;
+        if (rankArr[a] == rankArr[b])
+            rankArr[b]++;
+        return true;
+    }
+    bool connected(int a, int b) {
+        return Find(a) == Find(b);
+    }
+};
+int head[800];
+int nextNode[MAXN];
+inline void addNode(int level, int idx) {
+    nextNode[idx] = head[level];
+    head[level] = idx;
+}
+using Cell = pair&lt;int, int&gt;;
+Cell bfsQueue[MAXN];
+int frontPtr, backPtr;
+class Solution {
+public:
+    static int id(int r, int c, int n) {
+        return r * n + c;
+    }
+    static int maximumSafenessFactor(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int n = grid.size();
+        if (grid[0][0] || grid[n - 1][n - 1])
+            return 0;
+        frontPtr = backPtr = 0;
+        for (int r = 0; r &lt; n; r++) {
+            for (int c = 0; c &lt; n; c++) {
+                if (grid[r][c] == 1) {
+                    grid[r][c] = 0;
+                    bfsQueue[backPtr++] = {r, c};
+                } else {
+                    grid[r][c] = -1;
+                }
+            }
+        }
+        memset(head, -1, 2 * n * sizeof(int));
+        memset(nextNode, -1, n * n * sizeof(int));
+        int dist = 0;
+        // Array-based BFS for better performance.
+        while (frontPtr &lt; backPtr) {
+            int sz = backPtr - frontPtr;
+            while (sz--) {
+                auto [r, c] = bfsQueue[frontPtr++];
+                for (int k = 0; k &lt; 4; k++) {
+                    int nr = r + dir[k];
+                    int nc = c + dir[k + 1];
+                    if (nr &lt; 0 || nr &gt;= n || nc &lt; 0 || nc &gt;= n ||
+                        grid[nr][nc] != -1)
+                        continue;
+                    grid[nr][nc] = dist + 1;
+                    bfsQueue[backPtr++] = {nr, nc};
+                    addNode(dist + 1, id(nr, nc, n));
+                }
+            }
+            dist++;
+        }
+        UnionFind uf(n * n);
+        for (int level = dist - 1; level &gt;= 0; level--) {
+            if (head[level] == -1)
+                continue;
+            for (int idx = head[level]; idx != -1; idx = nextNode[idx]) {
+                auto [r, c] = div(idx, n);
+                for (int k = 0; k &lt; 4; k++) {
+                    int nr = r + dir[k];
+                    int nc = c + dir[k + 1];
+                    if (nr &lt; 0 || nr &gt;= n || nc &lt; 0 || nc &gt;= n)
+                        continue;
+                    if (grid[nr][nc] &gt;= level)
+                        uf.Union(id(r, c, n), id(nr, nc, n));
+                }
+            }
+            if (uf.connected(0, n * n - 1))
+                return level;
+        }
+        return 0;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
