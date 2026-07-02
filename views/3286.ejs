@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3286: Find a Safe Walk Through a Grid
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3286: Find a Safe Walk Through a Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an m x n binary grid where 0 represents a safe cell and 1 represents an unsafe cell. You
+                start at the top-left cell with a given health value. Each unsafe cell you enter reduces your health by
+                1. You can move in four directions. Return true if you can reach the bottom-right cell with health
+                strictly greater than 0.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]], health = 1<br>
+                Output: true<br>
+                Explanation: Walk along the path avoiding unsafe cells: (0,0) → (1,0) → (2,0) → (2,1) → (2,2) → (2,3) →
+                (2,4). Health stays at 1 &gt; 0.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int dr[4] = {1, -1, 0, 0};
+    int dc[4] = {0, 0, 1, -1};
+    bool findSafeWalk(vector&lt;vector&lt;int&gt;&gt;&amp; grid, int health) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+        vector&lt;vector&lt;int&gt;&gt; best(rows, vector&lt;int&gt;(cols, -1));
+        queue&lt;pair&lt;int, pair&lt;int, int&gt;&gt;&gt; q;
+        int startHealth = health - grid[0][0];
+        if (startHealth &lt;= 0)
+            return false;
+        q.push({startHealth, {0, 0}});
+        best[0][0] = startHealth;
+        while (!q.empty()) {
+            auto [remaining, cell] = q.front();
+            q.pop();
+            int row = cell.first;
+            int col = cell.second;
+            if (row == rows - 1 &amp;&amp; col == cols - 1)
+                return true;
+            // Explore all four possible directions
+            for (int k = 0; k &lt; 4; k++) {
+                int newRow = row + dr[k];
+                int newCol = col + dc[k];
+                if (newRow &lt; 0 || newCol &lt; 0 || newRow &gt;= rows || newCol &gt;= cols)
+                    continue;
+                int nextHealth = remaining - grid[newRow][newCol];
+                // Skip if this path is not better
+                if (nextHealth &lt;= 0 || nextHealth &lt;= best[newRow][newCol])
+                    continue;
+                best[newRow][newCol] = nextHealth;
+                q.push({nextHealth, {newRow, newCol}});
+            }
+        }
+        return false;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
