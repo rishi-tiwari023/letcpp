@@ -2143,6 +2143,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3286,
+            "title": "Find a Safe Walk Through a Grid",
+            "route": "/3286",
+            "difficulty": "Medium",
+            "description": "You are given an m x n binary grid where 0 represents a safe cell and 1 represents an unsafe cell. You start at the top-left cell with a given health value. Each unsafe cell you enter reduces your ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3289,
             "title": "The Two Sneaky Numbers of Digitville",
             "route": "/3289",
@@ -2972,5 +2981,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-01"
+    "lastUpdated": "2026-07-02"
 }
