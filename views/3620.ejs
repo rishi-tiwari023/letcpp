@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3620: Network Recovery Pathways
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3620: Network Recovery Pathways (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a directed acyclic graph with weighted edges, a boolean array active indicating active
+                nodes, and a limit. Find the maximum minimum edge weight on any path from node 0 to the last node such
+                that the total path cost does not exceed the limit. Only active intermediate nodes can be used. Return
+                -1 if no valid path exists.
+            </p>
+            <p><strong>Example:</strong>
+                Input: connections = [[0,1,5],[1,2,3],[0,2,4]], active = [true,true,true], limit = 8<br>
+                Output: 4<br>
+                Explanation: Path 0→2 with weight 4 has total cost 4 which is within limit. Path 0→1→2 has minimum
+                weight 3. Maximum minimum weight with valid cost is 4.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long findMaxPathScore(vector&lt;vector&lt;int&gt;&gt;&amp; connections,
+                               vector&lt;bool&gt;&amp; active,
+                               long long limit) {
+        int nodes = active.size();
+        vector&lt;vector&lt;pair&lt;int, long long&gt;&gt;&gt; graph(nodes);
+        vector&lt;int&gt; inDegree(nodes, 0);
+        for (auto &amp;edge : connections) {
+            graph[edge[0]].push_back({edge[1], (long long)edge[2]});
+            inDegree[edge[1]]++;
+        }
+        // Build topological order for DAG traversal.
+        vector&lt;int&gt; order;
+        queue&lt;int&gt; que;
+        for (int i = 0; i &lt; nodes; i++) {
+            if (inDegree[i] == 0)
+                que.push(i);
+        }
+        while (!que.empty()) {
+            int curr = que.front();
+            que.pop();
+            order.push_back(curr);
+            for (auto &amp;[nextNode, weight] : graph[curr]) {
+                if (--inDegree[nextNode] == 0)
+                    que.push(nextNode);
+            }
+        }
+        vector&lt;long long&gt; weights;
+        for (auto &amp;edge : connections)
+            weights.push_back(edge[2]);
+        sort(weights.begin(), weights.end());
+        weights.erase(unique(weights.begin(), weights.end()), weights.end());
+        if (weights.empty())
+            return -1;
+        const long long INF = (long long)4e18;
+        auto canReach = [&amp;](long long minWeight) {
+            vector&lt;long long&gt; minCost(nodes, INF);
+            minCost[0] = 0;
+            // Relax edges in topological order.
+            for (int curr : order) {
+                if (minCost[curr] == INF)
+                    continue;
+                for (auto &amp;[nextNode, weight] : graph[curr]) {
+                    if (weight &lt; minWeight)
+                        continue;
+                    if (nextNode != nodes - 1 &amp;&amp; !active[nextNode])
+                        continue;
+                    minCost[nextNode] = min(minCost[nextNode], minCost[curr] + weight);
+                }
+            }
+            return minCost[nodes - 1] &lt;= limit;
+        };
+        long long answer = -1;
+        int left = 0, right = (int)weights.size() - 1;
+        while (left &lt;= right) {
+            int mid = left + (right - left) / 2;
+            if (canReach(weights[mid])) {
+                answer = weights[mid];
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return answer;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
