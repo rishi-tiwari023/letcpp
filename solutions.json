@@ -2647,6 +2647,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3620,
+            "title": "Network Recovery Pathways",
+            "route": "/3620",
+            "difficulty": "Medium",
+            "description": "You are given a directed acyclic graph with weighted edges, a boolean array active indicating active nodes, and a limit. Find the maximum minimum edge weight on any path from node 0 to the last nod...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3623,
             "title": "Count Number of Trapezoids I",
             "route": "/3623",
@@ -2981,5 +2990,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-02"
+    "lastUpdated": "2026-07-03"
 }
