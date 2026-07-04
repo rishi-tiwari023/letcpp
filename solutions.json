@@ -1603,6 +1603,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2492,
+            "title": "Minimum Score of a Path Between Two Cities",
+            "route": "/2492",
+            "difficulty": "Medium",
+            "description": "You are given n cities connected by roads. Each road has a distance. The score of a path between cities 1 and n is the minimum distance of any road on the path. A path can repeat roads and cities. ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2515,
             "title": "Shortest Distance to Target String in a Circular Array",
             "route": "/2515",
@@ -2990,5 +2999,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-03"
+    "lastUpdated": "2026-07-04"
 }
