@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2492: Minimum Score of a Path Between Two Cities
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2492: Minimum Score of a Path Between Two Cities (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given n cities connected by roads. Each road has a distance. The score of a path between cities
+                1 and n is the minimum distance of any road on the path. A path can repeat roads and cities. Return the
+                minimum possible score of any path between city 1 and city n.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 4, roads = [[1,2,9],[2,3,6],[2,4,5],[1,4,7]]<br>
+                Output: 5<br>
+                Explanation: Since cities 1 and 4 are in the same connected component, the minimum edge in the component
+                is 5. The path 1→2→4 uses edge with distance 5 which is the minimum.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    void dfs(vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; &amp;adj, int node,
+             vector&lt;bool&gt; &amp;vis, int &amp;ans) {
+        vis[node] = true;
+        for (auto &amp;edge : adj[node]) {
+            int nxt = edge.first;
+            int cost = edge.second;
+            ans = min(ans, cost);
+            // Visit every city in the connected component
+            if (!vis[nxt])
+                dfs(adj, nxt, vis, ans);
+        }
+    }
+    int minScore(int n, vector&lt;vector&lt;int&gt;&gt;&amp; roads) {
+        vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; adj(n + 1);
+        for (auto &amp;road : roads) {
+            adj[road[0]].push_back({road[1], road[2]});
+            adj[road[1]].push_back({road[0], road[2]});
+        }
+        vector&lt;bool&gt; vis(n + 1, false);
+        int ans = INT_MAX;
+        dfs(adj, 1, vis, ans);
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
