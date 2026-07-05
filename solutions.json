@@ -604,6 +604,15 @@
             "spaceComplexity": "O(m*n)"
         },
         {
+            "id": 1301,
+            "title": "Number of Paths with Max Score",
+            "route": "/1301",
+            "difficulty": "Medium",
+            "description": "You are given a square board where each cell contains a digit (0-9), 'S' (start at bottom-right), 'E' (end at top-left), or 'X' (obstacle). Moving only up, left, or diagonally up-left, find the max...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1304,
             "title": "Find N Unique Integers Sum up to Zero",
             "route": "/1304",
@@ -2999,5 +3008,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-04"
+    "lastUpdated": "2026-07-05"
 }
