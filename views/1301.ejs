@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1301: Number of Paths with Max Score
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1301: Number of Paths with Max Score (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a square board where each cell contains a digit (0-9), 'S' (start at bottom-right), 'E'
+                (end at top-left), or 'X' (obstacle). Moving only up, left, or diagonally up-left, find the maximum
+                score path from 'S' to 'E' and the number of such paths. Return both values modulo 10^9 + 7.
+            </p>
+            <p><strong>Example:</strong>
+                Input: board = ["E23","2X2","12S"]<br>
+                Output: [7,1]<br>
+                Explanation: The maximum score path from S to E scores 7, and there is exactly 1 such path achieving
+                this score.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int MOD = 1e9 + 7;
+    vector&lt;int&gt; pathsWithMaxScore(vector&lt;string&gt;&amp; board) {
+        int size = board.size();
+        board[0][0] = '0';
+        board[size - 1][size - 1] = '0';
+        if (size == 2 &amp;&amp; board[0][1] == 'X' &amp;&amp; board[1][0] == 'X') {
+            return {0, 1};
+        }
+        vector&lt;vector&lt;vector&lt;int&gt;&gt;&gt; dp(
+            size, vector&lt;vector&lt;int&gt;&gt;(size, vector&lt;int&gt;(2, 0)));
+        dp[0][0][1] = 1;
+        for (int row = 0; row &lt; size; row++) {
+            for (int col = 0; col &lt; size; col++) {
+                if (board[row][col] == 'X') continue;
+                int curr = board[row][col] - '0';
+                // Try extending the best path from all three previous cells.
+                if ((row - 1 == 0 &amp;&amp; col == 0) || (row &gt; 0 &amp;&amp; dp[row - 1][col][0] &gt; 0)) {
+                    int score = curr + dp[row - 1][col][0];
+                    dp[row][col][0] = score;
+                    dp[row][col][1] = dp[row - 1][col][1];
+                }
+                if ((row == 0 &amp;&amp; col - 1 == 0) || (col &gt; 0 &amp;&amp; dp[row][col - 1][0] &gt; 0)) {
+                    int score = curr + dp[row][col - 1][0];
+                    if (dp[row][col][0] &lt; score) {
+                        dp[row][col][0] = score;
+                        dp[row][col][1] = dp[row][col - 1][1];
+                    } else if (dp[row][col][0] == score) {
+                        dp[row][col][1] =
+                            (dp[row][col][1] + dp[row][col - 1][1]) % MOD;
+                    }
+                }
+                if ((row - 1 == 0 &amp;&amp; col - 1 == 0) ||
+                    (row &gt; 0 &amp;&amp; col &gt; 0 &amp;&amp; dp[row - 1][col - 1][0] &gt; 0)) {
+                    int score = curr + dp[row - 1][col - 1][0];
+                    if (dp[row][col][0] &lt; score) {
+                        dp[row][col][0] = score;
+                        dp[row][col][1] = dp[row - 1][col - 1][1];
+                    } else if (dp[row][col][0] == score) {
+                        dp[row][col][1] =
+                            (dp[row][col][1] + dp[row - 1][col - 1][1]) % MOD;
+                    }
+                }
+            }
+        }
+        // Destination was never reachable.
+        if (dp[size - 1][size - 1][0] == 0) return {0, 0};
+        return dp[size - 1][size - 1];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
