@@ -595,6 +595,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1288,
+            "title": "Remove Covered Intervals",
+            "route": "/1288",
+            "difficulty": "Medium",
+            "description": "Given an array of intervals where intervals[i] = [li, ri], remove all intervals that are covered by another interval in the list. An interval [a, b] is covered by interval [c, d] if c &lt;= a and b...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1292,
             "title": "Maximum Side Length of a Square with Sum Less than or Equal to Threshold",
             "route": "/1292",
@@ -3008,5 +3017,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-05"
+    "lastUpdated": "2026-07-06"
 }
