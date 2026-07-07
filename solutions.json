@@ -2971,6 +2971,15 @@
             "spaceComplexity": "O(log N)"
         },
         {
+            "id": 3754,
+            "title": "Concatenate Non-Zero Digits and Multiply by Sum I",
+            "route": "/3754",
+            "difficulty": "Medium",
+            "description": "Given a positive integer n, form a new number by concatenating all its non-zero digits in order. Then compute the sum of all digits of n (including zeros). Return the product of the concatenated nu...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3761,
             "title": "Minimum Absolute Distance Between Mirror Pairs",
             "route": "/3761",
@@ -3017,5 +3026,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-06"
+    "lastUpdated": "2026-07-07"
 }
