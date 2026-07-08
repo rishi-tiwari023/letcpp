@@ -2980,6 +2980,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3756,
+            "title": "Concatenate Non-Zero Digits and Multiply by Sum II",
+            "route": "/3756",
+            "difficulty": "Medium",
+            "description": "Given a numeric string str and a list of queries [left, right], for each query form the concatenated number of all non-zero digits in str[left..right] and multiply it by the digit sum of that subst...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3761,
             "title": "Minimum Absolute Distance Between Mirror Pairs",
             "route": "/3761",
@@ -3026,5 +3035,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-07"
+    "lastUpdated": "2026-07-08"
 }
