@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3756: Concatenate Non-Zero Digits and Multiply by Sum II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3756: Concatenate Non-Zero Digits and Multiply by Sum II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a numeric string str and a list of queries [left, right], for each query form the concatenated
+                number of all non-zero digits in str[left..right] and multiply it by the digit sum of that substring.
+                Return the results modulo 10^9 + 7 for each query.
+            </p>
+            <p><strong>Example:</strong>
+                Input: str = "1230", queries = [[0,3],[1,2]]<br>
+                Output: [result1, result2]<br>
+                Explanation: For [0,3]: non-zero digits of "1230" are 1,2,3 → number 123, digit sum = 1+2+3+0 = 6,
+                result = 123*6 = 738. For [1,2]: non-zero digits of "23" are 2,3 → number 23, digit sum = 2+3 = 5,
+                result = 23*5 = 115.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; sumAndMultiply(string str, vector&lt;vector&lt;int&gt;&gt;&amp; queries) {
+        const long long MOD = 1000000007LL;
+        int n = str.size();
+        vector&lt;long long&gt; digitPrefix(n);
+        vector&lt;long long&gt; valuePrefix(n);
+        vector&lt;int&gt; countPrefix(n);
+        vector&lt;long long&gt; power10(n + 1);
+        power10[0] = 1;
+        for (int i = 1; i &lt;= n; i++) {
+            power10[i] = power10[i - 1] * 10 % MOD;
+        }
+        digitPrefix[0] = str[0] - '0';
+        countPrefix[0] = (str[0] != '0');
+        valuePrefix[0] = str[0] - '0';
+        for (int i = 1; i &lt; n; i++) {
+            int digit = str[i] - '0';
+            digitPrefix[i] = (digitPrefix[i - 1] + digit) % MOD;
+            countPrefix[i] = countPrefix[i - 1] + (digit != 0);
+            if (digit) {
+                valuePrefix[i] = (valuePrefix[i - 1] * 10 + digit) % MOD;
+            } else {
+                valuePrefix[i] = valuePrefix[i - 1];
+            }
+        }
+        vector&lt;int&gt; answer;
+        for (auto&amp; query : queries) {
+            int left = query[0];
+            int right = query[1];
+            long long digitSum = digitPrefix[right];
+            if (left &gt; 0) {
+                digitSum = (digitSum - digitPrefix[left - 1] + MOD) % MOD;
+            }
+            int digits = countPrefix[right];
+            if (left &gt; 0) {
+                digits -= countPrefix[left - 1];
+            }
+            long long number = valuePrefix[right];
+            if (left &gt; 0) {
+                // Cut off the prefix before the query interval.
+                number = (number -
+                          valuePrefix[left - 1] * power10[digits] % MOD +
+                          MOD) %
+                         MOD;
+            }
+            answer.push_back(number * digitSum % MOD);
+        }
+        return answer;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
