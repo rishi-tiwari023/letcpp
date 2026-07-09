@@ -2512,6 +2512,15 @@
             "spaceComplexity": "O(N)"
         },
         {
+            "id": 3532,
+            "title": "Path Existence Queries in a Graph I",
+            "route": "/3532",
+            "difficulty": "Medium",
+            "description": "You are given n nodes with associated values and a limit. Two adjacent nodes i and i+1 are connected if |values[i] - values[i+1]| &lt;= limit. For each query [u, v], determine if there is a path be...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3539,
             "title": "Find the Maximum Length of a Good Subsequence XIV",
             "route": "/3539",
@@ -3035,5 +3044,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-08"
+    "lastUpdated": "2026-07-09"
 }
