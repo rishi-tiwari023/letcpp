@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3532: Path Existence Queries in a Graph I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3532: Path Existence Queries in a Graph I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given n nodes with associated values and a limit. Two adjacent nodes i and i+1 are connected if
+                |values[i] - values[i+1]| &lt;= limit. For each query [u, v], determine if there is a path between nodes
+                u and v. Return a boolean array of results.
+            </p>
+            <p><strong>Example:</strong>
+                Input: size = 5, values = [1,2,3,5,6], limit = 1, requests = [[0,2],[1,4]]<br>
+                Output: [true, false]<br>
+                Explanation: Nodes 0,1,2 are in the same component (diffs are 1). Node 3 starts a new component since
+                5-3=2 &gt; 1. Nodes 3,4 are connected (diff=1). So [0,2] are connected (true), but [1,4] are not
+                (false).
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;bool&gt; pathExistenceQueries(int size, vector&lt;int&gt;&amp; values, int limit, vector&lt;vector&lt;int&gt;&gt;&amp; requests) {
+        vector&lt;int&gt; group(size);
+        int groupId = 0;
+        group[0] = 0;
+        // Start a new component whenever the allowed difference is exceeded.
+        for (int idx = 1; idx &lt; size; idx++) {
+            if (values[idx] - values[idx - 1] &gt; limit)
+                groupId++;
+            group[idx] = groupId;
+        }
+        vector&lt;bool&gt; result;
+        result.reserve(requests.size());
+        // Two indices are connected if they belong to the same component.
+        for (const auto &amp;query : requests)
+            result.push_back(group[query[0]] == group[query[1]]);
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
