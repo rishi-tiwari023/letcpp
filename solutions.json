@@ -2521,6 +2521,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3534,
+            "title": "Path Existence Queries in a Graph II",
+            "route": "/3534",
+            "difficulty": "Medium",
+            "description": "You are given n nodes with values and a maximum allowed difference maxDiff. Two nodes u and v are connected if they can be linked by a chain of nodes where each adjacent pair differs by at most max...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3539,
             "title": "Find the Maximum Length of a Good Subsequence XIV",
             "route": "/3539",
@@ -3044,5 +3053,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-09"
+    "lastUpdated": "2026-07-10"
 }
