@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3534: Path Existence Queries in a Graph II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3534: Path Existence Queries in a Graph II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given n nodes with values and a maximum allowed difference maxDiff. Two nodes u and v are
+                connected if they can be linked by a chain of nodes where each adjacent pair differs by at most maxDiff.
+                For each query [u, v], return the minimum number of jumps required to connect the two nodes, or -1 if no
+                such path exists.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 5, nums = [5,2,3,8,6], maxDiff = 3, queries = [[0,2],[1,4]]<br>
+                Output: [1,2]<br>
+                Explanation: After sorting values with original positions, we can jump through values within maxDiff
+                ranges. Query [0,2] needs 1 jump, and query [1,4] needs 2 jumps.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    inline static int jump[100001][18] = {0};
+
+    vector&lt;int&gt; pathExistenceQueries(int n, vector&lt;int&gt;&amp; nums, int maxDiff, vector&lt;vector&lt;int&gt;&gt;&amp; queries) {
+        vector&lt;pair&lt;int, int&gt;&gt; arr(n);
+        for (int i = 0; i &lt; n; i++)
+            arr[i] = {nums[i], i};
+        sort(arr.begin(), arr.end());
+
+        vector&lt;int&gt; pos(n);
+        for (int i = 0; i &lt; n; i++)
+            pos[arr[i].second] = i;
+
+        int far = 0;
+        for (int i = 0; i &lt; n; i++) {
+            far = max(far, i);
+            while (far + 1 &lt; n && arr[far + 1].first - arr[i].first &lt;= maxDiff)
+                far++;
+            jump[i][0] = far;
+        }
+
+        for (int k = 1; k &lt; 18; k++)
+            for (int i = 0; i &lt; n; i++)
+                jump[i][k] = jump[jump[i][k - 1]][k - 1];
+
+        vector&lt;int&gt; ans(queries.size(), -1);
+        for (int i = 0; i &lt; queries.size(); i++) {
+            int left = pos[queries[i][0]];
+            int right = pos[queries[i][1]];
+            if (left &gt; right)
+                swap(left, right);
+            if (left == right) {
+                ans[i] = 0;
+                continue;
+            }
+
+            int node = left, cnt = 0;
+            for (int k = 17; k &gt;= 0; k--) {
+                if (jump[node][k] &lt; right) {
+                    node = jump[node][k];
+                    cnt += (1 &lt;&lt; k);
+                }
+            }
+            if (jump[node][0] &gt;= right)
+                ans[i] = cnt + 1;
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">? Back to Home</a>
+    </main>
+</body>
+
+</html>
