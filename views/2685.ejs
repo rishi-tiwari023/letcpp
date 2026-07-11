@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2685: Count the Number of Complete Components
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2685: Count the Number of Complete Components (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer n representing the number of vertices and a list of edges in an undirected graph. A connected component is complete if every pair of vertices in it is connected by an edge. Return the number of complete connected components.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 6, edges = [[0,1],[0,2],[1,2],[3,4]]<br>
+                Output: 3<br>
+                Explanation: Component {0,1,2} has 3 nodes and 3 edges = 3*(3-1)/2, so it is complete. Component {3,4} has 2 nodes and 1 edge = 2*(2-1)/2, so it is complete. Node {5} is isolated and trivially complete. Total: 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    void explore(int curr, vector&lt;vector&lt;int&gt;&gt;&amp; graph, vector&lt;bool&gt;&amp; seen,
+                 int&amp; nodeCnt, int&amp; edgeCnt) {
+        seen[curr] = true;
+        nodeCnt++;
+        edgeCnt += graph[curr].size();
+        // Count all nodes and incident edges in this component.
+        for (int next : graph[curr]) {
+            if (!seen[next]) {
+                explore(next, graph, seen, nodeCnt, edgeCnt);
+            }
+        }
+    }
+    int countCompleteComponents(int n, vector&lt;vector&lt;int&gt;&gt;&amp; edges) {
+        vector&lt;vector&lt;int&gt;&gt; graph(n);
+        for (auto&amp; e : edges) {
+            graph[e[0]].push_back(e[1]);
+            graph[e[1]].push_back(e[0]);
+        }
+        vector&lt;bool&gt; seen(n, false);
+        int answer = 0;
+        for (int start = 0; start &lt; n; start++) {
+            if (seen[start]) {
+                continue;
+            }
+            int nodeCnt = 0;
+            int edgeCnt = 0;
+            explore(start, graph, seen, nodeCnt, edgeCnt);
+            edgeCnt /= 2;
+            // A complete graph with k nodes has k*(k-1)/2 edges.
+            if (edgeCnt == (nodeCnt * (nodeCnt - 1)) / 2) {
+                answer++;
+            }
+        }
+        return answer;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
