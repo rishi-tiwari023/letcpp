@@ -1729,6 +1729,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2685,
+            "title": "Count the Number of Complete Components",
+            "route": "/2685",
+            "difficulty": "Medium",
+            "description": "You are given an integer n representing the number of vertices and a list of edges in an undirected graph. A connected component is complete if every pair of vertices in it is connected by an edge....",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2749,
             "title": "Minimum Operations to Make the Integer Zero",
             "route": "/2749",
@@ -3053,5 +3062,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-10"
+    "lastUpdated": "2026-07-11"
 }
