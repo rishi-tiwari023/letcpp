@@ -667,6 +667,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1331,
+            "title": "Rank Transform of an Array",
+            "route": "/1331",
+            "difficulty": "Medium",
+            "description": "Given an array of integers arr, replace each element with its rank. The rank represents how large the element is — the smallest element gets rank 1, the next smallest gets rank 2, and so on. If two...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1339,
             "title": "Maximum Product of Splitted Binary Tree",
             "route": "/1339",
@@ -3062,5 +3071,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-11"
+    "lastUpdated": "2026-07-12"
 }
