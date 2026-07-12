@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1331: Rank Transform of an Array
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1331: Rank Transform of an Array (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an array of integers arr, replace each element with its rank. The rank represents how large the
+                element is — the smallest element gets rank 1, the next smallest gets rank 2, and so on. If two elements
+                are equal, they share the same rank.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [40,10,20,30]<br>
+                Output: [4,1,2,3]<br>
+                Explanation: 10 is the smallest so rank 1, 20 is rank 2, 30 is rank 3, and 40 is rank 4.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; arrayRankTransform(vector&lt;int&gt; &amp;arr) {
+        vector&lt;int&gt; uniqueValues;
+        unordered_map&lt;int, int&gt; rankMap;
+        for (int value : arr) {
+            if (!rankMap.count(value)) {
+                uniqueValues.push_back(value);
+                rankMap[value] = 0;
+            }
+        }
+        sort(uniqueValues.begin(), uniqueValues.end());
+        // Assign increasing ranks after sorting unique values.
+        for (int i = 0; i &lt; uniqueValues.size(); i++)
+            rankMap[uniqueValues[i]] = i + 1;
+        for (int i = 0; i &lt; arr.size(); i++)
+            arr[i] = rankMap[arr[i]];
+        return arr;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
