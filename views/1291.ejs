@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1291: Sequential Digits
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1291: Sequential Digits (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                An integer has sequential digits if and only if each digit in the number is one more than the previous
+                digit. Given two integers low and high, return a sorted list of all integers in the inclusive range
+                [low, high] that have sequential digits.
+            </p>
+            <p><strong>Example:</strong>
+                Input: low = 100, high = 300<br>
+                Output: [123,234]<br>
+                Explanation: 123 and 234 are the only numbers in [100,300] whose digits are strictly sequential (each
+                digit is one more than the previous).
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; sequentialDigits(int low, int high) {
+        vector&lt;int&gt; result;
+        for (int firstDigit = 1; firstDigit &lt;= 9; firstDigit++) {
+            int currentNumber = firstDigit;
+            // Keep appending the next consecutive digit
+            for (int nextDigit = firstDigit + 1; nextDigit &lt;= 9; nextDigit++) {
+                currentNumber = currentNumber * 10 + nextDigit;
+                if (currentNumber &gt;= low &amp;&amp; currentNumber &lt;= high)
+                    result.push_back(currentNumber);
+            }
+        }
+        sort(result.begin(), result.end());
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
