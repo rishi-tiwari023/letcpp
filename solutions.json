@@ -604,6 +604,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1291,
+            "title": "Sequential Digits",
+            "route": "/1291",
+            "difficulty": "Medium",
+            "description": "An integer has sequential digits if and only if each digit in the number is one more than the previous digit. Given two integers low and high, return a sorted list of all integers in the inclusive ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1292,
             "title": "Maximum Side Length of a Square with Sum Less than or Equal to Threshold",
             "route": "/1292",
@@ -3071,5 +3080,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-12"
+    "lastUpdated": "2026-07-13"
 }
