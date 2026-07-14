@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3336: Find the Number of Subsequences With Equal GCD
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3336: Find the Number of Subsequences With Equal GCD (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an integer array arr, return the number of ways to split it into two non-empty subsequences such
+                that the GCD of the first subsequence equals the GCD of the second subsequence. The answer should be
+                returned modulo 10^9 + 7.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [1,2,3,4]<br>
+                Output: 4<br>
+                Explanation: The valid pairs of subsequences where both have equal GCD include splits where each
+                subsequence independently reaches the same GCD value.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">using ll = long long;
+class Solution {
+private:
+    vector&lt;vector&lt;vector&lt;int&gt;&gt;&gt; memo;
+    const int MOD = 1e9 + 7;
+    int size;
+    int solve(int idx, int gcdA, int gcdB, vector&lt;int&gt;&amp; arr) {
+        if (idx == size) {
+            return (gcdA &amp;&amp; gcdA == gcdB);
+        }
+        if (memo[idx][gcdA][gcdB] != -1)
+            return memo[idx][gcdA][gcdB];
+        ll ans = 0;
+        // Skip the current element
+        ans = (ans + solve(idx + 1, gcdA, gcdB, arr)) % MOD;
+        int nextA = (gcdA == 0) ? arr[idx] : gcd(gcdA, arr[idx]);
+        ans = (ans + solve(idx + 1, nextA, gcdB, arr)) % MOD;
+        int nextB = (gcdB == 0) ? arr[idx] : gcd(gcdB, arr[idx]);
+        ans = (ans + solve(idx + 1, gcdA, nextB, arr)) % MOD;
+        return memo[idx][gcdA][gcdB] = ans;
+    }
+public:
+    int subsequencePairCount(vector&lt;int&gt;&amp; arr) {
+        size = arr.size();
+        int limit = *max_element(arr.begin(), arr.end());
+        memo.assign(size,
+                    vector&lt;vector&lt;int&gt;&gt;(limit + 1,
+                    vector&lt;int&gt;(limit + 1, -1)));
+        return solve(0, 0, 0, arr);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
