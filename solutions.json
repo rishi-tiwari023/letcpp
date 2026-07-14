@@ -2269,6 +2269,15 @@
             "spaceComplexity": "O(k)"
         },
         {
+            "id": 3336,
+            "title": "Find the Number of Subsequences With Equal GCD",
+            "route": "/3336",
+            "difficulty": "Medium",
+            "description": "Given an integer array arr, return the number of ways to split it into two non-empty subsequences such that the GCD of the first subsequence equals the GCD of the second subsequence. The answer sho...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3346,
             "title": "Determine if a Cell Is Reachable at a Given Time",
             "route": "/3346",
@@ -3080,5 +3089,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-13"
+    "lastUpdated": "2026-07-14"
 }
