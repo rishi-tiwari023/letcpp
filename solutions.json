@@ -3070,6 +3070,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3867,
+            "title": "Sum of GCD of Formed Pairs",
+            "route": "/3867",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums. For each index i, compute the GCD of the maximum element in nums[0..i] and nums[i]. Then sort the resulting values array and pair elements from both ends, summi...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3883,
             "title": "Mirror Distance of an Integer",
             "route": "/3883",
@@ -3098,5 +3107,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-15"
+    "lastUpdated": "2026-07-16"
 }
