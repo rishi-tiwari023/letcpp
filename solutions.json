@@ -2233,6 +2233,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3312,
+            "title": "Sorted GCD Pair Queries",
+            "route": "/3312",
+            "difficulty": "Medium",
+            "description": "You are given an array of integers and a list of queries. For each query, determine the smallest value of gcd such that the number of pairs with gcd at least that value is at least the query index.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3314,
             "title": "Construct the Minimum Bitwise Array I",
             "route": "/3314",
@@ -3107,5 +3116,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-16"
+    "lastUpdated": "2026-07-17"
 }
