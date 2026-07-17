@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3312: Sorted GCD Pair Queries (C++)
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3312: Sorted GCD Pair Queries (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array of integers and a list of queries. For each query, determine the smallest value
+                of
+                gcd such that the number of pairs with gcd at least that value is at least the query index.
+            </p>
+            <p><strong>Example:</strong>
+                The solution counts pairs by their greatest common divisor and then builds a prefix of counts so each
+                query can be answered efficiently.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; gcdValues(vector&lt;int&gt;&amp; nums, vector&lt;long long&gt;&amp; queries) {
+        int maxVal = *max_element(nums.begin(), nums.end());
+        vector&lt;int&gt; freq(maxVal + 1);
+        for (int x : nums)
+            freq[x]++;
+
+        vector&lt;long long&gt; pairCount(maxVal + 1);
+
+        for (int g = maxVal; g &gt;= 1; g--) {
+            long long divisible = 0;
+            for (int multiple = g; multiple &lt;= maxVal; multiple += g)
+                divisible += freq[multiple];
+
+            pairCount[g] = divisible * (divisible - 1) / 2;
+
+            for (int multiple = 2 * g; multiple &lt;= maxVal; multiple += g)
+                pairCount[g] -= pairCount[multiple];
+        }
+
+        for (int g = 1; g &lt;= maxVal; g++)
+            pairCount[g] += pairCount[g - 1];
+
+        vector&lt;int&gt; ans;
+        for (long long q : queries)
+            ans.push_back(lower_bound(pairCount.begin(), pairCount.end(), q + 1) - pairCount.begin());
+
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
