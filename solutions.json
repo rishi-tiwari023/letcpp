@@ -1288,6 +1288,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1979,
+            "title": "Find Greatest Common Divisor of Array",
+            "route": "/1979",
+            "difficulty": "Medium",
+            "description": "Given an integer array nums, return the greatest common divisor of the smallest number and largest number in nums.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1980,
             "title": "Find Unique Binary String",
             "route": "/1980",
@@ -3116,5 +3125,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-17"
+    "lastUpdated": "2026-07-18"
 }
