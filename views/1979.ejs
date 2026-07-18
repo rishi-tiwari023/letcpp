@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1979: Find Greatest Common Divisor of Array
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1979: Find Greatest Common Divisor of Array (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an integer array nums, return the greatest common divisor of the smallest number and largest
+                number in nums.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [2,5,6,9,10]<br>
+                Output: 2<br>
+                Explanation: The smallest number is 2 and the largest number is 10. The GCD of 2 and 10 is 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int findGCD(vector&lt;int&gt;&amp; nums) {
+        int smallest = *min_element(nums.begin(), nums.end());
+        int largest = *max_element(nums.begin(), nums.end());
+        // Compute GCD directly without a separate helper function.
+        while (largest != 0) {
+            int remainder = largest;
+            largest = smallest % largest;
+            smallest = remainder;
+        }
+        return smallest;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
