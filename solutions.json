@@ -541,6 +541,15 @@
             "spaceComplexity": "O(n^2)"
         },
         {
+            "id": 1081,
+            "title": "Smallest Subsequence of Distinct Characters",
+            "route": "/1081",
+            "difficulty": "Medium",
+            "description": "Given a string s, return the lexicographically smallest subsequence of s that contains all the distinct characters of s exactly once.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1161,
             "title": "Maximum Level Sum of a Binary Tree",
             "route": "/1161",
@@ -3125,5 +3134,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-18"
+    "lastUpdated": "2026-07-19"
 }
