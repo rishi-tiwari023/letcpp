@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1081: Smallest Subsequence of Distinct Characters
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1081: Smallest Subsequence of Distinct Characters (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a string s, return the lexicographically smallest subsequence of s that contains all the distinct
+                characters of s exactly once.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "cbacdcbc"<br>
+                Output: "acdb"<br>
+                Explanation: The subsequence "acdb" contains each distinct character exactly once and is the
+                lexicographically smallest such subsequence.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string smallestSubsequence(string s) {
+        vector&lt;int&gt; cnt(26, 0);
+        vector&lt;bool&gt; used(26, false);
+        for (char ch : s)
+            cnt[ch - 'a']++;
+        string ans;
+        for (char ch : s) {
+            cnt[ch - 'a']--;
+            if (used[ch - 'a'])
+                continue;
+            // Remove larger chars if they can appear again later.
+            while (!ans.empty() &amp;&amp; ans.back() &gt; ch &amp;&amp; cnt[ans.back() - 'a'] &gt; 0) {
+                used[ans.back() - 'a'] = false;
+                ans.pop_back();
+            }
+            ans.push_back(ch);
+            used[ch - 'a'] = true;
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
