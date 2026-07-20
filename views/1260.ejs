@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1260: Shift 2D Grid
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1260: Shift 2D Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a 2D grid of size m x n and an integer k, shift the grid k times. In one shift, each element moves
+                to the right by one position, and the last element of each row moves to the first position of the next
+                row, wrapping around from the last cell to the first cell of the grid. Return the grid after applying k
+                shifts.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[1,2,3],[4,5,6],[7,8,9]], k = 1<br>
+                Output: [[9,1,2],[3,4,5],[6,7,8]]<br>
+                Explanation: Each element shifts one position forward in row-major order, wrapping around to the start
+                of the grid.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; shiftGrid(vector&lt;vector&lt;int&gt;&gt;&amp; grid, int k) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+        int cells = rows * cols;
+        vector&lt;vector&lt;int&gt;&gt; result(rows, vector&lt;int&gt;(cols));
+        for (int r = 0; r &lt; rows; r++) {
+            for (int c = 0; c &lt; cols; c++) {
+                int pos = (r * cols + c + k) % cells;
+                // Convert the shifted index back to 2D coordinates.
+                int nr = pos / cols;
+                int nc = pos % cols;
+                result[nr][nc] = grid[r][c];
+            }
+        }
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
