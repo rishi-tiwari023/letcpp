@@ -577,6 +577,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 1260,
+            "title": "Shift 2D Grid",
+            "route": "/1260",
+            "difficulty": "Medium",
+            "description": "Given a 2D grid of size m x n and an integer k, shift the grid k times. In one shift, each element moves to the right by one position, and the last element of each row moves to the first position o...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1262,
             "title": "Greatest Sum Divisible by Three",
             "route": "/1262",
@@ -3134,5 +3143,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-19"
+    "lastUpdated": "2026-07-20"
 }
