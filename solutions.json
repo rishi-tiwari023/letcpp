@@ -2530,6 +2530,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3499,
+            "title": "Maximize Active Section with Trade I",
+            "route": "/3499",
+            "difficulty": "Medium",
+            "description": "You are given a binary string s. You may perform at most one trade: pick a maximal block of consecutive '0's and flip it to '1's, but as a cost you must flip an equal number of adjacent '1's back t...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3507,
             "title": "Minimum Pair Removal to Sort Array I",
             "route": "/3507",
@@ -3143,5 +3152,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-20"
+    "lastUpdated": "2026-07-21"
 }
