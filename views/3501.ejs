@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3501: Maximize Active Section with Trade II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3501: Maximize Active Section with Trade II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a binary string s and a list of queries, each defining a range [l, r]. For each query,
+                considering only the substring within that range, you may perform at most one trade (flip a zero block
+                to ones by sacrificing an equal-length adjacent one block). Return the maximum number of active ('1')
+                sections achievable for each query.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "01101001", queries = [[0,7],[2,5]]<br>
+                Output: [values per query]<br>
+                Explanation: For each query range, the zero blocks within the range are identified, and the best
+                pairwise or triple merge of adjacent zero blocks (accounting for partial visibility at the range
+                boundaries) is computed using range maximum queries.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class SparseTable {
+private:
+    vector&lt;vector&lt;int&gt;&gt; table;
+public:
+    SparseTable(const vector&lt;int&gt;&amp; arr) {
+        table.push_back(arr);
+        int len = 1, n = table[0].size();
+        while (2 * len &lt;= n + 1) {
+            const auto&amp; prev = table.back();
+            vector&lt;int&gt; cur;
+            for (int i = 0; i &lt; n - 2 * len + 1; i++) {
+                cur.push_back(max(prev[i], prev[i + len]));
+            }
+            table.push_back(cur);
+            len &lt;&lt;= 1;
+        }
+    }
+    int query(int l, int r) {
+        if (l &gt; r)
+            return 0;
+        int sz = r - l + 1;
+        int bit = 0;
+        while ((1 &lt;&lt; (bit + 1)) &lt;= sz)
+            bit++;
+        return max(table[bit][l], table[bit][r - (1 &lt;&lt; bit) + 1]);
+    }
+};
+class Solution {
+public:
+    vector&lt;int&gt; maxActiveSectionsAfterTrade(string s,
+                                            vector&lt;vector&lt;int&gt;&gt;&amp; queries) {
+        int n = s.size();
+        int totalOnes = count(s.begin(), s.end(), '1');
+        vector&lt;int&gt; zeroSize;
+        vector&lt;int&gt; leftEnd;
+        vector&lt;int&gt; rightEnd;
+        int idx = 0;
+        while (idx &lt; n) {
+            int start = idx;
+            while (idx &lt; n &amp;&amp; s[idx] == s[start])
+                idx++;
+            if (s[start] == '0') {
+                zeroSize.push_back(idx - start);
+                leftEnd.push_back(start);
+                rightEnd.push_back(idx - 1);
+            }
+        }
+        int blocks = zeroSize.size();
+        if (blocks &lt; 2)
+            return vector&lt;int&gt;(queries.size(), totalOnes);
+        vector&lt;int&gt; pairGain(blocks - 1);
+        for (int i = 0; i &lt; blocks - 1; i++)
+            pairGain[i] = zeroSize[i] + zeroSize[i + 1];
+        SparseTable rmq(pairGain);
+        vector&lt;int&gt; ans;
+        for (auto&amp; q : queries) {
+            int l = q[0];
+            int r = q[1];
+            int first =
+                lower_bound(rightEnd.begin(), rightEnd.end(), l) - rightEnd.begin();
+            int last =
+                upper_bound(leftEnd.begin(), leftEnd.end(), r) - leftEnd.begin() - 1;
+            if (first &gt;= last || first &gt;= blocks || last &lt; 0) {
+                ans.push_back(totalOnes);
+                continue;
+            }
+            // Actual visible lengths of boundary zero blocks.
+            int leftPart =
+                rightEnd[first] - max(leftEnd[first], l) + 1;
+            int rightPart =
+                min(rightEnd[last], r) - leftEnd[last] + 1;
+            if (first + 1 == last) {
+                ans.push_back(totalOnes + leftPart + rightPart);
+                continue;
+            }
+            int best = max({
+                leftPart + zeroSize[first + 1],
+                zeroSize[last - 1] + rightPart,
+                rmq.query(first + 1, last - 2)
+            });
+            ans.push_back(totalOnes + best);
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
