@@ -2539,6 +2539,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3501,
+            "title": "Maximize Active Section with Trade II",
+            "route": "/3501",
+            "difficulty": "Medium",
+            "description": "You are given a binary string s and a list of queries, each defining a range [l, r]. For each query, considering only the substring within that range, you may perform at most one trade (flip a zero...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3507,
             "title": "Minimum Pair Removal to Sort Array I",
             "route": "/3507",
@@ -3152,5 +3161,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-21"
+    "lastUpdated": "2026-07-22"
 }
