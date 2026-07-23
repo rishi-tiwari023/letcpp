@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3513: Number of Unique XOR Triplets I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3513: Number of Unique XOR Triplets I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array nums containing distinct integers from 1 to n (a permutation-like structure). A
+                triplet XOR value is defined as nums[i] XOR nums[j] XOR nums[k] for distinct indices i, j, k. Return the
+                number of unique XOR triplet values that can be formed.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3]<br>
+                Output: 4<br>
+                Explanation: Since size is 3 (&gt;= 3), bits needed to represent 3 is 2, so answer = 2^2 = 4 unique
+                possible XOR values in range.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int uniqueXorTriplets(vector&lt;int&gt;&amp; nums) {
+        int size = nums.size();
+        // With less than 3 numbers, the answer is simply n.
+        if (size &lt; 3) {
+            return size;
+        }
+        int bits = 0;
+        int value = size;
+        while (value) {
+            value &gt;&gt;= 1;
+            bits++;
+        }
+        return 1 &lt;&lt; bits;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
