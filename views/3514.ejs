@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3514: Number of Unique XOR Triplets II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3514: Number of Unique XOR Triplets II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array nums of arbitrary integers (not necessarily distinct or a permutation). A triplet
+                XOR value is defined as nums[i] XOR nums[j] XOR nums[k] for distinct indices i, j, k. Return the number
+                of unique XOR triplet values that can be formed.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,4]<br>
+                Output: some value<br>
+                Explanation: Build up reachable XOR states step by step over 3 selections from the array's distinct
+                values, then count how many final states are reachable.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int uniqueXorTriplets(vector&lt;int&gt;&amp; nums) {
+        const int LIMIT = 2048;
+
+        vector&lt;bool&gt; exists(LIMIT, false);
+        for (int val : nums)
+            exists[val] = true;
+
+        vector&lt;bool&gt; cur(LIMIT, false);
+        cur[0] = true;
+
+        // Build XOR results one element at a time
+        for (int step = 0; step &lt; 3; step++) {
+            vector&lt;bool&gt; nxt(LIMIT, false);
+
+            for (int xr = 0; xr &lt; LIMIT; xr++) {
+                if (!cur[xr]) continue;
+
+                for (int val = 0; val &lt; LIMIT; val++) {
+                    if (exists[val])
+                        nxt[xr ^ val] = true;
+                }
+            }
+
+            cur = move(nxt);
+        }
+
+        int ans = 0;
+        for (bool ok : cur)
+            ans += ok;
+
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
