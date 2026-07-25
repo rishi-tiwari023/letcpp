@@ -2638,6 +2638,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3536,
+            "title": "Maximum Product of Two Digits",
+            "route": "/3536",
+            "difficulty": "Medium",
+            "description": "Given a positive integer n, return the maximum product obtainable by multiplying any two digits present in n.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3539,
             "title": "Find the Maximum Length of a Good Subsequence XIV",
             "route": "/3539",
@@ -3179,5 +3188,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-24"
+    "lastUpdated": "2026-07-25"
 }
