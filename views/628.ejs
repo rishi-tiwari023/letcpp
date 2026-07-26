@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 628: Maximum Product of Three Numbers
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 628: Maximum Product of Three Numbers (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an integer array nums, find three numbers whose product is maximum and return the maximum product.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [-4,-3,-2,-1,60]<br>
+                Output: 720<br>
+                Explanation: The maximum product is achieved either by the three largest numbers, or by the two smallest
+                (most negative) numbers multiplied with the largest number. Here, (-4) * (-3) * 60 = 720.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    static int maximumProduct(vector&lt;int&gt;&amp; nums) {
+        int p = nums[0], q = nums[1], r = nums[2];
+        auto [mx3, mx1] = ranges::minmax({p, q, r});
+        int mx2 = p + q + r - mx1 - mx3;
+        int mn1 = mx3, mn2 = mx2;
+        for (int i = 3; i &lt; nums.size(); i++) {
+            int val = nums[i];
+            if (val &gt;= mx1)
+                mx3 = mx2, mx2 = exchange(mx1, val);
+            else if (val &gt;= mx2)
+                mx3 = exchange(mx2, val);
+            else if (val &gt;= mx3)
+                mx3 = val;
+            if (val &lt;= mn1)
+                mn2 = exchange(mn1, val);
+            else if (val &lt;= mn2)
+                mn2 = val;
+        }
+        return max(mx1 * mx2 * mx3, mx1 * mn1 * mn2);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
