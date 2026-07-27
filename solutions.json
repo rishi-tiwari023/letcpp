@@ -856,6 +856,15 @@
             "spaceComplexity": "O(2^k)"
         },
         {
+            "id": 1464,
+            "title": "Maximum Product of Two Elements in an Array",
+            "route": "/1464",
+            "difficulty": "Medium",
+            "description": "Given the array of integers nums, find the maximum value of (nums[i]-1)*(nums[j]-1) for distinct indices i and j.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1488,
             "title": "Avoid Flood in The City",
             "route": "/1488",
@@ -3197,5 +3206,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-26"
+    "lastUpdated": "2026-07-27"
 }
