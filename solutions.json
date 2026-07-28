@@ -2629,6 +2629,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3517,
+            "title": "Smallest Palindromic Rearrangement I",
+            "route": "/3517",
+            "difficulty": "Medium",
+            "description": "Given a string s that is guaranteed to be rearrangeable into a palindrome, return the lexicographically smallest palindrome that can be formed by rearranging its characters.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3531,
             "title": "Count Covered Buildings",
             "route": "/3531",
@@ -3206,5 +3215,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-27"
+    "lastUpdated": "2026-07-28"
 }
