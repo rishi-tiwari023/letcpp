@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3517: Smallest Palindromic Rearrangement I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3517: Smallest Palindromic Rearrangement I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a string s that is guaranteed to be rearrangeable into a palindrome, return the lexicographically
+                smallest palindrome that can be formed by rearranging its characters.
+            </p>
+            <p><strong>Example:</strong>
+                Input: str = "aabb"<br>
+                Output: "abba"<br>
+                Explanation: The characters can be rearranged to form palindromes like "abba" or "baab". The
+                lexicographically smallest is "abba".
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string smallestPalindrome(string str) {
+        vector&lt;int&gt; cnt(26);
+        for (char ch : str) {
+            cnt[ch - 'a']++;
+        }
+        string firstPart;
+        string centre;
+        for (int i = 0; i &lt; 26; i++) {
+            firstPart.append(cnt[i] / 2, char('a' + i));
+            if (cnt[i] &amp; 1) {
+                centre = char('a' + i);
+            }
+        }
+        string secondPart = firstPart;
+        reverse(secondPart.begin(), secondPart.end());
+        return firstPart + centre + secondPart;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
