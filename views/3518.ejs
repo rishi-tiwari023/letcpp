@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3518: Smallest Palindromic Rearrangement II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3518: Smallest Palindromic Rearrangement II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a string s that can be rearranged into a palindrome and an integer k, return the k-th
+                lexicographically smallest palindrome (1-indexed) that can be formed by rearranging the characters of s.
+                If fewer than k palindromic rearrangements exist, return an empty string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "abba", k = 2<br>
+                Output: "baab"<br>
+                Explanation: The possible palindromic rearrangements sorted lexicographically are ["abba", "baab"]. The
+                2nd smallest is "baab".
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+class Solution {
+private:
+    long long nCr(long long n, long long r, long long limit) {
+        long long ans = 1;
+        r = min(r, n - r);
+        for (long long i = 1; i &lt;= r; i++) {
+            ans = ans * (n - i + 1) / i;
+            if (ans &gt; limit) {
+                return limit + 1;
+            }
+        }
+        return ans;
+    }
+public:
+    string smallestPalindrome(string s, long long k) {
+        int half = s.size() / 2;
+        vector&lt;int&gt; freq(26, 0);
+        for (int i = 0; i &lt; half; i++) {
+            freq[s[i] - 'a']++;
+        }
+        auto countWays = [&amp;](int remaining) {
+            long long total = 1;
+            for (int i = 0; i &lt; 26; i++) {
+                if (freq[i] == 0) continue;
+                total *= nCr(remaining, freq[i], k);
+                if (total &gt; k) break;
+                remaining -= freq[i];
+            }
+            return total;
+        };
+        string firstHalf;
+        long long currRank = 1;
+        for (int pos = 0; pos &lt; half; pos++) {
+            for (int ch = 0; ch &lt; 26; ch++) {
+                if (freq[ch] == 0) continue;
+                freq[ch]--;
+                long long ways = countWays(half - pos - 1);
+                if (currRank + ways &gt; k) {
+                    firstHalf += char('a' + ch);
+                    break;
+                }
+                freq[ch]++;
+                currRank += ways;
+            }
+        }
+        if (firstHalf.size() &lt; half) {
+            return "";
+        }
+        string middle = (s.size() &amp; 1) ? string(1, s[half]) : "";
+        string secondHalf = firstHalf;
+        reverse(secondHalf.begin(), secondHalf.end());
+        return firstHalf + middle + secondHalf;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
