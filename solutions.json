@@ -2638,6 +2638,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3518,
+            "title": "Smallest Palindromic Rearrangement II",
+            "route": "/3518",
+            "difficulty": "Medium",
+            "description": "Given a string s that can be rearranged into a palindrome and an integer k, return the k-th lexicographically smallest palindrome (1-indexed) that can be formed by rearranging the characters of s. ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3531,
             "title": "Count Covered Buildings",
             "route": "/3531",
@@ -3215,5 +3224,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-28"
+    "lastUpdated": "2026-07-29"
 }
