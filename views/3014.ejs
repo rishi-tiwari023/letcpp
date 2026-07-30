@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3014: Minimum Number of Pushes to Type Word I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3014: Minimum Number of Pushes to Type Word I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string word containing distinct lowercase English letters. You can remap the letters to
+                keys on a telephone keypad with 8 available keys (2-9), where each key can hold multiple letters. Return
+                the minimum number of key presses needed to type out the entire word, assuming letters are assigned
+                optimally to minimize total presses.
+            </p>
+            <p><strong>Example:</strong>
+                Input: word = "abcde"<br>
+                Output: 5<br>
+                Explanation: Since there are only 5 distinct letters and 8 keys, each letter can be assigned to its own
+                key requiring only 1 press each, totaling 5 presses.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minimumPushes(string word) {
+        int rem = word.size();
+        int res = 0;
+        while (rem &gt; 0) {
+            res += rem;
+            rem -= 8;
+        }
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
