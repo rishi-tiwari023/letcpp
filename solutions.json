@@ -1999,6 +1999,15 @@
             "spaceComplexity": "O(k)"
         },
         {
+            "id": 3014,
+            "title": "Minimum Number of Pushes to Type Word I",
+            "route": "/3014",
+            "difficulty": "Medium",
+            "description": "You are given a string word containing distinct lowercase English letters. You can remap the letters to keys on a telephone keypad with 8 available keys (2-9), where each key can hold multiple lett...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3020,
             "title": "Find the Maximum Number of Elements in Subset",
             "route": "/3020",
@@ -3224,5 +3233,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-29"
+    "lastUpdated": "2026-07-30"
 }
