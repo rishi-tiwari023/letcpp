@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 486: Predict the Winner
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 486: Predict the Winner (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums. Two players take turns picking numbers from either end of the
+                array, with Player 1 starting first. Both players play optimally. Return true if Player 1 can win the
+                game (or tie), otherwise return false.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,5,233,7]<br>
+                Output: true<br>
+                Explanation: Player 1 can pick 1, then regardless of Player 2's choice, Player 1 can secure 233,
+                resulting in a higher total score than Player 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool PredictTheWinner(vector&lt;int&gt;&amp; arr) {
+        int m = arr.size();
+        vector&lt;int&gt; best(m);
+        for (int i = m - 1; i &gt;= 0; i--) {
+            int leftVal = arr[i];
+            best[i] = leftVal;
+            for (int j = i + 1; j &lt; m; j++) {
+                int takeLeft = leftVal - best[j];
+                int takeRight = arr[j] - best[j - 1];
+                best[j] = max(takeLeft, takeRight);
+            }
+        }
+        return best[m - 1] &gt;= 0;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
