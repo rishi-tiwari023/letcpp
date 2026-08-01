@@ -226,6 +226,15 @@
             "spaceComplexity": "O(m * n)"
         },
         {
+            "id": 486,
+            "title": "Predict the Winner",
+            "route": "/486",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums. Two players take turns picking numbers from either end of the array, with Player 1 starting first. Both players play optimally. Return true if Player 1 can win ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 498,
             "title": "Diagonal Traverse",
             "route": "/498",
@@ -3242,5 +3251,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-07-31"
+    "lastUpdated": "2026-08-01"
 }
