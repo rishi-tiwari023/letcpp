@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1406: Stone Game III
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1406: Stone Game III (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Alice and Bob play a game with piles of stones represented by an array. On each turn, a player takes 1,
+                2, or 3 stones from the beginning of the remaining piles, adding their values to their score. Alice
+                starts first, and both players play optimally. Return "Alice" if Alice wins, "Bob" if Bob wins, or "Tie"
+                if the scores are equal.
+            </p>
+            <p><strong>Example:</strong>
+                Input: values = [1,2,3,-9]<br>
+                Output: "Alice"<br>
+                Explanation: Alice can take the first three piles (1+2+3=6) leaving Bob with -9, guaranteeing Alice a
+                higher score.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">struct Solution {
+    auto stoneGameIII(vector&lt;int&gt;&amp; nums) {
+        int best[3]{}, last[2]{};
+        for (int val : nums | views::reverse) {
+            int now = max(
+                max(val - best[0], val + last[0] - best[1]),
+                val + last[0] + last[1] - best[2]
+            );
+            last[1] = exchange(last[0], val);
+            best[2] = exchange(best[1], exchange(best[0], now));
+        }
+        constexpr string_view ans[]{"Bob", "Tie", "Alice"};
+        return string(ans[clamp(best[0], -1, 1) + 1]);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
