@@ -829,6 +829,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1406,
+            "title": "Stone Game III",
+            "route": "/1406",
+            "difficulty": "Medium",
+            "description": "Alice and Bob play a game with piles of stones represented by an array. On each turn, a player takes 1, 2, or 3 stones from the beginning of the remaining piles, adding their values to their score....",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1411,
             "title": "Number of Ways to Paint N × 3 Grid",
             "route": "/1411",
@@ -3260,5 +3269,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-02"
+    "lastUpdated": "2026-08-03"
 }
