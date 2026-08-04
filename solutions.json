@@ -3133,6 +3133,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3731,
+            "title": "Find Missing Elements",
+            "route": "/3731",
+            "difficulty": "Medium",
+            "description": "Given an array of integers arr, return a list of all integers that are missing between the minimum and maximum values of the array (inclusive range), sorted in ascending order.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3737,
             "title": "Count Subarrays With Majority Element I",
             "route": "/3737",
@@ -3269,5 +3278,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-03"
+    "lastUpdated": "2026-08-04"
 }
