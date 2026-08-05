@@ -2323,6 +2323,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3310,
+            "title": "Remove Methods From Project",
+            "route": "/3310",
+            "difficulty": "Medium",
+            "description": "You are given n methods numbered 0 to n-1, a suspicious method k, and a list of invocations representing method call dependencies. If method k is called by any method reachable from it, you must re...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3312,
             "title": "Sorted GCD Pair Queries",
             "route": "/3312",
@@ -3278,5 +3287,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-04"
+    "lastUpdated": "2026-08-05"
 }
