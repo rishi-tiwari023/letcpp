@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3310: Remove Methods From Project
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3310: Remove Methods From Project (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given n methods numbered 0 to n-1, a suspicious method k, and a list of invocations representing
+                method call dependencies. If method k is called by any method reachable from it, you must remove all
+                methods reachable from k (including k itself). Otherwise, no methods are removed. Return the list of
+                remaining method IDs.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 4, k = 1, invocations = [[1,2],[0,1],[3,2]]<br>
+                Output: [0,1,2,3]<br>
+                Explanation: Method 1 calls method 2, and no undesired call exists from an unreachable method into the
+                reachable set that would flag removal, so all methods remain.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; remainingMethods(int n, int k, vector&lt;vector&lt;int&gt;&gt;&amp; invocations) {
+        vector&lt;vector&lt;int&gt;&gt; g(n);
+        for(auto &amp;x:invocations){
+            g[x[0]].push_back(x[1]);
+        }
+        vector&lt;bool&gt; vis(n,false);
+        queue&lt;int&gt; qu;
+        qu.push(k);
+        while(!qu.empty()){
+            int u=qu.front();
+            qu.pop();
+            vis[u]=true;
+            for(int v:g[u]){
+                if(!vis[v]) qu.push(v);
+            }
+        }
+        bool ok=false;
+        for(int i=0;i&lt;n;i++){
+            if(!vis[i]){
+                for(int v:g[i]){
+                    if(vis[v]){
+                        ok=true;
+                        break;
+                    }
+                }
+            }
+        }
+        vector&lt;int&gt; ans;
+        if(!ok){
+            for(int i=0;i&lt;n;i++){
+                if(!vis[i]) ans.push_back(i);
+            }
+        }else{
+            for(int i=0;i&lt;n;i++) ans.push_back(i);
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
