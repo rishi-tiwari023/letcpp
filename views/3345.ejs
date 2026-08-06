@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3345: Smallest Divisible Digit Product I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3345: Smallest Divisible Digit Product I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given two integers n and t, return the smallest integer greater than or equal to n such that the product
+                of its digits is divisible by t.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 10, t = 2<br>
+                Output: 10<br>
+                Explanation: The digit product of 10 is 1*0 = 0, which is divisible by 2, so 10 is already the answer.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int smallestNumber(int n, int t) {
+        while (n &lt; 101) {
+            int x = n;
+            int p = 1;
+            while (x &gt; 0) {
+                p *= x % 10;
+                x /= 10;
+            }
+            if (p % t == 0)
+                return n;
+            n++;
+        }
+        return 0;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
