@@ -2386,6 +2386,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3345,
+            "title": "Smallest Divisible Digit Product I",
+            "route": "/3345",
+            "difficulty": "Medium",
+            "description": "Given two integers n and t, return the smallest integer greater than or equal to n such that the product of its digits is divisible by t.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3346,
             "title": "Determine if a Cell Is Reachable at a Given Time",
             "route": "/3346",
@@ -2400,6 +2409,15 @@
             "route": "/3347",
             "difficulty": "Medium",
             "description": "You are given a binary string s and a positive integer k.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": 3348,
+            "title": "Smallest Divisible Digit Product II",
+            "route": "/3348",
+            "difficulty": "Medium",
+            "description": "Given a string s representing a number and an integer k, return the smallest number greater than or equal to s (as a string, possibly requiring more digits) whose digit product is divisible by k. R...",
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
         },
@@ -3287,5 +3305,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-05"
+    "lastUpdated": "2026-08-07"
 }
