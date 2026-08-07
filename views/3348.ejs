@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3348: Smallest Divisible Digit Product II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3348: Smallest Divisible Digit Product II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a string s representing a number and an integer k, return the smallest number greater than or
+                equal to s (as a string, possibly requiring more digits) whose digit product is divisible by k. Return
+                "-1" if no such number exists (when k has a prime factor other than 2, 3, 5, or 7).
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "13", k = 4<br>
+                Output: "24"<br>
+                Explanation: The digit product of 13 is 3, not divisible by 4. Searching upward, 24 has digit product 8,
+                which is divisible by 4, and is the smallest such number.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    using ll = long long;
+    string make(ll x, int sz) {
+        string t;
+        for (int i = 9; i &gt;= 2; i--) {
+            while (x % i == 0) {
+                t.push_back(char(i + '0'));
+                x /= i;
+            }
+        }
+        while ((int)t.size() &lt; sz) {
+            t.push_back('1');
+        }
+        reverse(t.begin(), t.end());
+        return t;
+    }
+    string smallestNumber(string s, long long k) {
+        int n = s.size();
+        ll x = k;
+        for (int p : {2, 3, 5, 7}) {
+            while (x % p == 0) {
+                x /= p;
+            }
+        }
+        if (x != 1) {
+            return "-1";
+        }
+        vector&lt;ll&gt; req(n + 1, k);
+        for (int i = 0; i &lt; n; i++) {
+            int d = s[i] - '0';
+            if (d == 0) {
+                break;
+            }
+            req[i + 1] = req[i] / gcd(req[i], (ll)d);
+        }
+        if (req[n] == 1) {
+            return s;
+        }
+        int z = s.find('0');
+        int st = n - 1;
+        if (z != -1) {
+            st = z;
+        }
+        for (int i = st; i &gt;= 0; i--) {
+            ll cur = req[i];
+            int rem = n - i - 1;
+            for (int d = (s[i] - '0') + 1; d &lt;= 9; d++) {
+                ll need = cur / gcd(cur, (ll)d);
+                string suf = make(need, rem);
+                if ((int)suf.size() == rem) {
+                    return s.substr(0, i) + char(d + '0') + suf;
+                }
+            }
+        }
+        return make(k, n + 1);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
