@@ -2323,6 +2323,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3302,
+            "title": "Find the Lexicographically Smallest Valid Sequence",
+            "route": "/3302",
+            "difficulty": "Medium",
+            "description": "You are given two strings word1 and word2. A valid sequence is an array of indices into word1, in increasing order, such that concatenating the corresponding characters equals word2 with at most on...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3310,
             "title": "Remove Methods From Project",
             "route": "/3310",
@@ -3305,5 +3314,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-07"
+    "lastUpdated": "2026-08-08"
 }
