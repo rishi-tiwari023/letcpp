@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1140: Stone Game II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1140: Stone Game II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Alice and Bob play a game with piles of stones arranged in a row. On each turn, a player can take all
+                stones from the first X remaining piles, where 1 &lt;= X &lt;= 2M, and M is updated to max(M, X) for the
+                next turn (M starts at 1). Both players play optimally to maximize their own stone total. Return the
+                maximum number of stones Alice can get.
+            </p>
+            <p><strong>Example:</strong>
+                Input: piles = [2,7,9,4,4]<br>
+                Output: 10<br>
+                Explanation: Alice starts by taking one pile (2), forcing Bob to consider M=1. Through optimal play,
+                Alice can secure a total of 10 stones.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int stoneGameII(vector&lt;int&gt;&amp; a) {
+        int n = a.size();
+        vector&lt;vector&lt;int&gt;&gt; f(n, vector&lt;int&gt;(n + 1, 0));
+        vector&lt;int&gt; suf(n);
+        suf[n - 1] = a[n - 1];
+        for (int i = n - 2; i &gt;= 0; i--)
+            suf[i] = suf[i + 1] + a[i];
+        for (int i = n - 1; i &gt;= 0; i--) {
+            for (int m = 1; m &lt;= n; m++) {
+                if (i + 2 * m &gt;= n) {
+                    f[i][m] = suf[i];
+                } else {
+                    for (int k = 1; k &lt;= 2 * m; k++) {
+                        f[i][m] = max(f[i][m],
+                                      suf[i] - f[i + k][max(m, k)]);
+                    }
+                }
+            }
+        }
+        return f[0][1];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
