@@ -928,6 +928,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1510,
+            "title": "Stone Game IV",
+            "route": "/1510",
+            "difficulty": "Medium",
+            "description": "Alice and Bob take turns removing a non-zero perfect square number of stones from a pile of n stones, with Alice starting first. The player who removes the last stone wins. Both players play optima...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1513,
             "title": "Number of Substrings With Only 1s",
             "route": "/1513",
@@ -3323,5 +3332,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-09"
+    "lastUpdated": "2026-08-10"
 }
