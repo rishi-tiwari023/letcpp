@@ -1999,6 +1999,15 @@
             "spaceComplexity": "O(n + m^2)"
         },
         {
+            "id": 2996,
+            "title": "Smallest Missing Integer Greater Than Sequential Prefix Sum",
+            "route": "/2996",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed array of integers nums. A prefix nums[0..i] is sequential if for all 1 &lt;= j &lt;= i, nums[j] = nums[j-1] + 1. Find the sum of the longest sequential prefix, then return...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3000,
             "title": "Maximum Area of Longest Diagonal Rectangle",
             "route": "/3000",
@@ -3332,5 +3341,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-10"
+    "lastUpdated": "2026-08-11"
 }
