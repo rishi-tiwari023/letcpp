@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2996: Smallest Missing Integer Greater Than Sequential Prefix Sum
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2996: Smallest Missing Integer Greater Than Sequential Prefix Sum (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed array of integers nums. A prefix nums[0..i] is sequential if for all 1 &lt;= j
+                &lt;= i, nums[j] = nums[j-1] + 1. Find the sum of the longest sequential prefix, then return the
+                smallest integer x missing from nums such that x is greater than or equal to that sum.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,2,5]<br>
+                Output: 6<br>
+                Explanation: The longest sequential prefix is [1,2,3] with sum 6. Since 6 is not present in nums, the
+                answer is 6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int missingInteger(vector&lt;int&gt;&amp; nums) {
+        unordered_set&lt;int&gt; seen(nums.begin(), nums.end());
+        int total = nums[0];
+        
+        for (int idx = 1; idx &lt; nums.size(); idx++) {
+            if (nums[idx] == nums[idx - 1] + 1)
+                total += nums[idx];
+            else
+                break;
+        }
+        
+        while (seen.count(total))
+            total++;
+        
+        return total;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
