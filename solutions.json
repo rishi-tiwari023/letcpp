@@ -1972,6 +1972,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2958,
+            "title": "Length of Longest Subarray With at Most K Frequency",
+            "route": "/2958",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums and an integer k. Return the length of the longest subarray of nums such that no element appears more than k times in that subarray.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2975,
             "title": "Maximum Square Area by Removing Fences From a Field",
             "route": "/2975",
@@ -3341,5 +3350,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-11"
+    "lastUpdated": "2026-08-12"
 }
