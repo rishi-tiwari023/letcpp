@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2958: Length of Longest Subarray With at Most K Frequency
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2958: Length of Longest Subarray With at Most K Frequency (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums and an integer k. Return the length of the longest subarray of nums
+                such that no element appears more than k times in that subarray.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,1,2,3,1,2], k = 2<br>
+                Output: 6<br>
+                Explanation: The subarray [1,2,3,1,2,3] has each element appearing exactly twice, satisfying the
+                at-most-k constraint, and has length 6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxSubarrayLength(vector&lt;int&gt;&amp; nums, int k) {
+        int left = 0, ans = 1;
+        unordered_map&lt;int, int&gt; freq;
+        for (int right = 0; right &lt; nums.size(); right++) {
+            freq[nums[right]]++;
+            while (freq[nums[right]] &gt; k)
+                freq[nums[left++]]--;
+            ans = max(ans, right - left + 1);
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
