@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2213: Longest Substring of One Repeating Character
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2213: Longest Substring of One Repeating Character (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed string s and an array of query characters and query indices of the same
+                length. For the i-th query, update s at queryIndices[i] to queryCharacters[i], then record the length of
+                the longest substring consisting of only one repeating character in the updated string. Return an array
+                of these lengths after each query.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "abcde", queryCharacters = "cbad", queryIndices = [1,0,3,1]<br>
+                Output: [3,3,4,2]<br>
+                Explanation: Each query updates one character in s, and after each update the longest run of a single
+                repeating character is computed and recorded.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    struct Node {
+        char first = 0, last = 0;
+        int len = 0, pref = 0, suff = 0, best = 0;
+    };
+    vector&lt;Node&gt; seg;
+    Node merge(Node a, Node b) {
+        Node res;
+        res.first = a.first;
+        res.last = b.last;
+        res.len = a.len + b.len;
+        res.best = max(a.best, b.best);
+        if (a.last == b.first)
+            res.best = max(res.best, a.suff + b.pref);
+        res.pref = a.pref;
+        if (a.pref == a.len &amp;&amp; a.last == b.first)
+            res.pref = a.len + b.pref;
+        res.suff = b.suff;
+        if (b.suff == b.len &amp;&amp; a.last == b.first)
+            res.suff = b.len + a.suff;
+        return res;
+    }
+    void build(int node, int left, int right, const string&amp; s) {
+        if (left == right) {
+            seg[node].first = seg[node].last = s[left];
+            seg[node].len = seg[node].pref = seg[node].suff = seg[node].best = 1;
+            return;
+        }
+        int mid = left + (right - left) / 2;
+        build(node * 2, left, mid, s);
+        build(node * 2 + 1, mid + 1, right, s);
+        seg[node] = merge(seg[node * 2], seg[node * 2 + 1]);
+    }
+    void update(int node, int left, int right, int pos, char c) {
+        if (left == right) {
+            seg[node].first = seg[node].last = c;
+            seg[node].len = seg[node].pref = seg[node].suff = seg[node].best = 1;
+            return;
+        }
+        int mid = left + (right - left) / 2;
+        if (pos &lt;= mid)
+            update(node * 2, left, mid, pos, c);
+        else
+            update(node * 2 + 1, mid + 1, right, pos, c);
+        seg[node] = merge(seg[node * 2], seg[node * 2 + 1]);
+    }
+    vector&lt;int&gt; longestRepeating(string s, string queryCharacters, vector&lt;int&gt;&amp; queryIndices) {
+        int n = s.size();
+        seg.resize(4 * n);
+        build(1, 0, n - 1, s);
+        vector&lt;int&gt; ans;
+        ans.reserve(queryIndices.size());
+        for (int i = 0; i &lt; queryIndices.size(); ++i) {
+            update(1, 0, n - 1, queryIndices[i], queryCharacters[i]);
+            ans.push_back(seg[1].best);
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
