@@ -1603,6 +1603,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2213,
+            "title": "Longest Substring of One Repeating Character",
+            "route": "/2213",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed string s and an array of query characters and query indices of the same length. For the i-th query, update s at queryIndices[i] to queryCharacters[i], then record the leng...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2221,
             "title": "Find Triangular Sum of an Array",
             "route": "/2221",
@@ -3350,5 +3359,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-12"
+    "lastUpdated": "2026-08-13"
 }
