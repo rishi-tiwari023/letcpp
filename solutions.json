@@ -2170,6 +2170,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3090,
+            "title": "Maximum Length Substring With Two Occurrences",
+            "route": "/3090",
+            "difficulty": "Medium",
+            "description": "Given a string s, return the length of the longest substring such that every character in the substring appears at most twice.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3093,
             "title": "Longest Common Suffix Queries",
             "route": "/3093",
@@ -3359,5 +3368,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-13"
+    "lastUpdated": "2026-08-14"
 }
