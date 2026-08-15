@@ -3187,6 +3187,15 @@
             "spaceComplexity": "O(m^2 log n)"
         },
         {
+            "id": 3702,
+            "title": "Longest Subsequence With Non-Zero Bitwise XOR",
+            "route": "/3702",
+            "difficulty": "Medium",
+            "description": "Given an integer array arr, return the length of the longest subsequence whose bitwise XOR of all elements is non-zero. If no such subsequence exists, return 0.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3713,
             "title": "Longest Balanced Substring I",
             "route": "/3713",
@@ -3368,5 +3377,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-14"
+    "lastUpdated": "2026-08-15"
 }
