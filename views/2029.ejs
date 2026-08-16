@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2029: Stone Game IX
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2029: Stone Game IX (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Alice and Bob play a game with a row of stones, each having a value. Players alternately remove a stone,
+                and the running total of removed stone values must never be divisible by 3 right after a player's turn,
+                otherwise that player loses. Alice goes first. Return true if Alice can win, assuming both play
+                optimally.
+            </p>
+            <p><strong>Example:</strong>
+                Input: stones = [2,1]<br>
+                Output: true<br>
+                Explanation: Alice removes a stone first; regardless of which one she picks, the running sum after her
+                move is not divisible by 3, and she can force Bob into a losing position on his subsequent turns.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool stoneGameIX(vector&lt;int&gt;&amp; stones) {
+        int freq[3] = {0, 0, 0};
+        for (int value : stones) {
+            freq[value % 3]++;
+        }
+        if (freq[0] % 2 == 0) {
+            return freq[1] &gt; 0 &amp;&amp; freq[2] &gt; 0;
+        }
+        return abs(freq[1] - freq[2]) &gt; 2;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
