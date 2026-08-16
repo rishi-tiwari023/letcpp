@@ -1405,6 +1405,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2029,
+            "title": "Stone Game IX",
+            "route": "/2029",
+            "difficulty": "Medium",
+            "description": "Alice and Bob play a game with a row of stones, each having a value. Players alternately remove a stone, and the running total of removed stone values must never be divisible by 3 right after a pla...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2033,
             "title": "Minimum Operations to Make a Uni-Value Grid",
             "route": "/2033",
@@ -3377,5 +3386,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-15"
+    "lastUpdated": "2026-08-16"
 }
