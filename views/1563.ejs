@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1563: Stone Game V
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1563: Stone Game V (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                There are several stones arranged in a row, each with a value. On each round, a player divides the row
+                into two non-empty rows, and the row with the lower sum is scored and kept (if equal, the player can
+                choose either row to keep). This continues until only one stone remains. Return the maximum score
+                achievable by an optimal player controlling all splits.
+            </p>
+            <p><strong>Example:</strong>
+                Input: stoneValue = [6,2,3,4,5,5]<br>
+                Output: 18<br>
+                Explanation: Through a sequence of optimal splits, the player accumulates scores from the lower-sum rows
+                at each step, reaching a total maximum score of 18.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int calculate(int low, int high, vector&lt;int&gt;&amp; values, vector&lt;vector&lt;int&gt;&gt;&amp; memo) {
+        if (low &gt;= high) return 0;
+        if (memo[low][high] != -1) return memo[low][high];
+        int leftSum = 0;
+        int rightSum = 0;
+        for (int idx = low; idx &lt;= high; idx++) {
+            rightSum += values[idx];
+        }
+        int best = 0;
+        for (int cut = low; cut &lt; high; cut++) {
+            leftSum += values[cut];
+            rightSum -= values[cut];
+            if (leftSum &lt; rightSum) {
+                best = max(best, leftSum + calculate(low, cut, values, memo));
+            }
+            if (leftSum == rightSum) {
+                best = max(best, max(
+                    leftSum + calculate(low, cut, values, memo),
+                    rightSum + calculate(cut + 1, high, values, memo)
+                ));
+            }
+            if (leftSum &gt; rightSum) {
+                best = max(best, rightSum + calculate(cut + 1, high, values, memo));
+            }
+        }
+        return memo[low][high] = best;
+    }
+    int stoneGameV(vector&lt;int&gt;&amp; stoneValue) {
+        int size = stoneValue.size();
+        vector&lt;vector&lt;int&gt;&gt; memo(size, vector&lt;int&gt;(size, -1));
+        return calculate(0, size - 1, stoneValue, memo);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
