@@ -1000,6 +1000,15 @@
             "spaceComplexity": "O(m*n)"
         },
         {
+            "id": 1563,
+            "title": "Stone Game V",
+            "route": "/1563",
+            "difficulty": "Medium",
+            "description": "There are several stones arranged in a row, each with a value. On each round, a player divides the row into two non-empty rows, and the row with the lower sum is scored and kept (if equal, the play...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1578,
             "title": "Minimum Time to Make Rope Colorful",
             "route": "/1578",
@@ -3386,5 +3395,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-16"
+    "lastUpdated": "2026-08-17"
 }
