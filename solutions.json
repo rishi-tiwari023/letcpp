@@ -2656,6 +2656,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3471,
+            "title": "Find the Largest Almost Missing Integer",
+            "route": "/3471",
+            "difficulty": "Medium",
+            "description": "Given an integer array nums and an integer k, find the largest integer that appears in exactly one subarray of length k. If k equals the size of nums, return the maximum element. If no such integer...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3474,
             "title": "Lexicographically Smallest Generated String",
             "route": "/3474",
@@ -3395,5 +3404,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-17"
+    "lastUpdated": "2026-08-18"
 }
