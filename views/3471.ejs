@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3471: Find the Largest Almost Missing Integer
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3471: Find the Largest Almost Missing Integer (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an integer array nums and an integer k, find the largest integer that appears in exactly one
+                subarray of length k. If k equals the size of nums, return the maximum element. If no such integer
+                exists, return -1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [3,9,2,1,7], k = 3<br>
+                Output: 7<br>
+                Explanation: Sliding windows of size 3 are [3,9,2], [9,2,1], [2,1,7]. The value 7 appears in exactly one
+                window, and is the largest such value.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int largestInteger(vector&lt;int&gt;&amp; nums, int k) {
+        int result = -1;
+        unordered_map&lt;int, int&gt; frequency;
+        if (k == nums.size()) {
+            for (int idx = 0; idx &lt; nums.size(); idx++) {
+                result = max(result, nums[idx]);
+            }
+            return result;
+        }
+        for (int start = 0; start &lt;= nums.size() - k; start++) {
+            int count = k;
+            int idx = start;
+            while (count) {
+                frequency[nums[idx]]++;
+                idx++;
+                count--;
+            }
+        }
+        for (auto entry : frequency) {
+            int value = entry.first;
+            int occurrences = entry.second;
+            if (occurrences == 1) {
+                result = max(result, value);
+            }
+        }
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
