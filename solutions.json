@@ -811,6 +811,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 1386,
+            "title": "Cinema Seat Allocation",
+            "route": "/1386",
+            "difficulty": "Medium",
+            "description": "A cinema has n rows and 10 seats per row (columns 1-10). Some seats are reserved. A family of four must sit in 4 consecutive middle seats (columns 2-5, 4-7, or 6-9). Return the maximum number of 4-...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1390,
             "title": "Four Divisors",
             "route": "/1390",
@@ -3404,5 +3413,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-18"
+    "lastUpdated": "2026-08-20"
 }
