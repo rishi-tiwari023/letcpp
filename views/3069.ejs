@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3069: Distribute Elements Into Two Arrays I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3069: Distribute Elements Into Two Arrays I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed array nums of distinct integers. Initialize two arrays: the first with nums[0]
+                and the second with nums[1]. For each subsequent element, append it to the array whose last element is
+                greater. If tied, append to the first array. Return the concatenation of the first array followed by the
+                second.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [2,1,3]<br>
+                Output: [2,3,1]<br>
+                Explanation: first = [2], second = [1]. nums[2]=3: first.back()=2 &gt; second.back()=1, so append 3 to
+                first → first=[2,3]. Result = [2,3,1].
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; resultArray(vector&lt;int&gt;&amp; nums) {
+        vector&lt;int&gt; first = {nums[0]};
+        vector&lt;int&gt; second = {nums[1]};
+        for (int i = 2; i &lt; nums.size(); i++) {
+            if (first.back() &gt; second.back())
+                first.push_back(nums[i]);
+            else
+                second.push_back(nums[i]);
+        }
+        for (int value : second)
+            first.push_back(value);
+        return first;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
