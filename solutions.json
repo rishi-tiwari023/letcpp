@@ -2170,6 +2170,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3069,
+            "title": "Distribute Elements Into Two Arrays I",
+            "route": "/3069",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed array nums of distinct integers. Initialize two arrays: the first with nums[0] and the second with nums[1]. For each subsequent element, append it to the array whose last ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3070,
             "title": "Count Submatrices with Top-Left Element and Sum Less Than k",
             "route": "/3070",
