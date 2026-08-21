@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3116: Kth Smallest Amount With Single Denomination Combination
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3116: Kth Smallest Amount With Single Denomination Combination (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given an array of coin denominations and an integer k, return the k-th smallest amount that can be made
+                using any single denomination (not combinations of multiple coins). That is, count multiples of any coin
+                value, deduplicated, and find the k-th smallest among them.
+            </p>
+            <p><strong>Example:</strong>
+                Input: coins = [3,6,9], k = 3<br>
+                Output: 9<br>
+                Explanation: Valid amounts in order are 3, 6, 9, 12, ... Since 6 is a multiple of 3 and 9 is a multiple
+                of 3, we deduplicate via inclusion-exclusion. The 3rd smallest is 9.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">#include &lt;vector&gt;
+#include &lt;numeric&gt;
+#include &lt;algorithm&gt;
+#include &lt;unordered_map&gt;
+using namespace std;
+class Solution {
+private:
+    unordered_map&lt;int, vector&lt;long long&gt;&gt; lcmGroups;
+    long long gcd(long long a, long long b) {
+        return std::gcd(a, b);
+    }
+    long long lcm(long long a, long long b) {
+        if (a == 0 || b == 0)
+            return 0;
+        return (a / gcd(a, b)) * b;
+    }
+    vector&lt;int&gt; removeRedundant(vector&lt;int&gt;&amp; coins) {
+        int n = coins.size();
+        vector&lt;bool&gt; valid(n, true);
+        for (int i = 0; i &lt; n; i++) {
+            if (!valid[i])
+                continue;
+            for (int j = i + 1; j &lt; n; j++) {
+                if (coins[j] % coins[i] == 0)
+                    valid[j] = false;
+            }
+        }
+        vector&lt;int&gt; filtered;
+        for (int i = 0; i &lt; n; i++) {
+            if (valid[i])
+                filtered.push_back(coins[i]);
+        }
+        return filtered;
+    }
+    void buildSubsetLcms(const vector&lt;int&gt;&amp; coins, int n) {
+        lcmGroups.clear();
+        for (int size = 1; size &lt;= n; size++)
+            lcmGroups[size] = vector&lt;long long&gt;();
+        for (int mask = 1; mask &lt; (1 &lt;&lt; n); mask++) {
+            int size = 0;
+            long long common = 1;
+            for (int bit = 0; bit &lt; n; bit++) {
+                if ((mask &gt;&gt; bit) &amp; 1) {
+                    size++;
+                    common = lcm(common, coins[bit]);
+                }
+            }
+            lcmGroups[size].push_back(common);
+        }
+    }
+    long long countMultiples(long long limit, int n) {
+        long long total = 0;
+        int sign = 1;
+        for (int size = 1; size &lt;= n; size++) {
+            if (lcmGroups.find(size) == lcmGroups.end())
+                continue;
+            for (long long common : lcmGroups[size])
+                total += sign * (limit / common);
+            sign = -sign;
+        }
+        return total;
+    }
+public:
+    long long findKthSmallest(vector&lt;int&gt;&amp; coins, int k) {
+        sort(coins.begin(), coins.end());
+        vector&lt;int&gt; filtered = removeRedundant(coins);
+        int n = filtered.size();
+        buildSubsetLcms(filtered, n);
+        long long low = filtered[0];
+        long long high = 1LL * filtered[0] * k;
+        long long answer = high;
+        while (low &lt;= high) {
+            long long mid = low + (high - low) / 2;
+            long long total = countMultiples(mid, n);
+            if (total &gt;= k) {
+                answer = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return answer;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
