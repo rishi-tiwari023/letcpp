@@ -2233,6 +2233,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3116,
+            "title": "Kth Smallest Amount With Single Denomination Combination",
+            "route": "/3116",
+            "difficulty": "Medium",
+            "description": "Given an array of coin denominations and an integer k, return the k-th smallest amount that can be made using any single denomination (not combinations of multiple coins). That is, count multiples ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3120,
             "title": "Count the Number of Special Characters I",
             "route": "/3120",
@@ -3422,5 +3431,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-20"
+    "lastUpdated": "2026-08-21"
 }
