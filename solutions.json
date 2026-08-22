@@ -3043,6 +3043,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3622,
+            "title": "Check Divisibility by Digit Sum and Product",
+            "route": "/3622",
+            "difficulty": "Medium",
+            "description": "Given a positive integer num, return true if num is divisible by the sum of its digit sum and digit product, otherwise return false.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3623,
             "title": "Count Number of Trapezoids I",
             "route": "/3623",
@@ -3431,5 +3440,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-21"
+    "lastUpdated": "2026-08-22"
 }
