@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1927: Sum Game
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1927: Sum Game (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Alice and Bob play a game on a string of digits and '?' characters. On each turn, a player replaces a
+                '?' with any digit 1-9. Alice wants the sum of the first half to not equal the second half; Bob wants
+                them equal. Alice goes first and both play optimally. Return true if Alice wins.
+            </p>
+            <p><strong>Example:</strong>
+                Input: num = "5023"<br>
+                Output: false<br>
+                Explanation: The first half sum is 5+0=5 and the second half is 2+3=5. Since they are already equal and
+                no '?' exists, Bob wins by default (no moves needed), so Alice loses.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool sumGame(string str) {
+        double diff = 0;
+        double len = str.length();
+        for (int idx = 0; idx &lt; len; idx++) {
+            double sign = (idx &lt; len / 2) ? 1 : -1;
+            double val = (str[idx] == '?') ? 4.5 : str[idx] - '0';
+            diff += sign * val;
+        }
+        return diff != 0.0;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
