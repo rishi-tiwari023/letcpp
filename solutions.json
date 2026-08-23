@@ -1342,6 +1342,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1927,
+            "title": "Sum Game",
+            "route": "/1927",
+            "difficulty": "Medium",
+            "description": "Alice and Bob play a game on a string of digits and '?' characters. On each turn, a player replaces a '?' with any digit 1-9. Alice wants the sum of the first half to not equal the second half; Bob...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1930,
             "title": "Unique Length-3 Palindromic Subsequences",
             "route": "/1930",
@@ -3440,5 +3449,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-22"
+    "lastUpdated": "2026-08-23"
 }
