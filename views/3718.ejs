@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3718: Smallest Missing Multiple of K
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3718: Smallest Missing Multiple of K (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a sorted integer array nums and an integer k, return the smallest positive multiple of k that does
+                not appear in nums.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,5,7], k = 2<br>
+                Output: 4<br>
+                Explanation: Multiples of 2 are 2, 4, 6, 8... The value 2 appears in nums but 4 does not, so the
+                smallest missing multiple is 4.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int missingMultiple(vector&lt;int&gt;&amp; nums, int k) {
+        int target = 1;
+        unordered_set&lt;int&gt; multiples;
+        for (int value : nums) {
+            if (value % k == 0)
+                multiples.insert(value / k);
+            if (value / k == target) {
+                while (multiples.count(target))
+                    target++;
+            }
+        }
+        return target * k;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
