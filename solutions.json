@@ -3295,6 +3295,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3718,
+            "title": "Smallest Missing Multiple of K",
+            "route": "/3718",
+            "difficulty": "Medium",
+            "description": "Given a sorted integer array nums and an integer k, return the smallest positive multiple of k that does not appear in nums.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3719,
             "title": "Longest Balanced Subarray I",
             "route": "/3719",
@@ -3458,5 +3467,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-24"
+    "lastUpdated": "2026-08-25"
 }
