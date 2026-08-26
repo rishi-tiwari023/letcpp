@@ -1999,6 +1999,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 2904,
+            "title": "Shortest and Lexicographically Smallest Beautiful String",
+            "route": "/2904",
+            "difficulty": "Medium",
+            "description": "A beautiful string is a binary string with exactly k ones. Given a binary string s and an integer k, return the shortest and lexicographically smallest substring of s that is beautiful. If multiple...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2906,
             "title": "Construct Product Matrix",
             "route": "/2906",
@@ -3467,5 +3476,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-25"
+    "lastUpdated": "2026-08-26"
 }
