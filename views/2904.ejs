@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2904: Shortest and Lexicographically Smallest Beautiful String
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2904: Shortest and Lexicographically Smallest Beautiful String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                A beautiful string is a binary string with exactly k ones. Given a binary string s and an integer k,
+                return the shortest and lexicographically smallest substring of s that is beautiful. If multiple
+                substrings have the same shortest length, return the lexicographically smallest one.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "100011001", k = 3<br>
+                Output: "11001"<br>
+                Explanation: The substrings containing exactly 3 ones are found by sliding window; among the shortest
+                ones, "11001" is the lexicographically smallest.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool isCurrentSmaller(string &amp;previous, string &amp;current) {
+        for (int i = 0; i &lt; current.length(); i++) {
+            if (previous[i] &lt; current[i]) {
+                return false;
+            } else if (previous[i] &gt; current[i]) {
+                return true;
+            }
+        }
+        return true;
+    }
+    string shortestBeautifulSubstring(string s, int k) {
+        int left = 0;
+        int right = 0;
+        int ones = 0;
+        vector&lt;int&gt; best(3, 0);
+        for (int i = 0; i &lt; s.length(); i++) {
+            right++;
+            if (s[i] == '1') {
+                ones++;
+            }
+            while (ones &gt;= k &amp;&amp; left &lt; right) {
+                if (best[0] == 0 || (right - left) &lt; best[0]) {
+                    best[0] = right - left;
+                    best[1] = left;
+                    best[2] = right;
+                }
+                else if ((right - left) == best[0]) {
+                    string previous = s.substr(best[1], best[2] - best[1]);
+                    string current = s.substr(left, right - left);
+                    if (isCurrentSmaller(previous, current)) {
+                        best[0] = right - left;
+                        best[1] = left;
+                        best[2] = right;
+                    }
+                }
+                if (s[left] == '1') {
+                    ones--;
+                }
+                left++;
+            }
+        }
+        return s.substr(best[1], best[2] - best[1]);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
