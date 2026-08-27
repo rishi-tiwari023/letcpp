@@ -3322,6 +3322,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3720,
+            "title": "Lexicographically Smallest Permutation Greater Than Target",
+            "route": "/3720",
+            "difficulty": "Medium",
+            "description": "Given a string s and a string target of the same length, return the lexicographically smallest permutation of s that is strictly greater than target. If no such permutation exists, return an empty ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3721,
             "title": "Longest Balanced Subarray II",
             "route": "/3721",
@@ -3476,5 +3485,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-26"
+    "lastUpdated": "2026-08-27"
 }
