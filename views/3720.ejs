@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3720: Lexicographically Smallest Permutation Greater Than Target
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3720: Lexicographically Smallest Permutation Greater Than Target (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a string s and a string target of the same length, return the lexicographically smallest
+                permutation of s that is strictly greater than target. If no such permutation exists, return an empty
+                string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "dba", target = "cab"<br>
+                Output: "dab"<br>
+                Explanation: Among all permutations of "dba" that are greater than "cab", the lexicographically smallest
+                is "dab".
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string lexGreaterPermutation(string s, string target) {
+        int n = s.length();
+        vector&lt;int&gt; cnt(26, 0);
+        for (char ch : s)
+            cnt[ch - 'a']++;
+        string pref = "";
+        bool matched = false;
+        for (int idx = 0; idx &lt; (int)target.length(); idx++) {
+            if (cnt[target[idx] - 'a'] == 0)
+                break;
+            cnt[target[idx] - 'a']--;
+            pref += target[idx];
+            if (idx == target.length() - 1) {
+                matched = true;
+                break;
+            }
+        }
+        if (!matched &amp;&amp; pref.length() &lt; target.length()) {
+            int idx = pref.length();
+            int base = target[idx] - 'a';
+            for (int ch = base + 1; ch &lt; 26; ch++) {
+                if (cnt[ch] == 0)
+                    continue;
+                string res = pref;
+                res += char(ch + 'a');
+                cnt[ch]--;
+                for (int j = 0; j &lt; 26; j++)
+                    res.append(cnt[j], char(j + 'a'));
+                return res;
+            }
+        }
+        for (int idx = pref.length() - 1; idx &gt;= 0; idx--) {
+            cnt[pref[idx] - 'a']++;
+            char prev = pref[idx];
+            pref.pop_back();
+            for (int ch = prev - 'a' + 1; ch &lt; 26; ch++) {
+                if (cnt[ch] == 0)
+                    continue;
+                string res = pref;
+                res += char(ch + 'a');
+                cnt[ch]--;
+                for (int j = 0; j &lt; 26; j++)
+                    res.append(cnt[j], char(j + 'a'));
+                return res;
+            }
+        }
+        return "";
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
