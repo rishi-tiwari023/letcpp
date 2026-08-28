@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3734: Lexicographically Smallest Palindromic Permutation Greater Than Target
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3734: Lexicographically Smallest Palindromic Permutation Greater Than Target (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a string str and a string target of the same length, return the lexicographically smallest
+                palindromic permutation of str that is strictly greater than target. If no such permutation exists,
+                return an empty string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: str = "abcd", target = "abdc"<br>
+                Output: "adcda" or similar<br>
+                Explanation: Among all palindromic permutations of str that are greater than target, the
+                lexicographically smallest valid one is returned by building the first half greedily and mirroring it.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string lexPalindromicPermutation(string str, string target) {
+        int count[26] = {0};
+        for (char ch : str) {
+            count[ch - 'a']++;
+        }
+        char center = 0;
+        for (int i = 0; i &lt; 26; i++) {
+            if (count[i] % 2) {
+                if (center != 0) {
+                    return "";
+                }
+                center = 'a' + i;
+                count[i]--;
+            }
+        }
+        int len = str.length();
+        int half = len / 2;
+        for (int i = 0; i &lt; half; i++) {
+            count[target[i] - 'a'] -= 2;
+        }
+        if (check(count)) {
+            string head = target.substr(0, half);
+            string rev = head;
+            reverse(rev.begin(), rev.end());
+            string tail = "";
+            if (center != 0) {
+                tail += center;
+            }
+            tail += rev;
+            if (tail &gt; target.substr(half)) {
+                return head + tail;
+            }
+        }
+        for (int i = half - 1; i &gt;= 0; i--) {
+            char current = target[i];
+            count[current - 'a'] += 2;
+            if (!check(count)) {
+                continue;
+            }
+            for (int j = current - 'a' + 1; j &lt; 26; j++) {
+                if (count[j] == 0) {
+                    continue;
+                }
+                count[j] -= 2;
+                string result = target.substr(0, i + 1);
+                result[i] = 'a' + j;
+                for (int k = 0; k &lt; 26; k++) {
+                    int copies = count[k] / 2;
+                    if (copies &gt; 0) {
+                        result.append(copies, 'a' + k);
+                    }
+                }
+                string rev = result;
+                reverse(rev.begin(), rev.end());
+                if (center != 0) {
+                    result.push_back(center);
+                }
+                result += rev;
+                return result;
+            }
+        }
+        return "";
+    }
+    bool check(int count[]) {
+        for (int i = 0; i &lt; 26; i++) {
+            if (count[i] &lt; 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
