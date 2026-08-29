@@ -2035,6 +2035,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2948,
+            "title": "Make Lexicographically Smallest Array by Swapping Elements",
+            "route": "/2948",
+            "difficulty": "Medium",
+            "description": "Given an integer array nums and an integer limit, you can swap any two elements nums[i] and nums[j] if |nums[i] - nums[j]| &lt;= limit. Return the lexicographically smallest array achievable after ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2958,
             "title": "Length of Longest Subarray With at Most K Frequency",
             "route": "/2958",
@@ -3494,5 +3503,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-28"
+    "lastUpdated": "2026-08-29"
 }
