@@ -1513,6 +1513,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2091,
+            "title": "Removing Minimum and Maximum From Array",
+            "route": "/2091",
+            "difficulty": "Medium",
+            "description": "Given an integer array nums, you must remove both the minimum and maximum elements. You can only remove elements from either end of the array. Return the minimum number of deletions required to rem...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2092,
             "title": "Find All People With Secret",
             "route": "/2092",
@@ -3503,5 +3512,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-29"
+    "lastUpdated": "2026-08-30"
 }
