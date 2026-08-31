@@ -1486,6 +1486,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 2058,
+            "title": "Find the Minimum and Maximum Number of Nodes Between Critical Points",
+            "route": "/2058",
+            "difficulty": "Medium",
+            "description": "Given a linked list, a critical point is a node that is either a local minimum or local maximum (strictly less or greater than both neighbors). Return an array of two integers: the minimum and maxi...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2069,
             "title": "Walking Robot Simulation II",
             "route": "/2069",
@@ -3512,5 +3521,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-30"
+    "lastUpdated": "2026-08-31"
 }
