@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2058: Find the Minimum and Maximum Number of Nodes Between Critical Points
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2058: Find the Minimum and Maximum Number of Nodes Between Critical Points (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a linked list, a critical point is a node that is either a local minimum or local maximum
+                (strictly less or greater than both neighbors). Return an array of two integers: the minimum and maximum
+                distances between any two critical points. If fewer than two critical points exist, return [-1, -1].
+            </p>
+            <p><strong>Example:</strong>
+                Input: head = [3,1,4,1,5,9,2,6]<br>
+                Output: [1,3]<br>
+                Explanation: Critical points are at indices 1 (local min), 3 (local min), and 5 (local max). Min
+                distance = 3-1 = 1 (adjacent pair) and max distance = 5-1 = 4... varies by example.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; nodesBetweenCriticalPoints(ListNode* head) {
+        if (head-&gt;next == NULL || head-&gt;next-&gt;next == NULL) {
+            return {-1, -1};
+        }
+        ListNode* before = head;
+        ListNode* current = head-&gt;next;
+        ListNode* after = current-&gt;next;
+        vector&lt;int&gt; critical;
+        int index = 1;
+        while (after != NULL) {
+            if ((current-&gt;val &lt; before-&gt;val &amp;&amp; current-&gt;val &lt; after-&gt;val) ||
+                (current-&gt;val &gt; before-&gt;val &amp;&amp; current-&gt;val &gt; after-&gt;val)) {
+                critical.push_back(index);
+            }
+            index++;
+            before = current;
+            current = after;
+            after = after-&gt;next;
+        }
+        int total = critical.size();
+        if (total &lt; 2) {
+            return {-1, -1};
+        }
+        int largest = critical.back() - critical.front();
+        int smallest = largest;
+        for (int i = 1; i &lt; total; i++) {
+            smallest = min(smallest, critical[i] - critical[i - 1]);
+        }
+        return {smallest, largest};
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
