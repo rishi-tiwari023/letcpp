@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3568: Minimum Moves to Clean the Classroom
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3568: Minimum Moves to Clean the Classroom (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a grid classroom where 'S' is the start, 'L' is litter, 'R' is a recharge station, 'X' is a wall,
+                and '.' is empty, move in 4 directions spending 1 energy per step. Picking up litter is automatic on
+                entry. Recharge stations restore energy to full. Return the minimum moves to collect all litter, or -1
+                if impossible.
+            </p>
+            <p><strong>Example:</strong>
+                Input: classroom = ["S.", "L."], energy = 2<br>
+                Output: 2<br>
+                Explanation: Move down then the litter is collected in 2 moves with enough energy remaining.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minMoves(vector&lt;string&gt;&amp; classroom, int energy) {
+        int rows = classroom.size();
+        int cols = classroom[0].size();
+        vector&lt;pair&lt;int, int&gt;&gt; litterCells;
+        int startRow = 0, startCol = 0;
+        for (int row = 0; row &lt; rows; ++row) {
+            for (int col = 0; col &lt; cols; ++col) {
+                if (classroom[row][col] == 'S') {
+                    startRow = row;
+                    startCol = col;
+                } else if (classroom[row][col] == 'L') {
+                    litterCells.push_back({row, col});
+                }
+            }
+        }
+        int litterCount = litterCells.size();
+        if (litterCount == 0)
+            return 0;
+        vector&lt;vector&lt;int&gt;&gt; litterIndex(rows, vector&lt;int&gt;(cols, -1));
+        for (int idx = 0; idx &lt; litterCount; ++idx) {
+            auto [row, col] = litterCells[idx];
+            litterIndex[row][col] = idx;
+        }
+        int maskCount = 1 &lt;&lt; litterCount;
+        int totalCells = rows * cols;
+        vector&lt;int&gt; bestEnergy(maskCount * totalCells, -1);
+        struct State {
+            int row, col, mask, energy;
+        };
+        queue&lt;State&gt; states;
+        int startPosition = startRow * cols + startCol;
+        bestEnergy[startPosition] = energy;
+        states.push({startRow, startCol, 0, energy});
+        int moves = 0;
+        int dr[4] = {-1, 1, 0, 0};
+        int dc[4] = {0, 0, -1, 1};
+        while (!states.empty()) {
+            int levelSize = states.size();
+            while (levelSize--) {
+                auto [row, col, mask, currEnergy] = states.front();
+                states.pop();
+                if (mask == maskCount - 1)
+                    return moves;
+                if (currEnergy == 0)
+                    continue;
+                for (int dir = 0; dir &lt; 4; ++dir) {
+                    int nextRow = row + dr[dir];
+                    int nextCol = col + dc[dir];
+                    if (nextRow &lt; 0 || nextRow &gt;= rows ||
+                        nextCol &lt; 0 || nextCol &gt;= cols)
+                        continue;
+                    if (classroom[nextRow][nextCol] == 'X')
+                        continue;
+                    int nextEnergy = currEnergy - 1;
+                    int nextMask = mask;
+                    if (classroom[nextRow][nextCol] == 'R')
+                        nextEnergy = energy;
+                    if (litterIndex[nextRow][nextCol] != -1)
+                        nextMask |= (1 &lt;&lt; litterIndex[nextRow][nextCol]);
+                    int position = nextRow * cols + nextCol;
+                    int stateIndex = nextMask * totalCells + position;
+                    if (bestEnergy[stateIndex] &gt;= nextEnergy)
+                        continue;
+                    bestEnergy[stateIndex] = nextEnergy;
+                    states.push({nextRow, nextCol, nextMask, nextEnergy});
+                }
+            }
+            ++moves;
+        }
+        return -1;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
