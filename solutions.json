@@ -3007,6 +3007,15 @@
             "spaceComplexity": "O(k^2)"
         },
         {
+            "id": 3568,
+            "title": "Minimum Moves to Clean the Classroom",
+            "route": "/3568",
+            "difficulty": "Medium",
+            "description": "Given a grid classroom where 'S' is the start, 'L' is litter, 'R' is a recharge station, 'X' is a wall, and '.' is empty, move in 4 directions spending 1 energy per step. Picking up litter is autom...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3573,
             "title": "Best Time to Buy and Sell Stock V",
             "route": "/3573",
@@ -3521,5 +3530,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-08-31"
+    "lastUpdated": "2026-09-01"
 }
