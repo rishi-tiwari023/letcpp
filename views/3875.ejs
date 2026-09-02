@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3875: Construct Uniform Parity Array I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3875: Construct Uniform Parity Array I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array nums1 of n distinct integers. Construct another array nums2 of length n such
+                that all elements in nums2 are either odd or even. For each index i, choose exactly one of the
+                following options, in any order: nums2[i] = nums1[i], or nums2[i] = nums1[i] - nums1[j] for an index
+                j != i. Return true if it is possible to construct nums2; otherwise, return false.
+            </p>
+            <p><strong>Example 1:</strong>
+                Input: nums1 = [2,3]<br>
+                Output: true<br>
+                Explanation: Choose nums2 = [-1,3] by subtracting 3 from 2 and keeping 3. Both elements are odd.
+            </p>
+            <p><strong>Example 2:</strong>
+                Input: nums1 = [4,6]<br>
+                Output: true<br>
+                Explanation: Choose nums2 = [4,6]. Both elements are even.
+            </p>
+            <p><strong>Constraints:</strong>
+                1 &lt;= n == nums1.length &lt;= 100, 1 &lt;= nums1[i] &lt;= 100, and nums1 consists of distinct
+                integers.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool uniformArray(vector<int>& nums1) {
+		bool hasEven = false;
+		bool hasOdd = false;
+        for (int value : nums1) {
+			hasEven |= (value % 2 == 0);
+			hasOdd |= (value % 2 != 0);
+		}
+		return hasEven || hasOdd;
+	}
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
