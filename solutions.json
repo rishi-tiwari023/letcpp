@@ -3529,6 +3529,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3903,
+            "title": "Smallest Stable Index I",
+            "route": "/3903",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums of length n and an integer k. For every index i, its instability score is defined as the maximum value among nums[0..i] minus the minimum value among nums[i..n-1...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 9999,
             "title": "Workflow Test",
             "route": "/9999",
@@ -3548,5 +3557,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-03"
+    "lastUpdated": "2026-09-04"
 }
