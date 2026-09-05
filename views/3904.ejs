@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3904: Smallest Stable Index II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3904: Smallest Stable Index II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums of length n and an integer k. For every index i, its
+                instability score is defined as the maximum value among nums[0..i] minus the minimum value
+                among nums[i..n-1]. An index i is considered stable if its instability score is less than or
+                equal to k. Return the smallest stable index, or -1 if no such index exists. This version
+                raises the constraints on n compared to Smallest Stable Index I.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [5,0,1,4], k = 3<br>
+                Output: 3<br>
+                Explanation: At index 3, the maximum of [5,0,1,4] is 5 and the minimum of [4] is 4, giving an
+                instability score of 1, which is the first score at or below k = 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    static int firstStableIndex(vector&lt;int&gt;&amp; nums, int k) {
+        const int size = nums.size();
+        static int suffixMin[100000];
+        int currentMin = nums.back();
+        for (int idx = size - 1; idx &gt;= 0; idx--) {
+            currentMin = min(nums[idx], currentMin);
+            suffixMin[idx] = currentMin;
+        }
+        int currentMax = -1;
+        for (int idx = 0; idx &lt; size; idx++) {
+            currentMax = max(currentMax, nums[idx]);
+            if (currentMax - suffixMin[idx] &lt;= k)
+                return idx;
+        }
+        return -1;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
