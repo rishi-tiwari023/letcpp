@@ -109,6 +109,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 115,
+            "title": "Distinct Subsequences",
+            "route": "/115",
+            "difficulty": "Medium",
+            "description": "Given two strings s and t, return the number of distinct subsequences of s which equal t. A subsequence is formed by deleting some (possibly zero) characters from s without changing the relative or...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 120,
             "title": "Triangle",
             "route": "/120",
@@ -3566,5 +3575,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-05"
+    "lastUpdated": "2026-09-06"
 }
