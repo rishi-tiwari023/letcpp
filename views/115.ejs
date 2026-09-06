@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 115: Distinct Subsequences
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 115: Distinct Subsequences (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given two strings s and t, return the number of distinct subsequences of s which equal t. A
+                subsequence is formed by deleting some (possibly zero) characters from s without changing the
+                relative order of the remaining characters.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "rabbbit", t = "rabbit"<br>
+                Output: 3<br>
+                Explanation: There are 3 ways you can generate "rabbit" from s, by picking different
+                occurrences of the repeated 'b'.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int numDistinct(string source, string target) {
+        int targetLen = target.size();
+        vector&lt;unsigned long long&gt; ways(targetLen + 1, 0);
+        ways[0] = 1;
+        for (char ch : source) {
+            for (int idx = targetLen; idx &gt;= 1; --idx) {
+                if (ch == target[idx - 1]) {
+                    ways[idx] += ways[idx - 1];
+                }
+            }
+        }
+        return (int)ways[targetLen];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
