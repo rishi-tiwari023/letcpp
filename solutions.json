@@ -478,6 +478,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 940,
+            "title": "Distinct Subsequences II",
+            "route": "/940",
+            "difficulty": "Medium",
+            "description": "Given a string s, return the number of distinct non-empty subsequences of s. Since the answer may be very large, return it modulo 10^9 + 7.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 944,
             "title": "Delete Columns to Make Sorted",
             "route": "/944",
@@ -3575,5 +3584,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-06"
+    "lastUpdated": "2026-09-07"
 }
