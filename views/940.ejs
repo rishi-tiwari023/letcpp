@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 940: Distinct Subsequences II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 940: Distinct Subsequences II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a string s, return the number of distinct non-empty subsequences of s. Since the answer
+                may be very large, return it modulo 10^9 + 7.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "abc"<br>
+                Output: 7<br>
+                Explanation: The 7 distinct subsequences are "a", "b", "c", "ab", "ac", "bc", and "abc".
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int distinctSubseqII(string s) {
+        const int MOD = 1e9 + 7;
+
+        long long ending[26] = {0};
+        long long distinct = 0;
+
+        for (char ch : s) {
+            int pos = ch - 'a';
+
+            long long add = (distinct + 1) % MOD;
+
+            distinct = (distinct - ending[pos] + add) % MOD;
+            if (distinct &lt; 0) {
+                distinct += MOD;
+            }
+
+            ending[pos] = add;
+        }
+
+        return distinct;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
