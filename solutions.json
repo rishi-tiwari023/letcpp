@@ -3520,6 +3520,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3870,
+            "title": "Count Commas in Range",
+            "route": "/3870",
+            "difficulty": "Medium",
+            "description": "You are given an integer n. Return the total number of commas used when writing every integer from 1 to n (inclusive) in standard number formatting, where a comma is placed after every three digits...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3875,
             "title": "Construct Uniform Parity Array I",
             "route": "/3875",
@@ -3584,5 +3593,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-07"
+    "lastUpdated": "2026-09-08"
 }
