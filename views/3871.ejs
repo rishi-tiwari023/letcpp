@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3871: Count Commas in Range II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3871: Count Commas in Range II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer n. Return the total number of commas used when writing every integer
+                from 1 to n (inclusive) in standard number formatting, where a comma is placed after every
+                three digits counted from the right and numbers with fewer than four digits have no commas.
+                This version raises n up to 10^15, so a single comma count per number is no longer enough and
+                multi-comma ranges must be handled.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 1002<br>
+                Output: 3<br>
+                Explanation: The numbers 1,000, 1,001, and 1,002 each contribute one comma, for a total of 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long countCommas(long long n) {
+        if (n &lt;= 999) return 0;
+
+        long long result = 0;
+        long long start = 1000;
+        long long end = start * 1000 - 1;
+        int commaCount = 1;
+
+        while (start &lt;= n) {
+            long long currentCount = min(n, end) - start + 1;
+            result += 1LL * commaCount * currentCount;
+
+            if (end &gt; n) break;
+
+            start *= 1000;
+            end = start * 1000 - 1;
+            commaCount++;
+        }
+
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
