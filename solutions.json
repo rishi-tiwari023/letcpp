@@ -1720,6 +1720,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2265,
+            "title": "Count Nodes Equal to Average of Subtree",
+            "route": "/2265",
+            "difficulty": "Medium",
+            "description": "Given the root of a binary tree, return the number of nodes where the value of the node is equal to the average (rounded down to the nearest integer) of the values of every node in its subtree, inc...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2273,
             "title": "Find Resultant Array After Removing Anagrams",
             "route": "/2273",
@@ -3602,5 +3611,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-09"
+    "lastUpdated": "2026-09-10"
 }
