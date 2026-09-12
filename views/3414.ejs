@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3414: Maximum Score of Non-overlapping Intervals
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3414: Maximum Score of Non-overlapping Intervals (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D integer array intervals, where intervals[i] = [l, r, weight]. Interval i
+                starts at position l and ends at r, and carries the given weight. You may choose up to 4
+                non-overlapping intervals (sharing a boundary point counts as overlapping). The score of a
+                chosen set is the sum of the chosen weights. Return the lexicographically smallest array of at
+                most 4 indices achieving the maximum possible score.
+            </p>
+            <p><strong>Example:</strong>
+                Input: intervals = [[1,3,2],[4,5,2],[1,5,5],[6,9,3],[6,7,1],[8,9,1]]<br>
+                Output: [2,3]<br>
+                Explanation: Choosing the intervals at indices 2 and 3 (weights 5 and 3) gives the maximum
+                score of 8 among all non-overlapping selections.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">const int LIMIT = 5e4 + 1;
+
+struct Interval {
+    int start, end, weight, index = -1;
+
+    Interval() {}
+    Interval(int start, int end, int weight, int index)
+        : start(start), end(end), weight(weight), index(index) {}
+
+    bool operator&lt;(const Interval&amp; other) const {
+        return end &lt; other.end;
+    }
+};
+
+Interval intervals[LIMIT];
+using ll = long long;
+
+ll best[LIMIT][5];
+array&lt;int, 4&gt; chosen[LIMIT][5];
+
+class Solution {
+public:
+    vector&lt;int&gt; maximumWeight(vector&lt;vector&lt;int&gt;&gt;&amp; input) {
+        const int n = input.size();
+        const int INF = INT_MAX;
+
+        for (int i = 0; i &lt; n; i++) {
+            const auto&amp; current = input[i];
+            intervals[i] = Interval(current[0], current[1], current[2], i);
+        }
+
+        sort(intervals, intervals + n);
+
+        memset(best, 0, sizeof(ll) * (n + 1) * 5);
+
+        for (int i = 0; i &lt;= n; i++)
+            for (int j = 0; j &lt; 5; j++)
+                chosen[i][j].fill(INF);
+
+        for (int i = 0; i &lt; n; i++) {
+            auto [start, end, weight, index] = intervals[i];
+
+            int previous = lower_bound(
+                intervals,
+                intervals + i,
+                start,
+                [](const Interval&amp; current, int value) {
+                    return current.end &lt; value;
+                }
+            ) - intervals;
+
+            for (int count = 1; count &lt; 5; count++) {
+                ll skip = best[i][count];
+                ll take = best[previous][count - 1] + weight;
+
+                if (skip &gt; take) {
+                    best[i + 1][count] = best[i][count];
+                    chosen[i + 1][count] = chosen[i][count];
+                } else {
+                    best[i + 1][count] = take;
+
+                    auto current = chosen[previous][count - 1];
+                    current[count - 1] = index;
+
+                    for (int pos = count - 2; pos &gt;= 0; pos--) {
+                        if (current[pos] &lt; index)
+                            break;
+                        swap(current[pos], current[pos + 1]);
+                    }
+
+                    if (skip == take)
+                        chosen[i + 1][count] = min(chosen[i][count], current);
+                    else
+                        chosen[i + 1][count] = current;
+                }
+            }
+        }
+
+        vector&lt;int&gt; answer;
+
+        for (int pos = 0; pos &lt; 4; pos++) {
+            int index = chosen[n][4][pos];
+
+            if (index == INF)
+                break;
+
+            answer.push_back(index);
+        }
+
+        return answer;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
