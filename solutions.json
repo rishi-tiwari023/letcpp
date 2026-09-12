@@ -2683,6 +2683,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3414,
+            "title": "Maximum Score of Non-overlapping Intervals",
+            "route": "/3414",
+            "difficulty": "Medium",
+            "description": "You are given a 2D integer array intervals, where intervals[i] = [l, r, weight]. Interval i starts at position l and ends at r, and carries the given weight. You may choose up to 4 non-overlapping ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3418,
             "title": "Maximum Amount of Money Robot Can Earn",
             "route": "/3418",
@@ -3620,5 +3629,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-11"
+    "lastUpdated": "2026-09-12"
 }
