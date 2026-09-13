@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 835: Image Overlap
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 835: Image Overlap (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two images, imageA and imageB, both represented as n x n binary matrices. You
+                are allowed to translate one image in any direction (left, right, up, or down) by any amount.
+                After translating, overlay it on the other image's top-left corner. Return the largest number
+                of ones (from both images) that can be overlapped after any single translation.
+            </p>
+            <p><strong>Example:</strong>
+                Input: imageA = [[1,1,0],[0,1,0],[0,1,0]], imageB = [[0,0,0],[0,1,1],[0,0,1]]<br>
+                Output: 3<br>
+                Explanation: Shifting imageA one unit right and one unit down aligns 3 of its ones with ones
+                in imageB.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int largestOverlap(vector&lt;vector&lt;int&gt;&gt;&amp; imageA, vector&lt;vector&lt;int&gt;&gt;&amp; imageB) {
+        int size = imageA.size();
+
+        vector&lt;pair&lt;int, int&gt;&gt; pointsA;
+        vector&lt;pair&lt;int, int&gt;&gt; pointsB;
+
+        for (int row = 0; row &lt; size; row++) {
+            for (int col = 0; col &lt; size; col++) {
+                if (imageA[row][col] == 1)
+                    pointsA.push_back({row, col});
+
+                if (imageB[row][col] == 1)
+                    pointsB.push_back({row, col});
+            }
+        }
+
+        int best = 0;
+        map&lt;pair&lt;int, int&gt;, int&gt; frequency;
+
+        for (auto first : pointsA) {
+            for (auto second : pointsB) {
+                int rowShift = second.first - first.first;
+                int colShift = second.second - first.second;
+
+                frequency[{rowShift, colShift}]++;
+                best = max(best, frequency[{rowShift, colShift}]);
+            }
+        }
+
+        return best;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
