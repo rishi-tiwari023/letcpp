@@ -415,6 +415,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 835,
+            "title": "Image Overlap",
+            "route": "/835",
+            "difficulty": "Medium",
+            "description": "You are given two images, imageA and imageB, both represented as n x n binary matrices. You are allowed to translate one image in any direction (left, right, up, or down) by any amount. After trans...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 837,
             "title": "New 21 Game",
             "route": "/837",
@@ -3629,5 +3638,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-12"
+    "lastUpdated": "2026-09-13"
 }
