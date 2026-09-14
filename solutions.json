@@ -424,6 +424,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 836,
+            "title": "Rectangle Overlap",
+            "route": "/836",
+            "difficulty": "Medium",
+            "description": "An axis-aligned rectangle is represented as a list [x1, y1, x2, y2], where (x1, y1) is the coordinate of its bottom-left corner and (x2, y2) is the coordinate of its top-right corner. Its top and b...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 837,
             "title": "New 21 Game",
             "route": "/837",
@@ -3638,5 +3647,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-13"
+    "lastUpdated": "2026-09-14"
 }
