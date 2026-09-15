@@ -1837,6 +1837,15 @@
             "spaceComplexity": "O(n * m)"
         },
         {
+            "id": 2472,
+            "title": "Maximum Number of Non-overlapping Palindrome Substrings",
+            "route": "/2472",
+            "difficulty": "Medium",
+            "description": "You are given a string s and a positive integer k. Select a set of non-overlapping substrings from s such that each substring has a length of at least k and each substring is a palindrome. Return t...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2483,
             "title": "Minimum Penalty for a Shop",
             "route": "/2483",
@@ -3647,5 +3656,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-14"
+    "lastUpdated": "2026-09-15"
 }
