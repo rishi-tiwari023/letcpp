@@ -1099,6 +1099,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1621,
+            "title": "Number of Sets of K Non-Overlapping Line Segments",
+            "route": "/1621",
+            "difficulty": "Medium",
+            "description": "Given n points on a 1-D plane, where the ith point (from 0 to n-1) is at x = i, find the number of ways we can draw exactly k non-overlapping line segments such that each segment covers two or more...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1622,
             "title": "Fancy Sequence",
             "route": "/1622",
@@ -3656,5 +3665,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-15"
+    "lastUpdated": "2026-09-16"
 }
