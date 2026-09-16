@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1621: Number of Sets of K Non-Overlapping Line Segments
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1621: Number of Sets of K Non-Overlapping Line Segments (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given n points on a 1-D plane, where the ith point (from 0 to n-1) is at x = i, find the
+                number of ways we can draw exactly k non-overlapping line segments such that each segment
+                covers two or more points. The endpoints of each segment must have integral coordinates. The k
+                line segments do not have to cover all n points, and they are allowed to share endpoints.
+                Return the number of ways modulo 10^9 + 7.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 4, k = 2<br>
+                Output: 5<br>
+                Explanation: The two segments can be placed in 5 distinct non-overlapping ways across the 4
+                points, where segments may touch at a shared endpoint.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    static const int MOD = 1e9 + 7;
+
+    int numberOfSets(int n, int k) {
+        vector&lt;vector&lt;long long&gt;&gt; table(n, vector&lt;long long&gt;(k + 1));
+
+        for (int pos = 0; pos &lt; n; pos++)
+            table[pos][0] = 1;
+
+        for (int segments = 1; segments &lt;= k; segments++) {
+            long long prefix = 0;
+
+            for (int pos = 1; pos &lt; n; pos++) {
+                prefix = (prefix + table[pos - 1][segments - 1]) % MOD;
+                table[pos][segments] = (table[pos - 1][segments] + prefix) % MOD;
+            }
+        }
+
+        return table[n - 1][k];
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
