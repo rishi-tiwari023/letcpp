@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1477: Find Two Non-overlapping Sub-arrays Each With Target Sum
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1477: Find Two Non-overlapping Sub-arrays Each With Target Sum (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array of integers arr and an integer target. You have to find two
+                non-overlapping sub-arrays of arr each with a sum equal to target. There can be multiple
+                answers so you have to find an answer where the sum of the lengths of the two sub-arrays is
+                minimum. Return the minimum sum of the lengths of the two required sub-arrays, or return -1 if
+                you cannot find such two sub-arrays.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr = [3,2,2,4,3], target = 3<br>
+                Output: 2<br>
+                Explanation: Only two sub-arrays have sum = 3 ([3] at the start and [3] at the end). They do
+                not overlap, so the sum of their lengths is 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minSumOfLengths(vector&lt;int&gt;&amp; nums, int goal) {
+        int size = nums.size();
+        vector&lt;int&gt; best(size, INT_MAX);
+
+        int start = 0;
+        int windowSum = 0;
+        int result = INT_MAX;
+
+        for (int end = 0; end &lt; size; ++end) {
+            windowSum += nums[end];
+
+            while (windowSum &gt; goal) {
+                windowSum -= nums[start];
+                ++start;
+            }
+
+            if (windowSum == goal) {
+                int length = end - start + 1;
+
+                if (start &gt; 0 &amp;&amp; best[start - 1] != INT_MAX)
+                    result = min(result, length + best[start - 1]);
+
+                best[end] = length;
+            }
+
+            if (end &gt; 0)
+                best[end] = min(best[end], best[end - 1]);
+        }
+
+        return result == INT_MAX ? -1 : result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
