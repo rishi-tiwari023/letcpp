@@ -1009,6 +1009,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1520,
+            "title": "Maximum Number of Non-Overlapping Substrings",
+            "route": "/1520",
+            "difficulty": "Medium",
+            "description": "Given a string s of lowercase letters, return the maximum number of non-empty substrings of s that can be extracted such that the two conditions are met: the substrings do not overlap, and each occ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1523,
             "title": "Count Odd Numbers in an Interval Range",
             "route": "/1523",
@@ -3674,5 +3683,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-17"
+    "lastUpdated": "2026-09-18"
 }
