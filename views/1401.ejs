@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1401: Circle and Rectangle Overlapping
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1401: Circle and Rectangle Overlapping (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a circle represented as (radius, xCenter, yCenter) and an axis-aligned
+                rectangle represented as (x1, y1, x2, y2), where (x1, y1) is the bottom-left corner and
+                (x2, y2) is the top-right corner of the rectangle. Return true if the circle and the
+                rectangle are overlapping, otherwise return false. In other words, check if there is any
+                point (xi, yi) that belongs to the circle and the rectangle at the same time.
+            </p>
+            <p><strong>Example:</strong>
+                Input: radius = 1, xCenter = 0, yCenter = 0, x1 = 1, y1 = -1, x2 = 3, y2 = 1<br>
+                Output: true<br>
+                Explanation: The circle centered at the origin with radius 1 touches the rectangle's left
+                edge, so they overlap.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    static bool checkOverlap(int rad, int xc, int yc, int left, int bottom, int right, int top) {
+        left -= xc;
+        right -= xc;
+        bottom -= yc;
+        top -= yc;
+
+        int distSq = 0;
+
+        distSq += (left &gt; 0) ? left * left : 0;
+        distSq += (right &lt; 0) ? right * right : 0;
+        distSq += (bottom &gt; 0) ? bottom * bottom : 0;
+        distSq += (top &lt; 0) ? top * top : 0;
+
+        return rad * rad &gt;= distSq;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
