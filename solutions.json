@@ -874,6 +874,15 @@
             "spaceComplexity": "O(m*n)"
         },
         {
+            "id": 1401,
+            "title": "Circle and Rectangle Overlapping",
+            "route": "/1401",
+            "difficulty": "Medium",
+            "description": "You are given a circle represented as (radius, xCenter, yCenter) and an axis-aligned rectangle represented as (x1, y1, x2, y2), where (x1, y1) is the bottom-left corner and (x2, y2) is the top-righ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1404,
             "title": "Number of Steps to Reduce a Number in Binary Representation to One",
             "route": "/1404",
@@ -3683,5 +3692,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-18"
+    "lastUpdated": "2026-09-19"
 }
