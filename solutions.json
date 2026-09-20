@@ -2899,6 +2899,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3498,
+            "title": "Reverse Degree of a String",
+            "route": "/3498",
+            "difficulty": "Medium",
+            "description": "Given a string s, calculate its reverse degree. For each character, assign a value equal to 26 minus its position in the alphabet (so 'a' is worth 26, 'z' is worth 1). Multiply each character's val...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3499,
             "title": "Maximize Active Section with Trade I",
             "route": "/3499",
@@ -3692,5 +3701,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-19"
+    "lastUpdated": "2026-09-20"
 }
