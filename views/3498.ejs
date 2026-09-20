@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3498: Reverse Degree of a String
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3498: Reverse Degree of a String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a string s, calculate its reverse degree. For each character, assign a value equal to
+                26 minus its position in the alphabet (so 'a' is worth 26, 'z' is worth 1). Multiply each
+                character's value by its 1-indexed position in the string, then sum all of these products to
+                get the reverse degree. Return the reverse degree of s.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "abc"<br>
+                Output: 148<br>
+                Explanation: 'a' contributes 26*1=26, 'b' contributes 25*2=50, and 'c' contributes 24*3=72,
+                giving a total of 148.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int reverseDegree(string str) {
+        int result = 0;
+        for (int idx = 0; idx &lt; str.size(); idx++) {
+            int score = 26 - (str[idx] - 'a');
+            result += score * (idx + 1);
+        }
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
