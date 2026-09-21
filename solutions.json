@@ -3007,6 +3007,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3524,
+            "title": "Find X Value of Array I",
+            "route": "/3524",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums and a positive integer k. For every non-empty subarray of nums, compute the product of all its elements modulo k. The x-value for a given remainder x is the coun...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3531,
             "title": "Count Covered Buildings",
             "route": "/3531",
@@ -3701,5 +3710,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-20"
+    "lastUpdated": "2026-09-21"
 }
