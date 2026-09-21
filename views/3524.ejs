@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3524: Find X Value of Array I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3524: Find X Value of Array I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums and a positive integer k. For every non-empty subarray of
+                nums, compute the product of all its elements modulo k. The x-value for a given remainder x
+                is the count of subarrays whose product modulo k equals x. Return an array of size k where
+                the element at index x is the x-value for that remainder.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [4,2,1], k = 3<br>
+                Output: [2,2,2]<br>
+                Explanation: Among the 6 possible subarrays, exactly 2 have a product with remainder 0 modulo
+                3, 2 have remainder 1, and 2 have remainder 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;long long&gt; resultArray(vector&lt;int&gt;&amp; nums, int k) {
+        vector&lt;long long&gt; answer(k);
+        int frequency[5] = {0};
+
+        for (auto&amp; num : nums) {
+            num %= k;
+            int current[5] = {0};
+            current[num] = 1;
+
+            for (int remainder = 0; remainder &lt; k; remainder++)
+                current[remainder * num % k] += frequency[remainder];
+
+            for (int remainder = 0; remainder &lt; k; remainder++) {
+                frequency[remainder] = current[remainder];
+                answer[remainder] += frequency[remainder];
+            }
+        }
+
+        return answer;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
