@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3525: Find X Value of Array II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3525: Find X Value of Array II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums and a positive integer k. You are also given a 2D array
+                queries, where queries[i] = [indexi, valuei, starti, xi]. For each query, first update
+                nums[indexi] to valuei, then find the number of subarrays starting at index starti whose
+                product of elements, taken modulo k, equals xi. Return an array containing the answer for
+                each query, in the order the updates and queries are applied.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,4,5], k = 3, queries = [[2,2,0,2]]<br>
+                Output: [2]<br>
+                Explanation: After setting nums[2] to 2, the array becomes [1,2,2,4,5]. Starting at index 0,
+                exactly 2 subarrays have a product with remainder 2 modulo 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; resultArray(
+        vector&lt;int&gt;&amp; nums,
+        int k,
+        vector&lt;vector&lt;int&gt;&gt;&amp; queries
+    ) {
+        int n = nums.size();
+
+        int base = 1;
+        while (base &lt; n)
+            base &lt;&lt;= 1;
+
+        vector&lt;long long&gt; count(2 * base * k, 0);
+        vector&lt;int&gt; product(2 * base, 1 % k);
+
+        for (int i = 0; i &lt; n; i++) {
+            int rem = nums[i] % k;
+            int node = base + i;
+
+            count[node * k + rem] = 1;
+            product[node] = rem;
+        }
+
+        for (int node = base - 1; node &gt;= 1; node--) {
+            int left = node &lt;&lt; 1;
+            int right = left | 1;
+            int leftProduct = product[left];
+
+            int current = node * k;
+            int leftBase = left * k;
+            int rightBase = right * k;
+
+            for (int rem = 0; rem &lt; k; rem++)
+                count[current + rem] = count[leftBase + rem];
+
+            for (int rem = 0; rem &lt; k; rem++) {
+                long long ways = count[rightBase + rem];
+
+                if (ways)
+                    count[current + (leftProduct * rem) % k] += ways;
+            }
+
+            product[node] = (leftProduct * product[right]) % k;
+        }
+
+        vector&lt;int&gt; result;
+
+        for (auto&amp; query : queries) {
+            int index = query[0];
+            int value = query[1];
+            int start = query[2];
+            int target = query[3];
+
+            int node = base + index;
+            int offset = node * k;
+
+            for (int rem = 0; rem &lt; k; rem++)
+                count[offset + rem] = 0;
+
+            int valueRem = value % k;
+            count[offset + valueRem] = 1;
+            product[node] = valueRem;
+
+            node &gt;&gt;= 1;
+
+            while (node) {
+                int left = node &lt;&lt; 1;
+                int right = left | 1;
+                int leftProduct = product[left];
+
+                int current = node * k;
+                int leftBase = left * k;
+                int rightBase = right * k;
+
+                for (int rem = 0; rem &lt; k; rem++)
+                    count[current + rem] = count[leftBase + rem];
+
+                for (int rem = 0; rem &lt; k; rem++) {
+                    long long ways = count[rightBase + rem];
+
+                    if (ways)
+                        count[current + (leftProduct * rem) % k] += ways;
+                }
+
+                product[node] = (leftProduct * product[right]) % k;
+                node &gt;&gt;= 1;
+            }
+
+            int left = start + base;
+            int right = n + base;
+
+            vector&lt;int&gt; prefixNodes;
+            vector&lt;int&gt; suffixNodes;
+
+            while (left &lt; right) {
+                if (left &amp; 1) {
+                    prefixNodes.push_back(left);
+                    left++;
+                }
+
+                if (right &amp; 1) {
+                    right--;
+                    suffixNodes.push_back(right);
+                }
+
+                left &gt;&gt;= 1;
+                right &gt;&gt;= 1;
+            }
+
+            reverse(suffixNodes.begin(), suffixNodes.end());
+
+            vector&lt;long long&gt; state(k, 0);
+            int currentProduct = 1 % k;
+
+            for (int nodeId : prefixNodes) {
+                int offset = nodeId * k;
+
+                for (int rem = 0; rem &lt; k; rem++) {
+                    long long ways = count[offset + rem];
+
+                    if (ways)
+                        state[(currentProduct * rem) % k] += ways;
+                }
+
+                currentProduct = currentProduct * product[nodeId] % k;
+            }
+
+            for (int nodeId : suffixNodes) {
+                int offset = nodeId * k;
+
+                for (int rem = 0; rem &lt; k; rem++) {
+                    long long ways = count[offset + rem];
+
+                    if (ways)
+                        state[(currentProduct * rem) % k] += ways;
+                }
+
+                currentProduct = currentProduct * product[nodeId] % k;
+            }
+
+            result.push_back((int)state[target]);
+        }
+
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
