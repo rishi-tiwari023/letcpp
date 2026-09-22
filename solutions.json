@@ -3016,6 +3016,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3525,
+            "title": "Find X Value of Array II",
+            "route": "/3525",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums and a positive integer k. You are also given a 2D array queries, where queries[i] = [indexi, valuei, starti, xi]. For each query, first update nums[indexi] to va...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3531,
             "title": "Count Covered Buildings",
             "route": "/3531",
@@ -3710,5 +3719,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-21"
+    "lastUpdated": "2026-09-22"
 }
