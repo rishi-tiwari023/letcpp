@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1096: Brace Expansion II
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1096: Brace Expansion II (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Under a grammar of brace expansion, strings can be formed by concatenation of letters,
+                comma-separated options inside braces meaning any one option can be chosen, and adjacency
+                between groups meaning concatenation. Given an expression representing such a formula, return
+                the sorted list of unique words that the expression could evaluate to.
+            </p>
+            <p><strong>Example:</strong>
+                Input: expression = "{a,b}{c,{d,e}}"<br>
+                Output: ["ac","ad","ae","bc","bd","be"]<br>
+                Explanation: Choosing one option from each brace group and concatenating them produces every
+                combination, with duplicates removed and the result sorted.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+    int pos = 0;
+
+public:
+    vector&lt;string&gt; braceExpansionII(string expression) {
+        set&lt;string&gt; uniqueWords = parse(expression);
+        return vector&lt;string&gt;(uniqueWords.begin(), uniqueWords.end());
+    }
+
+    set&lt;string&gt; parse(string&amp; expression) {
+        set&lt;string&gt; answer;
+        set&lt;string&gt; current;
+        current.insert("");
+
+        while (pos &lt; expression.length() &amp;&amp; expression[pos] != '}') {
+            char symbol = expression[pos];
+
+            if (symbol == ',') {
+                answer.insert(current.begin(), current.end());
+                current.clear();
+                current.insert("");
+                pos++;
+            } else {
+                set&lt;string&gt; choices = getNext(expression);
+                set&lt;string&gt; merged;
+
+                for (string first : current) {
+                    for (string second : choices) {
+                        merged.insert(first + second);
+                    }
+                }
+
+                current = merged;
+            }
+        }
+
+        answer.insert(current.begin(), current.end());
+        return answer;
+    }
+
+    set&lt;string&gt; getNext(string&amp; expression) {
+        char symbol = expression[pos];
+
+        if (isalpha(symbol)) {
+            set&lt;string&gt; choices;
+            choices.insert(string(1, symbol));
+            pos++;
+            return choices;
+        }
+
+        if (symbol == '{') {
+            pos++;
+            set&lt;string&gt; choices = parse(expression);
+            pos++;
+            return choices;
+        }
+
+        return {};
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
