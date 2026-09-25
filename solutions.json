@@ -613,6 +613,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1096,
+            "title": "Brace Expansion II",
+            "route": "/1096",
+            "difficulty": "Medium",
+            "description": "Under a grammar of brace expansion, strings can be formed by concatenation of letters, comma-separated options inside braces meaning any one option can be chosen, and adjacency between groups meani...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1140,
             "title": "Stone Game II",
             "route": "/1140",
@@ -3737,5 +3746,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-24"
+    "lastUpdated": "2026-09-25"
 }
