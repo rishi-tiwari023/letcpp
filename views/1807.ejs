@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1807: Evaluate the Bracket Pairs of a String
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1807: Evaluate the Bracket Pairs of a String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string s that contains some bracket pairs, each containing a non-empty key,
+                and a list of key-value pairs called knowledge. Every key is guaranteed to appear at most once
+                in its bracket pairs. For each bracket pair, replace it and its key with the corresponding
+                value from knowledge, or with a question mark "?" if the key does not exist. Return the
+                resulting string after evaluating all the bracket pairs.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "(name)is(age)yearsold", knowledge = [["name","bob"],["age","two"]]<br>
+                Output: "bobistwoyearsold"<br>
+                Explanation: The key "name" is replaced with "bob" and the key "age" is replaced with "two",
+                producing the final string.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string evaluate(string s, vector&lt;vector&lt;string&gt;&gt;&amp; knowledge) {
+        unordered_map&lt;string, string&gt; values;
+
+        for (auto&amp; pair : knowledge) {
+            values[pair[0]] = pair[1];
+        }
+
+        string key = "";
+        string answer = "";
+        bool inside = false;
+
+        for (char ch : s) {
+            if (ch == '(') {
+                inside = true;
+            }
+            else if (ch == ')') {
+                if (values.find(key) != values.end()) {
+                    answer += values[key];
+                }
+                else {
+                    answer += "?";
+                }
+
+                inside = false;
+                key = "";
+            }
+            else if (inside) {
+                key += ch;
+            }
+            else {
+                answer += ch;
+            }
+        }
+
+        return answer;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
