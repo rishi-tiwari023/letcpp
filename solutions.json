@@ -649,6 +649,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1190,
+            "title": "Reverse Substrings Between Each Pair of Parentheses",
+            "route": "/1190",
+            "difficulty": "Medium",
+            "description": "You are given a string s that consists of lowercase English letters and parentheses. Reverse the strings in each pair of matching parentheses, starting from the innermost one. Return the resulting ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1200,
             "title": "Minimum Absolute Difference",
             "route": "/1200",
@@ -3755,5 +3764,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-26"
+    "lastUpdated": "2026-09-27"
 }
