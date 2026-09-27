@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1190: Reverse Substrings Between Each Pair of Parentheses
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1190: Reverse Substrings Between Each Pair of Parentheses (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string s that consists of lowercase English letters and parentheses. Reverse
+                the strings in each pair of matching parentheses, starting from the innermost one. Return the
+                resulting string after removing all parentheses.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "(u(love)i)"<br>
+                Output: "iloveu"<br>
+                Explanation: First, "love" is reversed to "evol" inside the inner parentheses. Then the
+                surrounding string "u(evol)i" is reversed to "iloveu" after removing the parentheses.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string reverseParentheses(string str) {
+        string result;
+        vector&lt;int&gt; starts;
+
+        for (char ch : str) {
+            if (ch == '(') {
+                starts.push_back(result.size());
+            } else if (ch == ')') {
+                int start = starts.back();
+                starts.pop_back();
+
+                reverse(result.begin() + start, result.end());
+            } else {
+                result.push_back(ch);
+            }
+        }
+
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
