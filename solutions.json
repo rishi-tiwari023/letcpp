@@ -1144,6 +1144,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1614,
+            "title": "Maximum Nesting Depth of the Parentheses",
+            "route": "/1614",
+            "difficulty": "Medium",
+            "description": "Given a valid parentheses string s, return the nesting depth of s. The nesting depth is the maximum number of nested parentheses at any point in the string.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1621,
             "title": "Number of Sets of K Non-Overlapping Line Segments",
             "route": "/1621",
@@ -3764,5 +3773,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-27"
+    "lastUpdated": "2026-09-28"
 }
