@@ -1828,6 +1828,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2267,
+            "title": "Check if There Is a Valid Parentheses String Path",
+            "route": "/2267",
+            "difficulty": "Medium",
+            "description": "A parentheses string is valid if it can be constructed by concatenating valid strings or wrapping a valid string in an outer pair of parentheses. You are given an m x n matrix of parentheses grid. ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2273,
             "title": "Find Resultant Array After Removing Anagrams",
             "route": "/2273",
@@ -3773,5 +3782,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-28"
+    "lastUpdated": "2026-09-29"
 }
