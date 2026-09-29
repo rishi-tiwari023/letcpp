@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2267: Check if There Is a Valid Parentheses String Path
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2267: Check if There Is a Valid Parentheses String Path (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                A parentheses string is valid if it can be constructed by concatenating valid strings or
+                wrapping a valid string in an outer pair of parentheses. You are given an m x n matrix of
+                parentheses grid. A valid parentheses string path is a path starting at (0, 0), ending at
+                (m-1, n-1), moving only right or down, such that the parentheses visited along the path form a
+                valid string. Return true if such a path exists, otherwise return false.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [["(","(","("],[")","(",")"],["(","(",")"],["(","(",")"]]<br>
+                Output: true<br>
+                Explanation: There exists a right/down path from the top-left to the bottom-right cell whose
+                sequence of parentheses forms a valid string.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool hasValidPath(vector&lt;vector&lt;char&gt;&gt;&amp; grid) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+        int pathLen = rows + cols - 1;
+
+        if (pathLen % 2 != 0 || grid[0][0] != '(' || grid[rows - 1][cols - 1] != ')') {
+            return false;
+        }
+
+        vector&lt;bitset&lt;201&gt;&gt; states(cols);
+
+        for (int r = 0; r &lt; rows; ++r) {
+            for (int c = 0; c &lt; cols; ++c) {
+                bitset&lt;201&gt; possible;
+
+                if (r &gt; 0) possible |= states[c];
+                if (c &gt; 0) possible |= states[c - 1];
+                if (r == 0 &amp;&amp; c == 0) possible.set(0);
+
+                states[c] = grid[r][c] == '('
+                    ? (possible &lt;&lt; 1)
+                    : (possible &gt;&gt; 1);
+            }
+        }
+
+        return states[cols - 1].test(0);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
