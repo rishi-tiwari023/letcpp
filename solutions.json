@@ -622,6 +622,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1111,
+            "title": "Maximum Nesting Depth of Two Valid Parentheses Strings",
+            "route": "/1111",
+            "difficulty": "Medium",
+            "description": "A valid parentheses string is either empty, a concatenation of two valid strings, or a valid string wrapped in an outer pair of parentheses. You are given a valid parentheses string seq. Split it i...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1140,
             "title": "Stone Game II",
             "route": "/1140",
@@ -3782,5 +3791,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-29"
+    "lastUpdated": "2026-09-30"
 }
