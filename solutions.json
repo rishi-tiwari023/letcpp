@@ -28,6 +28,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 20,
+            "title": "Valid Parentheses",
+            "route": "/20",
+            "difficulty": "Medium",
+            "description": "Given a string s containing only the characters '(', ')', '{', '}', '[' and ']', determine whether the input string is valid. An input string is valid when each opening bracket is closed by the sam...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 33,
             "title": "Search in Rotated Sorted Array",
             "route": "/33",
@@ -3791,5 +3800,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-09-30"
+    "lastUpdated": "2026-10-01"
 }
