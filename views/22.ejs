@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 22: Generate Parentheses
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 22: Generate Parentheses (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given n pairs of parentheses, write a function to generate all combinations of well-formed
+                parentheses.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 3<br>
+                Output: ["((()))","(()())","(())()","()(())","()()()"]<br>
+                Explanation: These are all 5 valid ways to arrange 3 pairs of parentheses so that every
+                opening bracket has a matching closing bracket.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;string&gt; generateParenthesis(int n) {
+        if (n-- == 1) return {"()"};
+
+        vector&lt;string&gt; result;
+
+        auto build = [&amp;](auto&amp; self, int openLeft, int closeLeft, string current) -&gt; void {
+            if (openLeft == 0 &amp;&amp; closeLeft == 0) {
+                result.push_back(current + ")");
+                return;
+            }
+
+            if (openLeft &gt; 0)
+                self(self, openLeft - 1, closeLeft, current + "(");
+
+            if (closeLeft &gt;= openLeft)
+                self(self, openLeft, closeLeft - 1, current + ")");
+        };
+
+        build(build, n, n, "(");
+
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
