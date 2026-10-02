@@ -37,6 +37,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 22,
+            "title": "Generate Parentheses",
+            "route": "/22",
+            "difficulty": "Medium",
+            "description": "Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 33,
             "title": "Search in Rotated Sorted Array",
             "route": "/33",
@@ -3800,5 +3809,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-01"
+    "lastUpdated": "2026-10-02"
 }
