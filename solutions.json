@@ -46,6 +46,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 32,
+            "title": "Longest Valid Parentheses",
+            "route": "/32",
+            "difficulty": "Medium",
+            "description": "Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 33,
             "title": "Search in Rotated Sorted Array",
             "route": "/33",
@@ -3809,5 +3818,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-02"
+    "lastUpdated": "2026-10-03"
 }
