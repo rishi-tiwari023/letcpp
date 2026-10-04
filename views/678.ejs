@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 678: Valid Parenthesis String
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 678: Valid Parenthesis String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a string s containing only three types of characters: '(', ')', and '*', return true if
+                s is valid. A string is valid if any left parenthesis has a corresponding right parenthesis,
+                any right parenthesis has a corresponding left parenthesis, left parenthesis must go before
+                the corresponding right parenthesis, and each '*' could be treated as a single right
+                parenthesis, a single left parenthesis, or an empty string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "(*))"<br>
+                Output: true<br>
+                Explanation: Treating the '*' as a left parenthesis balances the string into a valid
+                sequence.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool checkValidString(string&amp; s) {
+        int length = s.size();
+        int minBalance = 0;
+        int maxBalance = 0;
+
+        for (int idx = length - 1; idx &gt;= 0; idx--) {
+            char current = s[idx];
+
+            minBalance += (current == ')') - (current == '(') - (current == '*');
+            maxBalance += (current == ')') - (current == '(') + (current == '*');
+
+            if (maxBalance &lt; 0) {
+                return false;
+            }
+
+            minBalance = max(minBalance, 0);
+        }
+
+        return minBalance == 0;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
