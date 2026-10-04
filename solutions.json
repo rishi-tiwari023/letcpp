@@ -307,6 +307,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 678,
+            "title": "Valid Parenthesis String",
+            "route": "/678",
+            "difficulty": "Medium",
+            "description": "Given a string s containing only three types of characters: '(', ')', and '*', return true if s is valid. A string is valid if any left parenthesis has a corresponding right parenthesis, any right ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 679,
             "title": "24 Game",
             "route": "/679",
@@ -3818,5 +3827,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-03"
+    "lastUpdated": "2026-10-04"
 }
