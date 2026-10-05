@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 856: Score of Parentheses
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 856: Score of Parentheses (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a balanced parentheses string s, return the score of the string. The score of a
+                balanced parentheses string is based on the following rules: "()" has a score of 1, AB has a
+                score of A + B where A and B are balanced parentheses strings, and (A) has a score of 2 * A
+                where A is a balanced parentheses string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "(()(()))"<br>
+                Output: 6<br>
+                Explanation: The outer pair doubles the score of its contents, which combine an inner "()"
+                worth 1 and a nested "(())" worth 2, giving a total of 6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int scoreOfParentheses(string str) {
+        stack&lt;int&gt; scores;
+        scores.push(0);
+
+        for (char ch : str) {
+            if (ch == '(') {
+                scores.push(0);
+            } else {
+                int innerScore = scores.top();
+                scores.pop();
+
+                int outerScore = scores.top();
+                scores.pop();
+
+                scores.push(outerScore + max(2 * innerScore, 1));
+            }
+        }
+
+        return scores.top();
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
