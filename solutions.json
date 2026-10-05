@@ -487,6 +487,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 856,
+            "title": "Score of Parentheses",
+            "route": "/856",
+            "difficulty": "Medium",
+            "description": "Given a balanced parentheses string s, return the score of the string. The score of a balanced parentheses string is based on the following rules: \"()\" has a score of 1, AB has a score of A + B whe...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 865,
             "title": "Smallest Subtree with all the Deepest Nodes",
             "route": "/865",
@@ -3827,5 +3836,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-04"
+    "lastUpdated": "2026-10-05"
 }
