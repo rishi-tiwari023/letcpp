@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 921: Minimum Add to Make Parentheses Valid
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 921: Minimum Add to Make Parentheses Valid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                A parentheses string is valid if and only if every left parenthesis has a corresponding right
+                parenthesis that comes later in the string. Given a parentheses string s, you can insert the
+                characters '(' or ')' at any position to make it valid. Return the minimum number of
+                insertions needed to make s valid.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "())"<br>
+                Output: 1<br>
+                Explanation: Inserting one '(' at the beginning produces "(())", which is a valid parentheses
+                string.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minAddToMakeValid(string s) {
+        int balance = 0, insertions = 0;
+
+        for (char ch : s) {
+            if (ch == '(') {
+                balance++;
+            } else {
+                if (balance &gt; 0) {
+                    balance--;
+                } else {
+                    insertions++;
+                }
+            }
+        }
+
+        return insertions + balance;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
