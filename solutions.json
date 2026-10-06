@@ -541,6 +541,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 921,
+            "title": "Minimum Add to Make Parentheses Valid",
+            "route": "/921",
+            "difficulty": "Medium",
+            "description": "A parentheses string is valid if and only if every left parenthesis has a corresponding right parenthesis that comes later in the string. Given a parentheses string s, you can insert the characters...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 940,
             "title": "Distinct Subsequences II",
             "route": "/940",
@@ -3836,5 +3845,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-05"
+    "lastUpdated": "2026-10-06"
 }
