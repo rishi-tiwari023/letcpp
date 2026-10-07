@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 301: Remove Invalid Parentheses
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 301: Remove Invalid Parentheses (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a string s that contains parentheses and letters, remove the minimum number of invalid
+                parentheses to make the input string valid. Return all the possible results. You may return
+                the answer in any order.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "()())()"<br>
+                Output: ["(())()","()()()"]<br>
+                Explanation: Removing a single mismatched closing parenthesis yields these two distinct valid
+                strings, and no fewer removals can make the string valid.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+    void process(
+        string s,
+        int scanIndex,
+        int deleteIndex,
+        char opening,
+        char closing,
+        vector&lt;string&gt;&amp; result
+    ) {
+        int balance = 0;
+
+        for (int i = scanIndex; i &lt; (int)s.size(); i++) {
+            if (s[i] == opening) {
+                balance++;
+            } else if (s[i] == closing) {
+                balance--;
+            }
+
+            if (balance &gt;= 0) {
+                continue;
+            }
+
+            for (int j = deleteIndex; j &lt;= i; j++) {
+                if (s[j] == closing &amp;&amp;
+                    (j == deleteIndex || s[j - 1] != closing)) {
+                    process(
+                        s.substr(0, j) + s.substr(j + 1),
+                        i,
+                        j,
+                        opening,
+                        closing,
+                        result
+                    );
+                }
+            }
+
+            return;
+        }
+
+        reverse(s.begin(), s.end());
+
+        if (opening == '(') {
+            process(s, 0, 0, ')', '(', result);
+        } else {
+            result.push_back(s);
+        }
+    }
+
+public:
+    vector&lt;string&gt; removeInvalidParentheses(string s) {
+        vector&lt;string&gt; result;
+        process(s, 0, 0, '(', ')', result);
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
