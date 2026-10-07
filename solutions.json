@@ -199,6 +199,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 301,
+            "title": "Remove Invalid Parentheses",
+            "route": "/301",
+            "difficulty": "Medium",
+            "description": "Given a string s that contains parentheses and letters, remove the minimum number of invalid parentheses to make the input string valid. Return all the possible results. You may return the answer i...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 326,
             "title": "Power of Three",
             "route": "/326",
@@ -3845,5 +3854,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-06"
+    "lastUpdated": "2026-10-07"
 }
