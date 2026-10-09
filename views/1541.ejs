@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1541: Minimum Insertions to Balance a Parentheses String
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1541: Minimum Insertions to Balance a Parentheses String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a parentheses string s containing only the characters '(' and ')', the string is
+                balanced if any left parenthesis '(' has a corresponding two consecutive right parentheses
+                '))', and left parentheses must go before the corresponding two right parentheses. You may
+                insert the characters '(' and ')' at any position of the string to balance it. Return the
+                minimum number of insertions needed to make s balanced.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "(()))"<br>
+                Output: 1<br>
+                Explanation: The second '(' has two matching '))', but the first '(' has only one ')' left to
+                pair with, so inserting one ')' at the end gives "(())))" which is balanced.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minInsertions(string s) {
+        int insertions = 0, open = 0;
+        int n = s.length();
+
+        for (int i = 0; i &lt; n; ++i) {
+            if (s[i] == '(') {
+                ++open;
+            } else {
+                if (i &lt; n - 1 &amp;&amp; s[i + 1] == ')') {
+                    ++i;
+                } else {
+                    ++insertions;
+                }
+
+                if (open == 0) {
+                    ++insertions;
+                } else {
+                    --open;
+                }
+            }
+        }
+
+        insertions += open * 2;
+        return insertions;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
