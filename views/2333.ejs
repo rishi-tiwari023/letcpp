@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2333: Minimum Sum of Squared Difference
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2333: Minimum Sum of Squared Difference (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two positive 0-indexed integer arrays nums1 and nums2, both of length n. The
+                sum of squared difference of arrays nums1 and nums2 is defined as the sum of
+                (nums1[i] - nums2[i])^2 for each 0 &lt;= i &lt; n. You are also given two positive integers k1
+                and k2. You can modify any of the elements of nums1 by +1 or -1 at most k1 times, and any of
+                the elements of nums2 by +1 or -1 at most k2 times. Return the minimum sum of squared
+                difference after modifying array nums1 at most k1 times and modifying array nums2 at most k2
+                times. Note that you can modify elements to become negative integers.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums1 = [1,2,3,4], nums2 = [2,10,20,19], k1 = 0, k2 = 0<br>
+                Output: 579<br>
+                Explanation: No modifications are allowed, so the sum of squared differences is
+                (1-2)^2 + (2-10)^2 + (3-20)^2 + (4-19)^2 = 579.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long minSumSquareDiff(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2, int k1, int k2) {
+        vector&lt;int&gt; freq(100001, 0);
+        long long operations = (long long)k1 + k2, total = 0;
+        int maximum = 0;
+
+        for (int i = 0; i &lt; nums1.size(); i++) {
+            int diff = abs(nums1[i] - nums2[i]);
+            freq[diff]++;
+            total += diff;
+            maximum = max(maximum, diff);
+        }
+
+        if (total &lt;= operations) return 0;
+
+        for (int i = maximum; i &gt; 0 &amp;&amp; operations &gt; 0; i--) {
+            long long moves = min(operations, (long long)freq[i]);
+            freq[i] -= moves;
+            freq[i - 1] += moves;
+            operations -= moves;
+        }
+
+        long long result = 0;
+
+        for (int i = 0; i &lt;= maximum; i++) {
+            result += (long long)i * i * freq[i];
+        }
+
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
