@@ -1954,6 +1954,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 2333,
+            "title": "Minimum Sum of Squared Difference",
+            "route": "/2333",
+            "difficulty": "Medium",
+            "description": "You are given two positive 0-indexed integer arrays nums1 and nums2, both of length n. The sum of squared difference of arrays nums1 and nums2 is defined as the sum of (nums1[i] - nums2[i])^2 for e...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2348,
             "title": "Number of Zero-Filled Subarrays",
             "route": "/2348",
@@ -3872,5 +3881,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-09"
+    "lastUpdated": "2026-10-10"
 }
