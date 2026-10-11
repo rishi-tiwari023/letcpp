@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2778: Sum of Squares of Special Elements
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2778: Sum of Squares of Special Elements (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 1-indexed integer array nums of length n. An element nums[i] of nums is
+                called special if i divides n, that is, n % i == 0. Return the sum of the squares of all
+                special elements of nums.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,3,4]<br>
+                Output: 21<br>
+                Explanation: There are exactly 3 special elements in nums: nums[1] since 1 divides 4,
+                nums[2] since 2 divides 4, and nums[4] since 4 divides 4. Hence, the sum of the squares of
+                all special elements is 1*1 + 2*2 + 4*4 = 21.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int sumOfSquares(vector&lt;int&gt;&amp; values) {
+        int size = values.size();
+        int result = 0;
+
+        for (int pos = 1; pos &lt;= size; pos++) {
+            if (size % pos == 0) {
+                result += values[pos - 1] * values[pos - 1];
+            }
+        }
+
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
