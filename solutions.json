@@ -2188,6 +2188,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 2778,
+            "title": "Sum of Squares of Special Elements",
+            "route": "/2778",
+            "difficulty": "Medium",
+            "description": "You are given a 1-indexed integer array nums of length n. An element nums[i] of nums is called special if i divides n, that is, n % i == 0. Return the sum of the squares of all special elements of ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2784,
             "title": "Check if Array is Good",
             "route": "/2784",
@@ -3881,5 +3890,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-10"
+    "lastUpdated": "2026-10-11"
 }
