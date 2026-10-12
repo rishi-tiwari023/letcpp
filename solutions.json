@@ -2269,6 +2269,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 2897,
+            "title": "Apply Operations on Array to Maximize Sum of Squares",
+            "route": "/2897",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed integer array nums and a positive integer k. You can do the following operation on the array any number of times: choose any two distinct indices i and j and simultaneousl...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2904,
             "title": "Shortest and Lexicographically Smallest Beautiful String",
             "route": "/2904",
@@ -3890,5 +3899,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-11"
+    "lastUpdated": "2026-10-12"
 }
