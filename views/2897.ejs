@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2897: Apply Operations on Array to Maximize Sum of Squares
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2897: Apply Operations on Array to Maximize Sum of Squares (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed integer array nums and a positive integer k. You can do the
+                following operation on the array any number of times: choose any two distinct indices i and
+                j and simultaneously update the values of nums[i] to (nums[i] AND nums[j]) and nums[j] to
+                (nums[i] OR nums[j]). Here, OR denotes the bitwise OR operation, and AND denotes the bitwise
+                AND operation. You have to choose k elements from the final array and calculate the sum of
+                their squares. Return the maximum sum of squares you can achieve. Since the answer can be
+                very large, return it modulo 10^9 + 7.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [2,6,5,8], k = 2<br>
+                Output: 261<br>
+                Explanation: After applying operations, the array can become [0,6,0,15]. Choosing the
+                elements 15 and 6 gives a sum of squares of 15^2 + 6^2 = 261.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxSum(vector&lt;int&gt;&amp; nums, int k) {
+        const int MOD = 1e9 + 7;
+        int n = nums.size();
+        vector&lt;int&gt; frequency(30, 0);
+
+        for (int num : nums) {
+            for (int bit = 0; bit &lt; 30; bit++) {
+                if (num &amp; (1 &lt;&lt; bit)) {
+                    frequency[bit]++;
+                }
+            }
+        }
+
+        vector&lt;long long&gt; values(n, 0);
+
+        for (int bit = 29; bit &gt;= 0; bit--) {
+            int count = frequency[bit];
+
+            for (int i = 0; i &lt; count; i++) {
+                values[i] |= (1LL &lt;&lt; bit);
+            }
+        }
+
+        long long total = 0;
+
+        for (int i = 0; i &lt; k; i++) {
+            total = (total + values[i] * values[i]) % MOD;
+        }
+
+        return (int)total;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
