@@ -3691,6 +3691,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3723,
+            "title": "Maximize Sum of Squares of Digits",
+            "route": "/3723",
+            "difficulty": "Medium",
+            "description": "You are given two positive integers num and sum. A positive integer n is good if it has exactly num digits and the sum of its digits is exactly sum. The score of a good integer n is the sum of the ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3727,
             "title": "Maximum Alternating Sum of Squares",
             "route": "/3727",
@@ -3908,5 +3917,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-13"
+    "lastUpdated": "2026-10-14"
 }
