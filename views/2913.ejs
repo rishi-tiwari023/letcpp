@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2913: Subarrays Distinct Element Sum of Squares I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2913: Subarrays Distinct Element Sum of Squares I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed integer array nums. The distinct count of a subarray of nums is
+                defined as the number of distinct values present in that subarray. Return the sum of the
+                squares of the distinct counts of all subarrays of nums. A subarray is a contiguous non-empty
+                sequence of elements within an array.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [1,2,1]<br>
+                Output: 15<br>
+                Explanation: The six subarrays are [1], [2], [1], [1,2], [2,1], and [1,2,1]. Their distinct
+                counts are 1, 1, 1, 2, 2, and 2, so the sum of squares is 1 + 1 + 1 + 4 + 4 + 4 = 15.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int sumCounts(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size(), ans = 0;
+        for (int start = 0; start &lt; n; start++) {
+            bitset&lt;101&gt; vis;
+            for (int end = start; end &lt; n; end++) {
+                vis.set(nums[end]);
+                int distinct = vis.count();
+                ans += distinct * distinct;
+            }
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
