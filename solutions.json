@@ -2305,6 +2305,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2916,
+            "title": "Subarrays Distinct Element Sum of Squares II",
+            "route": "/2916",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed integer array nums. The distinct count of a subarray of nums is defined as the number of distinct values present in that subarray. Return the sum of the squares of the dis...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2943,
             "title": "Maximize Area of Square Hole in Grid",
             "route": "/2943",
@@ -3926,5 +3935,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-15"
+    "lastUpdated": "2026-10-16"
 }
