@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3551: Minimum Swaps to Sort by Digit Sum
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3551: Minimum Swaps to Sort by Digit Sum (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array nums of distinct positive integers. You need to sort the array in
+                increasing order based on the sum of the digits of each number. If two numbers have the same
+                digit sum, the smaller number appears first in the sorted order. Return the minimum number of
+                swaps required to rearrange nums into this sorted order. A swap is defined as exchanging the
+                positions of two distinct elements in the array.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [37,100]<br>
+                Output: 1<br>
+                Explanation: The digit sums are 3 + 7 = 10 for 37 and 1 + 0 + 0 = 1 for 100. Sorting by digit
+                sum puts 100 before 37, which takes exactly one swap.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minSwaps(vector&lt;int&gt;&amp; nums) {
+        auto digitSum = [](int val) {
+            int total = 0;
+            while (val &gt; 0) {
+                total += val % 10;
+                val /= 10;
+            }
+            return total;
+        };
+
+        int n = nums.size();
+        vector&lt;pair&lt;int, int&gt;&gt; sortedNums;
+
+        for (int val : nums) {
+            sortedNums.emplace_back(digitSum(val), val);
+        }
+
+        ranges::sort(sortedNums);
+
+        unordered_map&lt;int, int&gt; position;
+        for (int i = 0; i &lt; n; i++) {
+            position[sortedNums[i].second] = i;
+        }
+
+        vector&lt;int&gt; target;
+        for (int val : nums) {
+            target.push_back(position[val]);
+        }
+
+        int swaps = 0;
+
+        for (int i = 0; i &lt; n; i++) {
+            while (target[i] != i) {
+                int j = target[i];
+                swap(target[i], target[j]);
+                swaps++;
+            }
+        }
+
+        return swaps;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
