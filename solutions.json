@@ -1189,6 +1189,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1569,
+            "title": "Number of Ways to Reorder Array to Get Same BST",
+            "route": "/1569",
+            "difficulty": "Medium",
+            "description": "Given an array nums that represents a permutation of integers from 1 to n, we construct a binary search tree (BST) by inserting the elements of nums in order into an initially empty BST. Find the n...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1578,
             "title": "Minimum Time to Make Rope Colorful",
             "route": "/1578",
@@ -3944,5 +3953,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-17"
+    "lastUpdated": "2026-10-18"
 }
