@@ -1738,6 +1738,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2089,
+            "title": "Find Target Indices After Sorting Array",
+            "route": "/2089",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed integer array nums and a target element target. A target index is an index i such that nums[i] == target. Return a list of the target indices of nums after sorting nums in...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2091,
             "title": "Removing Minimum and Maximum From Array",
             "route": "/2091",
@@ -3953,5 +3962,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-18"
+    "lastUpdated": "2026-10-19"
 }
