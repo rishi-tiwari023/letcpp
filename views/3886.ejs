@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3886: Sum of Sortable Integers
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3886: Sum of Sortable Integers (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums of length n. An integer k is sortable if k divides n and
+                you can make nums non-decreasing by splitting it into consecutive blocks of length k and
+                cyclically rotating each block independently, left or right, any number of times. Return the
+                sum of all sortable values of k.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [3,1,2]<br>
+                Output: 3<br>
+                Explanation: The divisors of n = 3 are 1 and 3. With k = 1, each block is a single element,
+                so no rotation can sort the array. With k = 3, the single block can be rotated once to give
+                [1,2,3]. Only k = 3 is sortable.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int sortableIntegers(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        vector&lt;int&gt; sorted = nums;
+        sort(sorted.begin(), sorted.end());
+
+        vector&lt;int&gt; divisors;
+
+        for (int i = 1; i * i &lt;= n; ++i) {
+            if (n % i == 0) {
+                divisors.push_back(i);
+                if (i != n / i) {
+                    divisors.push_back(n / i);
+                }
+            }
+        }
+
+        int result = 0;
+
+        for (int len : divisors) {
+            bool possible = true;
+
+            for (int start = 0; start &lt; n &amp;&amp; possible; start += len) {
+                int descents = 0;
+                int pivot = -1;
+
+                for (int j = 0; j &lt; len; ++j) {
+                    int current = nums[start + j];
+                    int next = nums[start + (j + 1) % len];
+
+                    if (current &gt; next) {
+                        ++descents;
+                        pivot = j;
+
+                        if (descents &gt; 1) {
+                            break;
+                        }
+                    }
+                }
+
+                if (descents &gt; 1) {
+                    possible = false;
+                    break;
+                }
+
+                int offset = (descents == 0) ? 0 : (pivot + 1) % len;
+
+                for (int j = 0; j &lt; len; ++j) {
+                    if (nums[start + (offset + j) % len] != sorted[start + j]) {
+                        possible = false;
+                        break;
+                    }
+                }
+            }
+
+            if (possible) {
+                result += len;
+            }
+        }
+
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
