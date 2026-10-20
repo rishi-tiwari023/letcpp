@@ -3925,6 +3925,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3886,
+            "title": "Sum of Sortable Integers",
+            "route": "/3886",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums of length n. An integer k is sortable if k divides n and you can make nums non-decreasing by splitting it into consecutive blocks of length k and cyclically rota...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3903,
             "title": "Smallest Stable Index I",
             "route": "/3903",
@@ -3962,5 +3971,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-19"
+    "lastUpdated": "2026-10-20"
 }
