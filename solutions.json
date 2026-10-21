@@ -3871,6 +3871,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3863,
+            "title": "Minimum Operations to Sort a String",
+            "route": "/3863",
+            "difficulty": "Medium",
+            "description": "You are given a lowercase English string s. In one operation, you may choose any substring of s that is not the entire string and sort its characters in non-descending order. Return the minimum num...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3867,
             "title": "Sum of GCD of Formed Pairs",
             "route": "/3867",
@@ -3971,5 +3980,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-20"
+    "lastUpdated": "2026-10-21"
 }
