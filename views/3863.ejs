@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3863: Minimum Operations to Sort a String
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3863: Minimum Operations to Sort a String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a lowercase English string s. In one operation, you may choose any substring of
+                s that is not the entire string and sort its characters in non-descending order. Return the
+                minimum number of operations needed to make s sorted in non-descending order, or -1 if it is
+                impossible.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "card"<br>
+                Output: 2<br>
+                Explanation: Sorting "car" gives "acr", so s becomes "acrd". Then sorting "rd" gives "dr", so
+                s becomes "acdr", which is sorted.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minOperations(string s) {
+        int len = s.size();
+        bool sorted = true;
+        bool inside = false;
+        int largest = INT_MIN;
+        int smallest = INT_MAX;
+
+        for (int i = 0; i &lt; len - 1; i++) {
+            if (s[i + 1] &lt; s[i]) {
+                sorted = false;
+            }
+            largest = max(largest, s[i] - 'a');
+            smallest = min(smallest, s[i] - 'a');
+        }
+
+        largest = max(largest, s[len - 1] - 'a');
+        smallest = min(smallest, s[len - 1] - 'a');
+
+        if (sorted) {
+            return 0;
+        }
+
+        if (len == 2) {
+            return -1;
+        }
+
+        if (s[0] == smallest + 'a' || s[len - 1] == largest + 'a') {
+            return 1;
+        }
+
+        for (int i = 1; i &lt;= len - 2; i++) {
+            if (s[i] == 'a' + largest || s[i] == 'a' + smallest) {
+                inside = true;
+            }
+        }
+
+        if (s[0] == 'a' + largest &amp;&amp; s[len - 1] == 'a' + smallest &amp;&amp; !inside) {
+            return 3;
+        }
+
+        return 2;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
