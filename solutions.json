@@ -3961,6 +3961,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3942,
+            "title": "Minimum Operations to Sort a Permutation",
+            "route": "/3942",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums of length n, which is a permutation of the integers from 0 to n - 1. You may use only two operations: reversing the entire array, or rotating it left by one posi...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 9999,
             "title": "Workflow Test",
             "route": "/9999",
@@ -3980,5 +3989,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-21"
+    "lastUpdated": "2026-10-22"
 }
