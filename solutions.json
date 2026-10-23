@@ -3556,6 +3556,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3644,
+            "title": "Maximum K to Sort a Permutation",
+            "route": "/3644",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums of length n, which is a permutation of the integers from 0 to n - 1. You may swap the elements at indices i and j only if nums[i] AND nums[j] == k, where AND den...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3650,
             "title": "Minimum Cost Path with Edge Reversals",
             "route": "/3650",
@@ -3989,5 +3998,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-22"
+    "lastUpdated": "2026-10-23"
 }
