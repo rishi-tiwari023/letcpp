@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2409: Count Days Spent Together
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2409: Count Days Spent Together (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Alice and Bob are traveling to Rome for separate business meetings. You are given 4 strings
+                arriveAlice, leaveAlice, arriveBob, and leaveBob. Alice will be in the city from the date
+                arriveAlice to leaveAlice (inclusive), while Bob will be in the city from the date arriveBob
+                to leaveBob (inclusive). Each date is a string in the format "MM-DD", corresponding to the
+                month and day of the date. Return the total number of days that Alice and Bob are in Rome
+                together. You can assume that all dates occur in the same calendar year, which is not a leap
+                year. Note that the number of days per month can be represented as: [31, 28, 31, 30, 31, 30,
+                31, 31, 30, 31, 30, 31].
+            </p>
+            <p><strong>Example:</strong>
+                Input: arriveAlice = "08-15", leaveAlice = "08-18", arriveBob = "08-16", leaveBob =
+                "08-19"<br>
+                Output: 3<br>
+                Explanation: Alice will be in Rome from August 15 to August 18. Bob will be in Rome from
+                August 16 to August 19. They are both in Rome together on August 16th, 17th, and 18th, so
+                the answer is 3.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int countDaysTogether(string arriveAlice, string leaveAlice, string arriveBob, string leaveBob) {
+        int monthDays[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        auto getDay = [&amp;](const string&amp; date) {
+            int month = (date[0] - '0') * 10 + (date[1] - '0');
+            int day = (date[3] - '0') * 10 + (date[4] - '0');
+            int total = day;
+
+            for (int i = 0; i &lt; month - 1; i++) {
+                total += monthDays[i];
+            }
+
+            return total;
+        };
+
+        int aliceStart = getDay(arriveAlice);
+        int aliceEnd = getDay(leaveAlice);
+        int bobStart = getDay(arriveBob);
+        int bobEnd = getDay(leaveBob);
+
+        int overlapStart = max(aliceStart, bobStart);
+        int overlapEnd = min(aliceEnd, bobEnd);
+
+        return overlapStart &lt;= overlapEnd ? overlapEnd - overlapStart + 1 : 0;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
