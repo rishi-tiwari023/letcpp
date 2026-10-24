@@ -2008,6 +2008,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 2409,
+            "title": "Count Days Spent Together",
+            "route": "/2409",
+            "difficulty": "Medium",
+            "description": "Alice and Bob are traveling to Rome for separate business meetings. You are given 4 strings arriveAlice, leaveAlice, arriveBob, and leaveBob. Alice will be in the city from the date arriveAlice to ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2435,
             "title": "Paths in Matrix Whose Sum Is Divisible by K",
             "route": "/2435",
@@ -3998,5 +4007,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-23"
+    "lastUpdated": "2026-10-24"
 }
