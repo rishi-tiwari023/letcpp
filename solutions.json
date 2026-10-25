@@ -748,6 +748,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 1254,
+            "title": "Number of Closed Islands",
+            "route": "/1254",
+            "difficulty": "Medium",
+            "description": "Given a 2D grid consisting of 0s (land) and 1s (water), an island is a maximal 4-directionally connected group of 0s. A closed island is an island totally (all left, top, right, bottom) surrounded ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1260,
             "title": "Shift 2D Grid",
             "route": "/1260",
@@ -4007,5 +4016,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-24"
+    "lastUpdated": "2026-10-25"
 }
