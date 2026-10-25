@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1254: Number of Closed Islands
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1254: Number of Closed Islands (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a 2D grid consisting of 0s (land) and 1s (water), an island is a maximal 4-directionally
+                connected group of 0s. A closed island is an island totally (all left, top, right, bottom)
+                surrounded by 1s. Return the number of closed islands.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid =
+                [[1,1,1,1,1,1,1,0],[1,0,0,0,0,1,1,0],[1,0,1,0,1,1,1,0],[1,0,0,0,0,1,0,1],[1,1,1,1,1,1,1,0]]<br>
+                Output: 2<br>
+                Explanation: Islands in gray are closed because they are completely surrounded by water
+                (group of 1s).
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+private:
+    void explore(int r, int c, vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+
+        int directions[4][2] = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
+
+        for (auto&amp; dir : directions) {
+            int nr = r + dir[0];
+            int nc = c + dir[1];
+
+            if (nr &gt;= 0 &amp;&amp; nr &lt; rows &amp;&amp; nc &gt;= 0 &amp;&amp; nc &lt; cols &amp;&amp; grid[nr][nc] != 1) {
+                grid[nr][nc] = 1;
+                explore(nr, nc, grid);
+            }
+        }
+    }
+
+public:
+    int closedIsland(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+
+        for (int r = 0; r &lt; rows; ++r) {
+            if (grid[r][0] == 0) {
+                grid[r][0] = 1;
+                explore(r, 0, grid);
+            }
+
+            if (grid[r][cols - 1] == 0) {
+                grid[r][cols - 1] = 1;
+                explore(r, cols - 1, grid);
+            }
+        }
+
+        for (int c = 0; c &lt; cols; ++c) {
+            if (grid[0][c] == 0) {
+                grid[0][c] = 1;
+                explore(0, c, grid);
+            }
+
+            if (grid[rows - 1][c] == 0) {
+                grid[rows - 1][c] = 1;
+                explore(rows - 1, c, grid);
+            }
+        }
+
+        int total = 0;
+
+        for (int r = 1; r &lt; rows - 1; ++r) {
+            for (int c = 1; c &lt; cols - 1; ++c) {
+                if (grid[r][c] == 0) {
+                    ++total;
+                    explore(r, c, grid);
+                }
+            }
+        }
+
+        return total;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
