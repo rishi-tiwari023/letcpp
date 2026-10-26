@@ -3475,6 +3475,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3619,
+            "title": "Count Islands With Total Value Divisible by K",
+            "route": "/3619",
+            "difficulty": "Medium",
+            "description": "You are given an m x n matrix grid of non-negative integers and a positive integer k. An island is a group of positive-valued cells connected horizontally or vertically. The total value of an islan...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3620,
             "title": "Network Recovery Pathways",
             "route": "/3620",
@@ -4016,5 +4025,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-25"
+    "lastUpdated": "2026-10-26"
 }
