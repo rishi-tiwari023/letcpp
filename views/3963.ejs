@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3963: Create Grid With Exactly One Path
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3963: Create Grid With Exactly One Path (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given two integers m and n, representing the number of rows and columns, build any m x n
+                grid made of '.' (free cells) and '#' (obstacles) that has exactly one valid path from the
+                top-left cell to the bottom-right cell. A valid path uses only free cells and moves either
+                right or down at each step.
+            </p>
+            <p><strong>Example:</strong>
+                Input: m = 2, n = 3<br>
+                Output: ["..#","#.."]<br>
+                Explanation: The only valid path is (0,0) → (0,1) → (1,1) → (1,2).
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;string&gt; createGrid(int rows, int cols) {
+        vector&lt;string&gt; matrix(rows, string(cols - 1, '#') + ".");
+        matrix[0] = string(cols, '.');
+        return matrix;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
