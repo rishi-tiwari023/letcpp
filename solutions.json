@@ -4006,6 +4006,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3963,
+            "title": "Create Grid With Exactly One Path",
+            "route": "/3963",
+            "difficulty": "Medium",
+            "description": "Given two integers m and n, representing the number of rows and columns, build any m x n grid made of '.' (free cells) and '#' (obstacles) that has exactly one valid path from the top-left cell to ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 9999,
             "title": "Workflow Test",
             "route": "/9999",
@@ -4025,5 +4034,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-26"
+    "lastUpdated": "2026-10-27"
 }
