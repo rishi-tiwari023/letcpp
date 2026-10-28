@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3882: Minimum XOR Path in a Grid
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3882: Minimum XOR Path in a Grid (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D integer array grid with m rows and n columns. You start at the top-left
+                cell and must reach the bottom-right cell, moving only right or down at each step. The cost
+                of a path is the XOR of all cell values along it, including the starting and ending cells.
+                Return the minimum cost among all valid paths.
+            </p>
+            <p><strong>Example:</strong>
+                Input: grid = [[1,2],[3,4]]<br>
+                Output: 6<br>
+                Explanation: There are two paths. Right then down gives 1 XOR 2 XOR 4 = 7, while down then
+                right gives 1 XOR 3 XOR 4 = 6. The minimum XOR is 6.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minCost(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int rows = grid.size(), cols = grid[0].size();
+
+        vector&lt;vector&lt;bitset&lt;1024&gt;&gt;&gt; dp(rows, vector&lt;bitset&lt;1024&gt;&gt;(cols));
+
+        dp[rows - 1][cols - 1][grid[rows - 1][cols - 1]] = 1;
+
+        for (int r = rows - 1; r &gt;= 0; r--) {
+            for (int c = cols - 1; c &gt;= 0; c--) {
+                if (r == rows - 1 &amp;&amp; c == cols - 1) continue;
+
+                if (r + 1 &lt; rows) {
+                    for (int x = 0; x &lt; 1024; x++) {
+                        if (dp[r + 1][c][x]) {
+                            dp[r][c][x ^ grid[r][c]] = 1;
+                        }
+                    }
+                }
+
+                if (c + 1 &lt; cols) {
+                    for (int x = 0; x &lt; 1024; x++) {
+                        if (dp[r][c + 1][x]) {
+                            dp[r][c][x ^ grid[r][c]] = 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int x = 0; x &lt; 1024; x++) {
+            if (dp[0][0][x]) return x;
+        }
+
+        return 0;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
