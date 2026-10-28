@@ -3961,6 +3961,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3882,
+            "title": "Minimum XOR Path in a Grid",
+            "route": "/3882",
+            "difficulty": "Medium",
+            "description": "You are given a 2D integer array grid with m rows and n columns. You start at the top-left cell and must reach the bottom-right cell, moving only right or down at each step. The cost of a path is t...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3883,
             "title": "Mirror Distance of an Integer",
             "route": "/3883",
@@ -4034,5 +4043,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-27"
+    "lastUpdated": "2026-10-28"
 }
