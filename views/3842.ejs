@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3841: Palindromic Path Queries in a Tree
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3841: Palindromic Path Queries in a Tree (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an undirected tree with n nodes labeled from 0 to n - 1, described by an edge
+                list, and a string s where s[i] is the lowercase letter on node i. You must process queries
+                of two kinds: "update u c" changes the letter on node u to c, and "query u v" asks whether
+                the letters on the path from u to v, including both endpoints, can be rearranged to form a
+                palindrome. Return a boolean array with one answer for each query of the second type, in
+                order.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 3, edges = [[0,1],[1,2]], s = "aac", queries = ["query 0 2","update 1 b","query 0 2"]<br>
+                Output: [true,false]<br>
+                Explanation: The path 0 &rarr; 1 &rarr; 2 spells "aac", which can be rearranged into the
+                palindrome "aca", so the first answer is true. After node 1 is updated to 'b', the string
+                becomes "abc", and the path spells "abc", which cannot form a palindrome, so the second
+                answer is false.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+private:
+    int n;
+    int timer;
+    vector&lt;vector&lt;int&gt;&gt; graph;
+    vector&lt;int&gt; par, dep, heavyChild, chainHead, index, mask;
+
+    struct SegmentTree {
+        int n;
+        vector&lt;int&gt; tree;
+
+        SegmentTree(int sz) {
+            n = sz;
+            tree.assign(4 * n, 0);
+        }
+
+        void update(int node, int left, int right, int idx, int value) {
+            if (left == right) {
+                tree[node] = value;
+                return;
+            }
+
+            int mid = left + (right - left) / 2;
+
+            if (idx &lt;= mid) {
+                update(node * 2, left, mid, idx, value);
+            } else {
+                update(node * 2 + 1, mid + 1, right, idx, value);
+            }
+
+            tree[node] = tree[node * 2] ^ tree[node * 2 + 1];
+        }
+
+        int query(int node, int left, int right, int ql, int qr) {
+            if (qr &lt; left || right &lt; ql) {
+                return 0;
+            }
+
+            if (ql &lt;= left &amp;&amp; right &lt;= qr) {
+                return tree[node];
+            }
+
+            int mid = left + (right - left) / 2;
+
+            return query(node * 2, left, mid, ql, qr) ^
+                   query(node * 2 + 1, mid + 1, right, ql, qr);
+        }
+    };
+
+    int dfs(int u, int p, int d) {
+        par[u] = p;
+        dep[u] = d;
+
+        int subtreeSize = 1;
+        int largestChild = 0;
+
+        for (int v : graph[u]) {
+            if (v == p) {
+                continue;
+            }
+
+            int childSize = dfs(v, u, d + 1);
+            subtreeSize += childSize;
+
+            if (childSize &gt; largestChild) {
+                largestChild = childSize;
+                heavyChild[u] = v;
+            }
+        }
+
+        return subtreeSize;
+    }
+
+    void decompose(int u, int h) {
+        chainHead[u] = h;
+        index[u] = timer++;
+
+        if (heavyChild[u] != -1) {
+            decompose(heavyChild[u], h);
+        }
+
+        for (int v : graph[u]) {
+            if (v != par[u] &amp;&amp; v != heavyChild[u]) {
+                decompose(v, v);
+            }
+        }
+    }
+
+    int pathQuery(int u, int v, SegmentTree&amp; seg) {
+        int result = 0;
+
+        while (chainHead[u] != chainHead[v]) {
+            if (dep[chainHead[u]] &gt; dep[chainHead[v]]) {
+                swap(u, v);
+            }
+
+            result ^= seg.query(
+                1, 0, n - 1, index[chainHead[v]], index[v]
+            );
+
+            v = par[chainHead[v]];
+        }
+
+        if (dep[u] &gt; dep[v]) {
+            swap(u, v);
+        }
+
+        result ^= seg.query(1, 0, n - 1, index[u], index[v]);
+
+        return result;
+    }
+
+public:
+    vector&lt;bool&gt; palindromePath(
+        int n, vector&lt;vector&lt;int&gt;&gt;&amp; edges, string s, vector&lt;string&gt;&amp; queries
+    ) {
+        this-&gt;n = n;
+        graph.assign(n, {});
+        
+        for (auto&amp; edge : edges) {
+            graph[edge[0]].push_back(edge[1]);
+            graph[edge[1]].push_back(edge[0]);
+        }
+
+        par.assign(n, -1);
+        dep.assign(n, 0);
+        heavyChild.assign(n, -1);
+        chainHead.assign(n, 0);
+        index.assign(n, 0);
+        mask.resize(n);
+
+        dfs(0, -1, 0);
+
+        timer = 0;
+        decompose(0, 0);
+
+        SegmentTree seg(n);
+
+        for (int i = 0; i &lt; n; i++) {
+            mask[i] = 1 &lt;&lt; (s[i] - 'a');
+            seg.update(1, 0, n - 1, index[i], mask[i]);
+        }
+
+        vector&lt;bool&gt; result;
+
+        for (const string&amp; q : queries) {
+            stringstream ss(q);
+            string type;
+            ss &gt;&gt; type;
+
+            if (type == "update") {
+                int u;
+                char c;
+                ss &gt;&gt; u &gt;&gt; c;
+
+                mask[u] = 1 &lt;&lt; (c - 'a');
+                seg.update(1, 0, n - 1, index[u], mask[u]);
+            } else {
+                int u, v;
+                ss &gt;&gt; u &gt;&gt; v;
+
+                int pathMask = pathQuery(u, v, seg);
+                result.push_back((pathMask &amp; (pathMask - 1)) == 0);
+            }
+        }
+
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
