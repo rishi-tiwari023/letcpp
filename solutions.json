@@ -3907,6 +3907,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3842,
+            "title": "Palindromic Path Queries in a Tree",
+            "route": "/3842",
+            "difficulty": "Medium",
+            "description": "You are given an undirected tree with n nodes labeled from 0 to n - 1, described by an edge list, and a string s where s[i] is the lowercase letter on node i. You must process queries of two kinds:...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3863,
             "title": "Minimum Operations to Sort a String",
             "route": "/3863",
@@ -4043,5 +4052,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-28"
+    "lastUpdated": "2026-10-29"
 }
