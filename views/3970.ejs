@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3970: Shortest Path With At Most K Consecutive Identical Characters
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3970: Shortest Path With At Most K Consecutive Identical Characters (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a directed weighted graph with n nodes numbered from 0 to n - 1, and a list of
+                edges where edges[i] = [ui, vi, wi] represents an edge from ui to vi with weight wi. Each
+                node has a lowercase letter label given by the string labels, and you are given an integer
+                k. Return the minimum total weight of a path from node 0 to node n - 1 such that the
+                sequence of labels along the path never contains more than k identical consecutive
+                characters. If no such path exists, return -1.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 3, edges = [[0,1,1],[1,2,1],[0,2,3]], labels = "aab", k = 1<br>
+                Output: 3<br>
+                Explanation: The best valid path is the direct edge from node 0 to node 2 with weight 3,
+                whose labels "ab" contain no run longer than 1. The path through node 1 has weight 2 but
+                spells "aab", which has a run of two 'a' characters and is invalid when k = 1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int shortestPath(int n, vector&lt;vector&lt;int&gt;&gt;&amp; edges, string labels, int k) {
+        vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; adj(n);
+
+        for (auto&amp; edge : edges) {
+            adj[edge[0]].emplace_back(edge[1], edge[2]);
+        }
+
+        vector&lt;int&gt; minRun(n, k + 1);
+        using State = tuple&lt;long long, int, int&gt;;
+        priority_queue&lt;State, vector&lt;State&gt;, greater&lt;&gt;&gt; pq;
+
+        pq.emplace(0, 1, 0);
+
+        while (!pq.empty()) {
+            auto [cost, run, node] = pq.top();
+            pq.pop();
+
+            if (run &gt;= minRun[node]) {
+                continue;
+            }
+
+            if (node == n - 1) {
+                return cost;
+            }
+
+            minRun[node] = run;
+
+            for (auto [next, weight] : adj[node]) {
+                int nextRun = labels[next] == labels[node] ? run + 1 : 1;
+
+                if (nextRun &lt; minRun[next]) {
+                    pq.emplace(cost + weight, nextRun, next);
+                }
+            }
+        }
+
+        return -1;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
