@@ -4033,6 +4033,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3970,
+            "title": "Shortest Path With At Most K Consecutive Identical Characters",
+            "route": "/3970",
+            "difficulty": "Medium",
+            "description": "You are given a directed weighted graph with n nodes numbered from 0 to n - 1, and a list of edges where edges[i] = [ui, vi, wi] represents an edge from ui to vi with weight wi. Each node has a low...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 9999,
             "title": "Workflow Test",
             "route": "/9999",
@@ -4052,5 +4061,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-29"
+    "lastUpdated": "2026-10-30"
 }
