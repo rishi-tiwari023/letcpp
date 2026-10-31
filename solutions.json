@@ -3664,6 +3664,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3665,
+            "title": "Twisted Mirror Path Count",
+            "route": "/3665",
+            "difficulty": "Medium",
+            "description": "You are given an m x n binary grid, where 0 represents an empty cell and 1 represents a mirror. A robot starts at the top-left cell (0, 0) and must reach the bottom-right cell (m - 1, n - 1), movin...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3666,
             "title": "Minimum Operations to Equalize Binary String",
             "route": "/3666",
@@ -4061,5 +4070,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-30"
+    "lastUpdated": "2026-10-31"
 }
