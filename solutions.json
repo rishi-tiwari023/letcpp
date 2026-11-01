@@ -262,6 +262,15 @@
             "spaceComplexity": "O(m*n)"
         },
         {
+            "id": 453,
+            "title": "Minimum Moves to Equal Array Elements",
+            "route": "/453",
+            "difficulty": "Medium",
+            "description": "Given an integer array nums of size n, return the minimum number of moves required to make all array elements equal. In one move, you can increment n - 1 elements of the array by 1.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 474,
             "title": "Ones and Zeroes",
             "route": "/474",
@@ -4070,5 +4079,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-10-31"
+    "lastUpdated": "2026-11-01"
 }
