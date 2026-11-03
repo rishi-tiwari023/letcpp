@@ -3835,6 +3835,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3736,
+            "title": "Minimum Moves to Equal Array Elements III",
+            "route": "/3736",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums. In one move, you may increase the value of any single element nums[i] by 1. Return the minimum total number of moves required so that all elements in nums becom...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3737,
             "title": "Count Subarrays With Majority Element I",
             "route": "/3737",
@@ -4088,5 +4097,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-02"
+    "lastUpdated": "2026-11-03"
 }
