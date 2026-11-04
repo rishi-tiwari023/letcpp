@@ -3169,6 +3169,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3505,
+            "title": "Minimum Operations to Make Elements Within K Subarrays Equal",
+            "route": "/3505",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums and two integers, x and k. In one operation, you can increase or decrease any single element of nums by 1. Return the minimum number of operations needed so that...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3507,
             "title": "Minimum Pair Removal to Sort Array I",
             "route": "/3507",
@@ -4097,5 +4106,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-03"
+    "lastUpdated": "2026-11-04"
 }
