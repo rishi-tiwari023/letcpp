@@ -973,6 +973,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 1385,
+            "title": "Find the Distance Value Between Two Arrays",
+            "route": "/1385",
+            "difficulty": "Medium",
+            "description": "Given two integer arrays arr1 and arr2, and the integer d, return the distance value between the two arrays. The distance value is defined as the number of elements arr1[i] such that there is not a...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1386,
             "title": "Cinema Seat Allocation",
             "route": "/1386",
@@ -4106,5 +4115,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-04"
+    "lastUpdated": "2026-11-05"
 }
