@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1385: Find the Distance Value Between Two Arrays
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1385: Find the Distance Value Between Two Arrays (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given two integer arrays arr1 and arr2, and the integer d, return the distance value between
+                the two arrays. The distance value is defined as the number of elements arr1[i] such that
+                there is not any element arr2[j] where |arr1[i] - arr2[j]| &lt;= d.
+            </p>
+            <p><strong>Example:</strong>
+                Input: arr1 = [4,5,8], arr2 = [10,9,1,8], d = 2<br>
+                Output: 2<br>
+                Explanation: For arr1[0] = 4, no element of arr2 is within distance 2, so it counts. For
+                arr1[1] = 5, no element of arr2 is within distance 2, so it counts. For arr1[2] = 8, the
+                element 8 in arr2 is within distance 2, so it does not count. The distance value is 2.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int findTheDistanceValue(vector&lt;int&gt;&amp; arr1, vector&lt;int&gt;&amp; arr2, int d) {
+        sort(arr1.begin(), arr1.end());
+        sort(arr2.begin(), arr2.end());
+
+        int res = 0, j = 0;
+
+        for (int num : arr1) {
+            while (j &lt; arr2.size() &amp;&amp; arr2[j] &lt; num - d)
+                j++;
+
+            if (j == arr2.size() || arr2[j] &gt; num + d)
+                res++;
+        }
+
+        return res;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
