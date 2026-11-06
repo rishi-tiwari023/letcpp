@@ -2224,6 +2224,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2747,
+            "title": "Count Zero Request Servers",
+            "route": "/2747",
+            "difficulty": "Medium",
+            "description": "You are given an integer n denoting the total number of servers and a 2D 0-indexed integer array logs, where logs[i] = [server_id, time] denotes that the server with id server_id received a request...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2749,
             "title": "Minimum Operations to Make the Integer Zero",
             "route": "/2749",
@@ -4115,5 +4124,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-05"
+    "lastUpdated": "2026-11-06"
 }
