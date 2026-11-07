@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1882: Process Tasks Using Servers
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1882: Process Tasks Using Servers (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given two 0-indexed integer arrays servers and tasks of lengths n and m
+                respectively. servers[i] is the weight of the ith server, and tasks[j] is the time needed to
+                process the jth task in seconds. Tasks are assigned to the servers using a task queue.
+                Initially, all servers are free, and the queue is empty. At second j, the jth task is
+                inserted into the queue. As long as there are free servers and the queue is not empty, the
+                task at the front of the queue is assigned to a free server with the smallest weight, and in
+                case of a tie, it is assigned to a free server with the smallest index. If there are no free
+                servers and the queue is not empty, we wait until a server becomes free and immediately
+                assign the next task. If multiple servers become free at the same time, then multiple tasks
+                from the queue are assigned in order of insertion following the weight and index priorities
+                above. A server that is assigned task j at second t will be free again at second
+                t + tasks[j]. Return an array ans of length m, where ans[j] is the index of the server the
+                jth task will be assigned to.
+            </p>
+            <p><strong>Example:</strong>
+                Input: servers = [3,3,2], tasks = [1,2,3,2,1,2]<br>
+                Output: [2,2,0,2,1,2]<br>
+                Explanation: At second 0, task 0 goes to server 2 (the smallest weight), which is free again
+                at second 1. At second 1, task 1 goes to server 2 again, and so on, with each task assigned
+                to the free server of smallest weight and index, or to the first server to become free when
+                none is available.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; assignTasks(vector&lt;int&gt;&amp; servers, vector&lt;int&gt;&amp; tasks) {
+        using pii = pair&lt;int, int&gt;;
+        using arr3 = array&lt;long long, 3&gt;;
+        priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt;&gt; available;
+        priority_queue&lt;arr3, vector&lt;arr3&gt;, greater&lt;arr3&gt;&gt; occupied;
+
+        for (int idx = 0; idx &lt; (int)servers.size(); ++idx) {
+            available.push({servers[idx], idx});
+        }
+
+        int m = tasks.size();
+        vector&lt;int&gt; result(m);
+
+        for (int time = 0; time &lt; m; ++time) {
+            while (!occupied.empty() &amp;&amp; occupied.top()[0] &lt;= time) {
+                auto [finish, weight, idx] = occupied.top();
+                occupied.pop();
+                available.push({(int)weight, (int)idx});
+            }
+
+            if (!available.empty()) {
+                auto [weight, idx] = available.top();
+                available.pop();
+                result[time] = idx;
+                occupied.push({(long long)time + tasks[time], weight, idx});
+            } else {
+                auto [finish, weight, idx] = occupied.top();
+                occupied.pop();
+                result[time] = (int)idx;
+                occupied.push({finish + tasks[time], weight, idx});
+            }
+        }
+
+        return result;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
