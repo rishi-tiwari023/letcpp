@@ -1549,6 +1549,15 @@
             "spaceComplexity": "O(m*n)"
         },
         {
+            "id": 1882,
+            "title": "Process Tasks Using Servers",
+            "route": "/1882",
+            "difficulty": "Medium",
+            "description": "You are given two 0-indexed integer arrays servers and tasks of lengths n and m respectively. servers[i] is the weight of the ith server, and tasks[j] is the time needed to process the jth task in ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1886,
             "title": "Determine Whether Matrix Can Be Obtained By Rotation",
             "route": "/1886",
@@ -4124,5 +4133,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-06"
+    "lastUpdated": "2026-11-07"
 }
