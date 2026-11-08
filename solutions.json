@@ -802,6 +802,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1267,
+            "title": "Count Servers that Communicate",
+            "route": "/1267",
+            "difficulty": "Medium",
+            "description": "You are given a map of a server center, represented as a m * n integer matrix grid, where 1 means that on that cell there is a server and 0 means that it is no server. Two servers are said to commu...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1277,
             "title": "Count Square Submatrices with All Ones",
             "route": "/1277",
@@ -4133,5 +4142,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-07"
+    "lastUpdated": "2026-11-08"
 }
