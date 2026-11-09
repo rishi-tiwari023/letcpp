@@ -1279,6 +1279,15 @@
             "spaceComplexity": "O(m*n)"
         },
         {
+            "id": 1606,
+            "title": "Find Servers That Handled Most Number of Requests",
+            "route": "/1606",
+            "difficulty": "Medium",
+            "description": "You have k servers numbered from 0 to k-1 that are being used to handle multiple requests simultaneously. Each server has infinite computational capacity but cannot handle more than one request at ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1611,
             "title": "Minimum One Bit Operations to Make Integers Zero",
             "route": "/1611",
@@ -4142,5 +4151,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-08"
+    "lastUpdated": "2026-11-09"
 }
