@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1606: Find Servers That Handled Most Number of Requests
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1606: Find Servers That Handled Most Number of Requests (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You have k servers numbered from 0 to k-1 that are being used to handle multiple requests
+                simultaneously. Each server has infinite computational capacity but cannot handle more than
+                one request at a time. The requests are assigned to servers according to a specific
+                algorithm: the ith (0-indexed) request arrives, and if all servers are busy, the request is
+                dropped. Otherwise, if the (i % k)th server is available, the request is assigned to it. If
+                it is not available, the request is assigned to the next available server, wrapping around
+                the list of servers if necessary. You are given a strictly increasing array arrival of
+                positive integers, where arrival[i] represents the arrival time of the ith request, and
+                another array load, where load[i] represents the load of the ith request (the time it takes
+                to complete). Your goal is to find the busiest servers, which are the ones that handled the
+                most number of requests successfully. Return a list containing the IDs (0-indexed) of the
+                busiest servers, in any order.
+            </p>
+            <p><strong>Example:</strong>
+                Input: k = 3, arrival = [1,2,3,4,5], load = [5,2,3,3,3]<br>
+                Output: [1]<br>
+                Explanation: Server 0 handles requests 0 and 3 only if it is free in time, but requests are
+                dropped or redirected when servers are busy. Server 1 ends up handling the most requests
+                (two), while servers 0 and 2 each handle one, so the busiest server is server 1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+    struct Job {
+        int endTime;
+        int id;
+        auto operator&lt;=&gt;(const Job&amp;) const = default;
+    };
+
+    template &lt;class T&gt;
+    using MinHeap = priority_queue&lt;T, vector&lt;T&gt;, greater&lt;&gt;&gt;;
+
+public:
+    vector&lt;int&gt; busiestServers(int k, vector&lt;int&gt;&amp; arrival, vector&lt;int&gt;&amp; load) {
+        vector&lt;int&gt; turns(k);
+        iota(turns.begin(), turns.end(), 0);
+        MinHeap&lt;int&gt; free(greater&lt;&gt;{}, move(turns));
+
+        MinHeap&lt;Job&gt; busy;
+        vector&lt;int&gt; cnt(k);
+
+        for (int i = 0; i &lt; ssize(arrival); ++i) {
+            while (!busy.empty() &amp;&amp; busy.top().endTime &lt;= arrival[i]) {
+                int id = busy.top().id;
+                busy.pop();
+                free.push(i + (id - i % k + k) % k);
+            }
+
+            if (free.empty()) continue;
+
+            int id = free.top() % k;
+            free.pop();
+
+            busy.push({arrival[i] + load[i], id});
+            ++cnt[id];
+        }
+
+        int mx = ranges::max(cnt);
+        vector&lt;int&gt; ans;
+
+        for (int i = 0; i &lt; k; ++i) {
+            if (cnt[i] == mx) ans.push_back(i);
+        }
+
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
