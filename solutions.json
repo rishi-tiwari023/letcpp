@@ -3772,6 +3772,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3693,
+            "title": "Climbing Stairs II",
+            "route": "/3693",
+            "difficulty": "Medium",
+            "description": "You are climbing a staircase with n + 1 steps, numbered from 0 to n. You are given a 1-indexed integer array costs of length n, where costs[i] is the cost of step i. From step i, you can jump only ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3699,
             "title": "Number of ZigZag Arrays I",
             "route": "/3699",
@@ -4151,5 +4160,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-09"
+    "lastUpdated": "2026-11-10"
 }
