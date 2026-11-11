@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3789: Minimum Cost to Acquire Required Items
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3789: Minimum Cost to Acquire Required Items (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given five integers cost1, cost2, costBoth, need1, and need2. There are three types
+                of items: a type 1 item costs cost1 and counts toward need1 only, a type 2 item costs cost2
+                and counts toward need2 only, and a type 3 item costs costBoth and counts toward both need1
+                and need2 at the same time. You must buy items so that the total number of items counting
+                toward need1 is at least need1 and the total number counting toward need2 is at least
+                need2. Return the minimum total cost required to acquire the required items.
+            </p>
+            <p><strong>Example:</strong>
+                Input: cost1 = 3, cost2 = 2, costBoth = 1, need1 = 3, need2 = 2<br>
+                Output: 3<br>
+                Explanation: Buying three type 3 items costs 3 * 1 = 3 and satisfies both requirements
+                (3 &gt;= 3 and 3 &gt;= 2). No cheaper valid combination exists.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long minimumCost(int cost1, int cost2, int costBoth, int need1, int need2) {
+        auto calc = [&amp;](long long a, int x, long long b, int y) {
+            int p = min(x, costBoth);
+            int q = min(y, costBoth - p);
+            return a * p + b * q;
+        };
+        return max(calc(need1, cost1, need2, cost2), calc(need2, cost2, need1, cost1));
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
