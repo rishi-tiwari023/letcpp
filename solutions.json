@@ -3997,6 +3997,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3789,
+            "title": "Minimum Cost to Acquire Required Items",
+            "route": "/3789",
+            "difficulty": "Medium",
+            "description": "You are given five integers cost1, cost2, costBoth, need1, and need2. There are three types of items: a type 1 item costs cost1 and counts toward need1 only, a type 2 item costs cost2 and counts to...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3838,
             "title": "Weighted Word Mapping",
             "route": "/3838",
@@ -4160,5 +4169,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-10"
+    "lastUpdated": "2026-11-11"
 }
