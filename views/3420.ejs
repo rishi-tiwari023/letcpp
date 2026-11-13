@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3420: Count Non-Decreasing Subarrays After K Operations
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3420: Count Non-Decreasing Subarrays After K Operations (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an array nums of n integers and an integer k. For each subarray of nums, you
+                can apply up to k operations on it. In each operation, you increment any element of the
+                subarray by 1. Note that each subarray is considered independently, meaning changes made to
+                one subarray do not persist to another. Return the number of subarrays that you can make
+                non-decreasing after performing at most k operations. An array is said to be non-decreasing
+                if each element is greater than or equal to its previous element, if it exists.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [6,3,1,2,4,4], k = 7<br>
+                Output: 17<br>
+                Explanation: There are 21 subarrays in total. The subarrays [6,3,1], [6,3,1,2],
+                [6,3,1,2,4], and [6,3,1,2,4,4] cannot be made non-decreasing with 7 or fewer operations,
+                so the answer is 21 - 4 = 17.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    long long countNonDecreasingSubarrays(vector&lt;int&gt;&amp; nums, int k) {
+        int n = nums.size(), head = n, tail = n, right = n - 1;
+        vector&lt;int&gt; st(n);
+        long long ans = 0, cost = 0;
+
+        for (int left = n - 1; left &gt;= 0; --left) {
+            int x = nums[left];
+
+            while (head &lt; tail &amp;&amp; nums[st[head]] &lt;= x) {
+                int pos = st[head++];
+                int end = head &lt; tail ? st[head] : right + 1;
+                cost += 1LL * (x - nums[pos]) * (end - pos);
+            }
+
+            st[--head] = left;
+
+            while (cost &gt; k) {
+                cost -= nums[st[tail - 1]] - nums[right];
+                if (st[tail - 1] == right)
+                    --tail;
+                --right;
+            }
+
+            ans += right - left + 1;
+        }
+
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
