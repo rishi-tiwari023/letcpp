@@ -3061,6 +3061,15 @@
             "spaceComplexity": "O(m * n)"
         },
         {
+            "id": 3420,
+            "title": "Count Non-Decreasing Subarrays After K Operations",
+            "route": "/3420",
+            "difficulty": "Medium",
+            "description": "You are given an array nums of n integers and an integer k. For each subarray of nums, you can apply up to k operations on it. In each operation, you increment any element of the subarray by 1. Not...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3432,
             "title": "Count Partitions with Even Sum Difference",
             "route": "/3432",
@@ -4178,5 +4187,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-12"
+    "lastUpdated": "2026-11-13"
 }
