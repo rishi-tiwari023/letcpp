@@ -2998,6 +2998,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3364,
+            "title": "Minimum Positive Sum Subarray",
+            "route": "/3364",
+            "difficulty": "Medium",
+            "description": "You are given an integer array nums and two integers l and r. Your task is to find the minimum sum of a subarray whose size is between l and r (inclusive) and whose sum is greater than 0. Return th...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3370,
             "title": "Smallest Number With All Set Bits",
             "route": "/3370",
@@ -4187,5 +4196,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-13"
+    "lastUpdated": "2026-11-14"
 }
