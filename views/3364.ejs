@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3364: Minimum Positive Sum Subarray
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3364: Minimum Positive Sum Subarray (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given an integer array nums and two integers l and r. Your task is to find the
+                minimum sum of a subarray whose size is between l and r (inclusive) and whose sum is greater
+                than 0. Return the minimum sum of such a subarray. If no such subarray exists, return -1. A
+                subarray is a contiguous non-empty sequence of elements within an array.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [3,-2,1,4], l = 2, r = 3<br>
+                Output: 1<br>
+                Explanation: The subarrays of length between l = 2 and r = 3 where the sum is greater than 0
+                are [3,-2] with sum 1, [1,4] with sum 5, [3,-2,1] with sum 2, and [-2,1,4] with sum 3. Out
+                of these, the subarray [3,-2] has the minimum positive sum of 1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minimumSumSubarray(vector&lt;int&gt;&amp; nums, int l, int r) {
+        int n = nums.size(), mn = INT_MAX;
+
+        for (int i = 0; i &lt; n; i++) {
+            int sum = 0;
+
+            for (int j = i; j &lt; n; j++) {
+                sum += nums[j];
+                int len = j - i + 1;
+
+                if (len &gt;= l &amp;&amp; len &lt;= r &amp;&amp; sum &gt; 0)
+                    mn = min(mn, sum);
+            }
+        }
+
+        return mn == INT_MAX ? -1 : mn;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
