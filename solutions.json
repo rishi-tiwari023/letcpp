@@ -1180,6 +1180,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1524,
+            "title": "Number of Sub-arrays With Odd Sum",
+            "route": "/1524",
+            "difficulty": "Medium",
+            "description": "Given an array of integers arr, return the number of subarrays with an odd sum. Since the answer can be very large, return it modulo 10^9 + 7.",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1526,
             "title": "Minimum Number of Increments on Subarrays to Form a Target Array",
             "route": "/1526",
@@ -4196,5 +4205,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-14"
+    "lastUpdated": "2026-11-15"
 }
