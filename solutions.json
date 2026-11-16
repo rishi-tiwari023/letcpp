@@ -1981,6 +1981,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2243,
+            "title": "Calculate Digit Sum of a String",
+            "route": "/2243",
+            "difficulty": "Medium",
+            "description": "You are given a string s consisting of digits and an integer k. A round can be completed if the length of s is greater than k. In one round, do the following: divide s into consecutive groups of si...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2257,
             "title": "Count Unguarded Cells in the Grid",
             "route": "/2257",
@@ -4205,5 +4214,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-15"
+    "lastUpdated": "2026-11-16"
 }
