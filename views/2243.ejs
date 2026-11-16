@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2243: Calculate Digit Sum of a String
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2243: Calculate Digit Sum of a String (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a string s consisting of digits and an integer k. A round can be completed if
+                the length of s is greater than k. In one round, do the following: divide s into consecutive
+                groups of size k such that the first k characters are in the first group, the next k
+                characters are in the second group, and so on (the size of the last group may be smaller
+                than k); replace each group of s with a string representing the sum of all its digits; and
+                merge consecutive groups together to form a new string. Repeat rounds until the length of s
+                is less than or equal to k. Return s after all rounds have been completed.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "11111222223", k = 3<br>
+                Output: "135"<br>
+                Explanation: In the first round, the groups are "111", "112", "222", and "23", which are
+                replaced by "3", "4", "6", and "5", giving "3465". In the second round, the groups are "346"
+                and "5", which are replaced by "13" and "5", giving "135". Since the length is now at most
+                k, the answer is "135".
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    string digitSum(string s, int k) {
+        while (s.size() &gt; k) {
+            string res;
+            for (int i = 0; i &lt; s.size(); i += k) {
+                int sum = 0;
+                for (int j = i; j &lt; s.size() &amp;&amp; j &lt; i + k; j++)
+                    sum += s[j] - '0';
+                res += to_string(sum);
+            }
+            s = res;
+        }
+        return s;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
