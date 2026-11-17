@@ -2413,6 +2413,15 @@
             "spaceComplexity": "O(m*n)"
         },
         {
+            "id": 2911,
+            "title": "Minimum Changes to Make K Semi-palindromes",
+            "route": "/2911",
+            "difficulty": "Medium",
+            "description": "Given a string s and an integer k, partition s into k substrings such that the letter changes needed to make each substring a semi-palindrome are minimized. Return the minimum number of letter chan...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2913,
             "title": "Subarrays Distinct Element Sum of Squares I",
             "route": "/2913",
@@ -4214,5 +4223,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-16"
+    "lastUpdated": "2026-11-17"
 }
