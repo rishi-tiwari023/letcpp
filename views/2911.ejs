@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 2911: Minimum Changes to Make K Semi-palindromes
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 2911: Minimum Changes to Make K Semi-palindromes (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Given a string s and an integer k, partition s into k substrings such that the letter
+                changes needed to make each substring a semi-palindrome are minimized. Return the minimum
+                number of letter changes required. A semi-palindrome is a string of length len for which
+                there exists a positive integer d such that 1 &lt;= d &lt; len and len % d == 0, and if we take
+                indices that have the same modulo by d, they form a palindrome. For example, "aa", "aba",
+                "adbgad", and "abab" are semi-palindromes, while "a" and "abca" are not. A substring is a
+                contiguous sequence of characters within a string.
+            </p>
+            <p><strong>Example:</strong>
+                Input: s = "abcac", k = 2<br>
+                Output: 1<br>
+                Explanation: Divide s into the substrings "ab" and "cac". The string "cac" is already a
+                semi-palindrome. If we change "ab" to "aa", it becomes a semi-palindrome with d = 1. It can
+                be shown that there is no way to divide the string into two semi-palindromes with fewer than
+                1 change, so the answer is 1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int minimumChanges(string s, int k) {
+        int n = s.size(), inf = INT_MAX / 2;
+
+        auto calc = [&amp;](int l, int r, int d) {
+            int cnt = 0;
+            for (; r - l &gt; d; l += d, r -= d)
+                for (int x = 0; x &lt; d; x++)
+                    cnt += s[l + x] != s[r - d + x];
+            return cnt;
+        };
+
+        vector dp(n + 1, vector(n + 1, inf));
+
+        for (int d = 1; 2 * d &lt;= n; d++)
+            for (int len = 2 * d; len &lt;= n; len += d)
+                for (int l = 0, r = len; r &lt;= n; l++, r++)
+                    dp[l][r] = min(dp[l][r], calc(l, r, d));
+
+        vector prev(n + 1, inf);
+        prev[0] = 0;
+
+        auto get = [&amp;](int r) {
+            int ans = inf;
+            for (int l = 0; l &lt; r - 1; l++)
+                ans = min(ans, prev[l] + dp[l][r]);
+            return ans;
+        };
+
+        for (int parts = 1; parts &lt; k; parts++) {
+            vector curr(n + 1, inf);
+
+            for (int r = 2 * parts; r &lt;= n - 2 * (k - parts); r++)
+                curr[r] = get(r);
+
+            swap(prev, curr);
+        }
+
+        return get(n);
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
