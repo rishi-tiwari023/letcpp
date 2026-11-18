@@ -2431,6 +2431,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 2914,
+            "title": "Minimum Number of Changes to Make Binary String Beautiful",
+            "route": "/2914",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed binary string s having an even length. A string is beautiful if it is possible to partition it into one or more substrings such that each substring has an even length and ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 2916,
             "title": "Subarrays Distinct Element Sum of Squares II",
             "route": "/2916",
@@ -4223,5 +4232,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-17"
+    "lastUpdated": "2026-11-18"
 }
