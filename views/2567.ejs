@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-        LeetCode 2567: Find the Prefix Common Array of Two Arrays
+        LeetCode 2567: Minimum Score by Changing Two Elements
     </title>
     <link rel="stylesheet" href="/styles.css" />
     <script src="/solution.js"></script>
@@ -13,40 +13,61 @@
 
 <body>
     <main>
-        <h1>LeetCode 2567: Find the Prefix Common Array of Two Arrays (C++)</h1>
+        <h1>LeetCode 2567: Minimum Score by Changing Two Elements (C++)</h1>
         <div class="problem-description">
             <p><strong>Problem:</strong>
-                You are given two 0-indexed integer permutations a and b of length n. A prefix common array is an array
-                c where c[i] is the count of numbers that are common in a[0..i] and b[0..i]. Return the prefix common
-                array c.
+                You are given a 0-indexed integer array nums. The low score of nums is the minimum value of
+                |nums[i] - nums[j]| over all 0 &lt;= i &lt; j &lt; nums.length. The high score of nums is the maximum
+                value of |nums[i] - nums[j]| over all 0 &lt;= i &lt; j &lt; nums.length. The score of nums is the
+                sum of the high and low scores of nums. To minimize the score of nums, we can change the
+                value of at most two elements of nums. Return the minimum possible score after changing at
+                most two elements of nums.
             </p>
             <p><strong>Example:</strong>
-                Input: a = [1,2,3,4,5], b = [3,2,1,4,5]<br>
-                Output: [0,2,3,4,5]<br>
-                Explanation: At index 0: a[0]=1, b[0]=3, no common. At index 1: a[0..1]=[1,2], b[0..1]=[3,2],
-                common={2}, count=1 (wait, expected is 2). Let me recalculate: at index 1, we have {1,2} and {3,2}, so
-                only 2 is common, count=1. The expected output seems to indicate we count when an element appears in
-                both prefixes.
+                Input: nums = [1,4,7,8,5]<br>
+                Output: 3<br>
+                Explanation: Change nums[0] and nums[1] to be 6, so nums becomes [6,6,7,8,5]. The low score
+                is 0, since the first two elements are equal, and the high score is 3, so the score is
+                0 + 3 = 3. It can be shown that no smaller score is achievable.
             </p>
         </div>
         <div class="code-container">
             <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
             <pre><code class="language-cpp">class Solution {
 public:
-    vector&lt;int&gt; findThePrefixCommonArray(vector&lt;int&gt;&amp; a, vector&lt;int&gt;&amp; b) {
-        int n = a.size();
-        vector&lt;int&gt; seen(n + 1, 0);
-        vector&lt;int&gt; res(n);
-        int common = 0;
-        for (int i = 0; i &lt; n; i++) {
-            // Track occurrences using array instead of hashmap
-            if (++seen[a[i]] == 2)
-                common++;
-            if (++seen[b[i]] == 2)
-                common++;
-            res[i] = common;
+    int minimizeSum(vector&lt;int&gt;&amp; nums) {
+        int hi1 = INT_MIN, hi2 = INT_MIN, hi3 = INT_MIN;
+        int lo1 = INT_MAX, lo2 = INT_MAX, lo3 = INT_MAX;
+
+        for (int x : nums) {
+            if (x &gt; hi1) {
+                hi3 = hi2;
+                hi2 = hi1;
+                hi1 = x;
+            } else if (x &gt; hi2) {
+                hi3 = hi2;
+                hi2 = x;
+            } else if (x &gt; hi3) {
+                hi3 = x;
+            }
+
+            if (x &lt; lo1) {
+                lo3 = lo2;
+                lo2 = lo1;
+                lo1 = x;
+            } else if (x &lt; lo2) {
+                lo3 = lo2;
+                lo2 = x;
+            } else if (x &lt; lo3) {
+                lo3 = x;
+            }
         }
-        return res;
+
+        int res1 = hi3 - lo1;
+        int res2 = hi2 - lo2;
+        int res3 = hi1 - lo3;
+
+        return min({res1, res2, res3});
     }
 };</code></pre>
         </div>
