@@ -2620,6 +2620,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3041,
+            "title": "Maximize Consecutive Elements in an Array After Modification",
+            "route": "/3041",
+            "difficulty": "Medium",
+            "description": "You are given a 0-indexed array nums consisting of positive integers. Initially, you can increase the value of any element in the array by at most 1. After that, you need to select one or more elem...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3043,
             "title": "Find the Length of the Longest Common Prefix",
             "route": "/3043",
@@ -4232,5 +4241,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-18"
+    "lastUpdated": "2026-11-20"
 }
