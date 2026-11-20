@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3041: Maximize Consecutive Elements in an Array After Modification
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3041: Maximize Consecutive Elements in an Array After Modification (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 0-indexed array nums consisting of positive integers. Initially, you can
+                increase the value of any element in the array by at most 1. After that, you need to select
+                one or more elements from the final array such that those elements are consecutive when
+                sorted in increasing order. For example, the elements [3, 4, 5] are consecutive while
+                [3, 4, 6] and [1, 1, 2, 3] are not. Return the maximum number of elements that you can
+                select.
+            </p>
+            <p><strong>Example:</strong>
+                Input: nums = [2,1,5,1,1]<br>
+                Output: 3<br>
+                Explanation: We can increase the elements at indices 0 and 3 so that the final array is
+                [3,1,5,2,1]. We select the elements [3,1,5,2,1] and we sort them to obtain [1,2,3], which
+                are consecutive. It can be shown that we cannot select more than 3 consecutive elements.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maxSelectedElements(vector&lt;int&gt;&amp; nums) {
+        ranges::sort(nums);
+        int ans = 1, a = 1, b = 1, prev = -10;
+        for (int x : nums) {
+            switch (x - prev) {
+                case 0: b = a + 1; break;
+                case 1: ++a, ++b; break;
+                case 2: a = b + 1, b = 1; break;
+                default: a = b = 1;
+            }
+            ans = max({ans, a, b});
+            prev = x;
+        }
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
