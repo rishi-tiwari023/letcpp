@@ -2971,6 +2971,15 @@
             "spaceComplexity": "O(k)"
         },
         {
+            "id": 3331,
+            "title": "Find Subtree Sizes After Changes",
+            "route": "/3331",
+            "difficulty": "Medium",
+            "description": "You are given a tree rooted at node 0 that consists of n nodes numbered from 0 to n - 1. The tree is represented by an array parent of size n, where parent[i] is the parent of node i. Since node 0 ...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3336,
             "title": "Find the Number of Subsequences With Equal GCD",
             "route": "/3336",
@@ -4241,5 +4250,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-20"
+    "lastUpdated": "2026-11-21"
 }
