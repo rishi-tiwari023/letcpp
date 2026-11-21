@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3331: Find Subtree Sizes After Changes
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3331: Find Subtree Sizes After Changes (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a tree rooted at node 0 that consists of n nodes numbered from 0 to n - 1. The
+                tree is represented by an array parent of size n, where parent[i] is the parent of node i.
+                Since node 0 is the root, parent[0] == -1. You are also given a string s of length n, where
+                s[i] is the character assigned to node i. We make the following changes on the tree one time
+                simultaneously for all nodes x from 1 to n - 1: find the closest node y to node x such that
+                y is an ancestor of x and s[x] == s[y]. If node y does not exist, do nothing. Otherwise,
+                remove the edge between x and its current parent and make node y the new parent of x by
+                adding an edge between them. Return an array answer of size n where answer[i] is the size of
+                the subtree rooted at node i in the final tree.
+            </p>
+            <p><strong>Example:</strong>
+                Input: parent = [-1,0,0,1,1,1], s = "abaabc"<br>
+                Output: [6,3,1,1,1,1]<br>
+                Explanation: The parent of node 3 changes from node 1 to node 0, since node 0 is its closest
+                ancestor with the same character 'a'. Node 2 keeps parent 0, node 4 keeps parent 1, and node
+                5 has no ancestor with character 'c'. In the final tree, node 0 has subtree size 6, node 1
+                has size 3, and nodes 2, 3, 4 and 5 each have size 1.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; findSubtreeSizes(vector&lt;int&gt;&amp; parent, string s) {
+        int n = parent.size();
+        vector&lt;vector&lt;int&gt;&gt; adj(n);
+
+        for (int i = 1; i &lt; n; i++)
+            adj[parent[i]].push_back(i);
+
+        vector&lt;int&gt; par = parent, last(26, -1);
+
+        function&lt;void(int)&gt; dfs = [&amp;](int u) {
+            int c = s[u] - 'a', prev = last[c];
+
+            if (prev != -1) par[u] = prev;
+            last[c] = u;
+
+            for (int v : adj[u])
+                dfs(v);
+
+            last[c] = prev;
+        };
+
+        dfs(0);
+
+        vector&lt;vector&lt;int&gt;&gt; tree(n);
+        for (int i = 1; i &lt; n; i++)
+            tree[par[i]].push_back(i);
+
+        vector&lt;int&gt; ans(n);
+
+        function&lt;int(int)&gt; calc = [&amp;](int u) {
+            int sz = 1;
+
+            for (int v : tree[u])
+                sz += calc(v);
+
+            return ans[u] = sz;
+        };
+
+        calc(0);
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
