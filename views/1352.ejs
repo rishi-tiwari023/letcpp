@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 1352: Product of the Last K Numbers
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 1352: Product of the Last K Numbers (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Design an algorithm that accepts a stream of integers and retrieves the product of the last
+                k integers of the stream. Implement the ProductOfNumbers class: ProductOfNumbers()
+                initializes the object with an empty stream, void add(int num) appends the integer num to
+                the stream, and int getProduct(int k) returns the product of the last k numbers in the
+                current list. You can assume that the current list always has at least k numbers. The test
+                cases are generated so that, at any time, the product of any contiguous sequence of numbers
+                will fit into a single 32-bit integer without overflowing.
+            </p>
+            <p><strong>Example:</strong>
+                Input:
+                ["ProductOfNumbers","add","add","add","add","add","getProduct","getProduct","getProduct","add","getProduct"]<br>
+                [[],[3],[0],[2],[5],[4],[2],[3],[4],[8],[2]]<br>
+                Output: [null,null,null,null,null,null,20,40,0,null,32]<br>
+                Explanation: After adding 3, 0, 2, 5, and 4, the list is [3,0,2,5,4]. getProduct(2) returns
+                5 * 4 = 20, getProduct(3) returns 2 * 5 * 4 = 40, and getProduct(4) returns
+                0 * 2 * 5 * 4 = 0. After add(8), the list is [3,0,2,5,4,8], and getProduct(2) returns
+                4 * 8 = 32.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class ProductOfNumbers {
+    vector&lt;int&gt; nums;
+public:
+    ProductOfNumbers() {}
+
+    void add(int num) {
+        nums.push_back(num);
+    }
+
+    int getProduct(int k) {
+        int n = nums.size(), ans = 1;
+        for (int i = n - k; i &lt; n; i++)
+            ans *= nums[i];
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
