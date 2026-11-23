@@ -955,6 +955,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 1352,
+            "title": "Product of the Last K Numbers",
+            "route": "/1352",
+            "difficulty": "Medium",
+            "description": "Design an algorithm that accepts a stream of integers and retrieves the product of the last k integers of the stream. Implement the ProductOfNumbers class: ProductOfNumbers() initializes the object...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 1356,
             "title": "Sort Integers by The Number of 1 Bits",
             "route": "/1356",
@@ -4259,5 +4268,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-22"
+    "lastUpdated": "2026-11-23"
 }
