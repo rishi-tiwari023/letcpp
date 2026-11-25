@@ -4231,6 +4231,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3934,
+            "title": "Smallest Unique Subarray",
+            "route": "/3934",
+            "difficulty": "Medium",
+            "description": "Given an integer array nums, find the minimum length of a subarray that is not identical to any other subarray in nums. Two subarrays are identical if they have the same length and the same element...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3942,
             "title": "Minimum Operations to Sort a Permutation",
             "route": "/3942",
@@ -4277,5 +4286,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-24"
+    "lastUpdated": "2026-11-25"
 }
