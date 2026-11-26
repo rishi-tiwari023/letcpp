@@ -3070,6 +3070,15 @@
             "spaceComplexity": "O(n)"
         },
         {
+            "id": 3360,
+            "title": "Stone Removal Game",
+            "route": "/3360",
+            "difficulty": "Medium",
+            "description": "Alice and Bob are playing a game with a pile of n stones. Alice goes first, and the players take turns. On the first turn, the player must remove exactly 10 stones. On each later turn, the player m...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3364,
             "title": "Minimum Positive Sum Subarray",
             "route": "/3364",
@@ -4286,5 +4295,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-25"
+    "lastUpdated": "2026-11-26"
 }
