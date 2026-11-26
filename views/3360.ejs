@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3360: Stone Removal Game
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3360: Stone Removal Game (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                Alice and Bob are playing a game with a pile of n stones. Alice goes first, and the players
+                take turns. On the first turn, the player must remove exactly 10 stones. On each later turn,
+                the player must remove exactly one fewer stone than the previous player removed (9 on Bob's
+                first turn, then 8 on Alice's, and so on). A player who cannot remove the required number of
+                stones loses. Return true if Alice wins the game, otherwise return false.
+            </p>
+            <p><strong>Example:</strong>
+                Input: n = 12<br>
+                Output: true<br>
+                Explanation: Alice removes 10 stones, leaving 2. Bob needs to remove 9 stones but only 2
+                remain, so Bob cannot move and loses.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    bool canAliceWin(int n) {
+        int take = 10;
+        while (n &gt; 0) {
+            if (n &lt; take)
+                return false;
+            n -= take--;
+            if (n &lt; take)
+                return true;
+            n -= take--;
+        }
+        return false;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
