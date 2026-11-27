@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        LeetCode 3946: Maximum Number of Items From Sale I
+    </title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/solution.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>LeetCode 3946: Maximum Number of Items From Sale I (C++)</h1>
+        <div class="problem-description">
+            <p><strong>Problem:</strong>
+                You are given a 2D integer array items, where items[i] = [factor_i, price_i] describes the
+                i-th item, and an integer budget. You can buy any number of copies of each item, with total
+                spending at most budget. For each item i you buy at least one copy of, you get one free copy
+                of every other item j where factor_i divides factor_j. Buying more copies of item i does not
+                give extra free copies, and the same item can be received free from several different
+                purchased types. Return the maximum total number of copies you can end up with, counting
+                both purchased and free copies.
+            </p>
+            <p><strong>Example:</strong>
+                Input: items = [[6,2],[2,6],[3,4]], budget = 9<br>
+                Output: 4<br>
+                Explanation: Buy 2 copies of item 0 (cost 2 * 2 = 4) and 1 copy of item 2 (cost 4), for a
+                total of 8, which is within the budget of 9. Buying item 2 gives one free copy of item 0,
+                because 3 divides 6. That makes 3 purchased copies plus 1 free copy, for a total of 4.
+            </p>
+        </div>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode(this)">Copy Code</button>
+            <pre><code class="language-cpp">class Solution {
+public:
+    int maximumSaleItems(vector&lt;vector&lt;int&gt;&gt;&amp; items, int budget) {
+        vector&lt;int&gt; dp(budget + 1, 0);
+        int mn = INT_MAX;
+
+        for (const auto&amp; x : items) {
+            int a = x[0], b = x[1];
+            mn = min(mn, b);
+
+            int cnt = 0;
+            for (const auto&amp; y : items) {
+                if (y[0] % a == 0) {
+                    cnt++;
+                }
+            }
+
+            for (int j = budget; j &gt;= b; j--) {
+                dp[j] = max(dp[j], dp[j - b] + cnt);
+            }
+        }
+
+        int ans = 0;
+
+        for (int i = 0; i &lt;= budget; i++) {
+            ans = max(ans, dp[i] + (budget - i) / mn);
+        }
+
+        return ans;
+    }
+};</code></pre>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </main>
+</body>
+
+</html>
