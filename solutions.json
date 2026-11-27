@@ -4258,6 +4258,15 @@
             "spaceComplexity": "O(1)"
         },
         {
+            "id": 3946,
+            "title": "Maximum Number of Items From Sale I",
+            "route": "/3946",
+            "difficulty": "Medium",
+            "description": "You are given a 2D integer array items, where items[i] = [factor_i, price_i] describes the i-th item, and an integer budget. You can buy any number of copies of each item, with total spending at mo...",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
             "id": 3963,
             "title": "Create Grid With Exactly One Path",
             "route": "/3963",
@@ -4295,5 +4304,5 @@
         }
     ],
     "totalCount": 192,
-    "lastUpdated": "2026-11-26"
+    "lastUpdated": "2026-11-27"
 }
